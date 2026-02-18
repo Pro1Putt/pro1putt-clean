@@ -11,7 +11,6 @@ permissions:
 jobs:
   backup:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v4
 
@@ -21,10 +20,15 @@ jobs:
       - name: Create backup folder
         run: mkdir -p backups
 
-      - name: Dump scores table
+      - name: Dump scores table (Supabase Pooler)
+        env:
+          PGPASSWORD: ${{ secrets.SUPABASE_DB_PASSWORD }}
         run: |
           pg_dump \
-            --dbname="${{ secrets.SUPABASE_DATABASE_URL }}" \
+            --host=aws-1-eu-central-1.pooler.supabase.com \
+            --port=5432 \
+            --username=postgres.levztgbjylvspmfxcbuj \
+            --dbname=postgres \
             --table=public.scores \
             --data-only \
             --file="backups/scores_$(date +%Y-%m-%d_%H-%M-%S).sql"
