@@ -137,13 +137,13 @@ export async function POST(req: Request) {
 
     // Mail senden (nach erfolgreichem Insert)
     await sendRegistrationMail({
-      to: email!,
-      firstName: first_name,
-      lastName: last_name,
-      tournamentName: tRow.name || "PRO1PUTT Tournament",
-      holes: holes!,
-      playerPin: player_pin,
-    });
+  to: email,
+  firstName: first_name,
+  lastName: last_name,
+  tournamentName: tRow?.name || "PRO1PUTT",
+  holes: holes!,
+  playerPin: player_pin,
+});
 
     return NextResponse.json({
       ok: true,
