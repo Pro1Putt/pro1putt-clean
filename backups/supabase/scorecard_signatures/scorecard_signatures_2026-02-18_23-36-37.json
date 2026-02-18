@@ -1,0 +1,32 @@
+[
+  {
+    "id": "90b2541f-f64c-4097-9f95-94756f97e6d1",
+    "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
+    "registration_id": "ba3a4b8d-7387-40f5-80ad-4a7399e75a92",
+    "round": 1,
+    "role": "marker",
+    "signed_name": "Marker Name",
+    "signed_at": "2026-02-18T13:51:19.760101+00:00",
+    "user_agent": "curl/8.7.1"
+  },
+  {
+    "id": "5bbca4ce-d834-4031-a5b4-adcf3fced36f",
+    "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
+    "registration_id": "a0adc4f5-9cc4-46e9-b414-bba6a049b9ba",
+    "round": 1,
+    "role": "player",
+    "signed_name": "Player Name",
+    "signed_at": "2026-02-18T13:50:05.958195+00:00",
+    "user_agent": "curl/8.7.1"
+  },
+  {
+    "id": "22477bee-bc3b-40b6-993e-84124d1ce9ff",
+    "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
+    "registration_id": "a0adc4f5-9cc4-46e9-b414-bba6a049b9ba",
+    "round": 1,
+    "role": "marker",
+    "signed_name": "Marker Name",
+    "signed_at": "2026-02-18T13:54:08.331224+00:00",
+    "user_agent": "curl/8.7.1"
+  }
+]
