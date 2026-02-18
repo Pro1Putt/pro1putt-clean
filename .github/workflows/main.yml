@@ -13,8 +13,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Install PostgreSQL client
         run: sudo apt-get update && sudo apt-get install -y postgresql-client
@@ -25,7 +24,7 @@ jobs:
       - name: Dump scores table
         run: |
           pg_dump \
-            --dbname="${{ secrets.SUPABASE_POOLER_URL }}" \
+            --dbname="${{ secrets.SUPABASE_DATABASE_URL }}" \
             --table=public.scores \
             --data-only \
             --file="backups/scores_$(date +%Y-%m-%d_%H-%M-%S).sql"
