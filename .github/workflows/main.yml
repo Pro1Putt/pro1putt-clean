@@ -5,6 +5,9 @@ on:
     - cron: "*/10 * * * *"
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   backup:
     runs-on: ubuntu-latest
@@ -12,6 +15,8 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
+        with:
+          persist-credentials: true
 
       - name: Install PostgreSQL client
         run: sudo apt-get update && sudo apt-get install -y postgresql-client
@@ -23,13 +28,13 @@ jobs:
         run: |
           PGPASSWORD="${{ secrets.SUPABASE_DB_PASSWORD }}" \
           pg_dump \
-          --host=db.levztgbjylvspmfxcbuj.supabase.co \
-          --port=5432 \
-          --username=postgres \
-          --dbname=postgres \
-          --table=public.scores \
-          --data-only \
-          --file=backups/scores_$(date +'%Y-%m-%d_%H-%M-%S').sql
+            --host=aws-1-eu-central-1.pooler.supabase.com \
+            --port=5432 \
+            --username=postgres.levztgbjylvspmfxcbuj \
+            --dbname=postgres \
+            --table=public.scores \
+            --data-only \
+            --file="backups/scores_$(date +%Y-%m-%d_%H-%M-%S).sql"
 
       - name: Commit backup
         run: |
