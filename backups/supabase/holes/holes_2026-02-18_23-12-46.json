@@ -1,0 +1,128 @@
+[
+  {
+    "id": "49377790-f6a2-4b1d-95da-a2be79f79d6a",
+    "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
+    "hole_number": 1,
+    "par": 4,
+    "stroke_index": null
+  },
+  {
+    "id": "c562e3ed-afce-4720-8997-784f951c264a",
+    "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
+    "hole_number": 2,
+    "par": 4,
+    "stroke_index": null
+  },
+  {
+    "id": "85d6ebf9-1747-4e98-a998-1c3e609728c8",
+    "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
+    "hole_number": 3,
+    "par": 3,
+    "stroke_index": null
+  },
+  {
+    "id": "a64436b0-244e-4f04-b3d0-d5b6474b4362",
+    "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
+    "hole_number": 4,
+    "par": 5,
+    "stroke_index": null
+  },
+  {
+    "id": "fa37fa68-c63b-4f65-8690-999bd303eed4",
+    "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
+    "hole_number": 5,
+    "par": 4,
+    "stroke_index": null
+  },
+  {
+    "id": "f3235481-aa57-4f8c-96f4-f32c9ad403ef",
+    "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
+    "hole_number": 6,
+    "par": 4,
+    "stroke_index": null
+  },
+  {
+    "id": "ddd46765-7a25-44a4-86b6-41a100010206",
+    "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
+    "hole_number": 7,
+    "par": 3,
+    "stroke_index": null
+  },
+  {
+    "id": "f0ca32c8-be57-4a92-a7d3-6a5b00782773",
+    "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
+    "hole_number": 8,
+    "par": 5,
+    "stroke_index": null
+  },
+  {
+    "id": "ec5bdab7-2d0b-431a-b415-486e0ed7f76f",
+    "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
+    "hole_number": 9,
+    "par": 4,
+    "stroke_index": null
+  },
+  {
+    "id": "25193543-b58d-4b8d-83e6-d67311d9364d",
+    "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
+    "hole_number": 10,
+    "par": 4,
+    "stroke_index": null
+  },
+  {
+    "id": "332b457d-b846-4467-a8b8-0dec19c99167",
+    "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
+    "hole_number": 11,
+    "par": 4,
+    "stroke_index": null
+  },
+  {
+    "id": "2e8b5803-9ae4-4f84-a230-cfe0874ded00",
+    "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
+    "hole_number": 12,
+    "par": 3,
+    "stroke_index": null
+  },
+  {
+    "id": "953e1cc3-8eff-45cf-b0d4-3362868b07c4",
+    "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
+    "hole_number": 13,
+    "par": 5,
+    "stroke_index": null
+  },
+  {
+    "id": "576a4776-e0a4-4257-ae0f-6b7392aa472c",
+    "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
+    "hole_number": 14,
+    "par": 4,
+    "stroke_index": null
+  },
+  {
+    "id": "5bcd6393-0b9e-45dc-a4a5-f2e089caec45",
+    "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
+    "hole_number": 15,
+    "par": 4,
+    "stroke_index": null
+  },
+  {
+    "id": "6f179e36-01b5-4f3f-bf63-281f5ef180c9",
+    "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
+    "hole_number": 16,
+    "par": 3,
+    "stroke_index": null
+  },
+  {
+    "id": "ab784fd4-f23e-4ba5-b0b0-30f81a5c41a6",
+    "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
+    "hole_number": 17,
+    "par": 5,
+    "stroke_index": null
+  },
+  {
+    "id": "539ee915-bb16-4247-9d23-344b8eaa19f2",
+    "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
+    "hole_number": 18,
+    "par": 4,
+    "stroke_index": null
+  }
+]
