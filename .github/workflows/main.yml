@@ -1,0 +1,40 @@
+name: Supabase Scores Backup (every 10 minutes)
+
+on:
+  schedule:
+    - cron: "*/10 * * * *"
+  workflow_dispatch:
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Install PostgreSQL client
+        run: sudo apt-get update && sudo apt-get install -y postgresql-client
+
+      - name: Create backup folder
+        run: mkdir -p backups
+
+      - name: Dump scores table
+        run: |
+          PGPASSWORD="${{ secrets.SUPABASE_DB_PASSWORD }}" \
+          pg_dump \
+          --host=db.levztgbjylvspmfxcbuj.supabase.co \
+          --port=5432 \
+          --username=postgres \
+          --dbname=postgres \
+          --table=public.scores \
+          --data-only \
+          --file=backups/scores_$(date +'%Y-%m-%d_%H-%M-%S').sql
+
+      - name: Commit backup
+        run: |
+          git config user.name "backup-bot"
+          git config user.email "backup@pro1putt.com"
+          git add backups
+          git commit -m "auto backup $(date +'%Y-%m-%d_%H-%M-%S')" || echo "no changes"
+          git push
