@@ -11,8 +11,13 @@ permissions:
 jobs:
   backup:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+          fetch-depth: 0
 
       - name: Install PostgreSQL client
         run: sudo apt-get update && sudo apt-get install -y postgresql-client
@@ -24,22 +29,20 @@ jobs:
         env:
           PGPASSWORD: ${{ secrets.SUPABASE_DB_PASSWORD }}
         run: |
-          - name: Dump scores table (Supabase Pooler)
-  env:
-    PGPASSWORD: ${{ secrets.SUPABASE_DB_PASSWORD }}
-  run: |
-    pg_dump \
-      --host=aws-1-eu-central-1.pooler.supabase.com \
-      --port=5432 \
-      --username=postgres.levztgbjylvspmfxcbuj \
-      --dbname=postgres \
-      --table=public.scores \
-      --data-only \
-      --file="backups/scores_$(date +%Y-%m-%d_%H-%M-%S).sql"
+          ts=$(date -u +'%Y-%m-%d_%H-%M-%S')
+          pg_dump \
+            --host=aws-1-eu-central-1.pooler.supabase.com \
+            --port=5432 \
+            --username=postgres.levztgbjylvspmfxcbuj \
+            --dbname=postgres \
+            --table=public.scores \
+            --data-only \
+            --file="backups/scores_${ts}.sql"
+
       - name: Commit backup
         run: |
           git config user.name "backup-bot"
           git config user.email "backup@pro1putt.com"
           git add backups
-          git commit -m "auto backup $(date +'%Y-%m-%d_%H-%M-%S')" || echo "no changes"
+          git commit -m "auto backup $(date -u +'%Y-%m-%d_%H-%M-%S')" || echo "no changes"
           git push
