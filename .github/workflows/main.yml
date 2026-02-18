@@ -17,34 +17,23 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install PostgreSQL client
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y postgresql-client
+        run: sudo apt-get update && sudo apt-get install -y postgresql-client
 
       - name: Create backup folder
         run: mkdir -p backups
 
-      - name: Dump scores table (via Supabase Pooler)
-        env:
-          PGPASSWORD: ${{ secrets.SUPABASE_DB_PASSWORD }}
-          PGHOST: aws-1-eu-central-1.pooler.supabase.com
-          PGPORT: "5432"
-          PGUSER: postgres.levztgbjylvspmfxcbuj
-          PGDATABASE: postgres
-          PGSSLMODE: require
+      - name: Dump scores table
         run: |
-          set -e
-          ts="$(date +%Y-%m-%d_%H-%M-%S)"
           pg_dump \
-            --data-only \
+            --dbname="${{ secrets.SUPABASE_POOLER_URL }}" \
             --table=public.scores \
-            --file="backups/scores_${ts}.sql"
+            --data-only \
+            --file="backups/scores_$(date +%Y-%m-%d_%H-%M-%S).sql"
 
       - name: Commit backup
         run: |
-          set -e
           git config user.name "backup-bot"
           git config user.email "backup@pro1putt.com"
           git add backups
-          git commit -m "auto backup $(date +'%Y-%m-%d_%H-%M-%S')" || echo "no changes to commit"
+          git commit -m "auto backup $(date +'%Y-%m-%d_%H-%M-%S')" || echo "no changes"
           git push
