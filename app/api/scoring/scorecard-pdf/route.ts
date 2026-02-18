@@ -2,6 +2,13 @@ import { NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 import { PDFDocument, StandardFonts, rgb } from "pdf-lib";
 
+type RegistrationRow = {
+  id: string;
+  first_name: string | null;
+  last_name: string | null;
+  email: string | null;
+};
+
 function getServiceSupabase() {
   return createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -50,12 +57,14 @@ export async function GET(req: Request) {
 
     // Registration
     const cols = roundCols(round);
-    const { data: rRow, error: rErr } = await supabase
-      .from("registrations")
-      .select(`id,first_name,last_name,holes,hcp,home_club,nation,${cols.finalizedAt}`)
-      .eq("id", registrationId)
-      .eq("tournament_id", tournamentId)
-      .single();
+   const { data: rRowRaw, error: rErr } = await supabase
+  .from("registrations")
+  .select(`id,first_name,last_name,holes,hcp,home_club,nation,${cols.finalizedAt}`)
+  .eq("id", registrationId)
+  .eq("tournament_id", tournamentId)
+  .single();
+
+const rRow = (rRowRaw as unknown) as RegistrationRow;
 
     if (rErr || !rRow) {
       return NextResponse.json({ ok: false, error: "Registration not found" }, { status: 404 });
@@ -169,7 +178,7 @@ export async function GET(req: Request) {
     y -= 18;
 
     // Player block
-    const fullName = `${rRow.first_name} ${rRow.last_name}`.trim();
+    const fullName = `${rRow.first_name ?? ""} ${rRow.last_name ?? ""}`.trim();
     drawText(`Player: ${fullName}`, margin, y, 11, true, DARK);
     y -= 16;
 
