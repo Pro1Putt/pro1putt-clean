@@ -8,16 +8,14 @@ if (!mailFrom) throw new Error("Missing MAIL_FROM");
 
 const resend = new Resend(resendKey);
 
-type SendRegistrationMailArgs = {
+export type SendRegistrationMailArgs = {
   to: string;
   firstName: string;
   lastName: string;
-
   tournamentName: string;
-  tournamentStartDate?: string | null;
-
-  categoryLabel: string; // z.B. "U12 Girls" / "U14 Boys" etc.
+  holes: number;
   playerPin: string;
+};
 
   scoringUrl: string; // Button 1 + Fallback-Link
   leaderboardUrl: string; // Button 2
