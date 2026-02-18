@@ -5,9 +5,6 @@ on:
     - cron: "*/10 * * * *"
   workflow_dispatch:
 
-permissions:
-  contents: write
-
 jobs:
   backup:
     runs-on: ubuntu-latest
@@ -15,18 +12,19 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
-        with:
-          persist-credentials: true
 
       - name: Install PostgreSQL client
-        run: sudo apt-get update && sudo apt-get install -y postgresql-client
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y postgresql-client
 
       - name: Create backup folder
         run: mkdir -p backups
 
-      - name: Dump scores table
+      - name: Dump scores table (via Supabase Pooler)
+        env:
+          PGPASSWORD: ${{ secrets.SUPABASE_DB_PASSWORD }}
         run: |
-          PGPASSWORD="${{ secrets.SUPABASE_DB_PASSWORD }}" \
           pg_dump \
             --host=aws-1-eu-central-1.pooler.supabase.com \
             --port=5432 \
