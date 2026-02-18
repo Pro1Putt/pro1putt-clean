@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { Suspense, useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 
 type Tournament = {
@@ -28,7 +28,7 @@ type Row = {
   start_time: string | null;
 };
 
-type FilterKey = "ALL_U12" | "ALL_U21" | string; // dynamic keys like "Girls-U14"
+type FilterKey = "ALL_U12" | "ALL_U21" | string;
 
 const GREEN = "#1e4620";
 const LOGO_URL =
@@ -89,7 +89,8 @@ function fmtTournament(t: Tournament) {
   return parts.join(" ");
 }
 
-export default function LeaderboardPage() {
+/** ✅ Wichtig: useSearchParams() ist jetzt NICHT mehr im Page-Root, sondern in diesem Inner-Component */
+function LeaderboardInner() {
   const sp = useSearchParams();
   const tournamentIdFromUrl = (sp.get("tournamentId") || "").trim();
 
@@ -152,13 +153,15 @@ export default function LeaderboardPage() {
       const json = await res.json();
       if (!res.ok || !json?.ok) throw new Error(json?.error || "Failed to load leaderboard");
       const raw = Array.isArray(json?.rows) ? (json.rows as any[]) : [];
-const cleaned = raw.filter(
-  (r) =>
-    (r?.gender === "Boys" || r?.gender === "Girls") &&
-    typeof r?.age_group === "string" &&
-    r.age_group.length > 0
-);
-setRows(cleaned as Row[]);
+
+      const cleaned = raw.filter(
+        (r) =>
+          (r?.gender === "Boys" || r?.gender === "Girls") &&
+          typeof r?.age_group === "string" &&
+          r.age_group.length > 0
+      );
+
+      setRows(cleaned as Row[]);
       setLastUpdated(new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }));
     } catch (e: any) {
       setRows([]);
@@ -181,7 +184,7 @@ setRows(cleaned as Row[]);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tournamentId]);
 
-    const tabs = useMemo(() => {
+  const tabs = useMemo(() => {
     const set = new Set<string>();
     for (const r of rows) {
       if ((r.gender === "Boys" || r.gender === "Girls") && r.age_group) {
@@ -272,24 +275,25 @@ setRows(cleaned as Row[]);
         </div>
 
         <div style={{ display: "flex", justifyContent: "center" }}>
-  <span
-    style={{
-      minWidth: 44,
-      textAlign: "center",
-      padding: "6px 10px",
-      borderRadius: 999,
-      background: "rgba(30,70,32,0.10)",
-      border: "1px solid rgba(30,70,32,0.25)",
-      color: GREEN,
-      fontWeight: 900,
-      fontSize: 18,
-      lineHeight: "20px",
-      letterSpacing: 0.5,
-    }}
-  >
-    {fmtScore(r.score)}
-  </span>
-</div>
+          <span
+            style={{
+              minWidth: 44,
+              textAlign: "center",
+              padding: "6px 10px",
+              borderRadius: 999,
+              background: "rgba(30,70,32,0.10)",
+              border: "1px solid rgba(30,70,32,0.25)",
+              color: GREEN,
+              fontWeight: 900,
+              fontSize: 18,
+              lineHeight: "20px",
+              letterSpacing: 0.5,
+            }}
+          >
+            {fmtScore(r.score)}
+          </span>
+        </div>
+
         <div style={{ opacity: 0.85 }}>{r.thru ? r.thru : "–"}</div>
         <div style={{ opacity: 0.85 }}>{fmtToPar(r.to_par)}</div>
         <div style={{ opacity: 0.85 }}>{r.flight_number ?? "–"}</div>
@@ -314,8 +318,6 @@ setRows(cleaned as Row[]);
   }
 
   const showDynamicTabs = tabs.length > 0;
-
-  // Group helper for Allover: only show groups that have players
   const alloverWanted = active === "ALL_U12" ? ["U8", "U10", "U12"] : ["U14", "U16", "U18", "U21"];
 
   function groupByAge(list: Row[]) {
@@ -340,7 +342,6 @@ setRows(cleaned as Row[]);
 
   return (
     <div style={{ maxWidth: 1100, margin: "40px auto", padding: "0 14px" }}>
-      {/* Header */}
       <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 14 }}>
         <img src={LOGO_URL} alt="PRO1PUTT" style={{ height: 40, width: "auto", display: "block" }} />
 
@@ -370,7 +371,6 @@ setRows(cleaned as Row[]);
         </button>
       </div>
 
-      {/* Tournament selector */}
       <div
         style={{
           background: "#ffffff",
@@ -419,13 +419,19 @@ setRows(cleaned as Row[]);
         )}
       </div>
 
-      {/* Tabs */}
       <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginTop: 10, marginBottom: 12 }}>
         <Tab k="ALL_U21" label="Allover • U21 (18 Loch)" />
         <Tab k="ALL_U12" label="Allover • U12 (9 Loch)" />
 
         {showDynamicTabs && (
-          <div style={{ width: "100%", height: 0, borderTop: "1px dashed rgba(0,0,0,0.12)", margin: "8px 0" }} />
+          <div
+            style={{
+              width: "100%",
+              height: 0,
+              borderTop: "1px dashed rgba(0,0,0,0.12)",
+              margin: "8px 0",
+            }}
+          />
         )}
 
         {showDynamicTabs &&
@@ -438,7 +444,6 @@ setRows(cleaned as Row[]);
           ))}
       </div>
 
-      {/* Table */}
       <div
         style={{
           background: "#ffffff",
@@ -505,10 +510,17 @@ setRows(cleaned as Row[]);
           );
         })()}
 
-        {!loading && split.list.length > 0 && !active.startsWith("ALL_") && (
-          split.list.map((r, idx) => renderRow(r, idx))
-        )}
+        {!loading && split.list.length > 0 && !active.startsWith("ALL_") &&
+          split.list.map((r, idx) => renderRow(r, idx))}
       </div>
     </div>
+  );
+}
+
+export default function LeaderboardPage() {
+  return (
+    <Suspense fallback={<div style={{ padding: 16, opacity: 0.7 }}>Lade Leaderboard…</div>}>
+      <LeaderboardInner />
+    </Suspense>
   );
 }

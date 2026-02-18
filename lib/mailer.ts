@@ -12,13 +12,18 @@ export type SendRegistrationMailArgs = {
   to: string;
   firstName: string;
   lastName: string;
+
   tournamentName: string;
+
+  // ✅ optional – weil Mailer es ggf. benutzt, aber Register-Route nicht zwingend liefert
+  tournamentStartDate?: string | null;
+  categoryLabel?: string | null;
+
   holes: number;
   playerPin: string;
-};
 
-  scoringUrl: string; // Button 1 + Fallback-Link
-  leaderboardUrl: string; // Button 2
+  scoringUrl: string;
+  leaderboardUrl: string;
 };
 
 export async function sendRegistrationMail(args: SendRegistrationMailArgs) {

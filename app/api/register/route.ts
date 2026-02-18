@@ -2,6 +2,11 @@ import { NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 import { sendRegistrationMail } from "@/lib/mailer";
 
+function getBaseUrl(req: Request) {
+  const proto = req.headers.get("x-forwarded-proto") ?? "http";
+  const host = req.headers.get("x-forwarded-host") ?? req.headers.get("host") ?? "localhost:3000";
+  return `${proto}://${host}`;
+}
 function normStr(v: any) {
   return String(v ?? "").trim();
 }
@@ -136,13 +141,19 @@ export async function POST(req: Request) {
     }
 
     // Mail senden (nach erfolgreichem Insert)
- await sendRegistrationMail({
+ const baseUrl = getBaseUrl(req);
+
+await sendRegistrationMail({
   to: email!,
   firstName: first_name,
   lastName: last_name,
-  tournamentName: tRow?.name || "PRO1PUTT",
-  holes: holes!,
-  playerPin: player_pin,
+  tournamentName: String(tRow?.name || "PRO1PUTT"),
+  holes: Number(holes),
+  playerPin: String(player_pin),
+
+  // ✅ neu (Pflichtfelder aus SendRegistrationMailArgs)
+  scoringUrl: `${baseUrl}/pin`,
+  leaderboardUrl: `${baseUrl}/leaderboard?tournamentId=${encodeURIComponent(tournament_id)}`,
 });
 
     return NextResponse.json({
