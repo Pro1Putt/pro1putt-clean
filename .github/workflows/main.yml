@@ -28,7 +28,7 @@ jobs:
           pg_dump \
             --host=aws-1-eu-central-1.pooler.supabase.com \
             --port=5432 \
-            --username=postgres.levztgbjylvspmfxcbuj \
+            --username=postgres \
             --dbname=postgres \
             --table=public.scores \
             --data-only \
