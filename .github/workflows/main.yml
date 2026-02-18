@@ -12,6 +12,9 @@ jobs:
   backup:
     runs-on: ubuntu-latest
 
+    env:
+      PGPASSWORD: ${{ secrets.SUPABASE_DB_PASSWORD }}
+
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -25,9 +28,14 @@ jobs:
       - name: Create backup folder
         run: mkdir -p backups
 
+      - name: Fail fast if password secret is missing
+        run: |
+          if [ -z "${PGPASSWORD:-}" ]; then
+            echo "ERROR: SUPABASE_DB_PASSWORD secret is empty or not available"
+            exit 1
+          fi
+
       - name: Dump scores table (Supabase Pooler)
-        env:
-          PGPASSWORD: ${{ secrets.SUPABASE_DB_PASSWORD }}
         run: |
           ts=$(date -u +'%Y-%m-%d_%H-%M-%S')
           pg_dump \
