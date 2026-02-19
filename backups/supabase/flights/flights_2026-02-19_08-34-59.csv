@@ -1,0 +1,3 @@
+id,tournament_id,round,flight_number,holes,start_time,created_at,gender
+e47f9efb-e6f4-49fd-b7ab-bcbd339cdafd,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,1,18,,2026-02-19T07:28:10.25794+00:00,Boys
+8e026034-5af2-463a-bf98-2169d2f9e6e7,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,2,18,,2026-02-19T07:28:10.25794+00:00,Girls

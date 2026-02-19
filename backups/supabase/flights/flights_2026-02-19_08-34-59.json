@@ -1,0 +1,22 @@
+[
+  {
+    "id": "e47f9efb-e6f4-49fd-b7ab-bcbd339cdafd",
+    "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
+    "round": 1,
+    "flight_number": 1,
+    "holes": 18,
+    "start_time": null,
+    "created_at": "2026-02-19T07:28:10.25794+00:00",
+    "gender": "Boys"
+  },
+  {
+    "id": "8e026034-5af2-463a-bf98-2169d2f9e6e7",
+    "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
+    "round": 1,
+    "flight_number": 2,
+    "holes": 18,
+    "start_time": null,
+    "created_at": "2026-02-19T07:28:10.25794+00:00",
+    "gender": "Girls"
+  }
+]
