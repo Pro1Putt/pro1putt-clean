@@ -28,5 +28,35 @@
     "signed_name": "Marker Name",
     "signed_at": "2026-02-18T13:54:08.331224+00:00",
     "user_agent": "curl/8.7.1"
+  },
+  {
+    "id": "3bdcf26f-fa08-4c3c-809d-0e576baa0443",
+    "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
+    "registration_id": "71a90e07-231f-4d7c-ab0b-e7c002437214",
+    "round": 1,
+    "role": "td",
+    "signed_name": "Tournament Director",
+    "signed_at": "2026-02-19T15:40:59.337033+00:00",
+    "user_agent": "curl/8.7.1"
+  },
+  {
+    "id": "db6ff969-0cdd-4b52-a322-ad2b535cd320",
+    "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
+    "registration_id": "71a90e07-231f-4d7c-ab0b-e7c002437214",
+    "round": 1,
+    "role": "player",
+    "signed_name": "Player",
+    "signed_at": "2026-02-19T15:53:31.657954+00:00",
+    "user_agent": "curl/8.7.1"
+  },
+  {
+    "id": "ad79ac72-bbd0-43c0-b58f-6f6208c1700e",
+    "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
+    "registration_id": "71a90e07-231f-4d7c-ab0b-e7c002437214",
+    "round": 1,
+    "role": "marker",
+    "signed_name": "Marker",
+    "signed_at": "2026-02-19T15:53:32.188285+00:00",
+    "user_agent": "curl/8.7.1"
   }
 ]
