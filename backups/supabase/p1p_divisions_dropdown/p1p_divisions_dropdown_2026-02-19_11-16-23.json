@@ -1,0 +1,162 @@
+[
+  {
+    "division_id": "dc2f1924-7a74-4b2f-89d7-14365e7a6ed4",
+    "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
+    "gender": "Girls",
+    "min_age": null,
+    "max_age": null,
+    "holes_count": null,
+    "name": "U21 Girls",
+    "label": "U21 Girls"
+  },
+  {
+    "division_id": "a3dc9c3a-f552-40ec-8db1-7449a7a66184",
+    "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
+    "gender": "Boys",
+    "min_age": null,
+    "max_age": null,
+    "holes_count": null,
+    "name": "U21 Boys",
+    "label": "U21 Boys"
+  },
+  {
+    "division_id": "454f7542-7847-46c4-803f-edf810a673d7",
+    "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
+    "gender": "",
+    "min_age": null,
+    "max_age": null,
+    "holes_count": null,
+    "name": "Overall U21",
+    "label": "Overall U21"
+  },
+  {
+    "division_id": "24953765-a626-4e10-9f2d-6c293226eb84",
+    "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
+    "gender": "",
+    "min_age": null,
+    "max_age": null,
+    "holes_count": null,
+    "name": "Overall U12",
+    "label": "Overall U12"
+  },
+  {
+    "division_id": "dd051d77-fcbd-404b-881e-b9c418561142",
+    "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
+    "gender": "Girls",
+    "min_age": null,
+    "max_age": null,
+    "holes_count": null,
+    "name": "U8 Girls",
+    "label": "U8 Girls"
+  },
+  {
+    "division_id": "17aae0f6-22bc-4379-80bf-f181eee524ea",
+    "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
+    "gender": "Boys",
+    "min_age": null,
+    "max_age": null,
+    "holes_count": null,
+    "name": "U8 Boys",
+    "label": "U8 Boys"
+  },
+  {
+    "division_id": "4907211d-27ff-40c8-b471-f0426f865169",
+    "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
+    "gender": "Girls",
+    "min_age": null,
+    "max_age": null,
+    "holes_count": null,
+    "name": "U10 Girls",
+    "label": "U10 Girls"
+  },
+  {
+    "division_id": "29c91ffb-f653-40a9-b8ed-3052b3a794b9",
+    "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
+    "gender": "Boys",
+    "min_age": null,
+    "max_age": null,
+    "holes_count": null,
+    "name": "U10 Boys",
+    "label": "U10 Boys"
+  },
+  {
+    "division_id": "4c4d4d13-7f1c-4a4f-9ba4-418fd1a084fe",
+    "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
+    "gender": "Girls",
+    "min_age": null,
+    "max_age": null,
+    "holes_count": null,
+    "name": "U12 Girls",
+    "label": "U12 Girls"
+  },
+  {
+    "division_id": "1117869d-2d7b-4a3a-913c-cfb73e3bda18",
+    "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
+    "gender": "Boys",
+    "min_age": null,
+    "max_age": null,
+    "holes_count": null,
+    "name": "U12 Boys",
+    "label": "U12 Boys"
+  },
+  {
+    "division_id": "9b1e1bb8-9378-4359-a3b3-cafec3369dbb",
+    "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
+    "gender": "Girls",
+    "min_age": null,
+    "max_age": null,
+    "holes_count": null,
+    "name": "U14 Girls",
+    "label": "U14 Girls"
+  },
+  {
+    "division_id": "7a488178-23ee-4587-8764-e23a4511b1cc",
+    "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
+    "gender": "Boys",
+    "min_age": null,
+    "max_age": null,
+    "holes_count": null,
+    "name": "U14 Boys",
+    "label": "U14 Boys"
+  },
+  {
+    "division_id": "f2c4f039-7583-48e4-8889-96403b062452",
+    "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
+    "gender": "Girls",
+    "min_age": null,
+    "max_age": null,
+    "holes_count": null,
+    "name": "U16 Girls",
+    "label": "U16 Girls"
+  },
+  {
+    "division_id": "43e2bd6e-ae90-4ace-94b7-802aab5eaa42",
+    "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
+    "gender": "Boys",
+    "min_age": null,
+    "max_age": null,
+    "holes_count": null,
+    "name": "U16 Boys",
+    "label": "U16 Boys"
+  },
+  {
+    "division_id": "97c218b6-cd6c-4344-98bb-e9ce52cc8106",
+    "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
+    "gender": "Girls",
+    "min_age": null,
+    "max_age": null,
+    "holes_count": null,
+    "name": "U18 Girls",
+    "label": "U18 Girls"
+  },
+  {
+    "division_id": "7b896756-c237-486f-abc0-034759678d40",
+    "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
+    "gender": "Boys",
+    "min_age": null,
+    "max_age": null,
+    "holes_count": null,
+    "name": "U18 Boys",
+    "label": "U18 Boys"
+  }
+]
