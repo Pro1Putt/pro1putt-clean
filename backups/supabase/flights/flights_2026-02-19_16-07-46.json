@@ -1,0 +1,92 @@
+[
+  {
+    "id": "ac07b9ca-621b-4c18-8dce-6f1efb42b039",
+    "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
+    "round": 1,
+    "flight_number": 1,
+    "holes": 18,
+    "start_time": "2026-03-30T10:00:00+00:00",
+    "created_at": "2026-02-19T13:04:35.183699+00:00",
+    "gender": "Boys"
+  },
+  {
+    "id": "a14dd706-a347-4c0c-962a-91be4b4c1d18",
+    "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
+    "round": 1,
+    "flight_number": 2,
+    "holes": 18,
+    "start_time": "2026-03-30T10:10:00+00:00",
+    "created_at": "2026-02-19T13:04:35.183699+00:00",
+    "gender": "Girls"
+  },
+  {
+    "id": "567c5205-65f1-4aa4-a73d-704e8deba9f6",
+    "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
+    "round": 1,
+    "flight_number": 3,
+    "holes": 18,
+    "start_time": "2026-03-30T10:20:00+00:00",
+    "created_at": "2026-02-19T13:04:35.183699+00:00",
+    "gender": "Boys"
+  },
+  {
+    "id": "423124a7-9fdf-4278-bd2d-f11ff0fbe771",
+    "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
+    "round": 1,
+    "flight_number": 4,
+    "holes": 18,
+    "start_time": "2026-03-30T10:30:00+00:00",
+    "created_at": "2026-02-19T13:04:35.183699+00:00",
+    "gender": "Boys"
+  },
+  {
+    "id": "8c518c37-0f0b-4cf3-822b-9ce45a4412a2",
+    "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
+    "round": 1,
+    "flight_number": 5,
+    "holes": 18,
+    "start_time": "2026-03-30T10:40:00+00:00",
+    "created_at": "2026-02-19T13:04:35.183699+00:00",
+    "gender": "Boys"
+  },
+  {
+    "id": "c1da199a-58eb-4049-bde6-e2349bec11b4",
+    "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
+    "round": 1,
+    "flight_number": 6,
+    "holes": 18,
+    "start_time": "2026-03-30T10:50:00+00:00",
+    "created_at": "2026-02-19T13:04:35.183699+00:00",
+    "gender": "Boys"
+  },
+  {
+    "id": "efe7c3be-8daf-477b-ba0e-50188667b327",
+    "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
+    "round": 1,
+    "flight_number": 7,
+    "holes": 9,
+    "start_time": "2026-03-30T11:00:00+00:00",
+    "created_at": "2026-02-19T13:04:35.183699+00:00",
+    "gender": "Boys"
+  },
+  {
+    "id": "68ec7293-4d98-4291-b316-c49f618691ed",
+    "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
+    "round": 1,
+    "flight_number": 8,
+    "holes": 9,
+    "start_time": "2026-03-30T11:10:00+00:00",
+    "created_at": "2026-02-19T13:04:35.183699+00:00",
+    "gender": "Girls"
+  },
+  {
+    "id": "4590a7d4-ad5d-40e0-a45c-2ba51dd64ac4",
+    "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
+    "round": 1,
+    "flight_number": 9,
+    "holes": 9,
+    "start_time": "2026-03-30T11:20:00+00:00",
+    "created_at": "2026-02-19T13:04:35.183699+00:00",
+    "gender": "Boys"
+  }
+]
