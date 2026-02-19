@@ -1,0 +1,3 @@
+id,created_at,tournament_id,holes,first_name,last_name,email,hcp,birthdate,home_club,coach,walkup_song,caddie,wagr,college_interest,nation,player_pin,gender,r1_finalized_at,r2_finalized_at,r3_finalized_at,r1_scorecard_pdf_url,r2_scorecard_pdf_url,r3_scorecard_pdf_url
+c0fb8d2a-417b-4d68-918c-fc6d0b9b032c,2026-02-19T12:21:45.330832+00:00,7716349a-8bb0-46c6-b60c-3594eb7ea60f,18,Louiza Sofie,Menzel,jennifer.menzel@outlook.de,9.8,2014-07-20,GLBW,Thilo Pantzke,Lush Live,false,false,true,DE,2553,Girls,,,,,,
+b0f8374f-c18d-481e-852b-dfa6aa011ac8,2026-02-19T12:26:16.233196+00:00,7716349a-8bb0-46c6-b60c-3594eb7ea60f,18,Luis,Behr,anja.behr@gmail.com,2.2,2012-04-06,GLBW,Maximilian Tscherner,"Robin Thicke, Blurred Lines",true,true,true,DE,2508,Boys,,,,,,
