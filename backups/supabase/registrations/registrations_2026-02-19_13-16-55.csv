@@ -1,3 +1,0 @@
-id,created_at,tournament_id,holes,first_name,last_name,email,hcp,birthdate,home_club,coach,walkup_song,caddie,wagr,college_interest,nation,player_pin,gender,r1_finalized_at,r2_finalized_at,r3_finalized_at,r1_scorecard_pdf_url,r2_scorecard_pdf_url,r3_scorecard_pdf_url
-896e037b-30a3-4b98-8280-a32613594031,2026-02-18T11:46:40.610479+00:00,7716349a-8bb0-46c6-b60c-3594eb7ea60f,18,Test,te,jennifer.menzel@outlook.de,9,2012-03-03,GLBW,df,folgt,true,false,false,ES,1723,Boys,,,,,,
-a0adc4f5-9cc4-46e9-b414-bba6a049b9ba,2026-02-16T14:52:55.470206+00:00,7716349a-8bb0-46c6-b60c-3594eb7ea60f,18,Louiza Sofie,Menzel,jennifer.menzel@outlook.de,9.8,2014-07-20,GLBW,Thilo Pantzke,folgt,false,false,true,DE,3410,Girls,2026-02-18T13:54:08.433+00:00,,,,,
