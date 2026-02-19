@@ -46,7 +46,6 @@ async function fetchOpenApiDoc(projectUrl: string, serviceKey: string) {
 }
 
 function tableColumns(openApi: OpenApi, tableName: string): Set<string> {
-  // PostgREST OpenAPI usually exposes definitions under "#/definitions/<table>"
   const def = openApi?.definitions?.[tableName];
   const props = def?.properties || {};
   return new Set(Object.keys(props));
@@ -130,7 +129,6 @@ function mergeFlightsByKey<T extends { key: number | null }>(a: T[], b: T[]) {
       i++;
       continue;
     }
-    // smaller key first (best first) – null goes last
     const cmp = sortAscNullLast(A.key, B.key);
     if (cmp <= 0) {
       out.push(A);
@@ -176,7 +174,14 @@ export async function POST(req: Request) {
     const regTournamentIdCol = firstExisting(regCols, ["tournament_id"]) || null;
 
     // Build select list dynamically (ONLY existing columns)
-    const regSelectCols = [regIdCol, regGenderCol, regHolesCol, regHcpCol, regPlayerIdCol, regTournamentIdCol]
+    const regSelectCols = [
+      regIdCol,
+      regGenderCol,
+      regHolesCol,
+      regHcpCol,
+      regPlayerIdCol,
+      regTournamentIdCol,
+    ]
       .filter(Boolean)
       .join(",");
 
@@ -204,7 +209,6 @@ export async function POST(req: Request) {
     const roundTotalsCols = tableColumns(openApi, "v_player_round_totals");
     const cumTotalsCols = tableColumns(openApi, "v_player_cum_totals");
 
-    // identify columns in totals views
     const totalsTournamentCol =
       firstExisting(roundTotalsCols, ["tournament_id"]) ||
       firstExisting(cumTotalsCols, ["tournament_id"]) ||
@@ -222,12 +226,10 @@ export async function POST(req: Request) {
       firstExisting(cumTotalsCols, ["player_id"]) ||
       null;
 
-    // score columns: try common candidates
     const scoreCandidates = ["total", "gross_total", "strokes", "score", "total_strokes", "sum_strokes"];
     const roundScoreCol = firstExisting(roundTotalsCols, scoreCandidates);
     const cumScoreCol = firstExisting(cumTotalsCols, scoreCandidates);
 
-    // Build a map regId->scoreKey (or playerId->scoreKey)
     const scoreByRegId = new Map<string, number | null>();
     const scoreByPlayerId = new Map<string, number | null>();
 
@@ -243,7 +245,8 @@ export async function POST(req: Request) {
       (data || []).forEach((row: TotalsRow) => {
         const score = toNumber(row[roundScoreCol]);
         if (totalsRegIdCol && row[totalsRegIdCol]) scoreByRegId.set(String(row[totalsRegIdCol]), score);
-        if (totalsPlayerIdCol && row[totalsPlayerIdCol]) scoreByPlayerId.set(String(row[totalsPlayerIdCol]), score);
+        if (totalsPlayerIdCol && row[totalsPlayerIdCol])
+          scoreByPlayerId.set(String(row[totalsPlayerIdCol]), score);
       });
     }
 
@@ -258,7 +261,8 @@ export async function POST(req: Request) {
       (data || []).forEach((row: TotalsRow) => {
         const score = toNumber(row[cumScoreCol]);
         if (totalsRegIdCol && row[totalsRegIdCol]) scoreByRegId.set(String(row[totalsRegIdCol]), score);
-        if (totalsPlayerIdCol && row[totalsPlayerIdCol]) scoreByPlayerId.set(String(row[totalsPlayerIdCol]), score);
+        if (totalsPlayerIdCol && row[totalsPlayerIdCol])
+          scoreByPlayerId.set(String(row[totalsPlayerIdCol]), score);
       });
     }
 
@@ -266,10 +270,8 @@ export async function POST(req: Request) {
     if (roundNo === 3) await loadCumTotals();
 
     function sortKeyForRegistration(r: Registration): number | null {
-      // Day 1: HCP (lowest first)
       if (roundNo === 1) return r.hcp ?? null;
 
-      // Day 2: round-1 result (best first => lowest total strokes)
       if (roundNo === 2) {
         const byReg = scoreByRegId.get(r.id);
         if (byReg !== undefined) return byReg;
@@ -280,7 +282,6 @@ export async function POST(req: Request) {
         return null;
       }
 
-      // Day 3: cumulative – best should be LAST
       if (roundNo === 3) {
         const byReg = scoreByRegId.get(r.id);
         if (byReg !== undefined) return byReg;
@@ -298,7 +299,6 @@ export async function POST(req: Request) {
     const reg18 = registrations.filter((r) => (r.holes ?? 18) >= 18);
     const reg9 = registrations.filter((r) => (r.holes ?? 18) <= 9);
 
-    // You can change this if you want 3 or 4 per flight
     const FLIGHT_SIZE = 3;
 
     function makeGenderFlights(
@@ -309,9 +309,6 @@ export async function POST(req: Request) {
         .filter((r) => normalizeGender(r.gender) === gender)
         .map((r) => ({ r, key: sortKeyForRegistration(r) }));
 
-      // Sorting:
-      // - Round 1/2: best first => ascending
-      // - Round 3: leaders last => descending
       list.sort((a, b) => {
         if (roundNo === 3) return sortDescNullLast(a.key, b.key);
         return sortAscNullLast(a.key, b.key);
@@ -323,7 +320,7 @@ export async function POST(req: Request) {
         gender,
         holes: ((members[0]?.holes ?? 18) >= 18 ? 18 : 9) as 9 | 18,
         members,
-        key: sortKeyForRegistration(members[0] ?? null),
+        key: sortKeyForRegistration(members[0] ?? ({} as any)),
       }));
 
       return flights;
@@ -332,18 +329,13 @@ export async function POST(req: Request) {
     function buildMergedFlightOrder(regs: Registration[], holes: 9 | 18) {
       const boysFlights = makeGenderFlights(regs, "Boys").filter((f) => f.holes === holes);
       const girlsFlights = makeGenderFlights(regs, "Girls").filter((f) => f.holes === holes);
-
-      // Interleave flights by the best player in the flight (keeps gender separated, but ordering by HCP/result)
       return mergeFlightsByKey(boysFlights, girlsFlights).map((f) => ({
         ...f,
         holes,
       }));
     }
 
-    const orderedFlights = [
-      ...buildMergedFlightOrder(reg18, 18),
-      ...buildMergedFlightOrder(reg9, 9),
-    ];
+    const orderedFlights = [...buildMergedFlightOrder(reg18, 18), ...buildMergedFlightOrder(reg9, 9)];
 
     // --- Clear existing flights for this tournament+round (idempotent) ---
     const flightTournamentCol = firstExisting(flightsCols, ["tournament_id"]) || null;
@@ -362,13 +354,11 @@ export async function POST(req: Request) {
 
     const existingIds = (existingFlights || []).map((x: any) => String(x.id));
 
-    // delete flight_players first (if possible)
     const fpFlightIdCol = firstExisting(flightPlayersCols, ["flight_id"]) || null;
     if (existingIds.length && fpFlightIdCol) {
       await supabase.from("flight_players").delete().in(fpFlightIdCol, existingIds);
     }
 
-    // delete flights
     if (existingIds.length) {
       await supabase
         .from("flights")
@@ -402,40 +392,40 @@ export async function POST(req: Request) {
 
     const createdIds = (createdFlights || []).map((x: any) => String(x.id));
 
-    // --- Insert flight_players ---
-    const fpRegIdCol = firstExisting(flightPlayersCols, ["registration_id", "reg_id"]) || null;
-    const fpMarksRegIdCol =
-  firstExisting(flightPlayersCols, ["marks_registration_id"]) || null;
+    if (createdIds.length !== orderedFlights.length) {
+      return jsonError(
+        `Internal mismatch: createdFlights=${createdIds.length} orderedFlights=${orderedFlights.length}`,
+        500
+      );
+    }
 
-const fpRegIdCol =
-  firstExisting(flightPlayersCols, ["registration_id", "reg_id"]) || null;
-
-const fpPlayerIdCol = firstExisting(flightPlayersCols, ["player_id"]) || null;
-
-const fpSeatCol = firstExisting(flightPlayersCols, ["seat"]) || null;
-
-const fpPosCol =
-  firstExisting(flightPlayersCols, ["position", "pos", "slot", "order_in_flight"]) || null;
+    // --- Insert flight_players (YOUR schema: flight_id, registration_id, seat, marks_registration_id) ---
+    const fpRegIdCol = firstExisting(flightPlayersCols, ["registration_id"]) || null;
+    const fpSeatCol = firstExisting(flightPlayersCols, ["seat"]) || null;
+    const fpMarksRegIdCol = firstExisting(flightPlayersCols, ["marks_registration_id"]) || null;
 
     if (!fpFlightIdCol) return jsonError('flight_players table missing "flight_id" column', 500);
-      return jsonError('flight_players missing "registration_id" or "player_id"', 500);if (!fpMarksRegIdCol && !fpRegIdCol && !fpPlayerIdCol)
-  return jsonError('flight_players missing required member id column (marks_registration_id / registration_id / player_id)', 500);
-
-if (!fpSeatCol)
-  return jsonError('flight_players missing required "seat" column', 500);
+    if (!fpRegIdCol) return jsonError('flight_players table missing "registration_id" column', 500);
+    if (!fpSeatCol) return jsonError('flight_players table missing "seat" column', 500);
+    if (!fpMarksRegIdCol) return jsonError('flight_players table missing "marks_registration_id" column', 500);
 
     const flightPlayersToInsert: any[] = [];
+
     for (let i = 0; i < orderedFlights.length; i++) {
       const flightId = createdIds[i];
       const members = orderedFlights[i]?.members || [];
+      if (!members.length) continue;
+
       members.forEach((r, idx) => {
+        const marks = members[(idx + 1) % members.length]; // next marks this player (last marks first)
+
         const row: any = {
           [fpFlightIdCol]: flightId,
+          [fpRegIdCol]: r.id,
+          [fpSeatCol]: idx + 1,
+          [fpMarksRegIdCol]: marks?.id ?? r.id,
         };
-        if (fpRegIdCol) row[fpRegIdCol] = r.id;
-        if (!fpRegIdCol && fpPlayerIdCol) row[fpPlayerIdCol] = r.player_id;
-        if (fpSeatCol) row[fpSeatCol] = idx + 1;
-if (fpPosCol) row[fpPosCol] = idx + 1;
+
         flightPlayersToInsert.push(pick(row, flightPlayersCols));
       });
     }
@@ -450,10 +440,14 @@ if (fpPosCol) row[fpPosCol] = idx + 1;
       flights_created: createdIds.length,
       players_assigned: flightPlayersToInsert.length,
       rules: {
-        round1: "18 holes first, then 9 holes; lowest HCP first; no mixed gender flights; flight order interleaved by best key",
-        round2: "best round-1 totals first (if totals view available); no mixed gender flights; 18 first then 9",
-        round3: "leaders last using cumulative totals (if totals view available); no mixed gender flights; 18 first then 9",
+        round1:
+          "18 holes first, then 9 holes; lowest HCP first; no mixed gender flights; flight order interleaved by best key",
+        round2:
+          "best round-1 totals first (if totals view available); no mixed gender flights; 18 first then 9",
+        round3:
+          "leaders last using cumulative totals (if totals view available); no mixed gender flights; 18 first then 9",
         flight_size: FLIGHT_SIZE,
+        marks_rule: "each player is marked by the next player in the flight (last marks first)",
       },
     });
   } catch (e: any) {
