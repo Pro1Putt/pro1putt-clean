@@ -1,0 +1,38 @@
+[
+  {
+    "id": "36d5df41-5864-4103-b413-169bbd683077",
+    "name": "PRO1PUTT - Open Finals – North Course (Green Eagle)",
+    "course_name": "North Course",
+    "start_date": "2026-10-02",
+    "created_at": "2026-02-12T09:59:04.315366+00:00",
+    "par": 72,
+    "location": null,
+    "is_active": true,
+    "paypal_url_9": "https://www.paypal.com/ncp/payment/M8CJWZ4SLCT34",
+    "paypal_url_18": "https://www.paypal.com/ncp/payment/SRBRNY5CVE4Q2"
+  },
+  {
+    "id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
+    "name": "PRO1PUTT – Open Classics WINSTONopen",
+    "course_name": "WINSTONopen",
+    "start_date": "2026-03-30",
+    "created_at": "2026-02-04T14:10:50.589788+00:00",
+    "par": 72,
+    "location": "WINSTONopen",
+    "is_active": true,
+    "paypal_url_9": "https://www.paypal.com/ncp/payment/M8CJWZ4SLCT34",
+    "paypal_url_18": "https://www.paypal.com/ncp/payment/SRBRNY5CVE4Q2"
+  },
+  {
+    "id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
+    "name": "PRO1PUTT – Open Faldo Course (Bad Saarow)",
+    "course_name": "Faldo Course",
+    "start_date": "2026-09-25",
+    "created_at": "2026-02-12T09:59:04.315366+00:00",
+    "par": 72,
+    "location": null,
+    "is_active": true,
+    "paypal_url_9": "https://www.paypal.com/ncp/payment/M8CJWZ4SLCT34",
+    "paypal_url_18": "https://www.paypal.com/ncp/payment/SRBRNY5CVE4Q2"
+  }
+]
