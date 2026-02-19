@@ -1,0 +1,17 @@
+division_id,tournament_id,gender,min_age,max_age,holes_count,name,label
+dc2f1924-7a74-4b2f-89d7-14365e7a6ed4,7716349a-8bb0-46c6-b60c-3594eb7ea60f,Girls,,,,U21 Girls,U21 Girls
+a3dc9c3a-f552-40ec-8db1-7449a7a66184,7716349a-8bb0-46c6-b60c-3594eb7ea60f,Boys,,,,U21 Boys,U21 Boys
+454f7542-7847-46c4-803f-edf810a673d7,7716349a-8bb0-46c6-b60c-3594eb7ea60f,,,,,Overall U21,Overall U21
+24953765-a626-4e10-9f2d-6c293226eb84,7716349a-8bb0-46c6-b60c-3594eb7ea60f,,,,,Overall U12,Overall U12
+dd051d77-fcbd-404b-881e-b9c418561142,7716349a-8bb0-46c6-b60c-3594eb7ea60f,Girls,,,,U8 Girls,U8 Girls
+17aae0f6-22bc-4379-80bf-f181eee524ea,7716349a-8bb0-46c6-b60c-3594eb7ea60f,Boys,,,,U8 Boys,U8 Boys
+4907211d-27ff-40c8-b471-f0426f865169,7716349a-8bb0-46c6-b60c-3594eb7ea60f,Girls,,,,U10 Girls,U10 Girls
+29c91ffb-f653-40a9-b8ed-3052b3a794b9,7716349a-8bb0-46c6-b60c-3594eb7ea60f,Boys,,,,U10 Boys,U10 Boys
+4c4d4d13-7f1c-4a4f-9ba4-418fd1a084fe,7716349a-8bb0-46c6-b60c-3594eb7ea60f,Girls,,,,U12 Girls,U12 Girls
+1117869d-2d7b-4a3a-913c-cfb73e3bda18,7716349a-8bb0-46c6-b60c-3594eb7ea60f,Boys,,,,U12 Boys,U12 Boys
+9b1e1bb8-9378-4359-a3b3-cafec3369dbb,7716349a-8bb0-46c6-b60c-3594eb7ea60f,Girls,,,,U14 Girls,U14 Girls
+7a488178-23ee-4587-8764-e23a4511b1cc,7716349a-8bb0-46c6-b60c-3594eb7ea60f,Boys,,,,U14 Boys,U14 Boys
+f2c4f039-7583-48e4-8889-96403b062452,7716349a-8bb0-46c6-b60c-3594eb7ea60f,Girls,,,,U16 Girls,U16 Girls
+43e2bd6e-ae90-4ace-94b7-802aab5eaa42,7716349a-8bb0-46c6-b60c-3594eb7ea60f,Boys,,,,U16 Boys,U16 Boys
+97c218b6-cd6c-4344-98bb-e9ce52cc8106,7716349a-8bb0-46c6-b60c-3594eb7ea60f,Girls,,,,U18 Girls,U18 Girls
+7b896756-c237-486f-abc0-034759678d40,7716349a-8bb0-46c6-b60c-3594eb7ea60f,Boys,,,,U18 Boys,U18 Boys
