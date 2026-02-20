@@ -5,7 +5,7 @@
     "round": 1,
     "flight_number": 1,
     "holes": 18,
-    "start_time": "2026-03-30T10:00:00+00:00",
+    "start_time": "2026-03-30T08:00:00+00:00",
     "created_at": "2026-02-19T13:04:35.183699+00:00",
     "gender": "Boys"
   },
@@ -15,7 +15,7 @@
     "round": 1,
     "flight_number": 2,
     "holes": 18,
-    "start_time": "2026-03-30T10:10:00+00:00",
+    "start_time": "2026-03-30T08:10:00+00:00",
     "created_at": "2026-02-19T13:04:35.183699+00:00",
     "gender": "Girls"
   },
@@ -25,7 +25,7 @@
     "round": 1,
     "flight_number": 3,
     "holes": 18,
-    "start_time": "2026-03-30T10:20:00+00:00",
+    "start_time": "2026-03-30T08:20:00+00:00",
     "created_at": "2026-02-19T13:04:35.183699+00:00",
     "gender": "Boys"
   },
@@ -35,7 +35,7 @@
     "round": 1,
     "flight_number": 4,
     "holes": 18,
-    "start_time": "2026-03-30T10:30:00+00:00",
+    "start_time": "2026-03-30T08:30:00+00:00",
     "created_at": "2026-02-19T13:04:35.183699+00:00",
     "gender": "Boys"
   },
@@ -45,7 +45,7 @@
     "round": 1,
     "flight_number": 5,
     "holes": 18,
-    "start_time": "2026-03-30T10:40:00+00:00",
+    "start_time": "2026-03-30T08:40:00+00:00",
     "created_at": "2026-02-19T13:04:35.183699+00:00",
     "gender": "Boys"
   },
@@ -55,7 +55,7 @@
     "round": 1,
     "flight_number": 6,
     "holes": 18,
-    "start_time": "2026-03-30T10:50:00+00:00",
+    "start_time": "2026-03-30T08:50:00+00:00",
     "created_at": "2026-02-19T13:04:35.183699+00:00",
     "gender": "Boys"
   },
@@ -65,7 +65,7 @@
     "round": 1,
     "flight_number": 7,
     "holes": 9,
-    "start_time": "2026-03-30T11:00:00+00:00",
+    "start_time": "2026-03-30T09:00:00+00:00",
     "created_at": "2026-02-19T13:04:35.183699+00:00",
     "gender": "Boys"
   },
@@ -75,7 +75,7 @@
     "round": 1,
     "flight_number": 8,
     "holes": 9,
-    "start_time": "2026-03-30T11:10:00+00:00",
+    "start_time": "2026-03-30T09:10:00+00:00",
     "created_at": "2026-02-19T13:04:35.183699+00:00",
     "gender": "Girls"
   },
@@ -85,8 +85,18 @@
     "round": 1,
     "flight_number": 9,
     "holes": 9,
-    "start_time": "2026-03-30T11:20:00+00:00",
+    "start_time": "2026-03-30T09:20:00+00:00",
     "created_at": "2026-02-19T13:04:35.183699+00:00",
     "gender": "Boys"
+  },
+  {
+    "id": "f1a659bf-df9e-4622-b2a5-ac1ab58e4d27",
+    "tournament_id": "6d49d58c-7fdb-4613-80e4-e7e048ed624c",
+    "round": 1,
+    "flight_number": 1,
+    "holes": 18,
+    "start_time": null,
+    "created_at": "2026-02-20T13:20:14.524079+00:00",
+    "gender": null
   }
 ]
