@@ -34,7 +34,7 @@ export async function GET(req: Request) {
       .select("*")
       .eq("tournament_id", tournamentId)
       .eq("round", roundNo)
-      .order("flight_no", { ascending: true });
+      .order("flight_no", { ascending: true })
 .order("flight_number", { ascending: true });
     if (fe) {
       // fallback if column names differ
@@ -43,7 +43,7 @@ export async function GET(req: Request) {
         .select("*")
         .eq("tournament_id", tournamentId)
         .eq("round_no", roundNo)
-        .order("flight_no", { ascending: true });
+        .order("flight_no", { ascending: true })
 .order("flight_number", { ascending: true });
       if (fe2) return jsonError(`flights read failed: ${fe2.message}`, 500);
       return NextResponse.json({ ok: true, tournamentId, round: roundNo, flights: flights2 ?? [] });
