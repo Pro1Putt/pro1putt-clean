@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Lato } from "next/font/google";
 import StickyCta from "./components/StickyCta";
-import TopBar from "./components/TopBar";
 import Script from "next/script";
 import GoogleAnalytics from "./components/GoogleAnalytics";
 import CookieBanner from "./components/CookieBanner";
@@ -26,10 +25,7 @@ export default function RootLayout({
   return (
     <html lang="de">
       <body className={lato.className} style={{ background: "#f5f7f5", color: "#1a1a1a" }}>
-        {/* Top Bar */}
-        <TopBar />
-
-        {/* Page Container */}
+        {/* Top Bar */}{/* Page Container */}
         <main
           style={{
             maxWidth: 1100,
