@@ -183,3 +183,23 @@ main :is(p,div,section,header,nav) > a:hover {
   box-shadow: 0 2px 10px rgba(0, 196, 106, 0.15);
 }
 
+
+/* PRO1PUTT – Hide the sticky quicklinks/breadcrumb row above leaderboard (only that block) */
+:where(main) :is(p,div,nav,section)
+  :has(> a[href*="ausschreibung"])
+  :has(> a[href*="registrierung"])
+  :has(> a[href*="leaderboard"])
+  :has(> a[href*="galerie"]) {
+  display: none !important;
+}
+
+/* Hide the next line right after it (e.g. "Jetzt anmelden") */
+:where(main) :is(p,div,nav,section)
+  :has(> a[href*="ausschreibung"])
+  :has(> a[href*="registrierung"])
+  :has(> a[href*="leaderboard"])
+  :has(> a[href*="galerie"])
+  + * {
+  display: none !important;
+}
+
