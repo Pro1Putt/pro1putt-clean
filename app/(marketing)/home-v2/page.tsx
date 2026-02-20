@@ -1,4 +1,3 @@
-import type { ReactNode } from "react";
 export const dynamic = "force-dynamic";
 
 const GREEN = "#00C46A";
@@ -12,7 +11,7 @@ function NavLink({ href, label }: { href: string; label: string }) {
   );
 }
 
-function Pill({ children }: { children: ReactNode }) {
+function Pill({ children }: { children: React.ReactNode }) {
   return (
     <div
       style={{
@@ -120,8 +119,7 @@ export default function HomeV2() {
 .p1-partnerlogo:hover {
   opacity: 1;
   filter: grayscale(0%);
-  transform: translateY(-3px) scale(1.05);
-  box-shadow: 0 10px 30px rgba(0,196,106,0.25);
+  transform: translateY(-2px);
 }
         .p1-btn-ghost {
           display: inline-block;
@@ -189,7 +187,7 @@ export default function HomeV2() {
             }}
           >
             <a
-              href="/"
+              href="/home-v2"
               style={{
                 display: "inline-flex",
                 alignItems: "center",
@@ -202,7 +200,7 @@ export default function HomeV2() {
               aria-label="PRO1PUTT Home"
             >
               <img
-  src="/pro1putt-logo-white.png"
+                src="/pro1putt-logo-white-v2.png"
                 alt="PRO1PUTT"
                 style={{
                   height: 28,
@@ -223,13 +221,12 @@ export default function HomeV2() {
                 justifyContent: "center",
               }}
             >
-              <NavLink href="/" label="Home" />
-              <NavLink href="#tour" label="Tour 2026" /> 
-              <NavLink href="/ausschreibung" label="Ausschreibung" />
+              <NavLink href="/home-v2" label="Home" />
+              <NavLink href="#tour" label="Tour 2026" />
+              <NavLink href="#partners" label="Partner" />
+             <NavLink href="/galerie" label="Galerie" />
               <NavLink href="/register" label="Registrierung" />
               <NavLink href="/leaderboard" label="Leaderboard" />
-              <NavLink href="#partners" label="Partner" />
-              <NavLink href="/galerie" label="Galerie" />
             </nav>
 
             <div className="p1-cta-wrap">
@@ -243,7 +240,7 @@ export default function HomeV2() {
         {/* HERO CONTENT */}
         <div style={{ position: "relative", zIndex: 2, maxWidth: 980, margin: "0 auto", paddingTop: 72 }}>
           <img
-            src="/pro1putt-logo-white.png"
+            src="/pro1putt-logo-white-v2.png"
             alt="PRO1PUTT"
             style={{
               width: 360,
@@ -436,52 +433,53 @@ export default function HomeV2() {
 </section>
 
       {/* SUPPORTED BY */}
-{/* SUPPORTED BY */}
 <section id="partners" style={{ padding: "60px 20px", textAlign: "center" }}>
-  <div
-    style={{
-      opacity: 0.6,
-      fontSize: 13,
-      fontWeight: 900,
-      letterSpacing: 1,
-      marginBottom: 20,
-    }}
-  >
+  <div style={{ opacity: 0.6, fontSize: 13, fontWeight: 900, letterSpacing: 1, marginBottom: 28 }}>
     SUPPORTED BY
   </div>
 
   <div
-    className="partner-logos"
     style={{
-      maxWidth: 1100,
+      maxWidth: 1000,
       margin: "0 auto",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      gap: 40,
+      flexWrap: "wrap",
     }}
   >
     {[
-  { src: "/partners/callaway.png", url: "https://fcgworldchampionship.com" },
-  { src: "/partners/egr.png", url: "https://www.europeangolfrankings.com" },
-  { src: "/partners/golfhouse.svg", url: "https://www.golfhouse.de" },
-  { src: "/partners/golfkidsfun.png", url: "https://www.golfkidsfun.com" },
-  { src: "/partners/gsusa.png", url: "https://www.sportusa.co.uk/sport-overviews/golf" },
-  { src: "/partners/jucad.png", url: "https://www.jucad.de" },
-  { src: "/partners/underarmour.png", url: "https://www.uagolftour.com/" },
-  { src: "/partners/wagr.png", url: "https://www.wagr.com" },
-].map((partner) => (
-  <a
-    key={partner.src}
-    href={partner.url}
-    target="_blank"
-    rel="noopener noreferrer"
-    style={{ display: "inline-block" }}
-  >
-    <img
-      src={partner.src}
-      alt=""
-      className="p1-partnerlogo"
-      style={{ height: 60, width: "auto", objectFit: "contain", cursor: "pointer" }}
-    />
-  </a>
-))}
+  "/partners/golfhouse.svg",
+  "/partners/gsusa.jpg",
+  "/partners/golfkidsfun.jpg",
+  "/partners/juniortour.png",
+  "/partners/wagr.png",
+].map((src) => (
+    <div
+  key={src}
+  style={{
+    width: 200,
+    height: 70,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  }}
+>
+  <img
+    src={src}
+    alt="Partner"
+    style={{
+      maxHeight: 50,
+      maxWidth: 180,
+      width: "auto",
+      height: "auto",
+      objectFit: "contain",
+      display: "block",
+    }}
+  />
+</div>
+    ))}
   </div>
 </section>
 
@@ -510,27 +508,9 @@ export default function HomeV2() {
       </section>
 <div style={{ height: 72 }} />
       {/* FOOTER */}
-      <footer
-  style={{
-    padding: "26px 20px",
-    textAlign: "center",
-    opacity: 0.75,
-    fontSize: 13,
-  }}
->
-  © {new Date().getFullYear()} PRO1PUTT •{" "}
-  <a href="/impressum" style={{ textDecoration: "none", fontWeight: 800 }}>
-    Impressum
-  </a>{" "}
-  •{" "}
-  <a href="/agb" style={{ textDecoration: "none", fontWeight: 800 }}>
-    AGB
-  </a>{" "}
-  •{" "}
-  <a href="/datenschutz" style={{ textDecoration: "none", fontWeight: 800 }}>
-    Datenschutz
-  </a>
-</footer>
+      <footer style={{ padding: "26px 20px", textAlign: "center", opacity: 0.7, fontSize: 13 }}>
+        © {new Date().getFullYear()} PRO1PUTT
+      </footer>
       {/* STICKY CTA */}
 <div
   style={{

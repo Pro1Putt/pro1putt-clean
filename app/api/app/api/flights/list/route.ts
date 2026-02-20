@@ -35,7 +35,7 @@ export async function GET(req: Request) {
       .eq("tournament_id", tournamentId)
       .eq("round", roundNo)
       .order("flight_no", { ascending: true });
-
+.order("flight_number", { ascending: true });
     if (fe) {
       // fallback if column names differ
       const { data: flights2, error: fe2 } = await supabase
@@ -44,7 +44,7 @@ export async function GET(req: Request) {
         .eq("tournament_id", tournamentId)
         .eq("round_no", roundNo)
         .order("flight_no", { ascending: true });
-
+.order("flight_number", { ascending: true });
       if (fe2) return jsonError(`flights read failed: ${fe2.message}`, 500);
       return NextResponse.json({ ok: true, tournamentId, round: roundNo, flights: flights2 ?? [] });
     }
@@ -58,7 +58,8 @@ export async function GET(req: Request) {
         .select("*")
         .in("flight_id", flightIds)
         .order("seat", { ascending: true });
-
+.order("flight_id", { ascending: true })
+.order("seat", { ascending: true });
       if (pe) return jsonError(`flight_players read failed: ${pe.message}`, 500);
       flightPlayers = fps || [];
     }

@@ -2,6 +2,7 @@
 
 import { Suspense, useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
+import { createClient } from "@supabase/supabase-js";
 
 type Tournament = {
   id: string;
@@ -91,6 +92,11 @@ function fmtTournament(t: Tournament) {
 
 /** ✅ Wichtig: useSearchParams() ist jetzt NICHT mehr im Page-Root, sondern in diesem Inner-Component */
 function LeaderboardInner() {
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+);
+
   const sp = useSearchParams();
   const tournamentIdFromUrl = (sp.get("tournamentId") || "").trim();
 
@@ -103,8 +109,6 @@ function LeaderboardInner() {
 
   const [loadErr, setLoadErr] = useState<string | null>(null);
   const [lastUpdated, setLastUpdated] = useState<string | null>(null);
-
-  const POLL_MS = 10_000;
 
   useEffect(() => {
     let cancelled = false;
@@ -178,11 +182,28 @@ function LeaderboardInner() {
   }, [tournamentId]);
 
   useEffect(() => {
-    if (!tournamentId) return;
-    const id = window.setInterval(() => loadLeaderboard(tournamentId), POLL_MS);
-    return () => window.clearInterval(id);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [tournamentId]);
+  if (!tournamentId) return;
+
+  const channel = supabase
+    .channel(`scores-${tournamentId}`)
+    .on(
+      "postgres_changes",
+      {
+        event: "*",
+        schema: "public",
+        table: "scores",
+        filter: `tournament_id=eq.${tournamentId}`,
+      },
+      () => {
+        loadLeaderboard(tournamentId);
+      }
+    )
+    .subscribe();
+
+  return () => {
+    supabase.removeChannel(channel);
+  };
+}, [tournamentId]);
 
   const tabs = useMemo(() => {
     const set = new Set<string>();
@@ -348,10 +369,8 @@ function LeaderboardInner() {
         <div style={{ flex: 1 }}>
           <h1 style={{ fontSize: 28, fontWeight: 900, color: GREEN, margin: 0 }}>Leaderboard</h1>
           <div style={{ fontSize: 12, opacity: 0.7 }}>
-            {lastUpdated
-              ? `Live • zuletzt aktualisiert ${lastUpdated} • Auto-Refresh ${Math.round(POLL_MS / 1000)}s`
-              : "Live"}
-          </div>
+  {lastUpdated ? `Live · zuletzt aktualisiert ${lastUpdated}` : "Live"}
+</div>
         </div>
 
         <button

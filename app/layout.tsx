@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Lato } from "next/font/google";
+import StickyCta from "./components/StickyCta";
+import TopBar from "./components/TopBar";
+import Script from "next/script";
+import GoogleAnalytics from "./components/GoogleAnalytics";
+import CookieBanner from "./components/CookieBanner";
 
 const lato = Lato({
   subsets: ["latin"],
@@ -21,60 +26,8 @@ export default function RootLayout({
   return (
     <html lang="de">
       <body className={lato.className} style={{ background: "#f5f7f5", color: "#1a1a1a" }}>
-        
         {/* Top Bar */}
-        <header
-          style={{
-            position: "sticky",
-            top: 0,
-            zIndex: 50,
-            background: "#ffffff",
-            borderBottom: "2px solid #1e4620",
-          }}
-        >
-          <div
-            style={{
-              maxWidth: 1100,
-              margin: "0 auto",
-              padding: "16px",
-              display: "flex",
-              alignItems: "center",
-              gap: 14,
-            }}
-          >
-            <div
-              style={{
-                width: 46,
-                height: 46,
-                borderRadius: 12,
-                background: "#1e4620",
-                color: "white",
-                display: "grid",
-                placeItems: "center",
-                fontWeight: 900,
-                letterSpacing: 0.5,
-              }}
-            >
-              P1
-            </div>
-
-            <div>
-              <div
-                style={{
-                  fontWeight: 900,
-                  fontSize: 18,
-                  letterSpacing: 0.5,
-                  color: "#1e4620",
-                }}
-              >
-                PRO1PUTT
-              </div>
-              <div style={{ fontSize: 13, opacity: 0.6 }}>
-                Tournament Registration & Live Scoring
-              </div>
-            </div>
-          </div>
-        </header>
+        <TopBar />
 
         {/* Page Container */}
         <main
@@ -86,6 +39,29 @@ export default function RootLayout({
         >
           {children}
         </main>
+
+        {/* Sticky CTA (global, auto-hidden on register/leaderboard/admin/live/tournament pages) */}
+        <StickyCta />
+        {typeof window !== "undefined" &&
+  localStorage.getItem("pro1putt_cookie_consent") === "accepted" && (
+    <>
+      <Script
+        strategy="afterInteractive"
+      />
+      <Script id="ga-script" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-RGKHZL696C', {
+            anonymize_ip: true
+          });
+        `}
+      </Script>
+    </>
+  )}
+<GoogleAnalytics />
+<CookieBanner />
       </body>
     </html>
   );

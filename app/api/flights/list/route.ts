@@ -28,27 +28,27 @@ export async function GET(req: Request) {
 
     const supabase = getServiceSupabase();
 
-    // flights: try to order by flight_no if it exists, otherwise by created_at, otherwise no order
-    // We'll just fetch all columns and order by id as a safe fallback.
-    const { data: flights, error: fe } = await supabase
+    const { data: flights, error: fErr } = await supabase
       .from("flights")
       .select("*")
       .eq("tournament_id", tournamentId)
       .eq("round", roundNo)
-      .order("id", { ascending: true });
+      .order("flight_number", { ascending: true });
 
-    if (fe) return jsonError(`flights read failed: ${fe.message}`, 500);
+    if (fErr) return jsonError(`flights read failed: ${fErr.message}`, 500);
 
     const flightIds = (flights || []).map((f: any) => String(f.id)).filter(Boolean);
 
     let flightPlayers: any[] = [];
     if (flightIds.length) {
-      const { data: fps, error: pe } = await supabase
+      const { data: fps, error: fpErr } = await supabase
         .from("flight_players")
         .select("*")
-        .in("flight_id", flightIds);
+        .in("flight_id", flightIds)
+        .order("flight_id", { ascending: true })
+        .order("seat", { ascending: true });
 
-      if (pe) return jsonError(`flight_players read failed: ${pe.message}`, 500);
+      if (fpErr) return jsonError(`flight_players read failed: ${fpErr.message}`, 500);
       flightPlayers = fps || [];
     }
 

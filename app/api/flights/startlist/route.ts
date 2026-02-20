@@ -5,29 +5,58 @@ import { PDFDocument, StandardFonts } from "pdf-lib";
 function normStr(v: any) {
   return String(v ?? "").trim();
 }
-
 function jsonError(message: string, status = 400) {
   return NextResponse.json({ ok: false, error: message }, { status });
 }
-
 function toNumber(v: any): number | null {
   const n = Number(v);
   return Number.isFinite(n) ? n : null;
 }
-
 function safeName(r: any) {
   const fn = normStr(r?.first_name || r?.firstName || "");
   const ln = normStr(r?.last_name || r?.lastName || "");
   const n = `${fn} ${ln}`.trim();
   return n || `Reg ${normStr(r?.id)}`;
 }
-
 async function getServiceSupabase() {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL || "";
   const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY || "";
   if (!url) throw new Error("Missing NEXT_PUBLIC_SUPABASE_URL");
   if (!serviceKey) throw new Error("Missing SUPABASE_SERVICE_ROLE_KEY");
   return createClient(url, serviceKey, { auth: { persistSession: false } });
+}
+
+const TZ = "Europe/Berlin";
+
+function fmtDateDE(dateISO: string) {
+  const d = new Date(dateISO);
+  return new Intl.DateTimeFormat("de-DE", {
+    timeZone: TZ,
+    weekday: "short",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).format(d);
+}
+function fmtTimeDE(dateISO: string) {
+  const d = new Date(dateISO);
+  return new Intl.DateTimeFormat("de-DE", {
+    timeZone: TZ,
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+  }).format(d);
+}
+function fmtDateTimeDE(d: Date) {
+  return new Intl.DateTimeFormat("de-DE", {
+    timeZone: TZ,
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+  }).format(d);
 }
 
 export async function GET(req: Request) {
@@ -42,14 +71,12 @@ export async function GET(req: Request) {
     if (!tournamentId) return jsonError("Missing tournamentId", 400);
     if (![1, 2, 3].includes(roundNo)) return jsonError("round must be 1, 2, or 3", 400);
 
-    // optional absichern (empfohlen):
     if (requiredPin) {
       if (!tdPin || tdPin !== requiredPin) return jsonError("TD_PIN invalid", 401);
     }
 
     const supabase = await getServiceSupabase();
 
-    // Tournament name (optional)
     const { data: tour, error: tErr } = await supabase
       .from("tournaments")
       .select("id,name,start_date,location")
@@ -58,7 +85,6 @@ export async function GET(req: Request) {
 
     if (tErr) return jsonError(`tournaments read failed: ${tErr.message}`, 500);
 
-    // flights
     const { data: flights, error: fErr } = await supabase
       .from("flights")
       .select("*")
@@ -74,20 +100,18 @@ export async function GET(req: Request) {
 
     if (fpErr) return jsonError(`flight_players read failed: ${fpErr.message}`, 500);
 
-    // registrations für Namen/HCP/Gender/Holes
-    const regIds = Array.from(new Set((fps || []).map((x: any) => x.registration_id).filter(Boolean)));
+    const regIds = Array.from(
+      new Set((fps || []).map((x: any) => x.registration_id).filter(Boolean))
+    );
+
     const { data: regs, error: rErr } = regIds.length
-      ? await supabase
-          .from("registrations")
-          .select("*")
-          .in("id", regIds)
+      ? await supabase.from("registrations").select("*").in("id", regIds)
       : { data: [], error: null as any };
 
     if (rErr) return jsonError(`registrations read failed: ${rErr.message}`, 500);
 
     const regById = new Map<string, any>((regs || []).map((r: any) => [String(r.id), r]));
 
-    // sort flights by flight_number / flight_no
     const getFlightNo = (f: any) => {
       const n =
         toNumber(f.flight_number) ??
@@ -98,9 +122,10 @@ export async function GET(req: Request) {
       return n ?? 999999;
     };
 
-    const flightsSorted = (flights || []).slice().sort((a: any, b: any) => getFlightNo(a) - getFlightNo(b));
+    const flightsSorted = (flights || [])
+      .slice()
+      .sort((a: any, b: any) => getFlightNo(a) - getFlightNo(b));
 
-    // PDF erstellen
     const pdf = await PDFDocument.create();
     const font = await pdf.embedFont(StandardFonts.Helvetica);
     const fontBold = await pdf.embedFont(StandardFonts.HelveticaBold);
@@ -109,8 +134,7 @@ export async function GET(req: Request) {
     const lineH = 14;
 
     function addPage() {
-      const p = pdf.addPage([595.28, 841.89]); // A4
-      return p;
+      return pdf.addPage([595.28, 841.89]); // A4
     }
 
     let page = addPage();
@@ -120,37 +144,31 @@ export async function GET(req: Request) {
     page.drawText(title, { x: pageMargin, y, size: 16, font: fontBold });
     y -= 22;
 
+    // nicer subtitle
     const subtitleParts = [
-      normStr(tour?.start_date) ? `Datum: ${normStr(tour?.start_date)}` : "",
+      normStr(tour?.start_date) ? `Datum: ${fmtDateDE(`${normStr(tour?.start_date)}T00:00:00Z`)}` : "",
       normStr(tour?.location) ? `Ort: ${normStr(tour?.location)}` : "",
+      `Zeitzone: ${TZ}`,
     ].filter(Boolean);
 
-    if (subtitleParts.length) {
-      page.drawText(subtitleParts.join("   |   "), { x: pageMargin, y, size: 10, font });
-      y -= 18;
-    }
-
-    const now = new Date();
-    page.drawText(`Export: ${now.toISOString().slice(0, 19).replace("T", " ")}`, {
-      x: pageMargin,
-      y,
-      size: 9,
-      font,
-    });
+    page.drawText(subtitleParts.join("   |   "), { x: pageMargin, y, size: 10, font });
     y -= 18;
 
-    // Tabelle pro Flight
+    const now = new Date();
+    page.drawText(`Export: ${fmtDateTimeDE(now)}`, { x: pageMargin, y, size: 9, font });
+    y -= 18;
+
     for (const f of flightsSorted) {
       const flightNo = getFlightNo(f);
       const holes = toNumber(f.holes) ?? null;
       const gender = normStr(f.gender) || "";
-      const startTime = normStr(f.start_time) || "";
+      const startTimeISO = normStr(f.start_time) || "";
+      const startHHMM = startTimeISO ? fmtTimeDE(startTimeISO) : "";
 
       const header = `Flight ${flightNo}${gender ? " – " + gender : ""}${holes ? " – " + holes + " Loch" : ""}${
-        startTime ? " – Start: " + startTime : ""
+        startHHMM ? " – Start: " + startHHMM : ""
       }`;
 
-      // Seitenumbruch wenn nötig
       if (y < pageMargin + 140) {
         page = addPage();
         y = page.getHeight() - pageMargin;
@@ -159,14 +177,12 @@ export async function GET(req: Request) {
       page.drawText(header, { x: pageMargin, y, size: 12, font: fontBold });
       y -= 16;
 
-      // Spaltenkopf
       page.drawText("Seat", { x: pageMargin, y, size: 10, font: fontBold });
       page.drawText("Spieler", { x: pageMargin + 45, y, size: 10, font: fontBold });
       page.drawText("HCP", { x: pageMargin + 340, y, size: 10, font: fontBold });
       page.drawText("Markiert von", { x: pageMargin + 400, y, size: 10, font: fontBold });
       y -= 10;
 
-      // Linie
       page.drawLine({
         start: { x: pageMargin, y },
         end: { x: page.getWidth() - pageMargin, y },
