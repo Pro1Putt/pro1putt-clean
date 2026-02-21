@@ -145,15 +145,11 @@ export async function POST(req: Request) {
 
 await sendRegistrationEmail({
   to: email!,
-  firstName: first_name,
-  lastName: last_name,
   tournamentName: String(tRow?.name || "PRO1PUTT"),
-  holes: Number(holes),
-  playerPin: String(player_pin),
-
-  // ✅ neu (Pflichtfelder aus SendRegistrationMailArgs)
-  scoringUrl: `${baseUrl}/pin`,
-  leaderboardUrl: `${baseUrl}/leaderboard?tournamentId=${encodeURIComponent(tournament_id)}`,
+  playerName: [first_name, last_name].filter(Boolean).join(" ").trim() || "Player",
+  divisionName: division_name ?? null,
+  teeTime: tee_time ?? null,
+  leaderboardUrl: `${baseUrl}/t/${tournament_id}/leaderboard`,
 });
 
     return NextResponse.json({
