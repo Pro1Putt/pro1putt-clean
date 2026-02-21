@@ -3,6 +3,7 @@ type SendRegistrationMailArgs = {
   subject?: string;
   html?: string;
   text?: string;
+  [key: string]: any; // ✅ erlaubt zusätzliche Felder
 };
 
 async function sendViaResend(args: SendRegistrationMailArgs) {
