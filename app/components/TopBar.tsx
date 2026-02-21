@@ -1,17 +1,17 @@
-
 "use client";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const GREEN = "#00C46A";
+const DARK = "#0b3a2c";
 
 const NAV = [
   { href: "/", label: "Home" },
   { href: "/ausschreibung", label: "Ausschreibung" },
-  { href: "/register", label: "Registrierung" },
-  { href: "/leaderboard", label: "Leaderboard" },
-  { href: "/partner", label: "Partner" },
+  { href: "/agb", label: "AGB" },
+  { href: "/datenschutz", label: "Datenschutz" },
+  { href: "/impressum", label: "Impressum" },
   { href: "/galerie", label: "Galerie" },
 ];
 
@@ -29,7 +29,7 @@ export default function TopBar() {
         position: "sticky",
         top: 0,
         zIndex: 10000,
-        background: "#0b3a2c",
+        background: DARK,
         borderBottom: "1px solid rgba(255,255,255,0.10)",
       }}
     >
@@ -40,7 +40,7 @@ export default function TopBar() {
           padding: "12px 18px",
           display: "flex",
           alignItems: "center",
-          gap: 16,
+          gap: 18,
           fontFamily:
             "Lato, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif",
         }}
@@ -54,16 +54,27 @@ export default function TopBar() {
             textDecoration: "none",
             color: "white",
           }}
+          aria-label="PRO1PUTT Home"
         >
+          <img
+            src="/pro1putt-logo-white.png"
+            alt="PRO1PUTT"
+            style={{
+              height: 28,
+              width: "auto",
+              display: "block",
+              filter: "drop-shadow(0 10px 18px rgba(0,0,0,0.25))",
+            }}
+          />
           <div style={{ lineHeight: 1 }}>
             <div style={{ fontSize: 18, fontWeight: 900 }}>PRO1PUTT</div>
-            <div style={{ fontSize: 12, fontWeight: 500, opacity: 0.85 }}>
+            <div style={{ fontSize: 12, opacity: 0.85 }}>
               Tournament Registration &amp; Live Scoring
             </div>
           </div>
         </Link>
 
-        <nav style={{ display: "flex", gap: 12, marginLeft: "auto" }}>
+        <nav style={{ display: "flex", gap: 10, marginLeft: "auto", flexWrap: "wrap" }}>
           {NAV.map((item) => {
             const active = isActive(item.href);
             return (
@@ -73,15 +84,14 @@ export default function TopBar() {
                 style={{
                   textDecoration: "none",
                   color: "white",
-                  fontWeight: 700,
+                  fontWeight: 800,
                   fontSize: 14,
                   padding: "8px 12px",
                   borderRadius: 999,
                   border: active
-                    ? "1px solid rgba(0,196,106,0.65)"
+                    ? "1px solid rgba(0,196,106,0.70)"
                     : "1px solid rgba(255,255,255,0.18)",
                   background: active ? "rgba(0,196,106,0.12)" : "transparent",
-                  transition: "all 0.2s ease",
                   whiteSpace: "nowrap",
                 }}
               >
@@ -97,7 +107,7 @@ export default function TopBar() {
             marginLeft: 10,
             textDecoration: "none",
             background: GREEN,
-            color: "#062d21",
+            color: "#001a10",
             fontWeight: 900,
             padding: "10px 14px",
             borderRadius: 999,
@@ -111,4 +121,3 @@ export default function TopBar() {
     </header>
   );
 }
-
