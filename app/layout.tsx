@@ -1,4 +1,4 @@
-import TopBar from "../components/TopBar";
+import TopBar from "./components/TopBar";
 import type { Metadata } from "next";
 import "./globals.css";
 import { Lato } from "next/font/google";
