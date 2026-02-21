@@ -1,4 +1,6 @@
 import { Resend } from "resend";
+const LOGO_URL =
+  "https://levztgbjylvspmfxcbuj.supabase.co/storage/v1/object/public/public-assets/pro1putt-logo.png";
 
 function norm(v: unknown) {
   return String(v ?? "").trim();
@@ -78,20 +80,31 @@ function buildPinEmailHtml(a: RegistrationEmailArgs) {
     <div style="max-width:860px;margin:0 auto;padding:26px;font-family:Arial,Helvetica,sans-serif;">
       <div style="background:#ffffff;border-radius:18px;padding:22px;border:1px solid rgba(0,0,0,.06);">
         <!-- Header -->
-        <div style="display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:14px;">
-          <div style="display:flex;align-items:center;gap:12px;">
-            <div style="width:44px;height:44px;border-radius:12px;background:#eef2ee;display:flex;align-items:center;justify-content:center;">
-              <span style="font-weight:900;color:#1e4620;">P</span>
-            </div>
-            <div>
-              <div style="font-weight:900;color:#1e4620;font-size:18px;">PRO1PUTT Registrierung bestätigt</div>
-              <div style="opacity:.7;font-size:12px;">Live Scoring • PRO1PUTT</div>
-            </div>
-          </div>
-          <div style="background:#e9efe9;border:1px solid rgba(30,70,32,.2);color:#1e4620;font-weight:800;padding:8px 12px;border-radius:999px;font-size:12px;">
-            PRO1PUTT Turnier
-          </div>
-        </div>
+      <!-- Header -->
+<div style="display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:16px;">
+  <div style="display:flex;align-items:center;gap:12px;">
+    <img src="${LOGO_URL}"
+         alt="PRO1PUTT"
+         width="44"
+         height="44"
+         style="display:block;border-radius:10px;" />
+
+    <div>
+      <div style="font-weight:900;color:#1e4620;font-size:18px;line-height:1.1;">
+        PRO1PUTT Registrierung bestätigt
+      </div>
+      <div style="opacity:.7;font-size:12px;margin-top:2px;">
+        Live Scoring • PRO1PUTT
+      </div>
+    </div>
+  </div>
+
+  <div style="background:#e9efe9;border:1px solid rgba(30,70,32,.2);
+              color:#1e4620;font-weight:800;padding:8px 12px;
+              border-radius:999px;font-size:12px;">
+    PRO1PUTT Turnier
+  </div>
+</div>
 
         <!-- Greeting -->
         <div style="font-size:28px;font-weight:900;color:#111;margin:0 0 6px 0;">
