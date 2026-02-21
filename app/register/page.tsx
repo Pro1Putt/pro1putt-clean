@@ -33,6 +33,7 @@ export default function RegisterPage() {
 
   useEffect(() => {
     let cancelled = false;
+
     (async () => {
       try {
         const res = await fetch("/api/tournaments");
@@ -43,57 +44,57 @@ export default function RegisterPage() {
         if (!cancelled) setLoadErr(e?.message || "Load error");
       }
     })();
+
     return () => {
       cancelled = true;
     };
   }, []);
 
- async function onSubmit(e: React.FormEvent) {
-  e.preventDefault();
-  setSubmitErr("");
-  setSubmitting(true);
+  async function onSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setSubmitErr(null);
+    setSubmitting(true);
 
-  try {
-    const form = e.target as HTMLFormElement;
-    const payload = Object.fromEntries(new FormData(form).entries());
+    try {
+      const form = e.target as HTMLFormElement;
+      const payload = Object.fromEntries(new FormData(form).entries());
 
-    const res = await fetch("/api/register", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    });
+      const res = await fetch("/api/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
 
-    const json = await res.json();
+      const json = await res.json();
 
-    if (!res.ok || !json?.ok) {
-      throw new Error(json?.error || "Registration failed");
+      if (!res.ok || !json?.ok) {
+        throw new Error(json?.error || "Registration failed");
+      }
+
+      setSuccessPin(String(json.player_pin || ""));
+      form.reset();
+
+      if (json.paypal_url) {
+        window.location.href = json.paypal_url;
+        return;
+      }
+
+      setSubmitErr(
+        "PayPal-Link ist für dieses Turnier noch nicht hinterlegt. Bitte Admin informieren."
+      );
+    } catch (err: any) {
+      setSubmitErr(err?.message || "Submit error");
+    } finally {
+      setSubmitting(false);
     }
-
-    setSuccessPin(String(json.player_pin || ""));
-    form.reset();
-
-    if (json.paypal_url) {
-      window.location.href = json.paypal_url;
-      return;
-    }
-
-    setSubmitErr(
-      "PayPal-Link ist für dieses Turnier noch nicht hinterlegt. Bitte Admin informieren."
-    );
-  } catch (err: any) {
-    setSubmitErr(err?.message || "Submit error");
- } finally {
-  setSubmitting(false);
-}
+  }
 
   return (
     <div style={{ maxWidth: 860, margin: "60px auto" }}>
       <h1 style={{ fontSize: 28, fontWeight: 800, color: "#1e4620", marginBottom: 10 }}>
         Turnier Registrierung
       </h1>
-      <p style={{ opacity: 0.7, marginBottom: 24 }}>
-        Bitte alle Pflichtfelder ausfüllen.
-      </p>
+      <p style={{ opacity: 0.7, marginBottom: 24 }}>Bitte alle Pflichtfelder ausfüllen.</p>
 
       {successPin && (
         <div
@@ -258,18 +259,19 @@ export default function RegisterPage() {
             </label>
             <input name="nation" maxLength={2} style={inputStyle()} required />
           </div>
+
           <div>
-  <label style={labelStyle()}>
-    Kategorie <span style={{ color: "crimson" }}>*</span>
-  </label>
-  <select name="gender" defaultValue="" style={inputStyle()} required>
-    <option value="" disabled>
-      Bitte wählen…
-    </option>
-    <option value="Girls">Girls</option>
-    <option value="Boys">Boys</option>
-  </select>
-</div>
+            <label style={labelStyle()}>
+              Kategorie <span style={{ color: "crimson" }}>*</span>
+            </label>
+            <select name="gender" defaultValue="" style={inputStyle()} required>
+              <option value="" disabled>
+                Bitte wählen…
+              </option>
+              <option value="Girls">Girls</option>
+              <option value="Boys">Boys</option>
+            </select>
+          </div>
 
           <div>
             <label style={labelStyle()}>
@@ -309,21 +311,13 @@ export default function RegisterPage() {
             <label style={labelStyle()}>
               WAGR gelistet? <span style={{ color: "crimson" }}>*</span>
             </label>
-            <label style={labelStyle()}>
-  WAGR
-  <select
-    name="wagr"
-    defaultValue=""
-    style={inputStyle()}
-    required
-  >
-    <option value="" disabled>
-      Bitte wählen…
-    </option>
-    <option value="no">Nein</option>
-    <option value="yes">Ja</option>
-  </select>
-</label>
+            <select name="wagr" defaultValue="" style={inputStyle()} required>
+              <option value="" disabled>
+                Bitte wählen…
+              </option>
+              <option value="no">Nein</option>
+              <option value="yes">Ja</option>
+            </select>
           </div>
 
           <div>
