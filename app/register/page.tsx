@@ -74,10 +74,11 @@ export default function RegisterPage() {
       setSuccessPin(String(json.player_pin || ""));
       form.reset();
 
-      if (json.paypal_url) {
-        window.location.href = json.paypal_url;
-        return;
-      }
+      const url = String(json?.paypal_url ?? "").trim();
+if (url) {
+  window.location.assign(url);
+  return;
+}
 
       setSubmitErr(
         "PayPal-Link ist für dieses Turnier noch nicht hinterlegt. Bitte Admin informieren."
