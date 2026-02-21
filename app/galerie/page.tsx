@@ -1,84 +1,88 @@
-import fs from "fs";
-import path from "path";
-import Image from "next/image";
+import GalleryClient from "./GalleryClient";
+import { createClient } from "@supabase/supabase-js";
 
-const GREEN = "#00C46A";
-
-function getGalleryImages(): string[] {
-  const dir = path.join(process.cwd(), "public", "gallery");
-  if (!fs.existsSync(dir)) return [];
-
-  const allowed = new Set([".jpg", ".jpeg", ".png", ".webp"]);
-  return fs
-    .readdirSync(dir)
-    .filter((f) => allowed.has(path.extname(f).toLowerCase()))
-    .filter((f) => !f.startsWith("."))
-    .sort((a, b) => a.localeCompare(b, "de"));
+function encodePath(path: string) {
+  return path
+    .split("/")
+    .map((p) => encodeURIComponent(p))
+    .join("/");
 }
 
-export default function GaleriePage() {
-  const files = getGalleryImages();
+export default async function Page({
+  searchParams,
+}: {
+  searchParams?: Promise<{ folder?: string }>;
+}) {
+  const sp = (await searchParams) ?? {};
+  const supabase = createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  );
+
+  const bucket = "Galerie";
+
+  // 1) Top-level Ordner laden
+  const { data: rootList, error: rootErr } = await supabase.storage
+    .from(bucket)
+    .list("", { limit: 200 });
+
+  if (rootErr) {
+    return <div style={{ padding: 24 }}>Fehler: {rootErr.message}</div>;
+  }
+
+  const folders =
+    (rootList ?? [])
+      .filter((x) => {
+        // Supabase liefert Ordner meist als Eintrag OHNE metadata
+        // (Dateien haben metadata)
+        return x?.name && !x.name.endsWith("/") && !x.metadata;
+      })
+      .map((x) => x.name)
+      .sort((a, b) => a.localeCompare(b)) ?? [];
+
+  // Default Ordner: Query > "Pro1Putt Open" falls vorhanden > erster Ordner
+  const requestedFolder = (sp.folder ?? "").trim();
+  const defaultFolder = folders.includes("Pro1Putt Open")
+    ? "Pro1Putt Open"
+    : folders[0] ?? "";
+
+  const activeFolder = requestedFolder && folders.includes(requestedFolder)
+    ? requestedFolder
+    : defaultFolder;
+
+  // 2) Bilder im aktiven Ordner laden
+  const { data: files, error: filesErr } = activeFolder
+    ? await supabase.storage.from(bucket).list(activeFolder, {
+        limit: 500,
+        sortBy: { column: "created_at", order: "desc" },
+      })
+    : { data: [], error: null };
+
+  if (filesErr) {
+    return <div style={{ padding: 24 }}>Fehler: {filesErr.message}</div>;
+  }
+
+  const imageFiles =
+    (files ?? [])
+      .filter((f) => f?.name && f.metadata?.mimetype?.startsWith("image/"))
+      .map((f) => {
+        const path = `${bucket}/${activeFolder}/${f.name}`;
+        const url = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/${encodePath(
+          path
+        )}`;
+        return {
+          name: f.name,
+          url,
+          created_at: f.created_at ?? null,
+        };
+      }) ?? [];
 
   return (
-  <main
-  style={{
-    minHeight: "100vh",
-    background: `
-      radial-gradient(1200px 800px at 20% -10%, rgba(0,196,106,0.25), transparent 55%),
-      radial-gradient(900px 600px at 90% 10%, rgba(0,196,106,0.18), transparent 60%),
-      linear-gradient(180deg, #0E2A1F 0%, #0B241A 100%)
-    `,
-    padding: "80px 20px",
-  }}
->
-      <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-        <h1 style={{ color: "white", fontSize: 36, fontWeight: 800, marginBottom: 30 }}>
-          PRO1PUTT Galerie
-        </h1>
-
-        {files.length === 0 ? (
-          <div style={{ color: "white" }}>Keine Bilder in /public/gallery gefunden.</div>
-        ) : (
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
-              gap: 20,
-            }}
-          >
-            {files.map((file) => (
-              <a
-                key={file}
-                href={`/gallery/${file}`}
-                target="_blank"
-                rel="noreferrer"
-                style={{
-                  position: "relative",
-                  width: "100%",
-                  height: 250,
-                  borderRadius: 16,
-                  overflow: "hidden",
-                  border: "1px solid rgba(255,255,255,0.1)",
-                  display: "block",
-                }}
-              >
-                <Image src={`/gallery/${file}`} alt={file} fill style={{ objectFit: "cover" }} />
-              </a>
-            ))}
-          </div>
-        )}
-
-        <div
-          style={{
-            marginTop: 22,
-            height: 2,
-            width: 180,
-            background: `linear-gradient(90deg, ${GREEN}, rgba(0,196,106,0))`,
-            borderRadius: 999,
-            opacity: 0.9,
-          }}
-        />
-      </div>
-    </main>
+    <GalleryClient
+      bucket={bucket}
+      folders={folders}
+      activeFolder={activeFolder}
+      images={imageFiles}
+    />
   );
 }
