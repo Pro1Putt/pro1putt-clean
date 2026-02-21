@@ -70,9 +70,6 @@ function buildPinEmailHtml(a: RegistrationEmailArgs) {
   const pinUrl = norm(a.pinUrl);
   const leaderboardUrl = norm(a.leaderboardUrl);
 
-  const divisionLine = division
-    ? `<div style="margin-top:6px;"><span style="opacity:.75;">Kategorie:</span> <b>${division}</b></div>`
-    : `<div style="margin-top:6px;"><span style="opacity:.75;">Kategorie:</span> <b></b></div>`;
 
   return `<!doctype html>
 <html>
@@ -119,7 +116,7 @@ function buildPinEmailHtml(a: RegistrationEmailArgs) {
           <div>
             <div style="opacity:.7;font-weight:800;margin-bottom:6px;">Turnier</div>
             <div style="font-weight:900;color:#111;">${tournament}</div>
-            ${divisionLine}
+
           </div>
 
           <div style="text-align:right;min-width:240px;">
@@ -168,7 +165,6 @@ export async function sendRegistrationEmail(args: RegistrationEmailArgs) {
     `PRO1PUTT Registrierung bestätigt\n\n` +
     `Hallo ${norm(args.playerName)}\n` +
     `Turnier: ${norm(args.tournamentName)}\n` +
-    (args.divisionName ? `Kategorie: ${norm(args.divisionName)}\n` : "") +
     `PIN: ${norm(args.pin)}\n` +
     `Check-in/Scoring: ${norm(args.pinUrl)}\n` +
     `Leaderboard: ${norm(args.leaderboardUrl)}\n`;
