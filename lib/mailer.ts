@@ -1,9 +1,8 @@
-import { Resend } from "resend";
+aimport { Resend } from "resend";
 
 function norm(v: unknown) {
   return String(v ?? "").trim();
 }
-
 function escapeHtml(s: string) {
   return s
     .replaceAll("&", "&amp;")
@@ -29,16 +28,13 @@ export async function sendEmail(args: GenericEmailArgs) {
   const text = args.text ?? "";
 
   if (!apiKey) {
-    console.warn("[mailer] RESEND_API_KEY missing -> skipping email send", {
-      to: args.to,
-      subject,
-    });
+    console.warn("[mailer] RESEND_API_KEY missing -> skipping email send", { to: args.to, subject });
     return { ok: false as const, skipped: true as const };
   }
 
   const resend = new Resend(apiKey);
 
-  // WICHTIG: kein "undefined" ins payload (Resend Types)
+  // kein undefined ins payload (Resend TS Union)
   const payload: any = { from, to: args.to, subject };
   if (html) payload.html = html;
   if (text) payload.text = text;
@@ -53,78 +49,38 @@ export type RegistrationEmailArgs = {
   tournamentName: string;
   playerName: string;
 
-  // optional
-  divisionName?: string | null;
-  teeTime?: string | null; // <-- FIX: wird in app/api/register/route.ts gesetzt
-  leaderboardUrl?: string | null;
+  // Screenshot-Felder
+  divisionName?: string | null; // "Kategorie"
+  pin: string; // 4-stellig, MUSS drin sein (Screenshot)
+  pinUrl: string; // https://.../pin (Screenshot)
 
-  // optional (falls du PIN-Mail nutzt)
-  pin?: string | null;
-  pinUrl?: string | null;
+  // optional
+  teeTime?: string | null;
+  leaderboardUrl: string; // Button "Leaderboard ansehen" (Screenshot)
 };
 
-function buildRegistrationHtml(a: RegistrationEmailArgs) {
-  const tournament = escapeHtml(norm(a.tournamentName));
+function buildPinEmailHtml(a: RegistrationEmailArgs) {
   const player = escapeHtml(norm(a.playerName));
-
+  const tournament = escapeHtml(norm(a.tournamentName));
   const division = a.divisionName ? escapeHtml(norm(a.divisionName)) : "";
-  const teeTime = a.teeTime ? escapeHtml(norm(a.teeTime)) : "";
+  const pin = escapeHtml(norm(a.pin));
 
-  const leaderboardUrl = a.leaderboardUrl ? norm(a.leaderboardUrl) : "";
-  const pin = a.pin ? escapeHtml(norm(a.pin)) : "";
-  const pinUrl = a.pinUrl ? norm(a.pinUrl) : "";
+  const pinUrl = norm(a.pinUrl);
+  const leaderboardUrl = norm(a.leaderboardUrl);
 
   const divisionLine = division
-    ? `<div style="margin-top:6px;color:#2b2b2b;"><span style="opacity:.75;">Kategorie:</span> <b>${division}</b></div>`
-    : "";
-
-  const teeTimeLine = teeTime
-    ? `<div style="margin-top:6px;color:#2b2b2b;"><span style="opacity:.75;">Tee Time:</span> <b>${teeTime}</b></div>`
-    : "";
-
-  const pinBox = pin
-    ? `
-      <div style="text-align:right;">
-        <div style="opacity:.7;font-weight:700;">Dein persönlicher PIN</div>
-        <div style="font-size:56px;line-height:1;font-weight:900;letter-spacing:2px;color:#111;margin-top:6px;">${pin}</div>
-        <div style="font-size:12px;opacity:.65;margin-top:6px;">Bitte nicht weitergeben. Dieser PIN ist für Check-in und Score-Eingabe.</div>
-      </div>
-    `
-    : "";
-
-  const primaryBtn = pinUrl
-    ? `
-      <a href="${pinUrl}"
-        style="display:inline-block;background:#1e4620;color:#fff;text-decoration:none;font-weight:800;padding:12px 18px;border-radius:999px;">
-        Check-in / Scoring öffnen →
-      </a>
-    `
-    : "";
-
-  const secondaryBtn = leaderboardUrl
-    ? `
-      <a href="${leaderboardUrl}"
-        style="display:inline-block;background:#e9efe9;color:#1e4620;text-decoration:none;font-weight:800;padding:12px 18px;border-radius:999px;border:1px solid rgba(30,70,32,.25);margin-left:10px;">
-        Leaderboard ansehen →
-      </a>
-    `
-    : "";
-
-  const fallbackLink = pinUrl
-    ? `<div style="font-size:12px;opacity:.75;margin-top:10px;">
-        Falls die Buttons nicht funktionieren, kopiere diesen Link in deinen Browser:<br/>
-        <a href="${pinUrl}" style="color:#1e4620;">${escapeHtml(pinUrl)}</a>
-      </div>`
-    : "";
+    ? `<div style="margin-top:6px;"><span style="opacity:.75;">Kategorie:</span> <b>${division}</b></div>`
+    : `<div style="margin-top:6px;"><span style="opacity:.75;">Kategorie:</span> <b></b></div>`;
 
   return `<!doctype html>
 <html>
   <body style="margin:0;padding:0;background:#eef2ee;">
-    <div style="max-width:760px;margin:0 auto;padding:26px;font-family:Arial,Helvetica,sans-serif;">
+    <div style="max-width:860px;margin:0 auto;padding:26px;font-family:Arial,Helvetica,sans-serif;">
       <div style="background:#ffffff;border-radius:18px;padding:22px;border:1px solid rgba(0,0,0,.06);">
+        <!-- Header -->
         <div style="display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:14px;">
           <div style="display:flex;align-items:center;gap:12px;">
-            <div style="width:40px;height:40px;border-radius:12px;background:#eef2ee;display:flex;align-items:center;justify-content:center;">
+            <div style="width:44px;height:44px;border-radius:12px;background:#eef2ee;display:flex;align-items:center;justify-content:center;">
               <span style="font-weight:900;color:#1e4620;">P</span>
             </div>
             <div>
@@ -137,29 +93,50 @@ function buildRegistrationHtml(a: RegistrationEmailArgs) {
           </div>
         </div>
 
+        <!-- Greeting -->
         <div style="font-size:28px;font-weight:900;color:#111;margin:0 0 6px 0;">
           Hallo ${player},
         </div>
         <div style="opacity:.75;margin-bottom:16px;">
-          deine Registrierung ist eingegangen.${pin ? " Unten findest du deinen persönlichen PIN für Check-in & Scoring." : ""}
+          deine Registrierung ist eingegangen. Unten findest du deinen persönlichen PIN für Check-in &amp; Scoring.
         </div>
 
+        <!-- Info Box -->
         <div style="background:#f6f8f6;border:1px solid rgba(0,0,0,.06);border-radius:16px;padding:16px;display:flex;justify-content:space-between;gap:16px;align-items:flex-start;">
           <div>
             <div style="opacity:.7;font-weight:800;margin-bottom:6px;">Turnier</div>
             <div style="font-weight:900;color:#111;">${tournament}</div>
             ${divisionLine}
-            ${teeTimeLine}
           </div>
-          ${pinBox}
+
+          <div style="text-align:right;min-width:240px;">
+            <div style="opacity:.7;font-weight:800;">Dein persönlicher PIN</div>
+            <div style="font-size:56px;line-height:1;font-weight:900;letter-spacing:2px;color:#111;margin-top:6px;">${pin}</div>
+            <div style="font-size:12px;opacity:.65;margin-top:6px;">
+              Bitte nicht weitergeben. Dieser PIN ist für<br/>Check-in und Score-Eingabe.
+            </div>
+          </div>
         </div>
 
+        <!-- Buttons -->
         <div style="margin-top:16px;">
-          ${primaryBtn}
-          ${secondaryBtn}
-          ${fallbackLink}
+          <a href="${escapeHtml(pinUrl)}"
+            style="display:inline-block;background:#1e4620;color:#fff;text-decoration:none;font-weight:900;padding:12px 18px;border-radius:999px;">
+            Check-in / Scoring öffnen →
+          </a>
+
+          <a href="${escapeHtml(leaderboardUrl)}"
+            style="display:inline-block;background:#e9efe9;color:#1e4620;text-decoration:none;font-weight:900;padding:12px 18px;border-radius:999px;border:1px solid rgba(30,70,32,.25);margin-left:10px;">
+            Leaderboard ansehen →
+          </a>
+
+          <div style="font-size:12px;opacity:.75;margin-top:10px;">
+            Falls die Buttons nicht funktionieren, kopiere diesen Link in deinen Browser:<br/>
+            <a href="${escapeHtml(pinUrl)}" style="color:#1e4620;text-decoration:underline;">${escapeHtml(pinUrl)}</a>
+          </div>
         </div>
 
+        <!-- Footer -->
         <div style="margin-top:18px;font-size:12px;opacity:.6;">
           PRO1PUTT • Diese E-Mail wurde automatisch gesendet. Wenn du diese E-Mail nicht erwartet hast, kannst du sie ignorieren.
         </div>
@@ -170,19 +147,18 @@ function buildRegistrationHtml(a: RegistrationEmailArgs) {
 }
 
 export async function sendRegistrationEmail(args: RegistrationEmailArgs) {
-  const subject = `PRO1PUTT: Registrierung bestätigt – ${norm(args.tournamentName)}`;
+  const subject = `PRO1PUTT Registrierung bestätigt – dein PIN`;
 
-  const html = buildRegistrationHtml(args);
+  const html = buildPinEmailHtml(args);
 
   const text =
     `PRO1PUTT Registrierung bestätigt\n\n` +
+    `Hallo ${norm(args.playerName)}\n` +
     `Turnier: ${norm(args.tournamentName)}\n` +
-    `Spieler: ${norm(args.playerName)}\n` +
     (args.divisionName ? `Kategorie: ${norm(args.divisionName)}\n` : "") +
-    (args.teeTime ? `Tee Time: ${norm(args.teeTime)}\n` : "") +
-    (args.pin ? `PIN: ${norm(args.pin)}\n` : "") +
-    (args.pinUrl ? `Check-in/Scoring: ${norm(args.pinUrl)}\n` : "") +
-    (args.leaderboardUrl ? `Leaderboard: ${norm(args.leaderboardUrl)}\n` : "");
+    `PIN: ${norm(args.pin)}\n` +
+    `Check-in/Scoring: ${norm(args.pinUrl)}\n` +
+    `Leaderboard: ${norm(args.leaderboardUrl)}\n`;
 
   return sendEmail({ to: args.to, subject, html, text });
 }
