@@ -1,22 +1,5 @@
 import { Resend } from "resend";
 
-export type GenericEmailArgs = {
-  to: string;
-  subject: string;
-  html?: string;
-  text?: string;
-};
-
-export type RegistrationEmailArgs = {
-  to: string;
-  tournamentName: string;
-  playerName: string;
-  playerPin: string; // <- WICHTIG: PIN kommt rein
-  divisionName?: string | null;
-  leaderboardUrl?: string | null;
-  pinUrl?: string | null; // z.B. https://pro1putt-clean.vercel.app/pin
-};
-
 function norm(v: unknown) {
   return String(v ?? "").trim();
 }
@@ -30,7 +13,13 @@ function escapeHtml(s: string) {
     .replaceAll("'", "&#039;");
 }
 
-// Resend: niemals undefined Felder mitschicken
+export type GenericEmailArgs = {
+  to: string;
+  subject: string;
+  html?: string;
+  text?: string;
+};
+
 export async function sendEmail(args: GenericEmailArgs) {
   const apiKey = process.env.RESEND_API_KEY;
   const from = process.env.MAIL_FROM ?? "PRO1PUTT <noreply@pro1putt.com>";
@@ -44,11 +33,12 @@ export async function sendEmail(args: GenericEmailArgs) {
       to: args.to,
       subject,
     });
-    return { ok: false, skipped: true as const };
+    return { ok: false as const, skipped: true as const };
   }
 
   const resend = new Resend(apiKey);
 
+  // WICHTIG: kein "undefined" ins payload (Resend Types)
   const payload: any = { from, to: args.to, subject };
   if (html) payload.html = html;
   if (text) payload.text = text;
@@ -57,88 +47,121 @@ export async function sendEmail(args: GenericEmailArgs) {
   return { ok: true as const, res };
 }
 
-function buildPinMailHtml(a: RegistrationEmailArgs) {
+export type RegistrationEmailArgs = {
+  to: string;
+
+  tournamentName: string;
+  playerName: string;
+
+  // optional
+  divisionName?: string | null;
+  teeTime?: string | null; // <-- FIX: wird in app/api/register/route.ts gesetzt
+  leaderboardUrl?: string | null;
+
+  // optional (falls du PIN-Mail nutzt)
+  pin?: string | null;
+  pinUrl?: string | null;
+};
+
+function buildRegistrationHtml(a: RegistrationEmailArgs) {
   const tournament = escapeHtml(norm(a.tournamentName));
   const player = escapeHtml(norm(a.playerName));
+
   const division = a.divisionName ? escapeHtml(norm(a.divisionName)) : "";
-  const pin = escapeHtml(norm(a.playerPin));
+  const teeTime = a.teeTime ? escapeHtml(norm(a.teeTime)) : "";
 
   const leaderboardUrl = a.leaderboardUrl ? norm(a.leaderboardUrl) : "";
+  const pin = a.pin ? escapeHtml(norm(a.pin)) : "";
   const pinUrl = a.pinUrl ? norm(a.pinUrl) : "";
 
-  // Logo: wenn du später eine eigene URL willst, sag kurz Bescheid
-  const logoUrl =
-    "https://levztgbjylvspmfxcbuj.supabase.co/storage/v1/object/public/public-assets/pro1putt-logo.png";
-
-  const topPill = `<span style="display:inline-block;padding:8px 12px;border-radius:999px;background:#e8efe9;color:#1e4620;font-weight:700;font-size:12px;">PRO1PUTT Turnier</span>`;
-
   const divisionLine = division
-    ? `<div style="margin-top:6px;color:#3a3a3a;font-size:14px;"><b>Kategorie:</b> ${division}</div>`
-    : `<div style="margin-top:6px;color:#3a3a3a;font-size:14px;"><b>Kategorie:</b> </div>`;
-
-  const btnLeft = pinUrl
-    ? `<a href="${pinUrl}" style="display:inline-block;padding:12px 18px;border-radius:999px;background:#1e4620;color:#ffffff;text-decoration:none;font-weight:800;">Check-in / Scoring öffnen →</a>`
+    ? `<div style="margin-top:6px;color:#2b2b2b;"><span style="opacity:.75;">Kategorie:</span> <b>${division}</b></div>`
     : "";
 
-  const btnRight = leaderboardUrl
-    ? `<a href="${leaderboardUrl}" style="display:inline-block;padding:12px 18px;border-radius:999px;background:#e8efe9;color:#1e4620;text-decoration:none;font-weight:800;border:1px solid rgba(30,70,32,0.25);">Leaderboard ansehen →</a>`
+  const teeTimeLine = teeTime
+    ? `<div style="margin-top:6px;color:#2b2b2b;"><span style="opacity:.75;">Tee Time:</span> <b>${teeTime}</b></div>`
+    : "";
+
+  const pinBox = pin
+    ? `
+      <div style="text-align:right;">
+        <div style="opacity:.7;font-weight:700;">Dein persönlicher PIN</div>
+        <div style="font-size:56px;line-height:1;font-weight:900;letter-spacing:2px;color:#111;margin-top:6px;">${pin}</div>
+        <div style="font-size:12px;opacity:.65;margin-top:6px;">Bitte nicht weitergeben. Dieser PIN ist für Check-in und Score-Eingabe.</div>
+      </div>
+    `
+    : "";
+
+  const primaryBtn = pinUrl
+    ? `
+      <a href="${pinUrl}"
+        style="display:inline-block;background:#1e4620;color:#fff;text-decoration:none;font-weight:800;padding:12px 18px;border-radius:999px;">
+        Check-in / Scoring öffnen →
+      </a>
+    `
+    : "";
+
+  const secondaryBtn = leaderboardUrl
+    ? `
+      <a href="${leaderboardUrl}"
+        style="display:inline-block;background:#e9efe9;color:#1e4620;text-decoration:none;font-weight:800;padding:12px 18px;border-radius:999px;border:1px solid rgba(30,70,32,.25);margin-left:10px;">
+        Leaderboard ansehen →
+      </a>
+    `
     : "";
 
   const fallbackLink = pinUrl
-    ? `<div style="margin-top:14px;color:#3a3a3a;font-size:13px;">
-         Falls die Buttons nicht funktionieren, kopiere diesen Link in deinen Browser:<br/>
-         <a href="${pinUrl}" style="color:#1e4620;text-decoration:underline;">${escapeHtml(pinUrl)}</a>
-       </div>`
+    ? `<div style="font-size:12px;opacity:.75;margin-top:10px;">
+        Falls die Buttons nicht funktionieren, kopiere diesen Link in deinen Browser:<br/>
+        <a href="${pinUrl}" style="color:#1e4620;">${escapeHtml(pinUrl)}</a>
+      </div>`
     : "";
 
   return `<!doctype html>
 <html>
-  <body style="margin:0;padding:0;background:#eef3ef;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;">
-    <div style="max-width:760px;margin:0 auto;padding:26px;">
-      <div style="background:#ffffff;border-radius:18px;border:1px solid rgba(0,0,0,0.08);overflow:hidden;">
-        <div style="padding:20px 22px;border-bottom:1px solid rgba(0,0,0,0.06);display:flex;align-items:center;justify-content:space-between;gap:12px;">
+  <body style="margin:0;padding:0;background:#eef2ee;">
+    <div style="max-width:760px;margin:0 auto;padding:26px;font-family:Arial,Helvetica,sans-serif;">
+      <div style="background:#ffffff;border-radius:18px;padding:22px;border:1px solid rgba(0,0,0,.06);">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:14px;">
           <div style="display:flex;align-items:center;gap:12px;">
-            <img src="${logoUrl}" alt="PRO1PUTT" style="height:40px;width:auto;display:block;" />
+            <div style="width:40px;height:40px;border-radius:12px;background:#eef2ee;display:flex;align-items:center;justify-content:center;">
+              <span style="font-weight:900;color:#1e4620;">P</span>
+            </div>
             <div>
-              <div style="font-weight:900;color:#1e4620;font-size:18px;line-height:1.2;">PRO1PUTT Registrierung bestätigt</div>
-              <div style="color:#6b7280;font-size:13px;margin-top:2px;">Live Scoring • PRO1PUTT</div>
+              <div style="font-weight:900;color:#1e4620;font-size:18px;">PRO1PUTT Registrierung bestätigt</div>
+              <div style="opacity:.7;font-size:12px;">Live Scoring • PRO1PUTT</div>
             </div>
           </div>
-          <div>${topPill}</div>
+          <div style="background:#e9efe9;border:1px solid rgba(30,70,32,.2);color:#1e4620;font-weight:800;padding:8px 12px;border-radius:999px;font-size:12px;">
+            PRO1PUTT Turnier
+          </div>
         </div>
 
-        <div style="padding:22px;">
-          <div style="font-size:26px;font-weight:900;color:#0f172a;margin:0 0 8px 0;">Hallo ${player},</div>
-          <div style="color:#334155;font-size:14px;line-height:1.5;margin-bottom:16px;">
-            deine Registrierung ist eingegangen. Unten findest du deinen persönlichen PIN für Check-in &amp; Scoring.
-          </div>
+        <div style="font-size:28px;font-weight:900;color:#111;margin:0 0 6px 0;">
+          Hallo ${player},
+        </div>
+        <div style="opacity:.75;margin-bottom:16px;">
+          deine Registrierung ist eingegangen.${pin ? " Unten findest du deinen persönlichen PIN für Check-in & Scoring." : ""}
+        </div>
 
-          <div style="border:1px solid rgba(0,0,0,0.08);border-radius:16px;padding:16px;display:flex;align-items:stretch;justify-content:space-between;gap:14px;">
-            <div style="flex:1;">
-              <div style="color:#6b7280;font-weight:800;font-size:12px;text-transform:uppercase;letter-spacing:.08em;">Turnier</div>
-              <div style="margin-top:4px;font-weight:900;color:#0f172a;font-size:16px;">${tournament}</div>
-              ${divisionLine}
-            </div>
-            <div style="width:1px;background:rgba(0,0,0,0.08);"></div>
-            <div style="min-width:220px;text-align:right;">
-              <div style="color:#6b7280;font-weight:800;font-size:12px;">Dein persönlicher PIN</div>
-              <div style="margin-top:6px;font-weight:1000;color:#0f172a;font-size:44px;letter-spacing:1px;">${pin}</div>
-              <div style="margin-top:4px;color:#6b7280;font-size:12px;">
-                Bitte nicht weitergeben. Dieser PIN ist für Check-in und Score-Eingabe.
-              </div>
-            </div>
+        <div style="background:#f6f8f6;border:1px solid rgba(0,0,0,.06);border-radius:16px;padding:16px;display:flex;justify-content:space-between;gap:16px;align-items:flex-start;">
+          <div>
+            <div style="opacity:.7;font-weight:800;margin-bottom:6px;">Turnier</div>
+            <div style="font-weight:900;color:#111;">${tournament}</div>
+            ${divisionLine}
+            ${teeTimeLine}
           </div>
+          ${pinBox}
+        </div>
 
-          <div style="margin-top:16px;display:flex;gap:12px;flex-wrap:wrap;">
-            ${btnLeft}
-            ${btnRight}
-          </div>
-
+        <div style="margin-top:16px;">
+          ${primaryBtn}
+          ${secondaryBtn}
           ${fallbackLink}
+        </div>
 
-          <div style="margin-top:18px;color:#6b7280;font-size:12px;">
-            PRO1PUTT • Diese E-Mail wurde automatisch gesendet. Wenn du diese E-Mail nicht erwartet hast, kannst du sie ignorieren.
-          </div>
+        <div style="margin-top:18px;font-size:12px;opacity:.6;">
+          PRO1PUTT • Diese E-Mail wurde automatisch gesendet. Wenn du diese E-Mail nicht erwartet hast, kannst du sie ignorieren.
         </div>
       </div>
     </div>
@@ -147,15 +170,17 @@ function buildPinMailHtml(a: RegistrationEmailArgs) {
 }
 
 export async function sendRegistrationEmail(args: RegistrationEmailArgs) {
-  const subject = `PRO1PUTT Registrierung bestätigt – dein PIN`;
-  const html = buildPinMailHtml(args);
+  const subject = `PRO1PUTT: Registrierung bestätigt – ${norm(args.tournamentName)}`;
+
+  const html = buildRegistrationHtml(args);
 
   const text =
     `PRO1PUTT Registrierung bestätigt\n\n` +
-    `Spieler: ${norm(args.playerName)}\n` +
     `Turnier: ${norm(args.tournamentName)}\n` +
-    `PIN: ${norm(args.playerPin)}\n` +
+    `Spieler: ${norm(args.playerName)}\n` +
     (args.divisionName ? `Kategorie: ${norm(args.divisionName)}\n` : "") +
+    (args.teeTime ? `Tee Time: ${norm(args.teeTime)}\n` : "") +
+    (args.pin ? `PIN: ${norm(args.pin)}\n` : "") +
     (args.pinUrl ? `Check-in/Scoring: ${norm(args.pinUrl)}\n` : "") +
     (args.leaderboardUrl ? `Leaderboard: ${norm(args.leaderboardUrl)}\n` : "");
 
