@@ -12,8 +12,8 @@ export type RegistrationEmailArgs = {
 export type GenericEmailArgs = {
   to: string;
   subject: string;
-  html?: string;
-  text?: string;
+  html?: string | null;
+  text?: string | null;
 };
 
 function norm(v: unknown) {
@@ -29,7 +29,7 @@ function escapeHtml(s: string) {
     .replaceAll("'", "&#039;");
 }
 
-function buildHtml(a: RegistrationEmailArgs) {
+function buildRegistrationHtml(a: RegistrationEmailArgs) {
   const tournament = escapeHtml(norm(a.tournamentName));
   const player = escapeHtml(norm(a.playerName));
   const division = a.divisionName ? escapeHtml(norm(a.divisionName)) : "";
@@ -76,34 +76,31 @@ export async function sendEmail(args: GenericEmailArgs) {
   const apiKey = process.env.RESEND_API_KEY;
   const from = process.env.MAIL_FROM ?? "PRO1PUTT <noreply@pro1putt.com>";
 
+  const to = String(args.to ?? "").trim();
   const subject = String(args.subject ?? "").trim();
-  const html = args.html ?? "";
-  const text = args.text ?? "";
+  const html = args.html ? String(args.html) : "";
+  const text = args.text ? String(args.text) : "";
 
   if (!apiKey) {
-    console.warn("[mailer] RESEND_API_KEY missing -> skipping email send", {
-      to: args.to,
-      subject,
-    });
+    console.warn("[mailer] RESEND_API_KEY missing -> skipping email send", { to, subject });
     return { ok: false, skipped: true as const };
   }
 
   const resend = new Resend(apiKey);
 
-  const res = await resend.emails.send({
-    from,
-    to: args.to,
-    subject,
-    ...(html ? { html } : {}),
-    ...(text ? { text } : {}),
-  });
+  // WICHTIG: payload ohne optional-undefined Felder bauen (TS + Resend Union Types)
+  const payload: any = { from, to, subject };
+  if (html) payload.html = html;
+  if (text) payload.text = text;
 
+  const res = await resend.emails.send(payload);
   return { ok: true as const, res };
 }
 
 export async function sendRegistrationEmail(args: RegistrationEmailArgs) {
   const subject = `PRO1PUTT: Registrierung bestätigt – ${norm(args.tournamentName)}`;
-  const html = buildHtml(args);
+
+  const html = buildRegistrationHtml(args);
   const text =
     `PRO1PUTT Registrierung bestätigt\n\n` +
     `Turnier: ${norm(args.tournamentName)}\n` +
@@ -112,10 +109,5 @@ export async function sendRegistrationEmail(args: RegistrationEmailArgs) {
     (args.teeTime ? `Tee Time: ${norm(args.teeTime)}\n` : "") +
     (args.leaderboardUrl ? `Leaderboard: ${norm(args.leaderboardUrl)}\n` : "");
 
-  return sendEmail({
-    to: args.to,
-    subject,
-    html,
-    text,
-  });
+  return sendEmail({ to: args.to, subject, html, text });
 }
