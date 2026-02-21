@@ -5,15 +5,14 @@ type SendRegistrationMailArgs = {
   text?: string;
 };
 
-export async function sendRegistrationMail(args: SendRegistrationMailArgs) {
-  // Build-sicher: Wenn kein Provider konfiguriert ist, einfach ok zurückgeben.
-  // Kein UI/Design betroffen.
+async function sendViaResend(args: SendRegistrationMailArgs) {
+  // ✅ Build-sicher: Wenn kein Provider konfiguriert ist, einfach "ok" zurückgeben.
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) {
-    return { ok: true, skipped: true, reason: "RESEND_API_KEY missing" };
+    return { ok: true, skipped: true, reason: "RESEND_API_KEY missing" as const };
   }
 
-  // Dynamischer Import: verhindert Build-Probleme, falls "resend" nicht installiert ist.
+  // ✅ Dynamischer Import: verhindert Build-Fail, falls Resend in irgendeinem Kontext fehlt
   const { Resend } = await import("resend");
   const resend = new Resend(apiKey);
 
@@ -28,5 +27,20 @@ export async function sendRegistrationMail(args: SendRegistrationMailArgs) {
     text: args.text ?? undefined,
   });
 
-  return { ok: true, provider: "resend", id: (res as any)?.data?.id ?? null };
+  return { ok: true, provider: "resend" as const, id: (res as any)?.data?.id ?? null };
+}
+
+/**
+ * ✅ Neuer "Haupt"-Export (dein aktueller Name)
+ */
+export async function sendRegistrationMail(args: SendRegistrationMailArgs) {
+  return sendViaResend(args);
+}
+
+/**
+ * ✅ Alias für alte Imports im Code (damit Vercel-Build nicht mehr knallt)
+ * Einige Routes importieren noch sendRegistrationEmail.
+ */
+export async function sendRegistrationEmail(args: SendRegistrationMailArgs) {
+  return sendViaResend(args);
 }
