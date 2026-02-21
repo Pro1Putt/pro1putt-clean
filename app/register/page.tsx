@@ -54,8 +54,9 @@ export default function RegisterPage() {
   setSubmitting(true);
 
   try {
-   const form = e.target as HTMLFormElement;
-const payload = Object.fromEntries(new FormData(form).entries());
+    const form = e.target as HTMLFormElement;
+    const payload = Object.fromEntries(new FormData(form).entries());
+
     const res = await fetch("/api/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -63,16 +64,28 @@ const payload = Object.fromEntries(new FormData(form).entries());
     });
 
     const json = await res.json();
-    if (!res.ok || !json?.ok) throw new Error(json?.error || "Registration failed");
+
+    if (!res.ok || !json?.ok) {
+      throw new Error(json?.error || "Registration failed");
+    }
 
     setSuccessPin(String(json.player_pin || ""));
-    const form = e.target as HTMLFormElement;
     form.reset();
 
     if (json.paypal_url) {
-      window.location.assign(json.paypal_url);
+      window.location.href = json.paypal_url;
       return;
+    } else {
+      setSubmitErr(
+        "PayPal-Link ist für dieses Turnier noch nicht hinterlegt. Bitte Admin informieren."
+      );
     }
+  } catch (err: any) {
+    setSubmitErr(err?.message || "Submit error");
+  } finally {
+    setSubmitting(false);
+  }
+}
 
     setSubmitErr(
       "PayPal-Link ist für dieses Turnier noch nicht hinterlegt. Bitte Admin informieren."
