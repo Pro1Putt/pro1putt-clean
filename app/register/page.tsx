@@ -88,11 +88,14 @@ const form = e.target as HTMLFormElement;
 form.reset();
 
 if (json.paypal_url) {
-  window.location.href = json.paypal_url;
+  window.location.assign(json.paypal_url);
+  return; // <- WICHTIG: sofort raus
 } else {
   setSubmitErr(
     "PayPal-Link ist für dieses Turnier noch nicht hinterlegt. Bitte Admin informieren."
   );
+  return;
+}
 }
     } catch (e: any) {
       setSubmitErr(e?.message || "Submit error");
