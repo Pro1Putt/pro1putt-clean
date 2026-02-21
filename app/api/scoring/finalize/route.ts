@@ -140,8 +140,8 @@ export async function POST(req: Request) {
 
         const pdfBytes = await fetchScorecardPdfBytes(baseUrl, tournament_id, registration_id, round, requiredPin ? td_pin : undefined);
 
-        await sendRegistrationEmail({
-          to,
+       await sendRegistrationEmail({
+  to: Array.isArray(to) ? to[0] : to,
           subject: `Finalisierte Scorecard – ${tName} – Runde ${round}`,
           text:
             `Finalisierte Scorecard als PDF im Anhang.\n\n` +
