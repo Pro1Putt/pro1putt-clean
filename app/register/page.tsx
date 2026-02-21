@@ -48,31 +48,41 @@ export default function RegisterPage() {
     };
   }, []);
 
-  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    setSubmitErr(null);
-    setSuccessPin(null);
-    setSubmitting(true);
+  async function onSubmit(e: React.FormEvent) {
+  e.preventDefault();
+  setSubmitErr("");
+  setSubmitting(true);
 
-    const fd = new FormData(e.currentTarget);
+  try {
+    const payload = buildPayloadFromForm(e); // <- falls du das so nicht hast: unten Alternative
+    const res = await fetch("/api/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
 
-    const payload = {
-      tournament_id: String(fd.get("tournament_id") || ""),
-      holes: Number(fd.get("holes") || 0),
-      first_name: String(fd.get("first_name") || ""),
-      last_name: String(fd.get("last_name") || ""),
-      email: String(fd.get("email") || ""),
-      hcp: Number(fd.get("hcp") || 0),
-      birthdate: String(fd.get("birthdate") || ""),
-      home_club: String(fd.get("home_club") || ""),
-      coach: String(fd.get("coach") || ""),
-      walkup_song: String(fd.get("walkup_song") || ""),
-      caddie: String(fd.get("caddie") || "") === "yes",
-      wagr: String(fd.get("wagr") || "") === "yes",
-      college_interest: String(fd.get("college_interest") || "") === "yes",
-      nation: String(fd.get("nation") || ""),
-      gender: String(fd.get("gender") || ""),
-    };
+    const json = await res.json();
+    if (!res.ok || !json?.ok) throw new Error(json?.error || "Registration failed");
+
+    setSuccessPin(String(json.player_pin || ""));
+    const form = e.target as HTMLFormElement;
+    form.reset();
+
+    if (json.paypal_url) {
+      window.location.assign(json.paypal_url);
+      return;
+    }
+
+    setSubmitErr(
+      "PayPal-Link ist für dieses Turnier noch nicht hinterlegt. Bitte Admin informieren."
+    );
+    return;
+  } catch (err: any) {
+    setSubmitErr(err?.message || "Submit error");
+  } finally {
+    setSubmitting(false);
+  }
+}
 
     try {
       const res = await fetch("/api/register", {
