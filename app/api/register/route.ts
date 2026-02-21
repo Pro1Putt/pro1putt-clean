@@ -148,7 +148,6 @@ await sendRegistrationEmail({
   tournamentName: String(tRow?.name || "PRO1PUTT"),
   playerName: [first_name, last_name].filter(Boolean).join(" ").trim() || "Player",
   divisionName: null,
-  teeTime: null,
   leaderboardUrl: `${baseUrl}/t/${tournament_id}/leaderboard`,
 });
 
