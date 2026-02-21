@@ -9,6 +9,13 @@ export type RegistrationEmailArgs = {
   leaderboardUrl?: string | null;
 };
 
+export type GenericEmailArgs = {
+  to: string;
+  subject: string;
+  html?: string;
+  text?: string;
+};
+
 function norm(v: unknown) {
   return String(v ?? "").trim();
 }
@@ -29,8 +36,12 @@ function buildHtml(a: RegistrationEmailArgs) {
   const teeTime = a.teeTime ? escapeHtml(norm(a.teeTime)) : "";
   const leaderboardUrl = a.leaderboardUrl ? norm(a.leaderboardUrl) : "";
 
-  const divisionLine = division ? `<p style="margin:0 0 6px 0;"><b>Division:</b> ${division}</p>` : "";
-  const teeTimeLine = teeTime ? `<p style="margin:0 0 6px 0;"><b>Tee Time:</b> ${teeTime}</p>` : "";
+  const divisionLine = division
+    ? `<p style="margin:0 0 6px 0;"><b>Division:</b> ${division}</p>`
+    : "";
+  const teeTimeLine = teeTime
+    ? `<p style="margin:0 0 6px 0;"><b>Tee Time:</b> ${teeTime}</p>`
+    : "";
   const leaderboardLine = leaderboardUrl
     ? `<p style="margin:10px 0 0 0;"><a href="${leaderboardUrl}" style="color:#00C46A;text-decoration:none;"><b>Zum Leaderboard</b></a></p>`
     : "";
@@ -61,18 +72,13 @@ function buildHtml(a: RegistrationEmailArgs) {
 </html>`;
 }
 
-export async function sendRegistrationEmail(args: RegistrationEmailArgs) {
+export async function sendEmail(args: GenericEmailArgs) {
   const apiKey = process.env.RESEND_API_KEY;
   const from = process.env.MAIL_FROM ?? "PRO1PUTT <noreply@pro1putt.com>";
 
-  // Immer ein STRING (nie undefined) -> TypeScript-Fehler weg
-  const subject = `PRO1PUTT: Registrierung bestätigt – ${norm(args.tournamentName)}`;
-  const html = buildHtml(args);
-  const text = `PRO1PUTT Registrierung bestätigt\n\nTurnier: ${norm(args.tournamentName)}\nSpieler: ${norm(
-    args.playerName
-  )}${args.divisionName ? `\nDivision: ${norm(args.divisionName)}` : ""}${args.teeTime ? `\nTee Time: ${norm(args.teeTime)}` : ""}${
-    args.leaderboardUrl ? `\nLeaderboard: ${norm(args.leaderboardUrl)}` : ""
-  }\n`;
+  const subject = String(args.subject ?? "").trim();
+  const html = args.html ?? "";
+  const text = args.text ?? "";
 
   if (!apiKey) {
     console.warn("[mailer] RESEND_API_KEY missing -> skipping email send", {
@@ -88,9 +94,28 @@ export async function sendRegistrationEmail(args: RegistrationEmailArgs) {
     from,
     to: args.to,
     subject,
-    html, // <- garantiert string
-    text, // <- garantiert string
+    ...(html ? { html } : {}),
+    ...(text ? { text } : {}),
   });
 
   return { ok: true as const, res };
+}
+
+export async function sendRegistrationEmail(args: RegistrationEmailArgs) {
+  const subject = `PRO1PUTT: Registrierung bestätigt – ${norm(args.tournamentName)}`;
+  const html = buildHtml(args);
+  const text =
+    `PRO1PUTT Registrierung bestätigt\n\n` +
+    `Turnier: ${norm(args.tournamentName)}\n` +
+    `Spieler: ${norm(args.playerName)}\n` +
+    (args.divisionName ? `Division: ${norm(args.divisionName)}\n` : "") +
+    (args.teeTime ? `Tee Time: ${norm(args.teeTime)}\n` : "") +
+    (args.leaderboardUrl ? `Leaderboard: ${norm(args.leaderboardUrl)}\n` : "");
+
+  return sendEmail({
+    to: args.to,
+    subject,
+    html,
+    text,
+  });
 }

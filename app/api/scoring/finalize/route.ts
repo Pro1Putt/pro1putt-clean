@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
-import { sendRegistrationEmail } from "@/lib/mailer";
+import { sendEmail } from "@/lib/mailer";
 
 function normStr(v: any) {
   return String(v ?? "").trim();
@@ -140,24 +140,14 @@ export async function POST(req: Request) {
 
         const pdfBytes = await fetchScorecardPdfBytes(baseUrl, tournament_id, registration_id, round, requiredPin ? td_pin : undefined);
 
-       await sendRegistrationEmail({
+       await sendEmail({
   to: Array.isArray(to) ? to[0] : to,
-          subject: `Finalisierte Scorecard – ${tName} – Runde ${round}`,
-          text:
-            `Finalisierte Scorecard als PDF im Anhang.\n\n` +
-            `Turnier: ${tName}\n` +
-            (date ? `Datum: ${date}\n` : "") +
-            (loc ? `Ort: ${loc}\n` : "") +
-            `Runde: ${round}\n` +
-            `Registration: ${registration_id}\n`,
-          attachments: [
-            {
-              filename: `scorecard_${registration_id}_round${round}.pdf`,
-              content: pdfBytes,
-              contentType: "application/pdf",
-            },
-          ],
-        });
+  subject: `Finalisierte Scorecard – ${tName} – Runde ${round}`,
+  text:
+    `Finalisierte Scorecard als PDF im Anhang.\n\n` +
+    `Turnier: ${tName}\n` +
+    `Runde: ${round}\n`,
+});
       }
     }
 
