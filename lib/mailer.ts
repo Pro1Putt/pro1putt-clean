@@ -1,4 +1,4 @@
-aimport { Resend } from "resend";
+import { Resend } from "resend";
 
 function norm(v: unknown) {
   return String(v ?? "").trim();
