@@ -1,3 +1,4 @@
+import TopBar from "../components/TopBar";
 import type { Metadata } from "next";
 import "./globals.css";
 import { Lato } from "next/font/google";
@@ -25,6 +26,8 @@ export default function RootLayout({
   return (
     <html lang="de">
       <body className={lato.className} style={{ background: "#f5f7f5", color: "#1a1a1a" }}>
+        <TopBar />
+
         {/* Top Bar */}{/* Page Container */}
         <main
           style={{
