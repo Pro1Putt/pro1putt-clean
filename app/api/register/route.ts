@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
-import { sendRegistrationMail } from "@/lib/mailer";
+import { sendRegistrationEmail } from "@/lib/mailer";
 
 function getBaseUrl(req: Request) {
   const proto = req.headers.get("x-forwarded-proto") ?? "http";
