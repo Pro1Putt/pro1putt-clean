@@ -54,7 +54,8 @@ export default function RegisterPage() {
   setSubmitting(true);
 
   try {
-    const payload = buildPayloadFromForm(e); // <- falls du das so nicht hast: unten Alternative
+   const form = e.target as HTMLFormElement;
+const payload = Object.fromEntries(new FormData(form).entries());
     const res = await fetch("/api/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
