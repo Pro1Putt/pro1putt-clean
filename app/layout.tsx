@@ -14,8 +14,9 @@ const lato = Lato({
 });
 
 export const metadata: Metadata = {
-  title: "PRO1PUTT Scoring",
-  description: "PRO1PUTT Tournament Registration & Live Scoring",
+  title: "PRO1PUTT – Internationale Jugend Golfturniere & Live Leaderboards",
+  description:
+    "PRO1PUTT organisiert professionelle Jugend-Golfturniere mit Live-Leaderboard, internationalen Events und leistungsorientierten Wettbewerben.",
 };
 
 const footerLinkStyle = {
@@ -97,6 +98,35 @@ export default function RootLayout({
 
         {/* Sticky CTA (global, auto-hidden on register/leaderboard/admin/live/tournament pages) */}
         <StickyCta />
+        <Script
+  id="event-schema"
+  type="application/ld+json"
+  strategy="afterInteractive"
+  dangerouslySetInnerHTML={{
+    __html: JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "SportsEvent",
+      name: "PRO1PUTT – Open Classics WINSTONopen 2026",
+      startDate: "2026-03-30",
+      eventStatus: "https://schema.org/EventScheduled",
+      eventAttendanceMode:
+        "https://schema.org/OfflineEventAttendanceMode",
+      location: {
+        "@type": "Place",
+        name: "WINSTONopen",
+        address: {
+          "@type": "PostalAddress",
+          addressCountry: "DE",
+        },
+      },
+      organizer: {
+        "@type": "Organization",
+        name: "PRO1PUTT",
+        url: "https://www.pro1putt.com",
+      },
+    }),
+  }}
+/>
 
         {typeof window !== "undefined" &&
           localStorage.getItem("pro1putt_cookie_consent") === "accepted" && (
