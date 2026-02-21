@@ -84,4 +84,178 @@ body {
   + * {
   display: none !important;
 }
+/* =========================
+   PRO1PUTT – Mobile/Responsive Fixes (global)
+   ========================= */
 
+/* Grundsätzlich: Bilder/Videos nie überlaufen lassen */
+img, video, canvas, svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Container/Padding (wir ändern NICHT das Desktop-Layout, nur Mobile wird luftiger) */
+:root {
+  --p1-pad: 16px;
+  --p1-max: 1180px;
+}
+
+@media (max-width: 900px) {
+  :root { --p1-pad: 14px; }
+}
+@media (max-width: 520px) {
+  :root { --p1-pad: 12px; }
+}
+
+/* Falls irgendwo harte Breiten/Layouts sind: sanftere Defaults */
+main, .page, .container {
+  max-width: var(--p1-max);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--p1-pad);
+  padding-right: var(--p1-pad);
+  box-sizing: border-box;
+}
+
+/* Header/Nav: auf Mobile nicht „grau-breit“ quetschen, sondern sauber scrollen */
+.p1-topbar-inner,
+.p1-header-inner {
+  box-sizing: border-box;
+}
+
+@media (max-width: 820px) {
+  /* Header-Inhalt untereinander, aber optisch gleich */
+  .p1-topbar-inner,
+  .p1-header-inner {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 10px !important;
+  }
+
+  /* Nav horizontal scroll statt Umbruch-chaos */
+  .p1-nav {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    gap: 8px !important;
+    padding-bottom: 6px;
+    scrollbar-width: none; /* Firefox */
+  }
+  .p1-nav::-webkit-scrollbar { display: none; } /* Chrome/Safari */
+
+  /* Nav-Links kompakter (wirken weniger „Button“) */
+  .p1-nav .p1-navlink,
+  .p1-navlink {
+    padding: 9px 10px !important;
+    font-size: 13px !important;
+    border-radius: 999px !important;
+    white-space: nowrap !important;
+  }
+
+  /* CTA auf Mobile zentriert & nicht gequetscht */
+  .p1-cta, .p1-cta-wrap {
+    display: flex !important;
+    justify-content: center !important;
+  }
+  .p1-navcta {
+    width: 100%;
+    text-align: center;
+    max-width: 420px;
+  }
+}
+
+/* Buttons auf sehr schmalen Screens stapeln */
+@media (max-width: 520px) {
+  .p1-btn-primary,
+  .p1-btn-soft,
+  .p1-btn-ghost {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* Sticky bottom bar: auf Mobile mehr Luft + wrap */
+@media (max-width: 520px) {
+  .p1-sticky,
+  [data-p1-sticky="1"] {
+    padding: 10px 12px !important;
+  }
+}
+
+/* iOS Safe-Area unten (Home Indicator) */
+@supports (padding: max(0px)) {
+  .p1-sticky,
+  [data-p1-sticky="1"] {
+    padding-bottom: max(12px, env(safe-area-inset-bottom));
+  }
+}
+/* =========================
+   PRO1PUTT – Leaderboard Mobile Fix
+   ========================= */
+
+@media (max-width: 640px) {
+  /* 1) Allgemein: weniger Padding auf der Seite */
+  main {
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+
+  /* 2) Filter/Buttons/Pills: enger, wrap sauber */
+  main a,
+  main button {
+    max-width: 100%;
+  }
+
+  /* Typisch: „Pill“-Buttons/Links im Leaderboard */
+  main a[role="button"],
+  main button {
+    font-size: 13px;
+  }
+
+  /* 3) Tabellen: horizontal scroll statt abgeschnitten */
+  main table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border-collapse: separate;
+  }
+
+  /* Tabelle soll nicht „zusammenquetschen“ */
+  main table thead,
+  main table tbody {
+    display: table;
+    width: max-content;
+    min-width: 100%;
+  }
+
+  /* Zellen: kompakter + nicht umbrechen */
+  main table th,
+  main table td {
+    padding: 10px 10px !important;
+    font-size: 13px !important;
+    white-space: nowrap !important;
+    vertical-align: middle;
+  }
+
+  /* Spaltenüberschriften etwas kleiner */
+  main table th {
+    font-size: 12px !important;
+    letter-spacing: 0.2px;
+  }
+}
+/* Mobile Footer clean */
+@media (max-width: 640px) {
+  footer {
+    padding: 16px 12px !important;
+    font-size: 12px !important;
+    line-height: 1.6 !important;
+    text-align: center !important;
+  }
+
+  footer a {
+    display: inline-block;
+    white-space: nowrap;
+  }
+}

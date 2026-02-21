@@ -262,7 +262,60 @@ const supabase = createClient(
 
   function renderRow(r: Row, idx: number) {
     const displayRank = idx + 1;
+    const isMobile = typeof window !== "undefined" && window.innerWidth <= 640;
 
+    if (isMobile) {
+  return (
+    <div
+      key={`${r.id}-${idx}`}
+      style={{
+        padding: "14px",
+        borderBottom: "1px solid rgba(0,0,0,0.06)",
+        display: "flex",
+        flexDirection: "column",
+        gap: 8,
+      }}
+    >
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+          <div style={{ fontWeight: 900, color: GREEN, fontSize: 18 }}>#{displayRank}</div>
+          <div style={{ fontSize: 18 }}>{medal(displayRank)}</div>
+        </div>
+
+        <div
+          style={{
+            padding: "6px 12px",
+            borderRadius: 999,
+            background: "rgba(30,70,32,0.12)",
+            border: "1px solid rgba(30,70,32,0.25)",
+            color: GREEN,
+            fontWeight: 900,
+            fontSize: 18,
+          }}
+        >
+          {fmtScore(r.score)}
+        </div>
+      </div>
+
+      <div style={{ fontWeight: 800 }}>
+        {flagEmoji(r.nation)} {r.first_name} {r.last_name}
+      </div>
+
+      <div style={{ fontSize: 12, opacity: 0.7 }}>
+        {r.gender} • {r.age_group} • {r.holes}L • HCP {r.hcp != null ? Number(r.hcp).toFixed(1) : "–"}
+      </div>
+
+      <div style={{ fontSize: 12, opacity: 0.7 }}>
+        Thru {r.thru || "–"} • {fmtToPar(r.to_par)} • Flight {r.flight_number ?? "–"} • Start{" "}
+        {fmtTime(r.start_time)}
+      </div>
+
+      {r.home_club ? (
+        <div style={{ fontSize: 12, opacity: 0.6 }}>{r.home_club}</div>
+      ) : null}
+    </div>
+  );
+}
     return (
       <div
         key={`${r.id}-${idx}`}
@@ -363,6 +416,23 @@ const supabase = createClient(
 
   return (
     <div style={{ maxWidth: 1100, margin: "40px auto", padding: "0 14px" }}>
+      <style>{`
+  /* MOBILE: Tabelle nicht abschneiden, sondern horizontal scrollen */
+  .p1-lb-tablewrap {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Der Grid-"Table"-Block bekommt eine Mindestbreite, damit er nicht gequetscht wird */
+  .p1-lb-minw {
+    min-width: 860px;
+  }
+
+  @media (max-width: 420px) {
+    .p1-lb-minw { min-width: 820px; }
+  }
+`}</style>
       <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 14 }}>
         <img src={LOGO_URL} alt="PRO1PUTT" style={{ height: 40, width: "auto", display: "block" }} />
 
@@ -463,14 +533,16 @@ const supabase = createClient(
           ))}
       </div>
 
-      <div
-        style={{
-          background: "#ffffff",
-          borderRadius: 16,
-          border: "1px solid rgba(0,0,0,0.08)",
-          overflow: "hidden",
-        }}
-      >
+     <div
+  style={{
+    background: "#ffffff",
+    borderRadius: 16,
+    border: "1px solid rgba(0,0,0,0.08)",
+    overflow: "hidden",
+  }}
+>
+  <div className="p1-lb-tablewrap">
+    <div className="p1-lb-minw">
         <div
           style={{
             display: "grid",
@@ -493,6 +565,8 @@ const supabase = createClient(
           <div>Start</div>
           <div>HCP</div>
         </div>
+  </div>
+</div>
 
         {loading && <div style={{ padding: 16, opacity: 0.7 }}>Lade Daten…</div>}
 

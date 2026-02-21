@@ -11,18 +11,25 @@ const PDF_URL = "/pro1putt-ausschreibung-2026.pdf";
 function Badge({ children }: { children: string }) {
   return (
     <span
+      aria-hidden="true"
       style={{
         display: "inline-flex",
         alignItems: "center",
-        padding: "8px 12px",
+        padding: "7px 12px",
         borderRadius: 999,
-        border: "1px solid rgba(255,255,255,0.22)",
-        background: "rgba(255,255,255,0.10)",
-        color: "rgba(255,255,255,0.95)",
-        fontWeight: 900,
-        fontSize: 13,
-        letterSpacing: 0.3,
+        border: "1px solid rgba(255,255,255,0.14)",
+        background: "rgba(255,255,255,0.06)",
+        color: "rgba(255,255,255,0.88)",
+        fontWeight: 800,
+        fontSize: 12.5,
+        letterSpacing: 0.2,
         whiteSpace: "nowrap",
+
+        // wichtig: wirkt NICHT wie Button/Link
+        cursor: "default",
+        userSelect: "none",
+        pointerEvents: "none",
+        boxShadow: "none",
       }}
     >
       {children}
@@ -275,27 +282,31 @@ export default function AusschreibungPage() {
       <section className="p1-hero" style={{ padding: "64px 20px 60px" }}>
         <div style={{ position: "relative", zIndex: 2, maxWidth: 1050, margin: "0 auto" }}>
           <div style={{ display: "flex", flexWrap: "wrap", gap: 10, justifyContent: "center" }}>
-            <Badge>WAGR & EGR</Badge>
-            <Badge>3 Runden • Ohne Cut</Badge>
-            <Badge>Die Runden sind handicaprelevant gemäß World Handicap System.</Badge>
-            <Badge>Hole-in-One bis 10.000 €</Badge>
-            <Badge>Caddies willkommen</Badge>
-          </div>
+  <Badge>WAGR & EGR</Badge>
+  <Badge>Hole-in-One bis 10.000 €</Badge>
+  <Badge>Caddies willkommen</Badge>
+</div>
 
           <h1
-            style={{
-              margin: "22px 0 10px",
-              textAlign: "center",
-              fontWeight: 900,
-              fontSize: 46,
-              letterSpacing: 0.8,
-              lineHeight: 1.05,
-            }}
-          >
-            PRO1PUTT Open 2026
-            <br />
-            Turnierausschreibung
-          </h1>
+style={{
+  margin: "18px 0 10px",
+  textAlign: "center",
+  fontWeight: 900,
+  fontSize: "clamp(30px, 8vw, 46px)",   // <- responsive
+  letterSpacing: 0.6,
+  lineHeight: 1.06,
+
+  // <- sorgt dafür, dass lange Wörter nicht „abgeschnitten“ wirken
+  overflowWrap: "anywhere",
+  wordBreak: "break-word",
+  hyphens: "auto",
+  padding: "0 6px",
+}}
+>
+  PRO1PUTT Open
+  <br />
+  Turnierausschreibung
+</h1>
 
           <p
             style={{

@@ -15,21 +15,26 @@ function NavLink({ href, label }: { href: string; label: string }) {
 function Pill({ children }: { children: ReactNode }) {
   return (
     <div
-      style={{
-        display: "inline-flex",
-        alignItems: "center",
-        gap: 10,
-        padding: "10px 14px",
-        borderRadius: 999,
-        border: "1px solid rgba(0,0,0,0.08)",
-        background: "rgba(255,255,255,0.7)",
-        boxShadow: "0 10px 22px rgba(0,0,0,0.05)",
-        fontWeight: 900,
-        color: DARK,
-        fontSize: 14,
-        letterSpacing: 0.2,
-        whiteSpace: "nowrap",
-      }}
+     style={{
+  display: "inline-flex",
+  alignItems: "center",
+  justifyContent: "center",
+  gap: 10,
+  padding: "9px 12px",
+  borderRadius: 999,
+  border: "1px solid rgba(0,0,0,0.08)",
+  background: "rgba(255,255,255,0.65)",
+  boxShadow: "0 10px 22px rgba(0,0,0,0.05)",
+  fontWeight: 900,
+  color: DARK,
+  fontSize: 13,
+
+  // wichtig für mobile:
+  whiteSpace: "normal",
+  textAlign: "center",
+  lineHeight: 1.25,
+  maxWidth: "min(520px, 92vw)",
+}}
     >
       <span
         style={{
@@ -291,7 +296,7 @@ export default function HomeV2() {
     {[
       {
         title: "Open Classics WINSTONopen",
-        date: "30.–31.03.2026",
+        date: "30.03.–01.04.2026",
         place: "WINSTONopen",
         status: "Limited Entry",
       },

@@ -353,7 +353,7 @@ export default function HomeV2() {
     {[
       {
         title: "Open Classics WINSTONopen",
-        date: "30.–31.03.2026",
+        date: "30.03.–01.04.2026",
         place: "WINSTONopen",
         status: "Limited Entry",
       },
