@@ -327,13 +327,21 @@ if (json.paypal_url) {
             <label style={labelStyle()}>
               WAGR gelistet? <span style={{ color: "crimson" }}>*</span>
             </label>
-            <select name="wagr" defaultValue="" style={inputStyle()} required>
-              <option value="" disabled>
-                Bitte wählen…
-              </option>
-              <option value="no">Nein</option>
-              <option value="yes">Ja</option>
-            </select>
+            <label style={labelStyle()}>
+  WAGR
+  <select
+    name="wagr"
+    defaultValue=""
+    style={inputStyle()}
+    required
+  >
+    <option value="" disabled>
+      Bitte wählen…
+    </option>
+    <option value="no">Nein</option>
+    <option value="yes">Ja</option>
+  </select>
+</label>
           </div>
 
           <div>
