@@ -143,7 +143,7 @@ export async function POST(req: Request) {
     // Mail senden (nach erfolgreichem Insert)
  const baseUrl = getBaseUrl(req);
 
-await sendRegistrationMail({
+await sendRegistrationEmail({
   to: email!,
   firstName: first_name,
   lastName: last_name,
