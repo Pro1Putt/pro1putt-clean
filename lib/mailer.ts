@@ -30,46 +30,100 @@ function escapeHtml(s: string) {
 }
 
 function buildRegistrationHtml(a: RegistrationEmailArgs) {
-  const tournament = escapeHtml(norm(a.tournamentName));
-  const player = escapeHtml(norm(a.playerName));
-  const division = a.divisionName ? escapeHtml(norm(a.divisionName)) : "";
-  const teeTime = a.teeTime ? escapeHtml(norm(a.teeTime)) : "";
-  const leaderboardUrl = a.leaderboardUrl ? norm(a.leaderboardUrl) : "";
+  const tournament = norm(a.tournamentName);
+  const player = norm(a.playerName);
+  const division = a.divisionName ?? "";
+  const teeTime = a.teeTime ?? "";
+  const leaderboardUrl = a.leaderboardUrl ?? "#";
 
-  const divisionLine = division
-    ? `<p style="margin:0 0 6px 0;"><b>Division:</b> ${division}</p>`
-    : "";
-  const teeTimeLine = teeTime
-    ? `<p style="margin:0 0 6px 0;"><b>Tee Time:</b> ${teeTime}</p>`
-    : "";
-  const leaderboardLine = leaderboardUrl
-    ? `<p style="margin:10px 0 0 0;"><a href="${leaderboardUrl}" style="color:#00C46A;text-decoration:none;"><b>Zum Leaderboard</b></a></p>`
-    : "";
+  // Dummy PIN – falls du PIN später wieder reinreichen willst, ersetzen wir das
+  const pin = "2553";
 
-  return `<!doctype html>
+  return `
+<!DOCTYPE html>
 <html>
-  <body style="margin:0;padding:0;background:#f6f7f9;font-family:Arial,Helvetica,sans-serif;">
-    <div style="max-width:640px;margin:0 auto;padding:24px;">
-      <div style="background:#ffffff;border-radius:14px;padding:22px;border:1px solid #e9ecef;">
-        <h2 style="margin:0 0 10px 0;color:#111;">PRO1PUTT Registrierung bestätigt</h2>
-        <p style="margin:0 0 14px 0;color:#333;">Hallo <b>${player}</b>,</p>
-        <p style="margin:0 0 12px 0;color:#333;">du bist erfolgreich für folgendes Turnier registriert:</p>
+<body style="margin:0;background:#f3f5f4;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;">
 
-        <div style="background:#f8fafc;border:1px solid #eef2f7;border-radius:12px;padding:14px;">
-          <p style="margin:0 0 6px 0;"><b>Turnier:</b> ${tournament}</p>
-          ${divisionLine}
-          ${teeTimeLine}
-        </div>
+  <div style="max-width:720px;margin:40px auto;background:#ffffff;border-radius:18px;box-shadow:0 10px 30px rgba(0,0,0,0.08);overflow:hidden;">
 
-        ${leaderboardLine}
-
-        <p style="margin:18px 0 0 0;color:#555;font-size:12px;">
-          Wenn du diese E-Mail nicht erwartet hast, kannst du sie ignorieren.
-        </p>
+    <!-- HEADER -->
+    <div style="padding:28px 32px;border-bottom:1px solid #e8ecea;">
+      <h2 style="margin:0;color:#0f5132;font-size:22px;font-weight:700;">
+        PRO1PUTT Registrierung bestätigt
+      </h2>
+      <div style="color:#6c757d;font-size:14px;margin-top:4px;">
+        Live Scoring • PRO1PUTT
       </div>
     </div>
-  </body>
-</html>`;
+
+    <!-- BODY -->
+    <div style="padding:32px;">
+
+      <h3 style="margin-top:0;font-size:20px;">
+        Hallo ${player},
+      </h3>
+
+      <p style="color:#444;margin-bottom:24px;">
+        deine Registrierung ist eingegangen. Unten findest du deinen persönlichen PIN für Check-in & Scoring.
+      </p>
+
+      <!-- PIN CARD -->
+      <div style="display:flex;justify-content:space-between;align-items:center;
+                  background:#f8faf9;border:1px solid #e2e8e6;
+                  border-radius:16px;padding:24px;margin-bottom:30px;">
+
+        <div>
+          <div style="font-size:14px;color:#6c757d;">Turnier</div>
+          <div style="font-weight:600;font-size:16px;margin-top:4px;">
+            ${tournament}
+          </div>
+          ${division ? `<div style="margin-top:6px;font-size:14px;color:#555;">Kategorie: ${division}</div>` : ""}
+          ${teeTime ? `<div style="margin-top:4px;font-size:14px;color:#555;">Tee Time: ${teeTime}</div>` : ""}
+        </div>
+
+        <div style="text-align:right;">
+          <div style="font-size:14px;color:#6c757d;">Dein persönlicher PIN</div>
+          <div style="font-size:40px;font-weight:800;color:#0f5132;letter-spacing:2px;margin-top:6px;">
+            ${pin}
+          </div>
+          <div style="font-size:12px;color:#888;margin-top:6px;">
+            Bitte nicht weitergeben.
+          </div>
+        </div>
+
+      </div>
+
+      <!-- BUTTONS -->
+      <div style="display:flex;gap:14px;flex-wrap:wrap;">
+
+        <a href="${leaderboardUrl}"
+           style="background:#0f5132;color:white;
+                  padding:14px 22px;border-radius:30px;
+                  text-decoration:none;font-weight:600;
+                  display:inline-block;">
+          Check-in / Scoring öffnen →
+        </a>
+
+        <a href="${leaderboardUrl}"
+           style="background:#e8f3ee;color:#0f5132;
+                  padding:14px 22px;border-radius:30px;
+                  text-decoration:none;font-weight:600;
+                  display:inline-block;">
+          Leaderboard ansehen →
+        </a>
+
+      </div>
+
+      <p style="font-size:12px;color:#888;margin-top:30px;">
+        PRO1PUTT • Diese E-Mail wurde automatisch gesendet.
+      </p>
+
+    </div>
+  </div>
+
+</body>
+</html>
+`;
 }
 
 export async function sendEmail(args: GenericEmailArgs) {
