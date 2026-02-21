@@ -48,7 +48,7 @@ export default function RegisterPage() {
     };
   }, []);
 
-  async function onSubmit(e: React.FormEvent) {
+ async function onSubmit(e: React.FormEvent) {
   e.preventDefault();
   setSubmitErr("");
   setSubmitting(true);
@@ -75,58 +75,16 @@ export default function RegisterPage() {
     if (json.paypal_url) {
       window.location.href = json.paypal_url;
       return;
-    } else {
-      setSubmitErr(
-        "PayPal-Link ist für dieses Turnier noch nicht hinterlegt. Bitte Admin informieren."
-      );
     }
-  } catch (err: any) {
-    setSubmitErr(err?.message || "Submit error");
-  } finally {
-    setSubmitting(false);
-  }
-}
 
     setSubmitErr(
       "PayPal-Link ist für dieses Turnier noch nicht hinterlegt. Bitte Admin informieren."
     );
-    return;
   } catch (err: any) {
     setSubmitErr(err?.message || "Submit error");
-  } finally {
-    setSubmitting(false);
-  }
+ } finally {
+  setSubmitting(false);
 }
-
-    try {
-      const res = await fetch("/api/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
-      const json = await res.json();
-      if (!res.ok || !json.ok) throw new Error(json?.error || "Registration failed");
-
-      setSuccessPin(String(json.player_pin || ""));
-const form = e.target as HTMLFormElement;
-form.reset();
-
-if (json.paypal_url) {
-  window.location.assign(json.paypal_url);
-  return; // <- WICHTIG: sofort raus
-} else {
-  setSubmitErr(
-    "PayPal-Link ist für dieses Turnier noch nicht hinterlegt. Bitte Admin informieren."
-  );
-  return;
-}
-}
-    } catch (e: any) {
-      setSubmitErr(e?.message || "Submit error");
-    } finally {
-      setSubmitting(false);
-    }
-  }
 
   return (
     <div style={{ maxWidth: 860, margin: "60px auto" }}>
