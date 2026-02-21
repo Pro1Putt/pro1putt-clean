@@ -182,5 +182,21 @@
     "seat": 2,
     "marks_registration_id": "57026740-4b05-4284-afd9-106660d69265",
     "created_at": "2026-02-19T13:04:35.277104+00:00"
+  },
+  {
+    "id": "327a8a4f-ddf3-4383-acf5-c0194a29ff80",
+    "flight_id": "f1a659bf-df9e-4622-b2a5-ac1ab58e4d27",
+    "registration_id": "0320ff37-a4a8-4b64-886f-2900fd20ebc8",
+    "seat": 1,
+    "marks_registration_id": "ca65d3e4-1f1a-4e9a-8299-716fb25764c6",
+    "created_at": "2026-02-20T13:20:14.524079+00:00"
+  },
+  {
+    "id": "dcc18df4-335a-48e4-b3ea-c0b4f1038dd3",
+    "flight_id": "f1a659bf-df9e-4622-b2a5-ac1ab58e4d27",
+    "registration_id": "ca65d3e4-1f1a-4e9a-8299-716fb25764c6",
+    "seat": 2,
+    "marks_registration_id": "0320ff37-a4a8-4b64-886f-2900fd20ebc8",
+    "created_at": "2026-02-20T13:20:14.524079+00:00"
   }
 ]
