@@ -1,0 +1,2 @@
+id,tournament_id,pin,role,hole_number,strokes_self,strokes_partner,created_at,updated_at
+bee4a513-1027-4e66-893b-f780d6e8f1b6,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1234,player,1,4,4,2026-02-23T10:32:31.526016+00:00,2026-02-23T10:32:31.446+00:00
