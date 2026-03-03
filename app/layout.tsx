@@ -1,5 +1,5 @@
-import TopBar from "./components/TopBar";
 import type { Metadata } from "next";
+import TopBar from "./components/TopBar";
 import "./globals.css";
 import { Lato } from "next/font/google";
 import StickyCta from "./components/StickyCta";
@@ -17,6 +17,10 @@ export const metadata: Metadata = {
   title: "PRO1PUTT – Internationale Jugend Golfturniere & Live Leaderboards",
   description:
     "PRO1PUTT organisiert professionelle Jugend-Golfturniere mit Live-Leaderboard, internationalen Events und leistungsorientierten Wettbewerben.",
+  icons: {
+    icon: [{ url: "/favicon.png", type: "image/png" }],
+    apple: [{ url: "/favicon.png", type: "image/png" }],
+  },
 };
 
 const footerLinkStyle = {

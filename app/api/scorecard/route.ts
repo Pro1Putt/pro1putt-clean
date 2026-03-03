@@ -110,7 +110,6 @@ export async function GET(req: Request) {
           const eb = String((e as any).entered_by || "");
           const st = safeNum((e as any).strokes);
           if (!eb || !st) continue;
-          // keep first per entered_by
           if (!uniqBy.has(eb)) uniqBy.set(eb, st);
         }
         const vals = Array.from(uniqBy.values());
@@ -121,7 +120,6 @@ export async function GET(req: Request) {
             confirmed = true;
             strokes = first;
           } else {
-            // disagreement → show null strokes (or first) but mark not confirmed
             confirmed = false;
             strokes = vals[0] ?? null;
           }

@@ -130,12 +130,11 @@ export default function LiveScoringFlightPage() {
   }, [tournamentId, registrationId, round]);
 
   const maxHole = useMemo(() => {
-    // robust: wenn du später 9/18 pro Spieler nutzen willst, holen wir es über /api/player
     return 18;
   }, []);
 
-  async function refreshHoleStatus(h: number) {
-    if (!tournamentId || !registrationId) return;
+  async function refreshHoleStatus(h: number): Promise<boolean> {
+    if (!tournamentId || !registrationId) return false;
     setStatusLoading(true);
     try {
       const res = await fetch(
@@ -155,20 +154,29 @@ export default function LiveScoringFlightPage() {
       } else {
         setStatusMsg("Warte auf Abgleich (beide Scores müssen gleich sein) …");
       }
+
+      return isConfirmed;
     } catch (e: any) {
       setConfirmed(false);
       setStatusMsg(e?.message || "Status konnte nicht geladen werden");
+      return false;
     } finally {
       setStatusLoading(false);
     }
   }
 
-  // whenever hole changes -> refresh status and unlock by default
+  // whenever hole changes -> reset local fields so nothing "sticks", then refresh status
   useEffect(() => {
     setOkMsg(null);
     setErr(null);
     setStatusMsg("");
     setConfirmed(false);
+
+    // IMPORTANT: prevent carrying over ruleball/note and strokes to next hole
+    setMyStrokes(5);
+    setMarkStrokes(5);
+    setRuleBall(false);
+    setRuleNote("");
 
     refreshHoleStatus(hole);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -221,19 +229,11 @@ export default function LiveScoringFlightPage() {
 
       setOkMsg(`Gespeichert: Loch ${hole}`);
 
-      // 3) Status prüfen
-      await refreshHoleStatus(hole);
-
-      // 4) Wenn bestätigt -> automatisch weiter
-      // (kurzer Delay für UX)
-      setTimeout(() => {
-        if (confirmed) {
-          setHole((h) => {
-            if (h >= maxHole) return h;
-            return h + 1;
-          });
-        }
-      }, 350);
+      // 3) Status prüfen + zuverlässiges Auto-Weiter
+      const isConfirmed = await refreshHoleStatus(hole);
+      if (isConfirmed) {
+        setHole((h) => (h >= maxHole ? h : h + 1));
+      }
     } catch (e: any) {
       setErr(e?.message || "Save error");
     } finally {
@@ -299,9 +299,7 @@ export default function LiveScoringFlightPage() {
                   <div style={{ fontWeight: 1000 }}>
                     {m.first_name} {m.last_name}
                   </div>
-                  <div style={{ fontSize: 12, opacity: 0.65 }}>
-                    {m.registration_id === registrationId ? "Du" : ""}
-                  </div>
+                  <div style={{ fontSize: 12, opacity: 0.65 }}>{m.registration_id === registrationId ? "Du" : ""}</div>
                 </div>
               ))}
             </div>
@@ -348,9 +346,7 @@ export default function LiveScoringFlightPage() {
                     onChange={(e) => setRuleBall(e.target.checked)}
                     disabled={isLocked}
                   />
-                  <span style={{ fontSize: 13, opacity: 0.8 }}>
-                    Bei Regelball bitte möglichst Video aufnehmen.
-                  </span>
+                  <span style={{ fontSize: 13, opacity: 0.8 }}>Bei Regelball bitte möglichst Video aufnehmen.</span>
                 </div>
               </div>
             </div>

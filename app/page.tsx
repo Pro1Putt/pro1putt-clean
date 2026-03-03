@@ -1,4 +1,8 @@
 import type { ReactNode } from "react";
+import PartnerStrip from "./components/PartnerStrip";
+import WinstonProAmTeaser from "./components/WinstonProAmTeaser";
+import WinstonProAmBadge from "./components/WinstonProAmBadge";
+
 export const dynamic = "force-dynamic";
 
 const GREEN = "#00C46A";
@@ -229,6 +233,8 @@ export default function HomeV2() {
         </div>
       </section>
 
+      <WinstonProAmTeaser />
+
   {/* HIGHLIGHTS */}
 <section id="highlights" style={{ padding: "72px 20px", textAlign: "center" }}>
   <h2 style={{ fontSize: 32, fontWeight: 900, marginBottom: 14, color: DARK }}>
@@ -353,6 +359,11 @@ export default function HomeV2() {
           <div style={{ opacity: 0.8, marginBottom: 20 }}>
             {t.date} • {t.place}
           </div>
+
+         {String(t.place || "")
+  .toLowerCase()
+  .includes("winston") && <WinstonProAmBadge />}
+
         </div>
 
         <a
@@ -397,31 +408,7 @@ export default function HomeV2() {
       margin: "0 auto",
     }}
   >
-    {[
-  { src: "/partners/callaway.png", url: "https://fcgworldchampionship.com" },
-  { src: "/partners/egr.png", url: "https://www.europeangolfrankings.com" },
-  { src: "/partners/golfhouse.svg", url: "https://www.golfhouse.de" },
-  { src: "/partners/golfkidsfun.png", url: "https://www.golfkidsfun.com" },
-  { src: "/partners/gsusa.png", url: "https://www.sportusa.co.uk/sport-overviews/golf" },
-  { src: "/partners/jucad.png", url: "https://www.jucad.de" },
-  { src: "/partners/underarmour.png", url: "https://www.uagolftour.com/" },
-  { src: "/partners/wagr.png", url: "https://www.wagr.com" },
-].map((partner) => (
-  <a
-    key={partner.src}
-    href={partner.url}
-    target="_blank"
-    rel="noopener noreferrer"
-    style={{ display: "inline-block" }}
-  >
-    <img
-      src={partner.src}
-      alt=""
-      className="p1-partnerlogo"
-      style={{ height: 60, width: "auto", objectFit: "contain", cursor: "pointer" }}
-    />
-  </a>
-))}
+    <PartnerStrip />
   </div>
 </section>
 
