@@ -1,0 +1,42 @@
+[
+  {
+    "id": "b2e7298e-76b1-48ac-a330-99642b4750a7",
+    "created_at": "2026-03-02T18:58:58.479201+00:00",
+    "tournament_id": "11111111-1111-1111-1111-111111111111",
+    "first_name": "Louiza",
+    "last_name": "Testplayer",
+    "email": "louiza@test.com",
+    "date_of_birth": "2015-01-01",
+    "nation": "DE",
+    "gender": "female",
+    "golfverband": null,
+    "home_club": null,
+    "handicap": null,
+    "trainer": null,
+    "wagr": false,
+    "caddie": false,
+    "graduation_year": null,
+    "college_golf_interest": false,
+    "walk_in_song": null
+  },
+  {
+    "id": "87d93543-87ce-43a6-abc1-83e03774856e",
+    "created_at": "2026-03-02T18:58:58.479201+00:00",
+    "tournament_id": "11111111-1111-1111-1111-111111111111",
+    "first_name": "Max",
+    "last_name": "Testplayer",
+    "email": "max@test.com",
+    "date_of_birth": "2013-01-01",
+    "nation": "DE",
+    "gender": "male",
+    "golfverband": null,
+    "home_club": null,
+    "handicap": null,
+    "trainer": null,
+    "wagr": false,
+    "caddie": false,
+    "graduation_year": null,
+    "college_golf_interest": false,
+    "walk_in_song": null
+  }
+]
