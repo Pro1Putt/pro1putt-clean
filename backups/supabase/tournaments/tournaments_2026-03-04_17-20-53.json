@@ -49,6 +49,6 @@
     "is_active": true,
     "paypal_url_9": null,
     "paypal_url_18": null,
-    "scoring_pin": null
+    "scoring_pin": "9999"
   }
 ]
