@@ -14,54 +14,61 @@ function normPin(v: any) {
   return s.replace(/\D/g, "").slice(0, 4);
 }
 
-// Try to fetch tournament_registration by (tournament_id + player_pin) if that column exists.
-// If not, fall back to finding a player by pin and matching by name (previous behavior).
-async function findTournamentRegistration(
+// OLD fallback: players(pin) -> tournament_registrations by name
+async function findRegistrationByPlayersPin(
   supabase: ReturnType<typeof getSupabase>,
-  tournamentId: string,
-  pin: string
+  pin: string,
+  tournamentId?: string
 ) {
-  // 1) If tournament_registrations has player_pin, use it directly (best)
-  // We'll probe by attempting a select with player_pin and gracefully ignore errors.
-  try {
-    const { data: regByPin } = await supabase
-      .from("tournament_registrations")
-      .select("id,tournament_id,first_name,last_name")
+  if (tournamentId) {
+    const { data: player } = await supabase
+      .from("players")
+      .select("first_name,last_name,tournament_id,created_at")
       .eq("tournament_id", tournamentId)
-      // @ts-ignore - column may not exist; handled by try/catch
-      .eq("player_pin", pin)
+      .eq("pin", pin)
       .order("created_at", { ascending: false })
       .limit(1)
       .maybeSingle();
 
-    if (regByPin) return regByPin;
-  } catch {
-    // ignore (column likely doesn't exist)
+    if (player) {
+      const { data: reg } = await supabase
+        .from("tournament_registrations")
+        .select("id,tournament_id,first_name,last_name")
+        .eq("tournament_id", player.tournament_id)
+        .eq("first_name", player.first_name)
+        .eq("last_name", player.last_name)
+        .order("created_at", { ascending: false })
+        .limit(1)
+        .maybeSingle();
+
+      if (reg) return { reg, role: "player" as const };
+    }
   }
 
-  // 2) Fallback: old logic via players.pin -> match by name into tournament_registrations
-  const { data: player } = await supabase
+  // global fallback: newest player with this pin
+  const { data: anyPlayer } = await supabase
     .from("players")
     .select("first_name,last_name,tournament_id,created_at")
-    .eq("tournament_id", tournamentId)
     .eq("pin", pin)
     .order("created_at", { ascending: false })
     .limit(1)
     .maybeSingle();
 
-  if (!player) return null;
+  if (!anyPlayer) return null;
 
-  const { data: regByName } = await supabase
+  const { data: anyReg } = await supabase
     .from("tournament_registrations")
     .select("id,tournament_id,first_name,last_name")
-    .eq("tournament_id", tournamentId)
-    .eq("first_name", player.first_name)
-    .eq("last_name", player.last_name)
+    .eq("tournament_id", anyPlayer.tournament_id)
+    .eq("first_name", anyPlayer.first_name)
+    .eq("last_name", anyPlayer.last_name)
     .order("created_at", { ascending: false })
     .limit(1)
     .maybeSingle();
 
-  return regByName ?? null;
+  if (!anyReg) return null;
+
+  return { reg: anyReg, role: "player" as const };
 }
 
 export async function POST(req: Request) {
@@ -82,7 +89,7 @@ export async function POST(req: Request) {
 
     const supabase = getSupabase();
 
-    // ✅ Primary source of truth for PIN validity
+    // 1) NEW: Try flight_pins first
     const { data: fp, error: fpErr } = await supabase
       .from("flight_pins")
       .select("pin,tournament_id,role")
@@ -91,48 +98,64 @@ export async function POST(req: Request) {
       .maybeSingle();
 
     if (fpErr) {
-      return NextResponse.json({ ok: false, error: "DB error" }, { status: 500 });
+      // don't fail hard; fall back to old method
+      // (keeps login working even if flight_pins isn't present in that env)
     }
 
-    if (!fp) {
-      return NextResponse.json({ ok: false, error: "PIN not found" }, { status: 401 });
-    }
+    if (fp && String(fp.tournament_id) === tournamentId) {
+      if (requestedRole && fp.role && String(fp.role) !== requestedRole) {
+        return NextResponse.json({ ok: false, error: "PIN role mismatch" }, { status: 403 });
+      }
 
-    if (String(fp.tournament_id) !== tournamentId) {
-      return NextResponse.json(
-        { ok: false, error: "PIN not for this tournament" },
-        { status: 403 }
-      );
-    }
+      // Try to return a real registrationId; if not possible, use stable fallback
+      // (the app wants registrationId)
+      let registrationId: string | null = null;
+      let name = "";
 
-    if (requestedRole && fp.role && String(fp.role) !== requestedRole) {
-      return NextResponse.json(
-        { ok: false, error: "PIN role mismatch" },
-        { status: 403 }
-      );
-    }
+      // Best effort: if tournament_registrations has player_pin, match directly
+      try {
+        const { data: regByPin } = await supabase
+          .from("tournament_registrations")
+          .select("id,first_name,last_name,tournament_id")
+          .eq("tournament_id", tournamentId)
+          // @ts-ignore
+          .eq("player_pin", pin)
+          .order("created_at", { ascending: false })
+          .limit(1)
+          .maybeSingle();
 
-    // Find tournament registration (needed by the app)
-    const reg = await findTournamentRegistration(supabase, tournamentId, pin);
+        if (regByPin) {
+          registrationId = regByPin.id;
+          name = `${regByPin.first_name ?? ""} ${regByPin.last_name ?? ""}`.trim();
+        }
+      } catch {
+        // ignore
+      }
 
-    if (!reg) {
-      // PIN is valid, but we couldn't map to a tournament_registration record.
-      // Still return ok:true so scoring can proceed; app will get a stable fallback id.
       return NextResponse.json({
         ok: true,
         tournamentId,
-        registrationId: `pin:${pin}`, // fallback stable id
+        registrationId: registrationId ?? `pin:${pin}`,
         role: fp.role ?? "player",
-        name: "",
+        name,
+        source: "flight_pins",
       });
+    }
+
+    // 2) FALLBACK: Old method via players.pin -> tournament_registrations by name
+    const found = await findRegistrationByPlayersPin(supabase, pin, tournamentId || undefined);
+
+    if (!found) {
+      return NextResponse.json({ ok: false, error: "PIN not found" }, { status: 401 });
     }
 
     return NextResponse.json({
       ok: true,
-      tournamentId: reg.tournament_id,
-      registrationId: reg.id,
-      role: fp.role ?? "player",
-      name: `${reg.first_name ?? ""} ${reg.last_name ?? ""}`.trim(),
+      tournamentId: found.reg.tournament_id,
+      registrationId: found.reg.id,
+      role: found.role,
+      name: `${found.reg.first_name ?? ""} ${found.reg.last_name ?? ""}`.trim(),
+      source: "players_fallback",
     });
   } catch (e: any) {
     return NextResponse.json(
