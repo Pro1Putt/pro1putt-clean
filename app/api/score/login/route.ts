@@ -25,7 +25,6 @@ export async function POST(req: Request) {
     if (!tournamentId) {
       return NextResponse.json({ ok: false, error: "tournamentId missing" }, { status: 400 });
     }
-
     if (!pin || pin.length !== 4) {
       return NextResponse.json({ ok: false, error: "PIN invalid" }, { status: 400 });
     }
@@ -43,30 +42,26 @@ export async function POST(req: Request) {
     if (fpErr) {
       return NextResponse.json({ ok: false, error: "DB error" }, { status: 500 });
     }
-
     if (!fp) {
       return NextResponse.json({ ok: false, error: "PIN not found" }, { status: 401 });
     }
-
     if (String(fp.tournament_id) !== tournamentId) {
       return NextResponse.json({ ok: false, error: "PIN not for this tournament" }, { status: 403 });
     }
-
     if (requestedRole && fp.role && String(fp.role) !== requestedRole) {
       return NextResponse.json({ ok: false, error: "PIN role mismatch" }, { status: 403 });
     }
 
-    // 2) Name + echte ID aus registrations holen (da gibt es player_pin sicher!)
-    const { data: reg, error: regErr } = await supabase
+    // 2) Name + echte ID aus registrations holen
+    // robust: nicht nur eq(player_pin), sondern Kandidaten laden und per normPin matchen
+    const { data: regs, error: regsErr } = await supabase
       .from("registrations")
       .select("id,first_name,last_name,player_pin,created_at")
-      .eq("player_pin", pin)
+      .ilike("player_pin", `%${pin}%`)
       .order("created_at", { ascending: false })
-      .limit(1)
-      .maybeSingle();
+      .limit(50);
 
-    if (regErr) {
-      // PIN ist gültig, aber wir konnten die Person nicht auflösen -> trotzdem ok:true
+    if (regsErr) {
       return NextResponse.json({
         ok: true,
         tournamentId,
@@ -74,15 +69,18 @@ export async function POST(req: Request) {
         role: fp.role ?? "player",
         name: "",
         source: "flight_pins",
+        note: "registrations lookup error",
       });
     }
 
-    const name = reg ? `${reg.first_name ?? ""} ${reg.last_name ?? ""}`.trim() : "";
+    const match = (regs ?? []).find((r: any) => normPin(r?.player_pin) === pin) ?? null;
+
+    const name = match ? `${match.first_name ?? ""} ${match.last_name ?? ""}`.trim() : "";
 
     return NextResponse.json({
       ok: true,
       tournamentId,
-      registrationId: reg?.id ? String(reg.id) : `pin:${pin}`,
+      registrationId: match?.id ? String(match.id) : `pin:${pin}`,
       role: fp.role ?? "player",
       name,
       source: "flight_pins",
