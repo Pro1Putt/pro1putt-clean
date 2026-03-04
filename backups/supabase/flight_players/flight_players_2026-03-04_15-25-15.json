@@ -1,0 +1,18 @@
+[
+  {
+    "id": "e5d6d332-be98-4b95-9b8a-a99c53c4695e",
+    "flight_id": "c12a2ca0-318b-4e89-90c8-43e4a069fa52",
+    "registration_id": "b2e7298e-76b1-48ac-a330-99642b4750a7",
+    "seat": 1,
+    "marks_registration_id": "87d93543-87ce-43a6-abc1-83e03774856e",
+    "created_at": "2026-03-03T15:59:54.213171+00:00"
+  },
+  {
+    "id": "6bc0f11b-0b48-45fd-89b1-dd75daa3d95c",
+    "flight_id": "c12a2ca0-318b-4e89-90c8-43e4a069fa52",
+    "registration_id": "87d93543-87ce-43a6-abc1-83e03774856e",
+    "seat": 2,
+    "marks_registration_id": "b2e7298e-76b1-48ac-a330-99642b4750a7",
+    "created_at": "2026-03-03T15:59:54.213171+00:00"
+  }
+]
