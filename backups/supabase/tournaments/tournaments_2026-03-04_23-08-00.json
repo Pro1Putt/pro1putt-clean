@@ -37,18 +37,5 @@
     "paypal_url_9": "https://www.paypal.com/ncp/payment/M8CJWZ4SLCT34",
     "paypal_url_18": "https://www.paypal.com/ncp/payment/SRBRNY5CVE4Q2",
     "scoring_pin": "1234"
-  },
-  {
-    "id": "11111111-1111-1111-1111-111111111111",
-    "name": "PRO1PUTT TEST Tournament",
-    "course_name": "PRO1PUTT Test Course",
-    "start_date": "2026-03-15",
-    "created_at": "2026-03-02T17:28:22.005589+00:00",
-    "par": 72,
-    "location": "Test Course",
-    "is_active": true,
-    "paypal_url_9": null,
-    "paypal_url_18": null,
-    "scoring_pin": "9999"
   }
 ]
