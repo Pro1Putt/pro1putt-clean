@@ -1,3 +1,0 @@
-id,tournament_id,division_id,first_name,last_name,gender,home_club,handicap,flight_number,start_time,player_pin,is_locked,created_at,submitted_at,birth_year,country_code,playing_division_id,date_of_birth,division_override,division_override_reason,division_assigned_at,email,birth_date
-ea8f559c-273d-4f4a-a3d5-750f3641117d,11111111-1111-1111-1111-111111111111,,Louiza,Testplayer,female,,,,,1111,false,2026-03-02T18:58:49.310005+00:00,,,DE,,,false,,,,
-77504762-9d40-4ac1-a8bb-1c4742f8e5e6,11111111-1111-1111-1111-111111111111,,Max,Testplayer,male,,,,,2222,false,2026-03-02T18:58:49.310005+00:00,,,DE,,,false,,,,
