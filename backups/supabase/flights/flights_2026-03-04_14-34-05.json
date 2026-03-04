@@ -88,5 +88,15 @@
     "start_time": "2026-03-30T09:20:00+00:00",
     "created_at": "2026-02-19T13:04:35.183699+00:00",
     "gender": "Boys"
+  },
+  {
+    "id": "c12a2ca0-318b-4e89-90c8-43e4a069fa52",
+    "tournament_id": "11111111-1111-1111-1111-111111111111",
+    "round": 1,
+    "flight_number": 1,
+    "holes": 18,
+    "start_time": null,
+    "created_at": "2026-03-03T11:46:53.342209+00:00",
+    "gender": null
   }
 ]
