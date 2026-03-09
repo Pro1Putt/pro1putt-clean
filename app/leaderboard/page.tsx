@@ -44,7 +44,31 @@ const AGE_ORDER: Record<string, number> = {
   U18: 6,
   U21: 7,
 };
+const CATEGORY_LABELS: Record<string, string> = {
+  "Boys-U21": "Boys Kategorie 20–21",
+  "Girls-U21": "Girls Kategorie 20–21",
 
+  "Boys-U18": "Boys Kategorie 17–19",
+  "Girls-U18": "Girls Kategorie 17–19",
+
+  "Boys-U16": "Boys Kategorie 15–16",
+  "Girls-U16": "Girls Kategorie 15–16",
+
+  "Boys-U14": "Boys Kategorie 13–14",
+  "Girls-U14": "Girls Kategorie 13–14",
+
+  "Boys-U12": "Boys Kategorie 11–12",
+  "Girls-U12": "Girls Kategorie 11–12",
+
+  "Boys-U10": "Boys Kategorie 9–10",
+  "Girls-U10": "Girls Kategorie 9–10",
+
+  "Boys-U8": "Boys Kategorie U8",
+  "Girls-U8": "Girls Kategorie U8",
+
+  "ALL_U21": "Overall U21 (18 Loch)",
+  "ALL_U12": "Overall U12 (9 Loch)",
+};
 function flagEmoji(iso2: string | null | undefined) {
   const code = String(iso2 || "").trim().toUpperCase();
   if (code.length !== 2) return "";
@@ -523,14 +547,14 @@ const supabase = createClient(
           />
         )}
 
-        {showDynamicTabs &&
-          tabs.map((k) => (
-            <Tab
-              key={k}
-              k={k}
-              label={k.replace("Boys-", "Boys • ").replace("Girls-", "Girls • ")}
-            />
-          ))}
+       {showDynamicTabs &&
+  tabs.map((k) => (
+    <Tab
+      key={k}
+      k={k}
+      label={CATEGORY_LABELS[k] ?? k}
+    />
+  ))}
       </div>
 
      <div
@@ -580,22 +604,22 @@ const supabase = createClient(
 
           return (
             <>
-              <SectionTitle title="Boys • Allover" />
+              <SectionTitle title="Boys Overall U21 (18 Loch)" />
               {split.boys.map((r, idx) => renderRow(r, idx))}
 
               {boysGroups.map((g) => (
                 <div key={`boys-${g.ag}`}>
-                  <SectionTitle title={`Boys • ${g.ag}`} />
+                 <SectionTitle title={CATEGORY_LABELS[`Boys-${g.ag}`] ?? `Boys • ${g.ag}`} />
                   {g.list.map((r, idx) => renderRow(r, idx))}
                 </div>
               ))}
 
-              <SectionTitle title="Girls • Allover" />
+              <SectionTitle title="Girls Overall U21 (18 Loch)" />
               {split.girls.map((r, idx) => renderRow(r, idx))}
 
               {girlsGroups.map((g) => (
                 <div key={`girls-${g.ag}`}>
-                  <SectionTitle title={`Girls • ${g.ag}`} />
+                  <SectionTitle title={CATEGORY_LABELS[`Girls-${g.ag}`] ?? `Girls • ${g.ag}`} />
                   {g.list.map((r, idx) => renderRow(r, idx))}
                 </div>
               ))}
