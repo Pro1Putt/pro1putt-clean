@@ -1,7 +1,6 @@
 import { Resend } from "resend";
-const LOGO_URL =
-  "https://levztgbjylvspmfxcbuj.supabase.co/storage/v1/object/public/public-assets/pro1putt-logo.png";
 
+const LOGO_URL = "https://pro1putt.com/pro1putt-logo.png";
 function norm(v: unknown) {
   return String(v ?? "").trim();
 }
@@ -23,7 +22,7 @@ export type GenericEmailArgs = {
 
 export async function sendEmail(args: GenericEmailArgs) {
   const apiKey = process.env.RESEND_API_KEY;
-  const from = process.env.MAIL_FROM ?? "PRO1PUTT <noreply@pro1putt.com>";
+ const from = process.env.MAIL_FROM ?? "PRO1PUTT <registration@contact.pro1putt.com>";
 
   const subject = norm(args.subject);
   const html = args.html ?? "";
