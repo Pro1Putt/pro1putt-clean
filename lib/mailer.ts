@@ -104,19 +104,20 @@ function buildPinEmailHtml(a: RegistrationEmailArgs) {
 
         <!-- Greeting -->
         <div style="font-size:28px;font-weight:900;color:#111;margin:0 0 6px 0;">
-          Hallo ${player},
-        </div>
-        <div style="opacity:.75;margin-bottom:16px;">
-          deine Registrierung ist eingegangen. Unten findest du deinen persönlichen PIN für Check-in &amp; Scoring.
-        </div>
-
+  Hallo ${player},
+</div>
+<div style="opacity:.75;margin-bottom:8px;">
+  deine Registrierung ist eingegangen. Dieser PIN gehört zu folgendem Turnier:
+</div>
+<div style="font-size:22px;font-weight:900;color:#1e4620;margin-bottom:16px;">
+  ${tournament}
+</div>
         <!-- Info Box -->
         <div style="background:#f6f8f6;border:1px solid rgba(0,0,0,.06);border-radius:16px;padding:16px;display:flex;justify-content:space-between;gap:16px;align-items:flex-start;">
           <div>
-            <div style="opacity:.7;font-weight:800;margin-bottom:6px;">Turnier</div>
-            <div style="font-weight:900;color:#111;">${tournament}</div>
-
-          </div>
+  <div style="opacity:.7;font-weight:800;margin-bottom:6px;">Dieses PIN gilt für</div>
+  <div style="font-weight:900;color:#111;font-size:20px;line-height:1.3;">${tournament}</div>
+</div>
 
           <div style="text-align:right;min-width:240px;">
             <div style="opacity:.7;font-weight:800;">Dein persönlicher PIN</div>
@@ -156,7 +157,7 @@ function buildPinEmailHtml(a: RegistrationEmailArgs) {
 }
 
 export async function sendRegistrationEmail(args: RegistrationEmailArgs) {
-  const subject = `PRO1PUTT Registrierung bestätigt – dein PIN`;
+  const subject = `PRO1PUTT – ${norm(args.tournamentName)} – dein PIN`;
 
   const html = buildPinEmailHtml(args);
 
