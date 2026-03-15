@@ -1142,5 +1142,31 @@
     "r1_scorecard_pdf_url": null,
     "r2_scorecard_pdf_url": null,
     "r3_scorecard_pdf_url": null
+  },
+  {
+    "id": "ee5ab7c6-0546-4277-8d04-5e6b48ea52a3",
+    "created_at": "2026-03-13T15:06:03.894129+00:00",
+    "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
+    "holes": 18,
+    "first_name": "Theo",
+    "last_name": "Ewers",
+    "email": "eyko.ewers@gmx.de",
+    "hcp": 17.8,
+    "birthdate": "2012-11-17",
+    "home_club": "Winstongolf",
+    "coach": "Stephan Peters",
+    "walkup_song": "Ohne Song",
+    "caddie": true,
+    "wagr": false,
+    "college_interest": false,
+    "nation": "DE",
+    "player_pin": "6813",
+    "gender": "Boys",
+    "r1_finalized_at": null,
+    "r2_finalized_at": null,
+    "r3_finalized_at": null,
+    "r1_scorecard_pdf_url": null,
+    "r2_scorecard_pdf_url": null,
+    "r3_scorecard_pdf_url": null
   }
 ]
