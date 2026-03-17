@@ -1168,5 +1168,31 @@
     "r1_scorecard_pdf_url": null,
     "r2_scorecard_pdf_url": null,
     "r3_scorecard_pdf_url": null
+  },
+  {
+    "id": "c3364e8d-93bc-472c-a6ff-b4f68265a4d5",
+    "created_at": "2026-03-16T21:18:54.196539+00:00",
+    "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
+    "holes": 18,
+    "first_name": "Lena",
+    "last_name": "Szymańska",
+    "email": "lena.szymanska2012@outlook.com",
+    "hcp": 3.2,
+    "birthdate": "2012-02-06",
+    "home_club": "Berliner Golfclub Stolper Heide e.V.",
+    "coach": "Stefan Muller",
+    "walkup_song": "Bing Crosby - Straight Down The Middle",
+    "caddie": true,
+    "wagr": false,
+    "college_interest": true,
+    "nation": "PL",
+    "player_pin": "6986",
+    "gender": "Girls",
+    "r1_finalized_at": null,
+    "r2_finalized_at": null,
+    "r3_finalized_at": null,
+    "r1_scorecard_pdf_url": null,
+    "r2_scorecard_pdf_url": null,
+    "r3_scorecard_pdf_url": null
   }
 ]
