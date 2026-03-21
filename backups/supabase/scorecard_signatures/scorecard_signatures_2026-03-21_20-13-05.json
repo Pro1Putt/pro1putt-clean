@@ -7,7 +7,11 @@
     "role": "marker",
     "signed_name": "Marker Name",
     "signed_at": "2026-02-18T13:51:19.760101+00:00",
-    "user_agent": "curl/8.7.1"
+    "user_agent": "curl/8.7.1",
+    "player_signed": false,
+    "marker_signed": false,
+    "player_signed_at": null,
+    "marker_signed_at": null
   },
   {
     "id": "5bbca4ce-d834-4031-a5b4-adcf3fced36f",
@@ -17,7 +21,11 @@
     "role": "player",
     "signed_name": "Player Name",
     "signed_at": "2026-02-18T13:50:05.958195+00:00",
-    "user_agent": "curl/8.7.1"
+    "user_agent": "curl/8.7.1",
+    "player_signed": false,
+    "marker_signed": false,
+    "player_signed_at": null,
+    "marker_signed_at": null
   },
   {
     "id": "22477bee-bc3b-40b6-993e-84124d1ce9ff",
@@ -27,7 +35,11 @@
     "role": "marker",
     "signed_name": "Marker Name",
     "signed_at": "2026-02-18T13:54:08.331224+00:00",
-    "user_agent": "curl/8.7.1"
+    "user_agent": "curl/8.7.1",
+    "player_signed": false,
+    "marker_signed": false,
+    "player_signed_at": null,
+    "marker_signed_at": null
   },
   {
     "id": "3bdcf26f-fa08-4c3c-809d-0e576baa0443",
@@ -37,7 +49,11 @@
     "role": "td",
     "signed_name": "Tournament Director",
     "signed_at": "2026-02-19T15:40:59.337033+00:00",
-    "user_agent": "curl/8.7.1"
+    "user_agent": "curl/8.7.1",
+    "player_signed": false,
+    "marker_signed": false,
+    "player_signed_at": null,
+    "marker_signed_at": null
   },
   {
     "id": "db6ff969-0cdd-4b52-a322-ad2b535cd320",
@@ -47,7 +63,11 @@
     "role": "player",
     "signed_name": "Player",
     "signed_at": "2026-02-19T15:53:31.657954+00:00",
-    "user_agent": "curl/8.7.1"
+    "user_agent": "curl/8.7.1",
+    "player_signed": false,
+    "marker_signed": false,
+    "player_signed_at": null,
+    "marker_signed_at": null
   },
   {
     "id": "ad79ac72-bbd0-43c0-b58f-6f6208c1700e",
@@ -57,6 +77,38 @@
     "role": "marker",
     "signed_name": "Marker",
     "signed_at": "2026-02-19T15:53:32.188285+00:00",
-    "user_agent": "curl/8.7.1"
+    "user_agent": "curl/8.7.1",
+    "player_signed": false,
+    "marker_signed": false,
+    "player_signed_at": null,
+    "marker_signed_at": null
+  },
+  {
+    "id": "bbe529aa-27dd-4148-a89a-980a4837ce13",
+    "tournament_id": "9824dd36-0163-4868-ad15-a7140d6b7502",
+    "registration_id": "c0ed259b-910c-41bc-928a-f163019b7aa8",
+    "round": 1,
+    "role": null,
+    "signed_name": null,
+    "signed_at": "2026-03-21T19:08:40.801589+00:00",
+    "user_agent": null,
+    "player_signed": true,
+    "marker_signed": false,
+    "player_signed_at": "2026-03-21T19:08:40.743+00:00",
+    "marker_signed_at": null
+  },
+  {
+    "id": "a4c07553-7ae8-41a5-aeca-85a1f7a109c2",
+    "tournament_id": "9824dd36-0163-4868-ad15-a7140d6b7502",
+    "registration_id": "c0ed259b-910c-41bc-928a-f163019b7aa8",
+    "round": 1,
+    "role": null,
+    "signed_name": null,
+    "signed_at": "2026-03-21T19:08:46.209482+00:00",
+    "user_agent": null,
+    "player_signed": true,
+    "marker_signed": true,
+    "player_signed_at": null,
+    "marker_signed_at": "2026-03-21T19:08:46.144+00:00"
   }
 ]
