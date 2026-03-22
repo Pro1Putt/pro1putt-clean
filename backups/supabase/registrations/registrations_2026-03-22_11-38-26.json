@@ -23,7 +23,8 @@
     "r3_finalized_at": null,
     "r1_scorecard_pdf_url": null,
     "r2_scorecard_pdf_url": null,
-    "r3_scorecard_pdf_url": null
+    "r3_scorecard_pdf_url": null,
+    "is_final": false
   },
   {
     "id": "5d110f0c-2f85-4f21-bfea-d8a96880f0f4",
@@ -49,7 +50,8 @@
     "r3_finalized_at": null,
     "r1_scorecard_pdf_url": null,
     "r2_scorecard_pdf_url": null,
-    "r3_scorecard_pdf_url": null
+    "r3_scorecard_pdf_url": null,
+    "is_final": false
   },
   {
     "id": "78fb4ed0-ba6c-4b98-a34b-bb8fa7f01091",
@@ -75,7 +77,8 @@
     "r3_finalized_at": null,
     "r1_scorecard_pdf_url": null,
     "r2_scorecard_pdf_url": null,
-    "r3_scorecard_pdf_url": null
+    "r3_scorecard_pdf_url": null,
+    "is_final": false
   },
   {
     "id": "7cb8f5cb-1d66-4a8b-a52e-3c0ab48ff137",
@@ -101,7 +104,8 @@
     "r3_finalized_at": null,
     "r1_scorecard_pdf_url": null,
     "r2_scorecard_pdf_url": null,
-    "r3_scorecard_pdf_url": null
+    "r3_scorecard_pdf_url": null,
+    "is_final": false
   },
   {
     "id": "6edb8092-3291-45fa-8651-a88b460512ad",
@@ -127,7 +131,8 @@
     "r3_finalized_at": null,
     "r1_scorecard_pdf_url": null,
     "r2_scorecard_pdf_url": null,
-    "r3_scorecard_pdf_url": null
+    "r3_scorecard_pdf_url": null,
+    "is_final": false
   },
   {
     "id": "2cc9e7cd-f36e-4f27-ac2e-6959eecef670",
@@ -153,7 +158,8 @@
     "r3_finalized_at": null,
     "r1_scorecard_pdf_url": null,
     "r2_scorecard_pdf_url": null,
-    "r3_scorecard_pdf_url": null
+    "r3_scorecard_pdf_url": null,
+    "is_final": false
   },
   {
     "id": "e0adbbeb-e7b5-42d4-9ba3-1d70c15bc9f5",
@@ -179,7 +185,8 @@
     "r3_finalized_at": null,
     "r1_scorecard_pdf_url": null,
     "r2_scorecard_pdf_url": null,
-    "r3_scorecard_pdf_url": null
+    "r3_scorecard_pdf_url": null,
+    "is_final": false
   },
   {
     "id": "bd565cdc-2b20-4ee1-8358-1c3f10ec8acf",
@@ -205,7 +212,8 @@
     "r3_finalized_at": null,
     "r1_scorecard_pdf_url": null,
     "r2_scorecard_pdf_url": null,
-    "r3_scorecard_pdf_url": null
+    "r3_scorecard_pdf_url": null,
+    "is_final": false
   },
   {
     "id": "098132e4-eb31-43dd-b487-8f6aea7501e6",
@@ -231,7 +239,8 @@
     "r3_finalized_at": null,
     "r1_scorecard_pdf_url": null,
     "r2_scorecard_pdf_url": null,
-    "r3_scorecard_pdf_url": null
+    "r3_scorecard_pdf_url": null,
+    "is_final": false
   },
   {
     "id": "0b59272e-3ec8-4a3c-b41f-cee486ef768f",
@@ -257,7 +266,8 @@
     "r3_finalized_at": null,
     "r1_scorecard_pdf_url": null,
     "r2_scorecard_pdf_url": null,
-    "r3_scorecard_pdf_url": null
+    "r3_scorecard_pdf_url": null,
+    "is_final": false
   },
   {
     "id": "5a59d344-5329-4443-8d6e-6a3950ea6610",
@@ -283,7 +293,8 @@
     "r3_finalized_at": null,
     "r1_scorecard_pdf_url": null,
     "r2_scorecard_pdf_url": null,
-    "r3_scorecard_pdf_url": null
+    "r3_scorecard_pdf_url": null,
+    "is_final": false
   },
   {
     "id": "9f598abc-49d9-4080-9cd4-ebd4e9e3ab7d",
@@ -309,7 +320,8 @@
     "r3_finalized_at": null,
     "r1_scorecard_pdf_url": null,
     "r2_scorecard_pdf_url": null,
-    "r3_scorecard_pdf_url": null
+    "r3_scorecard_pdf_url": null,
+    "is_final": false
   },
   {
     "id": "e8b46f1f-53ef-47a5-8957-145544d34328",
@@ -335,7 +347,8 @@
     "r3_finalized_at": null,
     "r1_scorecard_pdf_url": null,
     "r2_scorecard_pdf_url": null,
-    "r3_scorecard_pdf_url": null
+    "r3_scorecard_pdf_url": null,
+    "is_final": false
   },
   {
     "id": "08d26a81-b59d-4162-ad72-b07ee5d75c64",
@@ -361,7 +374,8 @@
     "r3_finalized_at": null,
     "r1_scorecard_pdf_url": null,
     "r2_scorecard_pdf_url": null,
-    "r3_scorecard_pdf_url": null
+    "r3_scorecard_pdf_url": null,
+    "is_final": false
   },
   {
     "id": "84a783cc-96d7-494c-9413-5c6075d22010",
@@ -387,7 +401,8 @@
     "r3_finalized_at": null,
     "r1_scorecard_pdf_url": null,
     "r2_scorecard_pdf_url": null,
-    "r3_scorecard_pdf_url": null
+    "r3_scorecard_pdf_url": null,
+    "is_final": false
   },
   {
     "id": "e8a390b9-2b41-4f46-a50a-185e532c5ecd",
@@ -413,7 +428,8 @@
     "r3_finalized_at": null,
     "r1_scorecard_pdf_url": null,
     "r2_scorecard_pdf_url": null,
-    "r3_scorecard_pdf_url": null
+    "r3_scorecard_pdf_url": null,
+    "is_final": false
   },
   {
     "id": "46fdab66-f422-4168-83fc-70e67f137b2d",
@@ -439,7 +455,8 @@
     "r3_finalized_at": null,
     "r1_scorecard_pdf_url": null,
     "r2_scorecard_pdf_url": null,
-    "r3_scorecard_pdf_url": null
+    "r3_scorecard_pdf_url": null,
+    "is_final": false
   },
   {
     "id": "aa58db5e-c5e0-4b49-bc34-962cab23acb4",
@@ -465,7 +482,8 @@
     "r3_finalized_at": null,
     "r1_scorecard_pdf_url": null,
     "r2_scorecard_pdf_url": null,
-    "r3_scorecard_pdf_url": null
+    "r3_scorecard_pdf_url": null,
+    "is_final": false
   },
   {
     "id": "bd4c0e3c-0e92-41ac-a62f-ef3d754fe8e9",
@@ -491,7 +509,8 @@
     "r3_finalized_at": null,
     "r1_scorecard_pdf_url": null,
     "r2_scorecard_pdf_url": null,
-    "r3_scorecard_pdf_url": null
+    "r3_scorecard_pdf_url": null,
+    "is_final": false
   },
   {
     "id": "2e24c477-5488-4904-a957-f8061b0dc47f",
@@ -517,7 +536,8 @@
     "r3_finalized_at": null,
     "r1_scorecard_pdf_url": null,
     "r2_scorecard_pdf_url": null,
-    "r3_scorecard_pdf_url": null
+    "r3_scorecard_pdf_url": null,
+    "is_final": false
   },
   {
     "id": "e079de2e-0a2f-40a5-b7cc-affd6a9c093a",
@@ -543,7 +563,8 @@
     "r3_finalized_at": null,
     "r1_scorecard_pdf_url": null,
     "r2_scorecard_pdf_url": null,
-    "r3_scorecard_pdf_url": null
+    "r3_scorecard_pdf_url": null,
+    "is_final": false
   },
   {
     "id": "885a2ebf-a33e-44a1-a5dd-ef1922c7778b",
@@ -569,7 +590,8 @@
     "r3_finalized_at": null,
     "r1_scorecard_pdf_url": null,
     "r2_scorecard_pdf_url": null,
-    "r3_scorecard_pdf_url": null
+    "r3_scorecard_pdf_url": null,
+    "is_final": false
   },
   {
     "id": "c0fb8d2a-417b-4d68-918c-fc6d0b9b032c",
@@ -595,7 +617,8 @@
     "r3_finalized_at": null,
     "r1_scorecard_pdf_url": null,
     "r2_scorecard_pdf_url": null,
-    "r3_scorecard_pdf_url": null
+    "r3_scorecard_pdf_url": null,
+    "is_final": false
   },
   {
     "id": "b0f8374f-c18d-481e-852b-dfa6aa011ac8",
@@ -621,7 +644,8 @@
     "r3_finalized_at": null,
     "r1_scorecard_pdf_url": null,
     "r2_scorecard_pdf_url": null,
-    "r3_scorecard_pdf_url": null
+    "r3_scorecard_pdf_url": null,
+    "is_final": false
   },
   {
     "id": "4d134271-956f-42fd-95ea-0a6b725123e6",
@@ -647,33 +671,8 @@
     "r3_finalized_at": null,
     "r1_scorecard_pdf_url": null,
     "r2_scorecard_pdf_url": null,
-    "r3_scorecard_pdf_url": null
-  },
-  {
-    "id": "0a22a191-8264-4398-8468-2e96074d3366",
-    "created_at": "2026-02-19T12:29:22.128003+00:00",
-    "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
-    "holes": 18,
-    "first_name": "Nicolas",
-    "last_name": "Gregg",
-    "email": "elo@gregg.de",
-    "hcp": 5.5,
-    "birthdate": "2010-09-23",
-    "home_club": "GLC Berlin-Wannsee",
-    "coach": "Brandon Roll",
-    "walkup_song": "keinen",
-    "caddie": false,
-    "wagr": false,
-    "college_interest": false,
-    "nation": "DE",
-    "player_pin": "4234",
-    "gender": "Boys",
-    "r1_finalized_at": null,
-    "r2_finalized_at": null,
-    "r3_finalized_at": null,
-    "r1_scorecard_pdf_url": null,
-    "r2_scorecard_pdf_url": null,
-    "r3_scorecard_pdf_url": null
+    "r3_scorecard_pdf_url": null,
+    "is_final": false
   },
   {
     "id": "707a8d7f-48c8-4aa2-ba77-a822a334b283",
@@ -699,7 +698,8 @@
     "r3_finalized_at": null,
     "r1_scorecard_pdf_url": null,
     "r2_scorecard_pdf_url": null,
-    "r3_scorecard_pdf_url": null
+    "r3_scorecard_pdf_url": null,
+    "is_final": false
   },
   {
     "id": "9dcefb0b-f81d-400a-90bc-514b64341425",
@@ -725,7 +725,8 @@
     "r3_finalized_at": null,
     "r1_scorecard_pdf_url": null,
     "r2_scorecard_pdf_url": null,
-    "r3_scorecard_pdf_url": null
+    "r3_scorecard_pdf_url": null,
+    "is_final": false
   },
   {
     "id": "ce23d191-feba-4728-82f1-dc3429b95532",
@@ -751,7 +752,8 @@
     "r3_finalized_at": null,
     "r1_scorecard_pdf_url": null,
     "r2_scorecard_pdf_url": null,
-    "r3_scorecard_pdf_url": null
+    "r3_scorecard_pdf_url": null,
+    "is_final": false
   },
   {
     "id": "639dca59-1a8d-409a-82c6-584dbb5f34e9",
@@ -777,7 +779,8 @@
     "r3_finalized_at": null,
     "r1_scorecard_pdf_url": null,
     "r2_scorecard_pdf_url": null,
-    "r3_scorecard_pdf_url": null
+    "r3_scorecard_pdf_url": null,
+    "is_final": false
   },
   {
     "id": "2e22731c-34b3-4726-937a-18e90d4213a7",
@@ -803,7 +806,8 @@
     "r3_finalized_at": null,
     "r1_scorecard_pdf_url": null,
     "r2_scorecard_pdf_url": null,
-    "r3_scorecard_pdf_url": null
+    "r3_scorecard_pdf_url": null,
+    "is_final": false
   },
   {
     "id": "47b6392b-6476-4a2b-897e-2347b126ab86",
@@ -829,7 +833,8 @@
     "r3_finalized_at": null,
     "r1_scorecard_pdf_url": null,
     "r2_scorecard_pdf_url": null,
-    "r3_scorecard_pdf_url": null
+    "r3_scorecard_pdf_url": null,
+    "is_final": false
   },
   {
     "id": "7c4671ff-76ee-4a70-b912-6aa7354774ee",
@@ -855,7 +860,8 @@
     "r3_finalized_at": null,
     "r1_scorecard_pdf_url": null,
     "r2_scorecard_pdf_url": null,
-    "r3_scorecard_pdf_url": null
+    "r3_scorecard_pdf_url": null,
+    "is_final": false
   },
   {
     "id": "07cfbc31-606f-4838-ba17-578e0720215d",
@@ -881,7 +887,8 @@
     "r3_finalized_at": null,
     "r1_scorecard_pdf_url": null,
     "r2_scorecard_pdf_url": null,
-    "r3_scorecard_pdf_url": null
+    "r3_scorecard_pdf_url": null,
+    "is_final": false
   },
   {
     "id": "e5564605-a162-4973-b880-2fa2245b8a54",
@@ -907,7 +914,8 @@
     "r3_finalized_at": null,
     "r1_scorecard_pdf_url": null,
     "r2_scorecard_pdf_url": null,
-    "r3_scorecard_pdf_url": null
+    "r3_scorecard_pdf_url": null,
+    "is_final": false
   },
   {
     "id": "c9c44f56-2b25-4444-be7a-60dcb33140b2",
@@ -933,7 +941,35 @@
     "r3_finalized_at": null,
     "r1_scorecard_pdf_url": null,
     "r2_scorecard_pdf_url": null,
-    "r3_scorecard_pdf_url": null
+    "r3_scorecard_pdf_url": null,
+    "is_final": false
+  },
+  {
+    "id": "0a22a191-8264-4398-8468-2e96074d3366",
+    "created_at": "2026-02-19T12:29:22.128003+00:00",
+    "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
+    "holes": 18,
+    "first_name": "Nicolas",
+    "last_name": "Gregg",
+    "email": "elo@gregg.de",
+    "hcp": 5.8,
+    "birthdate": "2010-09-23",
+    "home_club": "GLC Berlin-Wannsee",
+    "coach": "Brandon Roll",
+    "walkup_song": "keinen",
+    "caddie": false,
+    "wagr": false,
+    "college_interest": false,
+    "nation": "DE",
+    "player_pin": "4234",
+    "gender": "Boys",
+    "r1_finalized_at": null,
+    "r2_finalized_at": null,
+    "r3_finalized_at": null,
+    "r1_scorecard_pdf_url": null,
+    "r2_scorecard_pdf_url": null,
+    "r3_scorecard_pdf_url": null,
+    "is_final": false
   },
   {
     "id": "fad947a7-7081-4b4e-8f64-0cc412d50fd1",
@@ -959,7 +995,8 @@
     "r3_finalized_at": null,
     "r1_scorecard_pdf_url": null,
     "r2_scorecard_pdf_url": null,
-    "r3_scorecard_pdf_url": null
+    "r3_scorecard_pdf_url": null,
+    "is_final": false
   },
   {
     "id": "9d71aa32-e0cc-4394-b494-f2cca4e7d382",
@@ -985,7 +1022,8 @@
     "r3_finalized_at": null,
     "r1_scorecard_pdf_url": null,
     "r2_scorecard_pdf_url": null,
-    "r3_scorecard_pdf_url": null
+    "r3_scorecard_pdf_url": null,
+    "is_final": false
   },
   {
     "id": "117030b2-c7c3-4bab-ac1d-2b3b81b2b9d1",
@@ -1011,7 +1049,8 @@
     "r3_finalized_at": null,
     "r1_scorecard_pdf_url": null,
     "r2_scorecard_pdf_url": null,
-    "r3_scorecard_pdf_url": null
+    "r3_scorecard_pdf_url": null,
+    "is_final": false
   },
   {
     "id": "21380286-b867-4919-83b5-08eaac386dfe",
@@ -1037,7 +1076,8 @@
     "r3_finalized_at": null,
     "r1_scorecard_pdf_url": null,
     "r2_scorecard_pdf_url": null,
-    "r3_scorecard_pdf_url": null
+    "r3_scorecard_pdf_url": null,
+    "is_final": false
   },
   {
     "id": "0d19a809-374b-46bc-ac56-5d1417af6bbf",
@@ -1063,7 +1103,8 @@
     "r3_finalized_at": null,
     "r1_scorecard_pdf_url": null,
     "r2_scorecard_pdf_url": null,
-    "r3_scorecard_pdf_url": null
+    "r3_scorecard_pdf_url": null,
+    "is_final": false
   },
   {
     "id": "06ccd75a-85fb-49da-b531-5ea45a09645f",
@@ -1089,7 +1130,8 @@
     "r3_finalized_at": null,
     "r1_scorecard_pdf_url": null,
     "r2_scorecard_pdf_url": null,
-    "r3_scorecard_pdf_url": null
+    "r3_scorecard_pdf_url": null,
+    "is_final": false
   },
   {
     "id": "db214db6-5b8c-432b-a14b-322a17f0f720",
@@ -1115,7 +1157,8 @@
     "r3_finalized_at": null,
     "r1_scorecard_pdf_url": null,
     "r2_scorecard_pdf_url": null,
-    "r3_scorecard_pdf_url": null
+    "r3_scorecard_pdf_url": null,
+    "is_final": false
   },
   {
     "id": "d3d57160-318c-4c35-bb5c-de5a5f07d0e7",
@@ -1141,7 +1184,8 @@
     "r3_finalized_at": null,
     "r1_scorecard_pdf_url": null,
     "r2_scorecard_pdf_url": null,
-    "r3_scorecard_pdf_url": null
+    "r3_scorecard_pdf_url": null,
+    "is_final": false
   },
   {
     "id": "ee5ab7c6-0546-4277-8d04-5e6b48ea52a3",
@@ -1167,7 +1211,8 @@
     "r3_finalized_at": null,
     "r1_scorecard_pdf_url": null,
     "r2_scorecard_pdf_url": null,
-    "r3_scorecard_pdf_url": null
+    "r3_scorecard_pdf_url": null,
+    "is_final": false
   },
   {
     "id": "c3364e8d-93bc-472c-a6ff-b4f68265a4d5",
@@ -1193,7 +1238,8 @@
     "r3_finalized_at": null,
     "r1_scorecard_pdf_url": null,
     "r2_scorecard_pdf_url": null,
-    "r3_scorecard_pdf_url": null
+    "r3_scorecard_pdf_url": null,
+    "is_final": false
   },
   {
     "id": "44447724-0d2c-4601-b0c6-e53714d03f63",
@@ -1219,7 +1265,8 @@
     "r3_finalized_at": null,
     "r1_scorecard_pdf_url": null,
     "r2_scorecard_pdf_url": null,
-    "r3_scorecard_pdf_url": null
+    "r3_scorecard_pdf_url": null,
+    "is_final": false
   },
   {
     "id": "fdd25cd4-90fe-4002-b08b-95ff807080ba",
@@ -1245,58 +1292,61 @@
     "r3_finalized_at": null,
     "r1_scorecard_pdf_url": null,
     "r2_scorecard_pdf_url": null,
-    "r3_scorecard_pdf_url": null
+    "r3_scorecard_pdf_url": null,
+    "is_final": false
   },
   {
-    "id": "3829b771-33c6-432d-bc35-8ca4fda15b69",
-    "created_at": "2026-03-20T18:51:43.423856+00:00",
-    "tournament_id": "85102f27-04d9-4426-9ff6-dbdadb55ca71",
+    "id": "2a04477f-a8c1-4ec7-8933-aa890929f6a0",
+    "created_at": "2026-03-21T15:27:27.146362+00:00",
+    "tournament_id": "9824dd36-0163-4868-ad15-a7140d6b7502",
     "holes": 9,
-    "first_name": "Test1",
+    "first_name": "Test 2",
+    "last_name": "Test",
+    "email": "timmenzel@web.de",
+    "hcp": 9,
+    "birthdate": "2014-03-17",
+    "home_club": "Test",
+    "coach": "Test",
+    "walkup_song": "Test",
+    "caddie": false,
+    "wagr": false,
+    "college_interest": false,
+    "nation": "US",
+    "player_pin": "9404",
+    "gender": "Girls",
+    "r1_finalized_at": null,
+    "r2_finalized_at": null,
+    "r3_finalized_at": null,
+    "r1_scorecard_pdf_url": null,
+    "r2_scorecard_pdf_url": null,
+    "r3_scorecard_pdf_url": null,
+    "is_final": false
+  },
+  {
+    "id": "c0ed259b-910c-41bc-928a-f163019b7aa8",
+    "created_at": "2026-03-21T15:26:32.242627+00:00",
+    "tournament_id": "9824dd36-0163-4868-ad15-a7140d6b7502",
+    "holes": 9,
+    "first_name": "Test 1",
     "last_name": "Test",
     "email": "jennifer.menzel@outlook.de",
-    "hcp": 7,
-    "birthdate": "2014-03-02",
-    "home_club": "TEST",
-    "coach": "TEST",
-    "walkup_song": "kein",
+    "hcp": 8,
+    "birthdate": "2014-03-26",
+    "home_club": "Test",
+    "coach": "Test",
+    "walkup_song": "Test",
     "caddie": false,
     "wagr": false,
     "college_interest": false,
     "nation": "DE",
-    "player_pin": "2098",
+    "player_pin": "6213",
     "gender": "Girls",
     "r1_finalized_at": null,
     "r2_finalized_at": null,
     "r3_finalized_at": null,
     "r1_scorecard_pdf_url": null,
     "r2_scorecard_pdf_url": null,
-    "r3_scorecard_pdf_url": null
-  },
-  {
-    "id": "16195b3f-9ba5-4962-a4d6-67522c4cae99",
-    "created_at": "2026-03-20T18:52:57.182918+00:00",
-    "tournament_id": "85102f27-04d9-4426-9ff6-dbdadb55ca71",
-    "holes": 9,
-    "first_name": "TEST2",
-    "last_name": "TEST",
-    "email": "timmenzel@web",
-    "hcp": 7,
-    "birthdate": "2014-03-19",
-    "home_club": "TEST",
-    "coach": "TEST",
-    "walkup_song": "keinen",
-    "caddie": false,
-    "wagr": false,
-    "college_interest": false,
-    "nation": "DE",
-    "player_pin": "6599",
-    "gender": "Girls",
-    "r1_finalized_at": null,
-    "r2_finalized_at": null,
-    "r3_finalized_at": null,
-    "r1_scorecard_pdf_url": null,
-    "r2_scorecard_pdf_url": null,
-    "r3_scorecard_pdf_url": null
+    "r3_scorecard_pdf_url": null,
+    "is_final": true
   }
 ]
