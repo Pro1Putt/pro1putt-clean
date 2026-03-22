@@ -1,5 +1,18 @@
 [
   {
+    "id": "9824dd36-0163-4868-ad15-a7140d6b7502",
+    "name": "Testturnier",
+    "course_name": "Testcourse",
+    "start_date": "2026-03-23",
+    "created_at": "2026-03-21T15:20:56.852795+00:00",
+    "par": 72,
+    "location": "test",
+    "is_active": true,
+    "paypal_url_9": null,
+    "paypal_url_18": null,
+    "scoring_pin": null
+  },
+  {
     "id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
     "name": "PRO1PUTT – Open Classics WINSTONopen",
     "course_name": "WINSTONopen",
@@ -37,18 +50,5 @@
     "paypal_url_9": "https://www.paypal.com/ncp/payment/M8CJWZ4SLCT34",
     "paypal_url_18": "https://www.paypal.com/ncp/payment/SRBRNY5CVE4Q2",
     "scoring_pin": null
-  },
-  {
-    "id": "85102f27-04d9-4426-9ff6-dbdadb55ca71",
-    "name": "PRO1PUTT – Open Classics WINSTONopen TEST",
-    "course_name": "WINSTONopen",
-    "start_date": "2026-03-30",
-    "created_at": "2026-03-20T18:47:54.298576+00:00",
-    "par": 72,
-    "location": "WINSTONopen",
-    "is_active": false,
-    "paypal_url_9": "https://www.paypal.com/ncp/payment/M8CJWZ4SLCT34",
-    "paypal_url_18": "https://www.paypal.com/ncp/payment/SRBRNY5CVE4Q2",
-    "scoring_pin": "4041"
   }
 ]
