@@ -1,0 +1,2 @@
+tournament_id,registration_id,round,player_signed,marker_signed,locked,player_signed_at,marker_signed_at,first_name,last_name,player_name,holes,tournament_name,start_date
+9824dd36-0163-4868-ad15-a7140d6b7502,c0ed259b-910c-41bc-928a-f163019b7aa8,1,true,true,true,2026-03-22T13:57:57.483+00:00,2026-03-22T13:58:02.776+00:00,Test 1,Test,Test 1 Test,9,Testturnier,2026-03-23
