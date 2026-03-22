@@ -1,0 +1,19 @@
+[
+  {
+    "id": "aa39f40f-58a7-4adf-a664-832a27dd2ce3",
+    "tournament_id": "9824dd36-0163-4868-ad15-a7140d6b7502",
+    "registration_id": "c0ed259b-910c-41bc-928a-f163019b7aa8",
+    "round": 1,
+    "role": null,
+    "signed_name": null,
+    "signed_at": "2026-03-22T09:09:10.475802+00:00",
+    "user_agent": null,
+    "player_signed": true,
+    "marker_signed": true,
+    "player_signed_at": "2026-03-22T09:09:10.428+00:00",
+    "marker_signed_at": "2026-03-22T09:09:13.724+00:00",
+    "updated_at": "2026-03-22T09:09:13.75434+00:00",
+    "created_at": "2026-03-22T09:09:10.475802+00:00",
+    "locked": true
+  }
+]
