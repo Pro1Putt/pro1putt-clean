@@ -1,2 +1,0 @@
-id,tournament_id,registration_id,round,role,signed_name,signed_at,user_agent,player_signed,marker_signed,player_signed_at,marker_signed_at,updated_at,created_at,locked
-cafc21b0-e940-4ae9-b8d6-baa103d90e7f,9824dd36-0163-4868-ad15-a7140d6b7502,c0ed259b-910c-41bc-928a-f163019b7aa8,1,,,2026-03-22T10:36:11.295777+00:00,,true,true,2026-03-22T10:36:11.241+00:00,2026-03-22T10:36:14.709+00:00,2026-03-22T10:36:14.759469+00:00,2026-03-22T10:36:11.295777+00:00,true
