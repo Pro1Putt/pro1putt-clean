@@ -1,0 +1,298 @@
+[
+  {
+    "id": "b2ff16b0-f5fe-4eed-b122-8b25dc23f370",
+    "flight_id": "e53dffb3-c564-4688-a3ee-de52b6294b11",
+    "registration_id": "c0ed259b-910c-41bc-928a-f163019b7aa8",
+    "seat": 1,
+    "marks_registration_id": "2a04477f-a8c1-4ec7-8933-aa890929f6a0",
+    "created_at": "2026-03-23T11:43:52.665508+00:00"
+  },
+  {
+    "id": "6f30afcc-7e95-4346-b1ce-3ad63d43f5d7",
+    "flight_id": "e53dffb3-c564-4688-a3ee-de52b6294b11",
+    "registration_id": "2a04477f-a8c1-4ec7-8933-aa890929f6a0",
+    "seat": 2,
+    "marks_registration_id": "c0ed259b-910c-41bc-928a-f163019b7aa8",
+    "created_at": "2026-03-23T11:43:52.665508+00:00"
+  },
+  {
+    "id": "826f0027-2a81-496b-bae1-1d594c9f70a7",
+    "flight_id": "0bfd868d-eb5a-4081-bb74-84d12a73b488",
+    "registration_id": "47b6392b-6476-4a2b-897e-2347b126ab86",
+    "seat": 1,
+    "marks_registration_id": "0d19a809-374b-46bc-ac56-5d1417af6bbf",
+    "created_at": "2026-03-23T16:48:57.891053+00:00"
+  },
+  {
+    "id": "f76297f1-d4eb-4f8d-8cac-a714fed587ef",
+    "flight_id": "0bfd868d-eb5a-4081-bb74-84d12a73b488",
+    "registration_id": "0d19a809-374b-46bc-ac56-5d1417af6bbf",
+    "seat": 2,
+    "marks_registration_id": "7c4671ff-76ee-4a70-b912-6aa7354774ee",
+    "created_at": "2026-03-23T16:48:57.891053+00:00"
+  },
+  {
+    "id": "5ca4f8cf-af4a-45e4-9c8c-15f2e86f01db",
+    "flight_id": "0bfd868d-eb5a-4081-bb74-84d12a73b488",
+    "registration_id": "7c4671ff-76ee-4a70-b912-6aa7354774ee",
+    "seat": 3,
+    "marks_registration_id": "47b6392b-6476-4a2b-897e-2347b126ab86",
+    "created_at": "2026-03-23T16:48:57.891053+00:00"
+  },
+  {
+    "id": "7299f87e-e163-4d6c-a739-e7b5f14ee830",
+    "flight_id": "63c5d77f-cd8f-4e1d-93c0-b83513f092fb",
+    "registration_id": "639dca59-1a8d-409a-82c6-584dbb5f34e9",
+    "seat": 1,
+    "marks_registration_id": "c3364e8d-93bc-472c-a6ff-b4f68265a4d5",
+    "created_at": "2026-03-23T16:48:57.891053+00:00"
+  },
+  {
+    "id": "f5050b3c-ef2c-4bb3-b9fe-a1202622064c",
+    "flight_id": "63c5d77f-cd8f-4e1d-93c0-b83513f092fb",
+    "registration_id": "c3364e8d-93bc-472c-a6ff-b4f68265a4d5",
+    "seat": 2,
+    "marks_registration_id": "5d110f0c-2f85-4f21-bfea-d8a96880f0f4",
+    "created_at": "2026-03-23T16:48:57.891053+00:00"
+  },
+  {
+    "id": "9472443d-dde7-4306-9cab-a48f7e1af246",
+    "flight_id": "63c5d77f-cd8f-4e1d-93c0-b83513f092fb",
+    "registration_id": "5d110f0c-2f85-4f21-bfea-d8a96880f0f4",
+    "seat": 3,
+    "marks_registration_id": "639dca59-1a8d-409a-82c6-584dbb5f34e9",
+    "created_at": "2026-03-23T16:48:57.891053+00:00"
+  },
+  {
+    "id": "9697eeb0-f764-423c-a100-955b4164920e",
+    "flight_id": "a0c16b38-65e0-41c7-9a5e-b7594a2b77ae",
+    "registration_id": "07cfbc31-606f-4838-ba17-578e0720215d",
+    "seat": 1,
+    "marks_registration_id": "6edb8092-3291-45fa-8651-a88b460512ad",
+    "created_at": "2026-03-23T16:48:57.891053+00:00"
+  },
+  {
+    "id": "d704e7d1-b77f-41ab-941d-e0403b2ddf77",
+    "flight_id": "a0c16b38-65e0-41c7-9a5e-b7594a2b77ae",
+    "registration_id": "6edb8092-3291-45fa-8651-a88b460512ad",
+    "seat": 2,
+    "marks_registration_id": "b0f8374f-c18d-481e-852b-dfa6aa011ac8",
+    "created_at": "2026-03-23T16:48:57.891053+00:00"
+  },
+  {
+    "id": "fd423d48-c80c-47d6-9897-ed38d0c851fa",
+    "flight_id": "a0c16b38-65e0-41c7-9a5e-b7594a2b77ae",
+    "registration_id": "b0f8374f-c18d-481e-852b-dfa6aa011ac8",
+    "seat": 3,
+    "marks_registration_id": "07cfbc31-606f-4838-ba17-578e0720215d",
+    "created_at": "2026-03-23T16:48:57.891053+00:00"
+  },
+  {
+    "id": "13419f2b-6243-40fb-999b-bc9f34ac228c",
+    "flight_id": "0d134934-8052-4f60-9102-9a12c8436e11",
+    "registration_id": "117030b2-c7c3-4bab-ac1d-2b3b81b2b9d1",
+    "seat": 1,
+    "marks_registration_id": "707a8d7f-48c8-4aa2-ba77-a822a334b283",
+    "created_at": "2026-03-23T16:48:57.891053+00:00"
+  },
+  {
+    "id": "af58a080-a2d8-468b-b8a6-c8b0870507c3",
+    "flight_id": "0d134934-8052-4f60-9102-9a12c8436e11",
+    "registration_id": "707a8d7f-48c8-4aa2-ba77-a822a334b283",
+    "seat": 2,
+    "marks_registration_id": "4d134271-956f-42fd-95ea-0a6b725123e6",
+    "created_at": "2026-03-23T16:48:57.891053+00:00"
+  },
+  {
+    "id": "3de1ffe5-8f31-42ec-8a21-2dc1fd99be19",
+    "flight_id": "0d134934-8052-4f60-9102-9a12c8436e11",
+    "registration_id": "4d134271-956f-42fd-95ea-0a6b725123e6",
+    "seat": 3,
+    "marks_registration_id": "117030b2-c7c3-4bab-ac1d-2b3b81b2b9d1",
+    "created_at": "2026-03-23T16:48:57.891053+00:00"
+  },
+  {
+    "id": "0cf77e8f-0d4d-4013-9c96-6b464001945c",
+    "flight_id": "13b78ef0-87a5-44b6-93f9-517a6d863b1a",
+    "registration_id": "19b44c8b-f73c-464f-a197-236cf91f225b",
+    "seat": 1,
+    "marks_registration_id": "9dcefb0b-f81d-400a-90bc-514b64341425",
+    "created_at": "2026-03-23T16:48:57.891053+00:00"
+  },
+  {
+    "id": "8902916b-2704-4c6a-9869-d2065146aa62",
+    "flight_id": "13b78ef0-87a5-44b6-93f9-517a6d863b1a",
+    "registration_id": "9dcefb0b-f81d-400a-90bc-514b64341425",
+    "seat": 2,
+    "marks_registration_id": "e5564605-a162-4973-b880-2fa2245b8a54",
+    "created_at": "2026-03-23T16:48:57.891053+00:00"
+  },
+  {
+    "id": "c22427d3-f021-4f5b-89f2-a71f7771e806",
+    "flight_id": "13b78ef0-87a5-44b6-93f9-517a6d863b1a",
+    "registration_id": "e5564605-a162-4973-b880-2fa2245b8a54",
+    "seat": 3,
+    "marks_registration_id": "19b44c8b-f73c-464f-a197-236cf91f225b",
+    "created_at": "2026-03-23T16:48:57.891053+00:00"
+  },
+  {
+    "id": "3eca48d5-0a54-4c43-97a0-a1f30958b51e",
+    "flight_id": "c8568db6-07b7-4260-bf04-630a6d6ac237",
+    "registration_id": "fdd25cd4-90fe-4002-b08b-95ff807080ba",
+    "seat": 1,
+    "marks_registration_id": "c0fb8d2a-417b-4d68-918c-fc6d0b9b032c",
+    "created_at": "2026-03-23T16:48:57.891053+00:00"
+  },
+  {
+    "id": "8f5cae9a-e48a-4cb0-847d-f21ed4a73aaa",
+    "flight_id": "c8568db6-07b7-4260-bf04-630a6d6ac237",
+    "registration_id": "c0fb8d2a-417b-4d68-918c-fc6d0b9b032c",
+    "seat": 2,
+    "marks_registration_id": "44447724-0d2c-4601-b0c6-e53714d03f63",
+    "created_at": "2026-03-23T16:48:57.891053+00:00"
+  },
+  {
+    "id": "8daab711-e4c8-49ea-83cb-2665316060df",
+    "flight_id": "e372d88f-4877-4c27-b0db-87471f85faa1",
+    "registration_id": "ce23d191-feba-4728-82f1-dc3429b95532",
+    "seat": 1,
+    "marks_registration_id": "0a22a191-8264-4398-8468-2e96074d3366",
+    "created_at": "2026-03-23T16:48:57.891053+00:00"
+  },
+  {
+    "id": "6d235d48-42b0-4361-99b0-79b9aff01bb9",
+    "flight_id": "e372d88f-4877-4c27-b0db-87471f85faa1",
+    "registration_id": "0a22a191-8264-4398-8468-2e96074d3366",
+    "seat": 2,
+    "marks_registration_id": "c9c44f56-2b25-4444-be7a-60dcb33140b2",
+    "created_at": "2026-03-23T16:48:57.891053+00:00"
+  },
+  {
+    "id": "05e97bbf-3255-4451-a315-0216b27eba52",
+    "flight_id": "e372d88f-4877-4c27-b0db-87471f85faa1",
+    "registration_id": "c9c44f56-2b25-4444-be7a-60dcb33140b2",
+    "seat": 3,
+    "marks_registration_id": "ce23d191-feba-4728-82f1-dc3429b95532",
+    "created_at": "2026-03-23T16:48:57.891053+00:00"
+  },
+  {
+    "id": "089e9512-2518-49fb-8b8f-bbd005f41681",
+    "flight_id": "12dbebc8-3cbc-4f5e-afda-b20569400b18",
+    "registration_id": "7cb8f5cb-1d66-4a8b-a52e-3c0ab48ff137",
+    "seat": 1,
+    "marks_registration_id": "2e22731c-34b3-4726-937a-18e90d4213a7",
+    "created_at": "2026-03-23T16:48:57.891053+00:00"
+  },
+  {
+    "id": "98e3c629-d933-4758-bca7-f8f5c97ac959",
+    "flight_id": "12dbebc8-3cbc-4f5e-afda-b20569400b18",
+    "registration_id": "2e22731c-34b3-4726-937a-18e90d4213a7",
+    "seat": 2,
+    "marks_registration_id": "9d71aa32-e0cc-4394-b494-f2cca4e7d382",
+    "created_at": "2026-03-23T16:48:57.891053+00:00"
+  },
+  {
+    "id": "7164cfea-79a1-487e-bfbd-40e0a9a738b3",
+    "flight_id": "12dbebc8-3cbc-4f5e-afda-b20569400b18",
+    "registration_id": "9d71aa32-e0cc-4394-b494-f2cca4e7d382",
+    "seat": 3,
+    "marks_registration_id": "7cb8f5cb-1d66-4a8b-a52e-3c0ab48ff137",
+    "created_at": "2026-03-23T16:48:57.891053+00:00"
+  },
+  {
+    "id": "66b59308-4a10-4846-be0e-3df32a8179d2",
+    "flight_id": "d0a8c5d6-d340-447f-a498-8394509a53e1",
+    "registration_id": "78fb4ed0-ba6c-4b98-a34b-bb8fa7f01091",
+    "seat": 1,
+    "marks_registration_id": "ee5ab7c6-0546-4277-8d04-5e6b48ea52a3",
+    "created_at": "2026-03-23T16:48:57.891053+00:00"
+  },
+  {
+    "id": "148efd4f-2cec-4077-8ef0-a8e7020588d0",
+    "flight_id": "d0a8c5d6-d340-447f-a498-8394509a53e1",
+    "registration_id": "ee5ab7c6-0546-4277-8d04-5e6b48ea52a3",
+    "seat": 2,
+    "marks_registration_id": "06ccd75a-85fb-49da-b531-5ea45a09645f",
+    "created_at": "2026-03-23T16:48:57.891053+00:00"
+  },
+  {
+    "id": "94621c65-2302-4fd6-aba0-a678981a2850",
+    "flight_id": "d0a8c5d6-d340-447f-a498-8394509a53e1",
+    "registration_id": "06ccd75a-85fb-49da-b531-5ea45a09645f",
+    "seat": 3,
+    "marks_registration_id": "78fb4ed0-ba6c-4b98-a34b-bb8fa7f01091",
+    "created_at": "2026-03-23T16:48:57.891053+00:00"
+  },
+  {
+    "id": "e930075e-71e7-48bb-b57c-d4720365a2cf",
+    "flight_id": "90f7b85d-cbde-4172-9ac6-209fda191a78",
+    "registration_id": "bd565cdc-2b20-4ee1-8358-1c3f10ec8acf",
+    "seat": 1,
+    "marks_registration_id": "bd565cdc-2b20-4ee1-8358-1c3f10ec8acf",
+    "created_at": "2026-03-23T16:48:57.891053+00:00"
+  },
+  {
+    "id": "4d75f29f-aa9b-450a-8146-0926036ac043",
+    "flight_id": "10a1f16a-33a1-4672-b8da-adaced72d963",
+    "registration_id": "098132e4-eb31-43dd-b487-8f6aea7501e6",
+    "seat": 1,
+    "marks_registration_id": "e0adbbeb-e7b5-42d4-9ba3-1d70c15bc9f5",
+    "created_at": "2026-03-23T16:48:57.891053+00:00"
+  },
+  {
+    "id": "7db6978b-f4b6-4574-a9bd-c7b392c6f61a",
+    "flight_id": "10a1f16a-33a1-4672-b8da-adaced72d963",
+    "registration_id": "e0adbbeb-e7b5-42d4-9ba3-1d70c15bc9f5",
+    "seat": 2,
+    "marks_registration_id": "d3d57160-318c-4c35-bb5c-de5a5f07d0e7",
+    "created_at": "2026-03-23T16:48:57.891053+00:00"
+  },
+  {
+    "id": "02cf2346-fb40-4341-b906-29978f8f14e4",
+    "flight_id": "10a1f16a-33a1-4672-b8da-adaced72d963",
+    "registration_id": "d3d57160-318c-4c35-bb5c-de5a5f07d0e7",
+    "seat": 3,
+    "marks_registration_id": "098132e4-eb31-43dd-b487-8f6aea7501e6",
+    "created_at": "2026-03-23T16:48:57.891053+00:00"
+  },
+  {
+    "id": "3f444d7b-45a7-4b65-89d7-31c612e648a7",
+    "flight_id": "8c7ddff1-5300-48eb-95e9-e6f93322baaa",
+    "registration_id": "885a2ebf-a33e-44a1-a5dd-ef1922c7778b",
+    "seat": 1,
+    "marks_registration_id": "21380286-b867-4919-83b5-08eaac386dfe",
+    "created_at": "2026-03-23T16:48:57.891053+00:00"
+  },
+  {
+    "id": "914ad1ac-1201-4f92-8898-974767403b5a",
+    "flight_id": "8c7ddff1-5300-48eb-95e9-e6f93322baaa",
+    "registration_id": "21380286-b867-4919-83b5-08eaac386dfe",
+    "seat": 2,
+    "marks_registration_id": "db214db6-5b8c-432b-a14b-322a17f0f720",
+    "created_at": "2026-03-23T16:48:57.891053+00:00"
+  },
+  {
+    "id": "1e19a6b6-1131-450a-880c-5689473ee66f",
+    "flight_id": "8c7ddff1-5300-48eb-95e9-e6f93322baaa",
+    "registration_id": "db214db6-5b8c-432b-a14b-322a17f0f720",
+    "seat": 3,
+    "marks_registration_id": "885a2ebf-a33e-44a1-a5dd-ef1922c7778b",
+    "created_at": "2026-03-23T16:48:57.891053+00:00"
+  },
+  {
+    "id": "eb8e926e-868b-4332-a25a-be9fa4ec22ea",
+    "flight_id": "3b1611ff-1378-4dd5-b11f-6d9caa1e3543",
+    "registration_id": "2cc9e7cd-f36e-4f27-ac2e-6959eecef670",
+    "seat": 1,
+    "marks_registration_id": "2cc9e7cd-f36e-4f27-ac2e-6959eecef670",
+    "created_at": "2026-03-23T16:48:57.891053+00:00"
+  },
+  {
+    "id": "0f5b3d75-8be7-45d9-add9-27910842b706",
+    "flight_id": "90f7b85d-cbde-4172-9ac6-209fda191a78",
+    "registration_id": "44447724-0d2c-4601-b0c6-e53714d03f63",
+    "seat": 2,
+    "marks_registration_id": "fdd25cd4-90fe-4002-b08b-95ff807080ba",
+    "created_at": "2026-03-23T16:48:57.891053+00:00"
+  }
+]
