@@ -1,0 +1,102 @@
+[
+  {
+    "id": "8080fbb5-4504-4543-8e8b-453b1275b600",
+    "course_name": "DEFAULT",
+    "tee_color": "Gelb",
+    "gender": "Boys",
+    "holes": 18,
+    "slope": 120,
+    "course_rating": 72,
+    "created_at": "2026-03-24T13:51:16.863878+00:00"
+  },
+  {
+    "id": "74527556-76b4-4a3e-afcd-7a24a01ab7d5",
+    "course_name": "DEFAULT",
+    "tee_color": "Rot",
+    "gender": "Girls",
+    "holes": 18,
+    "slope": 118,
+    "course_rating": 74,
+    "created_at": "2026-03-24T13:51:16.863878+00:00"
+  },
+  {
+    "id": "a5edc959-80f6-4ef7-9576-390503893984",
+    "course_name": "DEFAULT",
+    "tee_color": "Rot",
+    "gender": "Boys",
+    "holes": 9,
+    "slope": 115,
+    "course_rating": 36,
+    "created_at": "2026-03-24T13:51:16.863878+00:00"
+  },
+  {
+    "id": "9cf3bf03-8d66-4340-9a70-ed7cde5ca92f",
+    "course_name": "DEFAULT",
+    "tee_color": "Orange",
+    "gender": "Girls",
+    "holes": 9,
+    "slope": 113,
+    "course_rating": 37,
+    "created_at": "2026-03-24T13:51:16.863878+00:00"
+  },
+  {
+    "id": "f175c2d7-c505-4a6a-96aa-a4e00415a627",
+    "course_name": "WINSTON Links",
+    "tee_color": "Gelb",
+    "gender": "Boys",
+    "holes": 18,
+    "slope": 131,
+    "course_rating": 73.2,
+    "created_at": "2026-03-24T13:55:46.121389+00:00"
+  },
+  {
+    "id": "1bcc98b7-c45b-4df3-b562-613d62efd2bb",
+    "course_name": "WINSTON Links",
+    "tee_color": "Rot",
+    "gender": "Girls",
+    "holes": 18,
+    "slope": 129,
+    "course_rating": 75,
+    "created_at": "2026-03-24T13:55:46.121389+00:00"
+  },
+  {
+    "id": "2e116bc3-00ca-41ef-9062-788830be3668",
+    "course_name": "Bad Saarow Faldo",
+    "tee_color": "Gelb",
+    "gender": "Boys",
+    "holes": 18,
+    "slope": 133,
+    "course_rating": 72.8,
+    "created_at": "2026-03-24T13:55:46.121389+00:00"
+  },
+  {
+    "id": "4c92e086-7b0a-4a60-b781-0fd75611bec0",
+    "course_name": "Bad Saarow Faldo",
+    "tee_color": "Rot",
+    "gender": "Girls",
+    "holes": 18,
+    "slope": 131,
+    "course_rating": 74.6,
+    "created_at": "2026-03-24T13:55:46.121389+00:00"
+  },
+  {
+    "id": "40cfa684-c31b-45ce-8a05-767e3a9cf774",
+    "course_name": "Green Eagle North",
+    "tee_color": "Gelb",
+    "gender": "Boys",
+    "holes": 18,
+    "slope": 138,
+    "course_rating": 75.5,
+    "created_at": "2026-03-24T13:55:46.121389+00:00"
+  },
+  {
+    "id": "827da6e6-be87-4b02-99c7-6dbfc814162a",
+    "course_name": "Green Eagle North",
+    "tee_color": "Rot",
+    "gender": "Girls",
+    "holes": 18,
+    "slope": 136,
+    "course_rating": 77,
+    "created_at": "2026-03-24T13:55:46.121389+00:00"
+  }
+]
