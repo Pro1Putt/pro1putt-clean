@@ -2,7 +2,7 @@
   {
     "id": "9824dd36-0163-4868-ad15-a7140d6b7502",
     "name": "Testturnier",
-    "course_name": "Testcourse",
+    "course_name": "DEFAULT",
     "start_date": "2026-03-23",
     "created_at": "2026-03-21T15:20:56.852795+00:00",
     "par": 72,
@@ -10,6 +10,19 @@
     "is_active": true,
     "paypal_url_9": null,
     "paypal_url_18": null,
+    "scoring_pin": null
+  },
+  {
+    "id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
+    "name": "PRO1PUTT – Open Faldo Course (Bad Saarow)",
+    "course_name": "Bad Saarow Faldo",
+    "start_date": "2026-09-25",
+    "created_at": "2026-02-12T09:59:04.315366+00:00",
+    "par": 72,
+    "location": "Faldo Course",
+    "is_active": true,
+    "paypal_url_9": "https://www.paypal.com/ncp/payment/M8CJWZ4SLCT34",
+    "paypal_url_18": "https://www.paypal.com/ncp/payment/SRBRNY5CVE4Q2",
     "scoring_pin": null
   },
   {
@@ -33,19 +46,6 @@
     "created_at": "2026-02-12T09:59:04.315366+00:00",
     "par": 72,
     "location": "North Course",
-    "is_active": true,
-    "paypal_url_9": "https://www.paypal.com/ncp/payment/M8CJWZ4SLCT34",
-    "paypal_url_18": "https://www.paypal.com/ncp/payment/SRBRNY5CVE4Q2",
-    "scoring_pin": null
-  },
-  {
-    "id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
-    "name": "PRO1PUTT – Open Faldo Course (Bad Saarow)",
-    "course_name": "Faldo Course",
-    "start_date": "2026-09-25",
-    "created_at": "2026-02-12T09:59:04.315366+00:00",
-    "par": 72,
-    "location": "Faldo Course",
     "is_active": true,
     "paypal_url_9": "https://www.paypal.com/ncp/payment/M8CJWZ4SLCT34",
     "paypal_url_18": "https://www.paypal.com/ncp/payment/SRBRNY5CVE4Q2",
