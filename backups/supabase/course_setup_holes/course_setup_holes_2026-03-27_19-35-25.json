@@ -1,0 +1,326 @@
+[
+  {
+    "id": "4d489310-78e8-459f-ab3c-6c6678865a21",
+    "course_setup_id": "f706d9ef-b825-4c0e-80f7-b55c5b3f1328",
+    "hole_number": 1,
+    "par": 5,
+    "stroke_index": 9,
+    "length_m": 499,
+    "created_at": "2026-03-27T07:34:20.159209+00:00"
+  },
+  {
+    "id": "32fecce6-8007-43bb-a0ac-ec771e712467",
+    "course_setup_id": "f706d9ef-b825-4c0e-80f7-b55c5b3f1328",
+    "hole_number": 2,
+    "par": 3,
+    "stroke_index": 17,
+    "length_m": 148,
+    "created_at": "2026-03-27T07:34:20.159209+00:00"
+  },
+  {
+    "id": "d6b855bc-049d-4b51-8ccf-89382c2d5484",
+    "course_setup_id": "f706d9ef-b825-4c0e-80f7-b55c5b3f1328",
+    "hole_number": 3,
+    "par": 4,
+    "stroke_index": 15,
+    "length_m": 323,
+    "created_at": "2026-03-27T07:34:20.159209+00:00"
+  },
+  {
+    "id": "a1f22b5a-c515-4e25-bc59-97a7f13490a8",
+    "course_setup_id": "f706d9ef-b825-4c0e-80f7-b55c5b3f1328",
+    "hole_number": 4,
+    "par": 4,
+    "stroke_index": 7,
+    "length_m": 374,
+    "created_at": "2026-03-27T07:34:20.159209+00:00"
+  },
+  {
+    "id": "153a2141-0fc0-429c-ad21-9ba11a414a03",
+    "course_setup_id": "f706d9ef-b825-4c0e-80f7-b55c5b3f1328",
+    "hole_number": 5,
+    "par": 5,
+    "stroke_index": 3,
+    "length_m": 536,
+    "created_at": "2026-03-27T07:34:20.159209+00:00"
+  },
+  {
+    "id": "ae2309c4-0854-4fcd-aa71-8ef41b94019b",
+    "course_setup_id": "f706d9ef-b825-4c0e-80f7-b55c5b3f1328",
+    "hole_number": 6,
+    "par": 4,
+    "stroke_index": 1,
+    "length_m": 415,
+    "created_at": "2026-03-27T07:34:20.159209+00:00"
+  },
+  {
+    "id": "c116d871-1730-4ccd-a4fa-843a8daf9a43",
+    "course_setup_id": "f706d9ef-b825-4c0e-80f7-b55c5b3f1328",
+    "hole_number": 7,
+    "par": 4,
+    "stroke_index": 13,
+    "length_m": 379,
+    "created_at": "2026-03-27T07:34:20.159209+00:00"
+  },
+  {
+    "id": "39e6a259-598c-47fe-8031-43ab6c8d0fc3",
+    "course_setup_id": "f706d9ef-b825-4c0e-80f7-b55c5b3f1328",
+    "hole_number": 8,
+    "par": 3,
+    "stroke_index": 5,
+    "length_m": 210,
+    "created_at": "2026-03-27T07:34:20.159209+00:00"
+  },
+  {
+    "id": "94d6db8b-8cce-40c7-b2af-1e57bf6685af",
+    "course_setup_id": "f706d9ef-b825-4c0e-80f7-b55c5b3f1328",
+    "hole_number": 9,
+    "par": 4,
+    "stroke_index": 11,
+    "length_m": 341,
+    "created_at": "2026-03-27T07:34:20.159209+00:00"
+  },
+  {
+    "id": "8226d79f-2406-4817-819f-164008c88c18",
+    "course_setup_id": "f706d9ef-b825-4c0e-80f7-b55c5b3f1328",
+    "hole_number": 10,
+    "par": 4,
+    "stroke_index": 2,
+    "length_m": 408,
+    "created_at": "2026-03-27T07:34:20.159209+00:00"
+  },
+  {
+    "id": "f5d71d2d-297c-421f-a866-9da29add3f88",
+    "course_setup_id": "f706d9ef-b825-4c0e-80f7-b55c5b3f1328",
+    "hole_number": 11,
+    "par": 3,
+    "stroke_index": 8,
+    "length_m": 160,
+    "created_at": "2026-03-27T07:34:20.159209+00:00"
+  },
+  {
+    "id": "972d9cea-d643-49e2-89db-97709fa4502a",
+    "course_setup_id": "f706d9ef-b825-4c0e-80f7-b55c5b3f1328",
+    "hole_number": 12,
+    "par": 4,
+    "stroke_index": 10,
+    "length_m": 359,
+    "created_at": "2026-03-27T07:34:20.159209+00:00"
+  },
+  {
+    "id": "b03c7668-b610-44e9-8713-4729fe8b9576",
+    "course_setup_id": "f706d9ef-b825-4c0e-80f7-b55c5b3f1328",
+    "hole_number": 13,
+    "par": 5,
+    "stroke_index": 4,
+    "length_m": 520,
+    "created_at": "2026-03-27T07:34:20.159209+00:00"
+  },
+  {
+    "id": "68ec813f-b75c-4985-ab1e-ef3be4eb785d",
+    "course_setup_id": "f706d9ef-b825-4c0e-80f7-b55c5b3f1328",
+    "hole_number": 14,
+    "par": 4,
+    "stroke_index": 6,
+    "length_m": 353,
+    "created_at": "2026-03-27T07:34:20.159209+00:00"
+  },
+  {
+    "id": "cef0613f-d9b2-479e-b5a7-8547184c94a8",
+    "course_setup_id": "f706d9ef-b825-4c0e-80f7-b55c5b3f1328",
+    "hole_number": 15,
+    "par": 5,
+    "stroke_index": 16,
+    "length_m": 466,
+    "created_at": "2026-03-27T07:34:20.159209+00:00"
+  },
+  {
+    "id": "dd2fa847-3e70-4c7c-a868-4969d9afac16",
+    "course_setup_id": "f706d9ef-b825-4c0e-80f7-b55c5b3f1328",
+    "hole_number": 16,
+    "par": 3,
+    "stroke_index": 18,
+    "length_m": 142,
+    "created_at": "2026-03-27T07:34:20.159209+00:00"
+  },
+  {
+    "id": "2d60eb18-1e88-4aa9-a7d6-10cfd8b072c4",
+    "course_setup_id": "f706d9ef-b825-4c0e-80f7-b55c5b3f1328",
+    "hole_number": 17,
+    "par": 4,
+    "stroke_index": 14,
+    "length_m": 342,
+    "created_at": "2026-03-27T07:34:20.159209+00:00"
+  },
+  {
+    "id": "050f0e71-fb75-4a97-9333-6a7060c47ee3",
+    "course_setup_id": "f706d9ef-b825-4c0e-80f7-b55c5b3f1328",
+    "hole_number": 18,
+    "par": 4,
+    "stroke_index": 12,
+    "length_m": 332,
+    "created_at": "2026-03-27T07:34:20.159209+00:00"
+  },
+  {
+    "id": "e1e2e0fc-3eef-454c-b051-d4419bce1571",
+    "course_setup_id": "282c4c05-90b2-4583-93fb-666e1d816a04",
+    "hole_number": 1,
+    "par": 5,
+    "stroke_index": 9,
+    "length_m": 448,
+    "created_at": "2026-03-27T07:35:59.049248+00:00"
+  },
+  {
+    "id": "7af72dee-40bc-4e34-840b-115f35133950",
+    "course_setup_id": "282c4c05-90b2-4583-93fb-666e1d816a04",
+    "hole_number": 2,
+    "par": 3,
+    "stroke_index": 17,
+    "length_m": 94,
+    "created_at": "2026-03-27T07:35:59.049248+00:00"
+  },
+  {
+    "id": "a8570fcc-7b93-4a6a-8525-5d7e973e33ea",
+    "course_setup_id": "282c4c05-90b2-4583-93fb-666e1d816a04",
+    "hole_number": 3,
+    "par": 4,
+    "stroke_index": 15,
+    "length_m": 285,
+    "created_at": "2026-03-27T07:35:59.049248+00:00"
+  },
+  {
+    "id": "5ac3fa97-1337-495d-bbd3-6fc42770ba35",
+    "course_setup_id": "282c4c05-90b2-4583-93fb-666e1d816a04",
+    "hole_number": 4,
+    "par": 4,
+    "stroke_index": 7,
+    "length_m": 311,
+    "created_at": "2026-03-27T07:35:59.049248+00:00"
+  },
+  {
+    "id": "52625c23-ba9a-4ba4-858c-3976cca9a05c",
+    "course_setup_id": "282c4c05-90b2-4583-93fb-666e1d816a04",
+    "hole_number": 5,
+    "par": 5,
+    "stroke_index": 3,
+    "length_m": 479,
+    "created_at": "2026-03-27T07:35:59.049248+00:00"
+  },
+  {
+    "id": "d738c3cc-a2a4-4405-8f9d-3c36048ba828",
+    "course_setup_id": "282c4c05-90b2-4583-93fb-666e1d816a04",
+    "hole_number": 6,
+    "par": 4,
+    "stroke_index": 1,
+    "length_m": 334,
+    "created_at": "2026-03-27T07:35:59.049248+00:00"
+  },
+  {
+    "id": "6c90da5a-2ef7-4837-bd73-260064fb018f",
+    "course_setup_id": "282c4c05-90b2-4583-93fb-666e1d816a04",
+    "hole_number": 7,
+    "par": 4,
+    "stroke_index": 13,
+    "length_m": 300,
+    "created_at": "2026-03-27T07:35:59.049248+00:00"
+  },
+  {
+    "id": "395ec319-e909-4160-a0d7-bc48730931a5",
+    "course_setup_id": "282c4c05-90b2-4583-93fb-666e1d816a04",
+    "hole_number": 8,
+    "par": 3,
+    "stroke_index": 5,
+    "length_m": 139,
+    "created_at": "2026-03-27T07:35:59.049248+00:00"
+  },
+  {
+    "id": "86f1880e-c687-49e3-9e1b-5554e4a48bc0",
+    "course_setup_id": "282c4c05-90b2-4583-93fb-666e1d816a04",
+    "hole_number": 9,
+    "par": 4,
+    "stroke_index": 11,
+    "length_m": 279,
+    "created_at": "2026-03-27T07:35:59.049248+00:00"
+  },
+  {
+    "id": "450296f4-6a2d-4672-8539-95da7523a06b",
+    "course_setup_id": "282c4c05-90b2-4583-93fb-666e1d816a04",
+    "hole_number": 10,
+    "par": 4,
+    "stroke_index": 2,
+    "length_m": 331,
+    "created_at": "2026-03-27T07:35:59.049248+00:00"
+  },
+  {
+    "id": "b95da53f-1bca-4c39-8382-5f364fe50f61",
+    "course_setup_id": "282c4c05-90b2-4583-93fb-666e1d816a04",
+    "hole_number": 11,
+    "par": 3,
+    "stroke_index": 8,
+    "length_m": 124,
+    "created_at": "2026-03-27T07:35:59.049248+00:00"
+  },
+  {
+    "id": "0e89fe7d-b5b1-4cb0-ad78-3d59b3529312",
+    "course_setup_id": "282c4c05-90b2-4583-93fb-666e1d816a04",
+    "hole_number": 12,
+    "par": 4,
+    "stroke_index": 10,
+    "length_m": 300,
+    "created_at": "2026-03-27T07:35:59.049248+00:00"
+  },
+  {
+    "id": "28ae9f7c-1c96-44ac-b465-183fb45565ea",
+    "course_setup_id": "282c4c05-90b2-4583-93fb-666e1d816a04",
+    "hole_number": 13,
+    "par": 5,
+    "stroke_index": 4,
+    "length_m": 434,
+    "created_at": "2026-03-27T07:35:59.049248+00:00"
+  },
+  {
+    "id": "f99338a3-0655-49e3-88b9-b31397ce72e8",
+    "course_setup_id": "282c4c05-90b2-4583-93fb-666e1d816a04",
+    "hole_number": 14,
+    "par": 4,
+    "stroke_index": 6,
+    "length_m": 257,
+    "created_at": "2026-03-27T07:35:59.049248+00:00"
+  },
+  {
+    "id": "db1b48e8-e131-4b7c-9c41-3b9872c4eedb",
+    "course_setup_id": "282c4c05-90b2-4583-93fb-666e1d816a04",
+    "hole_number": 15,
+    "par": 5,
+    "stroke_index": 16,
+    "length_m": 392,
+    "created_at": "2026-03-27T07:35:59.049248+00:00"
+  },
+  {
+    "id": "f6917637-78c9-40cb-9a5d-4ec66796f58b",
+    "course_setup_id": "282c4c05-90b2-4583-93fb-666e1d816a04",
+    "hole_number": 16,
+    "par": 3,
+    "stroke_index": 18,
+    "length_m": 81,
+    "created_at": "2026-03-27T07:35:59.049248+00:00"
+  },
+  {
+    "id": "cd6c66f7-a825-4a92-bbea-2fc60189671d",
+    "course_setup_id": "282c4c05-90b2-4583-93fb-666e1d816a04",
+    "hole_number": 17,
+    "par": 4,
+    "stroke_index": 14,
+    "length_m": 289,
+    "created_at": "2026-03-27T07:35:59.049248+00:00"
+  },
+  {
+    "id": "f226c06a-5218-41fd-849a-e48d8f9ccc18",
+    "course_setup_id": "282c4c05-90b2-4583-93fb-666e1d816a04",
+    "hole_number": 18,
+    "par": 4,
+    "stroke_index": 12,
+    "length_m": 276,
+    "created_at": "2026-03-27T07:35:59.049248+00:00"
+  }
+]
