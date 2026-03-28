@@ -287,7 +287,7 @@ export default function AusschreibungPage() {
   <Badge>Caddies willkommen</Badge>
 </div>
 
-<p style={{ fontSize: "12px", color: "#ffffff", marginTop: "8px", textAlign: "center" }}>
+<p style={{ fontSize: "12px", color: "#d1d5db", marginTop: "8px", textAlign: "center" }}>
   * Die WAGR Wertung erfolgt nur, wenn die Mindestanzahl an Teilnehmern in der jeweiligen Kategorie erreicht wird.
 </p>
 
