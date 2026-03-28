@@ -26,28 +26,36 @@ export async function POST(req: Request) {
     const round = Number(body.round ?? 1);
     const role = normStr(body.role);
     const signed_name = normStr(body.signed_name || body.signedName);
-    const signature_data_url = normStr(body.signature_data_url || body.signatureDataUrl);
+    const signature_data_url = normStr(
+      body.signature_data_url || body.signatureDataUrl
+    );
 
     const requiredPin = normStr(process.env.TD_PIN || "");
     const td_pin = normStr(body.td_pin || body.tdPin || "");
 
     if (!tournament_id) return jsonError("Missing tournament_id", 400);
     if (!registration_id) return jsonError("Missing registration_id", 400);
-    if (![1, 2, 3].includes(round)) return jsonError("round must be 1, 2, or 3", 400);
-    if (!["player", "marker", "td"].includes(role)) return jsonError("role must be player|marker|td", 400);
+    if (![1, 2, 3].includes(round)) {
+      return jsonError("round must be 1, 2, or 3", 400);
+    }
+    if (!["player", "marker", "td"].includes(role)) {
+      return jsonError("role must be player|marker|td", 400);
+    }
     if (!signed_name) return jsonError("signed_name required", 400);
 
-    // optional absichern: TD_PIN nur für td
     if (requiredPin && role === "td") {
-      if (!td_pin || td_pin !== requiredPin) return jsonError("TD_PIN invalid", 401);
+      if (!td_pin || td_pin !== requiredPin) {
+        return jsonError("TD_PIN invalid", 401);
+      }
     }
 
-    // signature_data_url optional, aber wenn da -> validieren
     if (signature_data_url) {
       if (!signature_data_url.startsWith("data:image/png;base64,")) {
-        return jsonError("signature_data_url must be a PNG data URL (data:image/png;base64,...)", 400);
+        return jsonError(
+          "signature_data_url must be a PNG data URL (data:image/png;base64,...)",
+          400
+        );
       }
-      // grobe Größenbremse (ca. 400KB Base64)
       if (signature_data_url.length > 600_000) {
         return jsonError("signature_data_url too large", 400);
       }
@@ -55,18 +63,36 @@ export async function POST(req: Request) {
 
     const supabase = getServiceSupabase();
 
+    const updatePayload: any = {
+      tournament_id,
+      registration_id,
+      round,
+      role,
+      signed_name: signed_name || null,
+      updated_at: new Date().toISOString(),
+    };
+
+    if (role === "player") {
+      updatePayload.player_signed = true;
+      updatePayload.player_signed_at = new Date().toISOString();
+      updatePayload.player_signed_name = signed_name || null;
+      updatePayload.player_signature_data_url = signature_data_url || null;
+    }
+
+    if (role === "marker") {
+      updatePayload.marker_signed = true;
+      updatePayload.marker_signed_at = new Date().toISOString();
+      updatePayload.marker_signed_name = signed_name || null;
+      updatePayload.marker_signature_data_url = signature_data_url || null;
+    }
+
+    if (role === "td") {
+      updatePayload.locked = true;
+    }
+
     const { error } = await supabase.from("scorecard_signatures").upsert(
-      [
-        {
-          tournament_id,
-          registration_id,
-          round,
-          role,
-          signed_name,
-          signature_data_url: signature_data_url || null,
-        },
-      ],
-      { onConflict: "tournament_id,registration_id,round,role" }
+      [updatePayload],
+      { onConflict: "tournament_id,registration_id,round" }
     );
 
     if (error) return jsonError(`signature upsert failed: ${error.message}`, 500);

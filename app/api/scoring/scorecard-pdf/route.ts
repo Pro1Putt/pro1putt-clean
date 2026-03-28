@@ -1,177 +1,477 @@
 import { NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 
-function getServiceSupabase() {
+function getSupabase() {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL || "";
   const key = process.env.SUPABASE_SERVICE_ROLE_KEY || "";
+
   if (!url) throw new Error("Missing NEXT_PUBLIC_SUPABASE_URL");
   if (!key) throw new Error("Missing SUPABASE_SERVICE_ROLE_KEY");
-  return createClient(url, key, { auth: { persistSession: false } });
+
+  return createClient(url, key, {
+    auth: { persistSession: false },
+  });
 }
 
-function safeNum(v: any): number | null {
-  const n = Number(v);
+function escapeHtml(value: unknown) {
+  return String(value ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+function safeNum(value: unknown): number | null {
+  const n = Number(value);
   return Number.isFinite(n) ? n : null;
 }
 
-type ParRow = { hole: number; par: number };
-type RegRow = { id: string; holes: number | null; first_name: string; last_name: string };
+type ScorecardRow = {
+  tournament_id: string;
+  tournament_name?: string | null;
+  player_name?: string | null;
+  marker_name?: string | null;
+  registration_id?: string | null;
+  round?: number | null;
+
+  gender?: string | null;
+  player_gender?: string | null;
+  category_gender?: string | null;
+
+  hole_count?: number | null;
+  holes?: number | null;
+  number_of_holes?: number | null;
+
+  slope?: number | string | null;
+  course_slope?: number | string | null;
+  tee_slope?: number | string | null;
+
+  course_rating?: number | string | null;
+  courserating?: number | string | null;
+  rating?: number | string | null;
+    registrations?: {
+    tee?: string | null;
+    course_rating?: number | string | null;
+    slope?: number | string | null;
+  } | null;
+};
+
 type HoleEntryRow = {
+  tournament_id: string;
+  for_registration_id: string;
   round: number;
   hole_number: number;
-  entered_by: string;
-  for_registration_id: string;
+  entered_by?: string | null;
   strokes: number;
+};
+
+type SignatureRow = {
+  tournament_id: string;
+  registration_id: string;
+  round: number;
+  role: string;
+  signed_name?: string | null;
+  signature_data_url?: string | null;
 };
 
 export async function GET(req: Request) {
   try {
     const { searchParams } = new URL(req.url);
-
     const tournamentId = String(searchParams.get("tournamentId") || "").trim();
-    const registrationId = String(searchParams.get("registrationId") || "").trim();
-    const round = Number(searchParams.get("round") || "1");
 
-    if (!tournamentId || !registrationId) {
-      return NextResponse.json({ ok: false, error: "Missing tournamentId or registrationId" }, { status: 400 });
-    }
-    if (![1, 2, 3].includes(round)) {
-      return NextResponse.json({ ok: false, error: "round must be 1,2,3" }, { status: 400 });
+    if (!tournamentId) {
+      return NextResponse.json(
+        { ok: false, error: "Missing tournamentId" },
+        { status: 400 }
+      );
     }
 
-    const supabase = getServiceSupabase();
+    const supabase = getSupabase();
 
-    // Player basics (holes + name)
-    const { data: reg, error: regErr } = await supabase
-      .from("registrations")
-      .select("id,holes,first_name,last_name")
-      .eq("id", registrationId)
-      .eq("tournament_id", tournamentId)
-      .single();
+   const { data: scorecards, error: scorecardsError } = await supabase
+  .from("v_completed_scorecards")
+  .select(`
+    *,
+    registrations (
+      tee,
+      course_rating,
+      slope
+    )
+  `)
+  .eq("tournament_id", tournamentId)
+  .order("player_name", { ascending: true });
 
-    if (regErr || !reg) {
-      return NextResponse.json({ ok: false, error: "Registration not found" }, { status: 404 });
+    if (scorecardsError) {
+      return NextResponse.json(
+        { ok: false, error: scorecardsError.message },
+        { status: 500 }
+      );
     }
 
-    const player = reg as unknown as RegRow;
-    const maxHole = Number(player.holes || 18);
-
-    // Pars (optional)
-    const parByHole = new Map<number, number>();
-    {
-      const { data: pars, error: pErr } = await supabase
-        .from("tournament_holes")
-        .select("hole,par")
-        .eq("tournament_id", tournamentId);
-
-      if (!pErr && pars) {
-        for (const p of pars as any as ParRow[]) {
-          const h = safeNum((p as any).hole);
-          const par = safeNum((p as any).par);
-          if (h && par) parByHole.set(h, par);
-        }
-      }
-    }
-
-    // Hole entries for this player in this round (both entered_by variants)
-    const { data: he, error: heErr } = await supabase
+    const { data: holeEntries, error: holeEntriesError } = await supabase
       .from("hole_entries")
-      .select("round,hole_number,entered_by,for_registration_id,strokes")
+      .select("tournament_id, for_registration_id, round, hole_number, entered_by, strokes")
       .eq("tournament_id", tournamentId)
-      .eq("round", round)
-      .eq("for_registration_id", registrationId);
+      .order("hole_number", { ascending: true });
 
-    const entries: HoleEntryRow[] = (!heErr && he ? (he as any) : []) as any;
-
-    // Group by hole
-    const byHole = new Map<number, HoleEntryRow[]>();
-    for (const e of entries) {
-      const h = safeNum((e as any).hole_number);
-      const s = safeNum((e as any).strokes);
-      if (!h || !s) continue;
-      if (!byHole.has(h)) byHole.set(h, []);
-      byHole.get(h)!.push(e);
+    if (holeEntriesError) {
+      return NextResponse.json(
+        { ok: false, error: holeEntriesError.message },
+        { status: 500 }
+      );
     }
 
-    // Build scorecard rows 1..maxHole
-    const rows = Array.from({ length: maxHole }, (_, i) => i + 1).map((hole) => {
-      const list = byHole.get(hole) || [];
+        const { data: signatures, error: signaturesError } = await supabase
+      .from("scorecard_signatures")
+      .select(`
+        tournament_id,
+        registration_id,
+        round,
+        player_signature_data_url,
+        marker_signature_data_url,
+        player_signed_name,
+        marker_signed_name
+      `)
+      .eq("tournament_id", tournamentId);
 
-      // Find confirmed: at least two different entered_by with same strokes
-      let confirmed = false;
-      let strokes: number | null = null;
+    if (signaturesError) {
+      return NextResponse.json(
+        { ok: false, error: signaturesError.message },
+        { status: 500 }
+      );
+    }
 
-      if (list.length === 1) {
-        strokes = safeNum(list[0].strokes);
-        confirmed = false;
-      } else if (list.length >= 2) {
-        const uniqBy = new Map<string, number>();
-        for (const e of list) {
-          const eb = String((e as any).entered_by || "");
-          const st = safeNum((e as any).strokes);
-          if (!eb || !st) continue;
-          // keep first per entered_by
-          if (!uniqBy.has(eb)) uniqBy.set(eb, st);
-        }
-        const vals = Array.from(uniqBy.values());
-        if (vals.length >= 2) {
-          const first = vals[0];
-          const allSame = vals.every((v) => v === first);
-          if (allSame) {
-            confirmed = true;
-            strokes = first;
-          } else {
-            // disagreement → show null strokes (or first) but mark not confirmed
-            confirmed = false;
-            strokes = vals[0] ?? null;
-          }
-        } else if (vals.length === 1) {
-          confirmed = false;
-          strokes = vals[0] ?? null;
-        }
+    const holes = Array.from({ length: 18 }, (_, i) => i + 1);
+
+    const entriesByPlayerRound = new Map<string, HoleEntryRow[]>();
+    for (const raw of (holeEntries ?? []) as HoleEntryRow[]) {
+      const registrationId = String(raw.for_registration_id || "").trim();
+      const round = safeNum(raw.round);
+
+      if (!registrationId || !round) continue;
+
+      const key = `${registrationId}__${round}`;
+      if (!entriesByPlayerRound.has(key)) {
+        entriesByPlayerRound.set(key, []);
       }
+      entriesByPlayerRound.get(key)!.push(raw);
+    }
+// 👉 Abschlag berechnen
+function getTee(gender: string, holeCount: number) {
+  if (holeCount === 18 && gender === "Boys") return "Gelb";
+  if (holeCount === 18 && gender === "Girls") return "Rot";
+  if (holeCount === 9 && gender === "Boys") return "Rot";
+  if (holeCount === 9 && gender === "Girls") return "Orange";
+  return "-";
+}
+    const html = `
+    <html>
+      <head>
+        <meta charset="utf-8" />
+        <title>Scorecards</title>
+        <style>
+          body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            color: #000;
+          }
 
-      const par = parByHole.get(hole) ?? null;
+          .card {
+            page-break-after: always;
+            border: 2px solid #000;
+            padding: 20px;
+            margin-bottom: 20px;
+          }
 
-      return {
-        hole,
-        par,
-        strokes,
-        confirmed,
-        entries: list.map((e) => ({
-          entered_by: String((e as any).entered_by || ""),
-          strokes: safeNum((e as any).strokes),
-        })),
-      };
-    });
+          .title {
+            font-size: 28px;
+            font-weight: 700;
+            margin: 0 0 8px 0;
+          }
 
-    // totals
-    const totalStrokes = rows.reduce((sum, r) => sum + (typeof r.strokes === "number" ? r.strokes : 0), 0);
-    const totalPar = rows.reduce((sum, r) => sum + (typeof r.par === "number" ? r.par : 0), 0);
-    const holesWithScore = rows.filter((r) => typeof r.strokes === "number").length;
+          .meta {
+            margin: 4px 0;
+            font-size: 14px;
+          }
 
-    const toPar =
-      holesWithScore === 0 || totalPar === 0
-        ? null
-        : totalStrokes - totalPar;
+          table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+          }
 
-    return NextResponse.json({
-      ok: true,
-      player: {
-        registration_id: player.id,
-        name: `${player.first_name} ${player.last_name}`.trim(),
-        holes: maxHole,
+          th, td {
+            border: 1px solid #000;
+            padding: 6px;
+            text-align: center;
+            font-size: 12px;
+          }
+
+          th {
+            background: #f3f3f3;
+          }
+
+          .signatures {
+            margin-top: 40px;
+            display: flex;
+            gap: 40px;
+            justify-content: space-between;
+          }
+
+          .sig-block {
+            flex: 1;
+            min-width: 0;
+          }
+
+          .sig-image-wrap {
+            height: 90px;
+            display: flex;
+            align-items: end;
+            margin-bottom: 8px;
+          }
+
+          .sig-image {
+            max-height: 80px;
+            max-width: 100%;
+            object-fit: contain;
+            display: block;
+          }
+
+          .line {
+            border-top: 1px solid #000;
+            width: 100%;
+            height: 1px;
+          }
+
+          .sig-label {
+            margin-top: 8px;
+            font-size: 14px;
+          }
+
+          .sig-name {
+            margin-top: 4px;
+            font-size: 12px;
+            color: #444;
+          }
+
+          @media print {
+            body {
+              padding: 0;
+            }
+
+            .card {
+              margin-bottom: 0;
+            }
+          }
+        </style>
+      </head>
+      <body>
+        ${((scorecards ?? []) as ScorecardRow[])
+          .map((p) => {
+            const registrationId = String(p.registration_id || "").trim();
+            const round = safeNum(p.round) ?? 1;
+            const entryKey = `${registrationId}__${round}`;
+            const rawEntries = entriesByPlayerRound.get(entryKey) || [];
+const sig =
+  (signatures ?? []).find(
+    (s: any) =>
+      String(s.registration_id || "").trim() === registrationId &&
+      Number(s.round) === round
+  ) || null;
+const gender = String(
+  p.gender ?? p.player_gender ?? p.category_gender ?? ""
+).trim();
+
+const holeCount =
+  Number(
+    p.hole_count ??
+      p.holes ??
+      p.number_of_holes ??
+      (Array.isArray(holes) ? holes.length : 0)
+  ) || 0;
+
+const tee = String(
+  p.registrations?.tee ?? getTee(gender, holeCount) ?? "-"
+).trim();
+
+const slope = String(
+  p.registrations?.slope ?? "-"
+).trim();
+
+const courseRating = String(
+  p.registrations?.course_rating ?? "-"
+).trim();
+
+console.log("PDF DATA CHECK:", {
+  tee,
+  slope,
+  courseRating,
+  raw: p
+});
+            const scoresByHole: Record<string, number | string> = {};
+
+            for (const hole of holes) {
+              const perHole = rawEntries.filter(
+                (e) => safeNum(e.hole_number) === hole
+              );
+
+              if (perHole.length === 0) continue;
+
+              const uniqueByEnteredBy = new Map<string, number>();
+
+              for (const e of perHole) {
+                const enteredBy =
+                  String(e.entered_by || "").trim() || `entry_${hole}`;
+                const strokes = safeNum(e.strokes);
+
+                if (!strokes) continue;
+                if (!uniqueByEnteredBy.has(enteredBy)) {
+                  uniqueByEnteredBy.set(enteredBy, strokes);
+                }
+              }
+
+              const values = Array.from(uniqueByEnteredBy.values());
+              if (values.length === 0) continue;
+
+              scoresByHole[String(hole)] = values[0];
+            }
+
+            const tournamentName = escapeHtml(p.tournament_name ?? "Turnier");
+            const playerName = escapeHtml(
+              p.player_name ?? "Unbekannter Spieler"
+            );
+            const markerName = escapeHtml(p.marker_name ?? "");
+            const roundLabel = escapeHtml(round);
+            const teeLabel = escapeHtml(tee || "-");
+const slopeLabel = escapeHtml(slope || "-");
+const courseRatingLabel = escapeHtml(courseRating || "-");
+
+          const playerSigUrl =
+  sig?.player_signature_data_url &&
+  String(sig.player_signature_data_url).startsWith("data:image/")
+    ? sig.player_signature_data_url
+    : "";
+
+const markerSigUrl =
+  sig?.marker_signature_data_url &&
+  String(sig.marker_signature_data_url).startsWith("data:image/")
+    ? sig.marker_signature_data_url
+    : "";
+
+const playerSignedName = escapeHtml(sig?.player_signed_name ?? "");
+const markerSignedName = escapeHtml(sig?.marker_signed_name ?? "");
+const signaturesHtml = `
+  <div style="margin-top:40px; display:flex; justify-content:space-between; gap:40px;">
+    <div style="flex:1; text-align:center;">
+      <div style="font-size:12px; color:#666;">Player Signature</div>
+      ${
+        playerSigUrl
+          ? `<img src="${playerSigUrl}" style="height:80px; object-fit:contain;" />`
+          : `<div style="height:80px;"></div>`
+      }
+      <div style="margin-top:6px; font-size:14px; font-weight:600;">
+        ${playerSignedName}
+      </div>
+      <div style="border-top:1px solid #000; margin-top:8px;"></div>
+    </div>
+
+    <div style="flex:1; text-align:center;">
+      <div style="font-size:12px; color:#666;">Marker Signature</div>
+      ${
+        markerSigUrl
+          ? `<img src="${markerSigUrl}" style="height:80px; object-fit:contain;" />`
+          : `<div style="height:80px;"></div>`
+      }
+      <div style="margin-top:6px; font-size:14px; font-weight:600;">
+        ${markerSignedName}
+      </div>
+      <div style="border-top:1px solid #000; margin-top:8px;"></div>
+    </div>
+  </div>
+`;
+
+            return `
+              <div class="card">
+              <div style="margin-bottom: 12px; font-size: 14px; line-height: 1.5;">
+  <strong>Abschlag:</strong> ${tee}<br />
+  <strong>Slope:</strong> ${slope}<br />
+  <strong>Course Rating:</strong> ${courseRating}
+</div>
+                <div class="title">${tournamentName}</div>
+                <div class="meta"><strong>Spieler:</strong> ${playerName}</div>
+                <div class="meta"><strong>Runde:</strong> ${roundLabel}</div>
+                ${
+                  markerName
+                    ? `<div class="meta"><strong>Marker:</strong> ${markerName}</div>`
+                    : ""
+                }
+
+                <table>
+                  <tr>
+                    ${holes.map((h) => `<th>${h}</th>`).join("")}
+                  </tr>
+                  <tr>
+                    ${holes
+                      .map((h) => {
+                        const value = scoresByHole[String(h)] ?? "";
+                        return `<td>${escapeHtml(value)}</td>`;
+                      })
+                      .join("")}
+                  </tr>
+                </table>
+
+                <div class="signatures">
+                  <div class="sig-block">
+                    <div class="sig-image-wrap">
+                      ${
+                        playerSigUrl
+                          ? `<img class="sig-image" src="${playerSigUrl}" alt="Spieler Signatur" />`
+                          : ``
+                      }
+                    </div>
+                    <div class="line"></div>
+                    <div class="sig-label">Spieler Unterschrift</div>
+                    ${
+                      playerSignedName
+                        ? `<div class="sig-name">${playerSignedName}</div>`
+                        : ``
+                    }
+                  </div>
+
+                  <div class="sig-block">
+                    <div class="sig-image-wrap">
+                      ${
+                        markerSigUrl
+                          ? `<img class="sig-image" src="${markerSigUrl}" alt="Marker Signatur" />`
+                          : ``
+                      }
+                    </div>
+                    <div class="line"></div>
+                    <div class="sig-label">Marker Unterschrift</div>
+                    ${
+                      markerSignedName
+                        ? `<div class="sig-name">${markerSignedName}</div>`
+                        : ``
+                    }
+                  </div>
+                </div>
+              </div>
+            `;
+          })
+          .join("")}
+      </body>
+    </html>
+    `;
+
+    return new NextResponse(html, {
+      headers: {
+        "Content-Type": "text/html; charset=utf-8",
       },
-      round,
-      totals: {
-        holes_with_score: holesWithScore,
-        strokes: holesWithScore ? totalStrokes : null,
-        par: totalPar || null,
-        to_par: typeof toPar === "number" ? toPar : null,
-      },
-      rows,
     });
   } catch (e: any) {
-    return NextResponse.json({ ok: false, error: e?.message || String(e) }, { status: 500 });
+    return NextResponse.json(
+      { ok: false, error: e?.message || String(e) },
+      { status: 500 }
+    );
   }
 }

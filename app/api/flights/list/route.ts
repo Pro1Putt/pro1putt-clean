@@ -1,12 +1,34 @@
 import { NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 function normStr(v: any) {
   return String(v ?? "").trim();
 }
 
 function jsonError(message: string, status = 400) {
-  return NextResponse.json({ ok: false, error: message }, { status });
+  return NextResponse.json(
+    { ok: false, error: message },
+    {
+      status,
+      headers: {
+        "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate",
+        Pragma: "no-cache",
+        Expires: "0",
+      },
+    }
+  );
+}
+
+function jsonOk(payload: any) {
+  return NextResponse.json(payload, {
+    headers: {
+      "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate",
+      Pragma: "no-cache",
+      Expires: "0",
+    },
+  });
 }
 
 function getServiceSupabase() {
@@ -24,7 +46,9 @@ export async function GET(req: Request) {
     const roundNo = Number(u.searchParams.get("round") ?? "1");
 
     if (!tournamentId) return jsonError("Missing tournamentId", 400);
-    if (![1, 2, 3].includes(roundNo)) return jsonError("round must be 1, 2, or 3", 400);
+    if (![1, 2, 3].includes(roundNo)) {
+      return jsonError("round must be 1, 2, or 3", 400);
+    }
 
     const supabase = getServiceSupabase();
 
@@ -43,21 +67,66 @@ export async function GET(req: Request) {
     if (flightIds.length) {
       const { data: fps, error: fpErr } = await supabase
         .from("flight_players")
-        .select("*")
+        .select(`
+          id,
+          flight_id,
+          registration_id,
+          marks_registration_id,
+          seat,
+          registration:registrations!flight_players_registration_id_fkey (
+            id,
+            first_name,
+            last_name,
+            gender,
+            hcp,
+            home_club,
+            holes
+          ),
+          marks_registration:registrations!flight_players_marks_registration_id_fkey (
+            id,
+            first_name,
+            last_name
+          )
+        `)
         .in("flight_id", flightIds)
         .order("flight_id", { ascending: true })
-        .order("seat", { ascending: true });
+        .order("seat", { ascending: true })
+        .order("id", { ascending: true });
 
       if (fpErr) return jsonError(`flight_players read failed: ${fpErr.message}`, 500);
-      flightPlayers = fps || [];
+
+      flightPlayers = (fps || []).map((fp: any, index: number) => ({
+        ...fp,
+        _row_index: index + 1,
+      }));
     }
 
-    return NextResponse.json({
+    const assignedRegistrationIds = new Set(
+      flightPlayers
+        .map((fp: any) => String(fp.registration_id ?? ""))
+        .filter(Boolean)
+    );
+
+    const { data: allRegs, error: regErr } = await supabase
+      .from("registrations")
+      .select("id, first_name, last_name, gender, hcp, home_club, holes")
+      .eq("tournament_id", tournamentId)
+      .order("last_name", { ascending: true })
+      .order("first_name", { ascending: true });
+
+    if (regErr) return jsonError(`registrations read failed: ${regErr.message}`, 500);
+
+    const unassigned_registrations = (allRegs || []).filter(
+      (r: any) => !assignedRegistrationIds.has(String(r.id))
+    );
+
+    return jsonOk({
       ok: true,
       tournamentId,
       round: roundNo,
       flights: flights || [],
       flight_players: flightPlayers,
+      unassigned_registrations,
     });
   } catch (e: any) {
     return jsonError(e?.message || "Unknown error", 500);

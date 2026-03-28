@@ -235,6 +235,106 @@ export default function HomeV2() {
 
       <WinstonProAmTeaser />
 
+      <section style={{ padding: "28px 20px 10px" }}>
+  <div
+    style={{
+      maxWidth: 1100,
+      margin: "0 auto",
+      borderRadius: 24,
+      overflow: "hidden",
+      background: "linear-gradient(135deg, #0E2A1F 0%, #163828 100%)",
+      boxShadow: "0 18px 40px rgba(0,0,0,0.10)",
+      color: "white",
+    }}
+  >
+    <div
+      style={{
+        display: "grid",
+        gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+        gap: 24,
+        alignItems: "center",
+        padding: "34px 28px",
+      }}
+    >
+      <div>
+        <div
+          style={{
+            fontSize: 12,
+            fontWeight: 900,
+            letterSpacing: 1.4,
+            textTransform: "uppercase",
+            color: "#00C46A",
+            marginBottom: 10,
+          }}
+        >
+          PRO1PUTT Exclusive Drop
+        </div>
+
+        <h2
+          style={{
+            fontSize: 30,
+            lineHeight: 1.08,
+            fontWeight: 900,
+            margin: "0 0 12px",
+          }}
+        >
+          Exclusive Hoodies
+          <br />
+          for players, families & fans
+        </h2>
+
+        <p
+          style={{
+            margin: "0 0 20px",
+            opacity: 0.86,
+            lineHeight: 1.6,
+            maxWidth: 560,
+          }}
+        >
+          Entdecke unsere exklusiven PRO1PUTT Hoodies – hochwertig, sportlich und passend
+          zur Tour.
+        </p>
+
+        <a
+          href="/hoodies"
+          style={{
+            display: "inline-block",
+            padding: "14px 22px",
+            background: "#00C46A",
+            color: "#001a10",
+            borderRadius: 14,
+            fontWeight: 900,
+            textDecoration: "none",
+            boxShadow: "0 14px 28px rgba(0,0,0,0.20)",
+          }}
+        >
+          Hoodies entdecken →
+        </a>
+      </div>
+
+      <div>
+        <div
+          style={{
+            minHeight: 220,
+            borderRadius: 20,
+            background: "rgba(255,255,255,0.08)",
+            border: "1px solid rgba(255,255,255,0.10)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: 20,
+            textAlign: "center",
+            color: "rgba(255,255,255,0.72)",
+            fontWeight: 800,
+          }}
+        >
+          Hoodie Image / Campaign Visual
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
   {/* HIGHLIGHTS */}
 <section id="highlights" style={{ padding: "72px 20px", textAlign: "center" }}>
   <h2 style={{ fontSize: 32, fontWeight: 900, marginBottom: 14, color: DARK }}>

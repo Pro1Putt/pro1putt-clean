@@ -1,6 +1,9 @@
 import { NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 type Gender = "Boys" | "Girls";
 
 function normStr(v: any) {
@@ -87,8 +90,9 @@ function normalizeGender(v: any): Gender | null {
   const s = normStr(v).toLowerCase();
   if (!s) return null;
   if (["boys", "boy", "m", "male", "herren", "jungen"].includes(s)) return "Boys";
-  if (["girls", "girl", "f", "female", "damen", "mädchen", "maedchen"].includes(s))
+  if (["girls", "girl", "f", "female", "damen", "mädchen", "maedchen"].includes(s)) {
     return "Girls";
+  }
   return null;
 }
 
@@ -114,22 +118,27 @@ function sortDescNullLast(a: number | null, b: number | null) {
 
 function mergeFlightsByKey<T extends { key: number | null }>(a: T[], b: T[]) {
   const out: T[] = [];
-  let i = 0,
-    j = 0;
+  let i = 0;
+  let j = 0;
+
   while (i < a.length || j < b.length) {
     const A = i < a.length ? a[i] : null;
     const B = j < b.length ? b[j] : null;
+
     if (!A) {
       out.push(B!);
       j++;
       continue;
     }
+
     if (!B) {
       out.push(A);
       i++;
       continue;
     }
+
     const cmp = sortAscNullLast(A.key, B.key);
+
     if (cmp <= 0) {
       out.push(A);
       i++;
@@ -138,6 +147,7 @@ function mergeFlightsByKey<T extends { key: number | null }>(a: T[], b: T[]) {
       j++;
     }
   }
+
   return out;
 }
 
@@ -156,7 +166,6 @@ export async function POST(req: Request) {
 
     const supabase = await getServiceSupabase();
 
-    // --- OpenAPI introspection so we only use columns that exist ---
     const projectUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
     const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY!;
     const openApi = await fetchOpenApiDoc(projectUrl, serviceKey);
@@ -165,7 +174,6 @@ export async function POST(req: Request) {
     const flightsCols = tableColumns(openApi, "flights");
     const flightPlayersCols = tableColumns(openApi, "flight_players");
 
-    // Determine the registration columns we can safely select
     const regIdCol = firstExisting(regCols, ["id"]) || "id";
     const regGenderCol = firstExisting(regCols, ["gender"]) || null;
     const regHolesCol = firstExisting(regCols, ["holes"]) || null;
@@ -173,7 +181,6 @@ export async function POST(req: Request) {
     const regPlayerIdCol = firstExisting(regCols, ["player_id"]) || null;
     const regTournamentIdCol = firstExisting(regCols, ["tournament_id"]) || null;
 
-    // Build select list dynamically (ONLY existing columns)
     const regSelectCols = [
       regIdCol,
       regGenderCol,
@@ -205,7 +212,6 @@ export async function POST(req: Request) {
       player_id: regPlayerIdCol ? r[regPlayerIdCol] : null,
     }));
 
-    // --- Totals for sorting in round 2 / 3 ---
     const roundTotalsCols = tableColumns(openApi, "v_player_round_totals");
     const cumTotalsCols = tableColumns(openApi, "v_player_cum_totals");
 
@@ -214,7 +220,8 @@ export async function POST(req: Request) {
       firstExisting(cumTotalsCols, ["tournament_id"]) ||
       null;
 
-    const totalsRoundCol = firstExisting(roundTotalsCols, ["round", "round_no", "round_number"]) || null;
+    const totalsRoundCol =
+      firstExisting(roundTotalsCols, ["round", "round_no", "round_number"]) || null;
 
     const totalsRegIdCol =
       firstExisting(roundTotalsCols, ["registration_id"]) ||
@@ -235,6 +242,7 @@ export async function POST(req: Request) {
 
     async function loadRound1Totals() {
       if (!totalsTournamentCol || !totalsRoundCol || !roundScoreCol) return;
+
       const { data, error } = await supabase
         .from("v_player_round_totals")
         .select("*")
@@ -242,27 +250,32 @@ export async function POST(req: Request) {
         .eq(totalsRoundCol, 1);
 
       if (error) return;
+
       (data || []).forEach((row: TotalsRow) => {
         const score = toNumber(row[roundScoreCol]);
         if (totalsRegIdCol && row[totalsRegIdCol]) scoreByRegId.set(String(row[totalsRegIdCol]), score);
-        if (totalsPlayerIdCol && row[totalsPlayerIdCol])
+        if (totalsPlayerIdCol && row[totalsPlayerIdCol]) {
           scoreByPlayerId.set(String(row[totalsPlayerIdCol]), score);
+        }
       });
     }
 
     async function loadCumTotals() {
       if (!totalsTournamentCol || !cumScoreCol) return;
+
       const { data, error } = await supabase
         .from("v_player_cum_totals")
         .select("*")
         .eq(totalsTournamentCol, tournamentId);
 
       if (error) return;
+
       (data || []).forEach((row: TotalsRow) => {
         const score = toNumber(row[cumScoreCol]);
         if (totalsRegIdCol && row[totalsRegIdCol]) scoreByRegId.set(String(row[totalsRegIdCol]), score);
-        if (totalsPlayerIdCol && row[totalsPlayerIdCol])
+        if (totalsPlayerIdCol && row[totalsPlayerIdCol]) {
           scoreByPlayerId.set(String(row[totalsPlayerIdCol]), score);
+        }
       });
     }
 
@@ -275,27 +288,30 @@ export async function POST(req: Request) {
       if (roundNo === 2) {
         const byReg = scoreByRegId.get(r.id);
         if (byReg !== undefined) return byReg;
+
         if (r.player_id) {
           const byPlayer = scoreByPlayerId.get(String(r.player_id));
           if (byPlayer !== undefined) return byPlayer;
         }
+
         return null;
       }
 
       if (roundNo === 3) {
         const byReg = scoreByRegId.get(r.id);
         if (byReg !== undefined) return byReg;
+
         if (r.player_id) {
           const byPlayer = scoreByPlayerId.get(String(r.player_id));
           if (byPlayer !== undefined) return byPlayer;
         }
+
         return null;
       }
 
       return null;
     }
 
-    // --- Split by holes segment: 18 first then 9 ---
     const reg18 = registrations.filter((r) => (r.holes ?? 18) >= 18);
     const reg9 = registrations.filter((r) => (r.holes ?? 18) <= 9);
 
@@ -316,19 +332,18 @@ export async function POST(req: Request) {
 
       const regsSorted = list.map((x) => x.r);
 
-      const flights = chunk(regsSorted, FLIGHT_SIZE).map((members) => ({
+      return chunk(regsSorted, FLIGHT_SIZE).map((members) => ({
         gender,
         holes: ((members[0]?.holes ?? 18) >= 18 ? 18 : 9) as 9 | 18,
         members,
         key: sortKeyForRegistration(members[0] ?? ({} as any)),
       }));
-
-      return flights;
     }
 
     function buildMergedFlightOrder(regs: Registration[], holes: 9 | 18) {
       const boysFlights = makeGenderFlights(regs, "Boys").filter((f) => f.holes === holes);
       const girlsFlights = makeGenderFlights(regs, "Girls").filter((f) => f.holes === holes);
+
       return mergeFlightsByKey(boysFlights, girlsFlights).map((f) => ({
         ...f,
         holes,
@@ -337,7 +352,6 @@ export async function POST(req: Request) {
 
     const orderedFlights = [...buildMergedFlightOrder(reg18, 18), ...buildMergedFlightOrder(reg9, 9)];
 
-    // --- Clear existing flights for this tournament+round (idempotent) ---
     const flightTournamentCol = firstExisting(flightsCols, ["tournament_id"]) || null;
     const flightRoundCol = firstExisting(flightsCols, ["round", "round_no", "round_number"]) || null;
 
@@ -367,7 +381,6 @@ export async function POST(req: Request) {
         .eq(flightRoundCol, roundNo);
     }
 
-    // --- Insert flights ---
     const flightNoCol = firstExisting(flightsCols, ["flight_no", "flight_number", "no", "number"]) || null;
     const flightGenderCol = firstExisting(flightsCols, ["gender"]) || null;
     const flightHolesCol = firstExisting(flightsCols, ["holes"]) || null;
@@ -377,9 +390,11 @@ export async function POST(req: Request) {
         [flightTournamentCol]: tournamentId,
         [flightRoundCol]: roundNo,
       };
+
       if (flightNoCol) base[flightNoCol] = idx + 1;
       if (flightGenderCol) base[flightGenderCol] = f.gender;
       if (flightHolesCol) base[flightHolesCol] = f.holes;
+
       return pick(base, flightsCols);
     });
 
@@ -399,7 +414,6 @@ export async function POST(req: Request) {
       );
     }
 
-    // --- Insert flight_players (YOUR schema: flight_id, registration_id, seat, marks_registration_id) ---
     const fpRegIdCol = firstExisting(flightPlayersCols, ["registration_id"]) || null;
     const fpSeatCol = firstExisting(flightPlayersCols, ["seat"]) || null;
     const fpMarksRegIdCol = firstExisting(flightPlayersCols, ["marks_registration_id"]) || null;
@@ -417,17 +431,15 @@ export async function POST(req: Request) {
       if (!members.length) continue;
 
       members.forEach((r, idx) => {
-        const marks = members[(idx + 1) % members.length]; // next marks this player (last marks first)
+  const row: any = {
+    [fpFlightIdCol]: flightId,
+    [fpRegIdCol]: r.id,
+    [fpSeatCol]: idx + 1,
+    [fpMarksRegIdCol]: r.id,
+  };
 
-        const row: any = {
-          [fpFlightIdCol]: flightId,
-          [fpRegIdCol]: r.id,
-          [fpSeatCol]: idx + 1,
-          [fpMarksRegIdCol]: marks?.id ?? r.id,
-        };
-
-        flightPlayersToInsert.push(pick(row, flightPlayersCols));
-      });
+  flightPlayersToInsert.push(pick(row, flightPlayersCols));
+});
     }
 
     const { error: insFpErr } = await supabase.from("flight_players").insert(flightPlayersToInsert);
@@ -439,6 +451,7 @@ export async function POST(req: Request) {
       round: roundNo,
       flights_created: createdIds.length,
       players_assigned: flightPlayersToInsert.length,
+      marker_mode: "not_generated_yet",
       rules: {
         round1:
           "18 holes first, then 9 holes; lowest HCP first; no mixed gender flights; flight order interleaved by best key",
@@ -447,7 +460,7 @@ export async function POST(req: Request) {
         round3:
           "leaders last using cumulative totals (if totals view available); no mixed gender flights; 18 first then 9",
         flight_size: FLIGHT_SIZE,
-        marks_rule: "each player is marked by the next player in the flight (last marks first)",
+        marks_rule: "not assigned in this step",
       },
     });
   } catch (e: any) {
