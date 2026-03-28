@@ -1,0 +1,4 @@
+id,tournament_id,course_name,tee_name,gender,hole_count,slope,course_rating,par_total,created_at
+31a29178-fc73-4953-a9aa-aab41b417e90,9824dd36-0163-4868-ad15-a7140d6b7502,Mijas Los Lagos,Amarillas,Boys,18,124,72.6,72,2026-03-27T07:32:29.366842+00:00
+f706d9ef-b825-4c0e-80f7-b55c5b3f1328,9824dd36-0163-4868-ad15-a7140d6b7502,Mijas Los Lagos,Amarillas,Boys,18,124,72.6,72,2026-03-27T07:33:26.972289+00:00
+282c4c05-90b2-4583-93fb-666e1d816a04,9824dd36-0163-4868-ad15-a7140d6b7502,Mijas Los Lagos,Rojas,Girls,18,120,71.6,72,2026-03-27T07:35:08.336923+00:00
