@@ -95,7 +95,7 @@ async function loadLogoBuffer() {
   }
 }
 
-function drawFooter(doc: PDFKit.PDFDocument) {
+function drawFooter(doc: any){
   const y = doc.page.height - 34;
 
   doc
