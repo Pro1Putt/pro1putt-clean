@@ -407,7 +407,7 @@ style={{
               location="WINSTONopen (WINSTONgolf)"
               intro="Auf dem renommierten WINSTONopen – sportlich anspruchsvoll, erstklassig gepflegt und bekannt aus internationalen Profi-Events. Jetzt sind die besten Juniorinnen & Junioren dran."
               bullets={[
-                "WAGR & EGR zertifiziert – Punkte sichern",
+                "WAGR & EGR zertifiziert – Punkte sichern! * Die WAGR Wertung erfolgt nur, wenn die Mindestanzahl an Teilnehmern in der jeweiligen Kategorie erreicht wird.",
                 "Top-Bedingungen – internationaler Kurs",
                 "Gemeinsames Abendessen am Finaltag",
                 "Hole-in-One Preis",
@@ -420,7 +420,7 @@ style={{
               location="Faldo Course (Bad Saarow)"
               intro="Der Faldo Course – Design von Sir Nick Faldo, Championship-Anspruch, Turnierhistorie. Eine Bühne, auf der Junioren Golf-Geschichte schreiben."
               bullets={[
-                "WAGR & EGR zertifiziert – wichtige Punkte",
+                "WAGR & EGR zertifiziert – wichtige Punkte! * Die WAGR Wertung erfolgt nur, wenn die Mindestanzahl an Teilnehmern in der jeweiligen Kategorie erreicht wird.",
                 "Kurs-Setup auf Top-Niveau",
                 "Gemeinsames Abendessen am Finaltag",
                 "Hole-in-One Preis",
@@ -433,7 +433,7 @@ style={{
               location="Green Eagle – North Course"
               intro="Der North Course: Länge, Wasser, Championship-Design – bekannt aus großen Profi-Events. Ein Finale, das jeder Spieler nie vergisst."
               bullets={[
-                "WAGR & EGR zertifiziert – Punkte sichern",
+                "WAGR & EGR zertifiziert – Punkte sichern! * Die WAGR Wertung erfolgt nur, wenn die Mindestanzahl an Teilnehmern in der jeweiligen Kategorie erreicht wird.",
                 "Unvergessliches Erlebnis auf Pro-Level",
                 "Gemeinsames Abendessen am Finaltag",
                 "Hole-in-One Preis",
