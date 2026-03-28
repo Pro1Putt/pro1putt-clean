@@ -1,0 +1,28 @@
+[
+  {
+    "id": "a3ff337f-7b5f-475d-9a64-a8acb8a5fda8",
+    "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
+    "round": 1,
+    "hole_number": 1,
+    "entered_by": "2cc9e7cd-f36e-4f27-ac2e-6959eecef670",
+    "for_registration_id": "2cc9e7cd-f36e-4f27-ac2e-6959eecef670",
+    "strokes": 5,
+    "rule_ball": false,
+    "rule_note": null,
+    "created_at": "2026-03-28T11:24:24.507649+00:00",
+    "updated_at": "2026-03-28T11:24:24.507649+00:00"
+  },
+  {
+    "id": "6192bb0b-5e2f-4b8e-8a51-343bb599e417",
+    "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
+    "round": 1,
+    "hole_number": 1,
+    "entered_by": "2cc9e7cd-f36e-4f27-ac2e-6959eecef670",
+    "for_registration_id": "db214db6-5b8c-432b-a14b-322a17f0f720",
+    "strokes": 5,
+    "rule_ball": false,
+    "rule_note": null,
+    "created_at": "2026-03-28T11:24:24.939874+00:00",
+    "updated_at": "2026-03-28T11:24:24.939874+00:00"
+  }
+]
