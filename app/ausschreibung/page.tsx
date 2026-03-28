@@ -279,7 +279,7 @@ export default function AusschreibungPage() {
           .p1-eventcard { min-height: auto; } /* mobil: natürliche Höhe */
         }
       `}</style>{/* HERO */}
-      <section className="p1-hero" style={{ padding: "64px 20px 60px" }}>
+      <section className="p1-hero" style={{ padding: "64px 20px 100px" }}>
         <div style={{ position: "relative", zIndex: 2, maxWidth: 1050, margin: "0 auto" }}>
  <div style={{ display: "flex", flexWrap: "wrap", gap: 10, justifyContent: "center" }}>
   <Badge>WAGR & EGR</Badge>
