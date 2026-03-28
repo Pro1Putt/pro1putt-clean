@@ -75,7 +75,7 @@ export async function POST(req: Request) {
       byFlight.get(fid)!.push(fp);
     }
 
-    const updates: Promise<any>[] = [];
+   const updates: any[] = [];
     let playersUpdated = 0;
 
     for (const fid of flightIds) {
@@ -87,14 +87,14 @@ export async function POST(req: Request) {
         const next = members[(i + 1) % members.length];
         const marksRegistrationId = String(next?.registration_id || current.registration_id || "");
 
-           updates.push(
-          supabase
-            .from("flight_players")
-            .update({
-              marks_registration_id: marksRegistrationId,
-            })
-            .eq("id", current.id)
-        );
+         updates.push(
+  supabase
+    .from("flight_players")
+    .update({
+      marks_registration_id: marksRegistrationId,
+    })
+    .eq("id", current.id)
+);
 
         playersUpdated++;
       }
