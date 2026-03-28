@@ -115,7 +115,7 @@ function drawFooter(doc: any){
     });
 }
 
-function ensureSpace(doc: PDFKit.PDFDocument, needed: number) {
+function ensureSpace(doc: any, needed: number) {
   if (doc.y + needed > doc.page.height - 70) {
     drawFooter(doc);
     doc.addPage();
@@ -124,7 +124,7 @@ function ensureSpace(doc: PDFKit.PDFDocument, needed: number) {
 }
 
 function drawLabelValue(
-  doc: PDFKit.PDFDocument,
+  doc: any,
   x: number,
   y: number,
   label: string,
