@@ -281,13 +281,13 @@ export default function AusschreibungPage() {
       `}</style>{/* HERO */}
       <section className="p1-hero" style={{ padding: "64px 20px 60px" }}>
         <div style={{ position: "relative", zIndex: 2, maxWidth: 1050, margin: "0 auto" }}>
-         <div style={{ display: "flex", flexWrap: "wrap", gap: 10, justifyContent: "center" }}>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 10, justifyContent: "center" }}>
   <Badge>WAGR & EGR</Badge>
   <Badge>Hole-in-One bis 10.000 €</Badge>
   <Badge>Caddies willkommen</Badge>
 </div>
 
-<p style={{ fontSize: "12px", color: "#6b7280", marginTop: "8px", textAlign: "center" }}>
+<p style={{ fontSize: "12px", color: "#9ca3af", marginTop: "6px", textAlign: "center" }}>
   * Die WAGR Wertung erfolgt nur, wenn die Mindestanzahl an Teilnehmern in der jeweiligen Kategorie erreicht wird.
 </p>
 
