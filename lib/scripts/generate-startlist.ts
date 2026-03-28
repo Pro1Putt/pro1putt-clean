@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import dotenv from "dotenv";
+// @ts-ignore
 import PDFDocument from "pdfkit";
 import { createClient } from "@supabase/supabase-js";
 
