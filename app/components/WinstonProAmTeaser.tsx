@@ -73,22 +73,20 @@ export default function WinstonProAmTeaser() {
           >
             Details ansehen →
           </a>
-          <a
-            href="/register"
-            style={{
-              padding: "12px 16px",
-              borderRadius: 14,
-              background: GREEN,
-              color: "#001a10",
-              fontWeight: 900,
-              textDecoration: "none",
-              boxShadow: "0 14px 34px rgba(0,0,0,0.12)",
-              display: "inline-block",
-              whiteSpace: "nowrap",
-            }}
-          >
-            Jetzt anmelden →
-          </a>
+         <span
+  style={{
+    padding: "12px 16px",
+    borderRadius: 14,
+    background: "#d9d9d9",
+    color: "#666",
+    fontWeight: 900,
+    display: "inline-block",
+    whiteSpace: "nowrap",
+    cursor: "not-allowed",
+  }}
+>
+  Anmeldung geschlossen
+</span>
         </div>
       </div>
     </section>
