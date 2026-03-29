@@ -162,7 +162,9 @@ if (url) {
               <option value="" disabled>
                 Bitte wählen…
               </option>
-              {tournaments.map((t) => (
+              {tournaments
+  .filter((t) => !String(t.name || "").toLowerCase().includes("winston"))
+  .map((t) => (
                 <option key={t.id} value={t.id}>
                   {(t.name ?? "Turnier") +
                     (t.start_date ? ` • ${t.start_date}` : "") +
