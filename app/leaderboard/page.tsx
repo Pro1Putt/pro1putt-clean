@@ -28,6 +28,7 @@ type Row = {
   flight_number: number | null;
   start_time: string | null;
   round2_start_time: string | null;
+  round3_start_time: string | null;
 };
 
 type FilterKey = "ALL_U12" | "ALL_U21" | string;
@@ -180,7 +181,7 @@ const supabase = createClient(
 
   try {
     const res = await fetch(
-      `/api/leaderboard?tournamentId=${encodeURIComponent(tid)}&round=2`,
+     `/api/leaderboard?tournamentId=${encodeURIComponent(tid)}&round=1`,
       {
         cache: "no-store",
       }
@@ -339,8 +340,9 @@ const supabase = createClient(
       </div>
 
       <div style={{ fontSize: 12, opacity: 0.7 }}>
-        Thru {r.thru || "–"} • {fmtToPar(r.to_par)} • Flight {r.flight_number ?? "–"} • Start{" "}
-{fmtTime(r.start_time)} • R2 Start {fmtTime(r.round2_start_time)}
+       Thru {r.thru || "–"} • {fmtToPar(r.to_par)} • Flight {r.flight_number ?? "–"} • Start{" "}
+{fmtTime(r.start_time)} • R2 Start {fmtTime(r.round2_start_time)} • R3 Start{" "}
+{fmtTime(r.round3_start_time)}
       </div>
 
       {r.home_club ? (
@@ -350,79 +352,67 @@ const supabase = createClient(
   );
 }
     return (
-      <div
-        key={`${r.id}-${idx}`}
-        style={{
-          display: "grid",
-          gridTemplateColumns: "70px 70px 1.6fr 110px 90px 90px 90px 110px 110px 120px",
-          padding: "12px 14px",
-          borderBottom: "1px solid rgba(0,0,0,0.06)",
-          alignItems: "center",
-          fontSize: 14,
-        }}
-      >
-        <div style={{ fontWeight: 900, color: GREEN }}>{displayRank}</div>
-        <div style={{ fontSize: 16 }}>{medal(displayRank)}</div>
+  <div
+    key={`${r.id}-${idx}`}
+    style={{
+      display: "grid",
+     gridTemplateColumns: "60px 50px minmax(320px, 2.8fr) 90px 70px 80px 70px 80px 90px 90px 90px",
+      columnGap: 8,
+      padding: "12px 14px",
+      borderBottom: "1px solid rgba(0,0,0,0.06)",
+      alignItems: "center",
+      fontSize: 14,
+    }}
+  >
+    <div style={{ fontWeight: 900, color: GREEN }}>{displayRank}</div>
+    <div style={{ fontSize: 16 }}>{medal(displayRank)}</div>
 
-        <div style={{ display: "flex", gap: 10, alignItems: "center", minWidth: 0 }}>
-          <span style={{ fontSize: 18 }}>{flagEmoji(r.nation)}</span>
-          <span
-            style={{
-              fontWeight: 800,
-              overflow: "hidden",
-              textOverflow: "ellipsis",
-              whiteSpace: "nowrap",
-            }}
-          >
-            {r.first_name} {r.last_name}
-          </span>
-          <span style={{ fontSize: 12, opacity: 0.6, whiteSpace: "nowrap" }}>
-            • {r.gender} • {r.age_group} • {r.holes}L
-          </span>
+    <div style={{ display: "flex", gap: 10, alignItems: "center", minWidth: 0 }}>
+      <span style={{ fontSize: 18, flex: "0 0 auto" }}>{flagEmoji(r.nation)}</span>
+
+      <div style={{ minWidth: 0 }}>
+        <div
+          style={{
+            fontWeight: 800,
+            fontSize: 15,
+            lineHeight: "18px",
+            whiteSpace: "normal",
+            wordBreak: "break-word",
+          }}
+        >
+          {r.first_name} {r.last_name}
         </div>
 
-        <div style={{ display: "flex", justifyContent: "center" }}>
-          <span
-            style={{
-              minWidth: 44,
-              textAlign: "center",
-              padding: "6px 10px",
-              borderRadius: 999,
-              background: "rgba(30,70,32,0.10)",
-              border: "1px solid rgba(30,70,32,0.25)",
-              color: GREEN,
-              fontWeight: 900,
-              fontSize: 18,
-              lineHeight: "20px",
-              letterSpacing: 0.5,
-            }}
-          >
-            {fmtScore(r.score)}
-          </span>
-        </div>
-
-        <div style={{ opacity: 0.85 }}>{r.thru ? r.thru : "–"}</div>
-        <div style={{ opacity: 0.85 }}>{fmtToPar(r.to_par)}</div>
-        <div style={{ opacity: 0.85 }}>{r.flight_number ?? "–"}</div>
-<div style={{ opacity: 0.85 }}>{fmtTime(r.start_time)}</div>
-<div style={{ opacity: 0.85 }}>{fmtTime(r.round2_start_time)}</div>
-
-<div style={{ fontWeight: 800 }}>
-  {r.hcp != null ? Number(r.hcp).toFixed(1) : "–"}
-          <div
-            style={{
-              fontSize: 12,
-              opacity: 0.6,
-              overflow: "hidden",
-              textOverflow: "ellipsis",
-              whiteSpace: "nowrap",
-            }}
-          >
-            {r.home_club || ""}
-          </div>
+        <div
+          style={{
+            fontSize: 12,
+            opacity: 0.65,
+            whiteSpace: "nowrap",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+          }}
+        >
+          {r.gender} • {r.age_group} • {r.holes}L
+          {r.home_club ? ` • ${r.home_club}` : ""}
         </div>
       </div>
-    );
+    </div>
+
+    <div style={{ fontWeight: 900, color: GREEN, textAlign: "center" }}>
+      {fmtScore(r.score)}
+    </div>
+
+    <div style={{ opacity: 0.85, textAlign: "center" }}>{r.thru ? r.thru : "–"}</div>
+    <div style={{ opacity: 0.85, textAlign: "center" }}>{fmtToPar(r.to_par)}</div>
+    <div style={{ opacity: 0.85, textAlign: "center" }}>{r.flight_number ?? "–"}</div>
+    <div style={{ opacity: 0.85, textAlign: "center" }}>{fmtTime(r.start_time)}</div>
+    <div style={{ opacity: 0.85, textAlign: "center" }}>{fmtTime(r.round2_start_time)}</div>
+    <div style={{ opacity: 0.85, textAlign: "center" }}>{fmtTime(r.round3_start_time)}</div>
+    <div style={{ fontWeight: 800, textAlign: "center" }}>
+      {r.hcp != null ? Number(r.hcp).toFixed(1) : "–"}
+    </div>
+  </div>
+);
   }
 
   const showDynamicTabs = tabs.length > 0;
@@ -459,12 +449,12 @@ const supabase = createClient(
   }
 
   /* Der Grid-"Table"-Block bekommt eine Mindestbreite, damit er nicht gequetscht wird */
-  .p1-lb-minw {
-  min-width: 980px;
+.p1-lb-minw {
+  min-width: 1070px;
 }
 
-  @media (max-width: 420px) {
-   .p1-lb-minw { min-width: 940px; }
+ @media (max-width: 420px) {
+   .p1-lb-minw { min-width: 1030px; }
   }
 `}</style>
       <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 14 }}>
@@ -542,7 +532,7 @@ const supabase = createClient(
         )}
       </div>
 
-      <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginTop: 10, marginBottom: 12 }}>
+           <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginTop: 10, marginBottom: 12 }}>
         <Tab k="ALL_U21" label="Allover • U21 (18 Loch)" />
         <Tab k="ALL_U12" label="Allover • U12 (9 Loch)" />
 
@@ -557,93 +547,97 @@ const supabase = createClient(
           />
         )}
 
-       {showDynamicTabs &&
-  tabs.map((k) => (
-    <Tab
-      key={k}
-      k={k}
-      label={CATEGORY_LABELS[k] ?? k}
-    />
-  ))}
+        {showDynamicTabs &&
+          tabs.map((k) => (
+            <Tab
+              key={k}
+              k={k}
+              label={CATEGORY_LABELS[k] ?? k}
+            />
+          ))}
       </div>
 
-     <div
-  style={{
-    background: "#ffffff",
-    borderRadius: 16,
-    border: "1px solid rgba(0,0,0,0.08)",
-    overflow: "hidden",
-  }}
->
-  <div className="p1-lb-tablewrap">
-    <div className="p1-lb-minw">
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "70px 70px 1.6fr 110px 90px 90px 90px 110px 110px 120px",
-            padding: "12px 14px",
-            fontWeight: 900,
-            color: GREEN,
-            borderBottom: "1px solid rgba(0,0,0,0.08)",
-            background: "#f5f7f5",
-            fontSize: 13,
-          }}
-        >
-          <div>Rank</div>
-          <div>Med.</div>
-          <div>Name</div>
-          <div>Score</div>
-          <div>Thru</div>
-          <div>To Par</div>
-          <div>Flight</div>
-<div>Start</div>
-<div>R2 Start</div>
-<div>HCP</div>
+      <div
+        style={{
+          background: "#ffffff",
+          borderRadius: 16,
+          border: "1px solid rgba(0,0,0,0.08)",
+          overflow: "hidden",
+        }}
+      >
+        <div className="p1-lb-tablewrap">
+          <div className="p1-lb-minw">
+            <div
+              style={{
+                display: "grid",
+              gridTemplateColumns: "60px 50px minmax(320px, 2.8fr) 90px 70px 80px 70px 80px 90px 90px 90px",
+columnGap: 8,
+                columnGap: 10,
+                padding: "12px 14px",
+                fontWeight: 900,
+                color: GREEN,
+                borderBottom: "1px solid rgba(0,0,0,0.08)",
+                background: "#f5f7f5",
+                fontSize: 13,
+              }}
+            >
+              <div>Rank</div>
+              <div>Med.</div>
+              <div>Name</div>
+              <div>Score</div>
+              <div>Thru</div>
+              <div>To Par</div>
+              <div>Flight</div>
+              <div>Start</div>
+              <div>R2 Start</div>
+              <div>R3 Start</div>
+              <div>HCP</div>
+            </div>
+
+            {loading && <div style={{ padding: 16, opacity: 0.7 }}>Lade Daten…</div>}
+
+            {!loading && split.list.length === 0 && (
+              <div style={{ padding: 16, opacity: 0.7 }}>Keine Spieler in dieser Ansicht.</div>
+            )}
+
+            {!loading && split.list.length > 0 && active.startsWith("ALL_") && (() => {
+              const boysGroups = groupByAge(split.boys);
+              const girlsGroups = groupByAge(split.girls);
+
+              return (
+                <>
+                  <SectionTitle title="Boys Overall U21 (18 Loch)" />
+                  {split.boys.map((r, idx) => renderRow(r, idx))}
+
+                  {boysGroups.map((g) => (
+                    <div key={`boys-${g.ag}`}>
+                      <SectionTitle title={CATEGORY_LABELS[`Boys-${g.ag}`] ?? `Boys • ${g.ag}`} />
+                      {g.list.map((r, idx) => renderRow(r, idx))}
+                    </div>
+                  ))}
+
+                  <SectionTitle title="Girls Overall U21 (18 Loch)" />
+                  {split.girls.map((r, idx) => renderRow(r, idx))}
+
+                  {girlsGroups.map((g) => (
+                    <div key={`girls-${g.ag}`}>
+                      <SectionTitle title={CATEGORY_LABELS[`Girls-${g.ag}`] ?? `Girls • ${g.ag}`} />
+                      {g.list.map((r, idx) => renderRow(r, idx))}
+                    </div>
+                  ))}
+                </>
+              );
+            })()}
+
+            {!loading && split.list.length > 0 && !active.startsWith("ALL_") &&
+              split.list.map((r, idx) => renderRow(r, idx))}
+          </div>
         </div>
-  </div>
-</div>
-
-        {loading && <div style={{ padding: 16, opacity: 0.7 }}>Lade Daten…</div>}
-
-        {!loading && split.list.length === 0 && (
-          <div style={{ padding: 16, opacity: 0.7 }}>Keine Spieler in dieser Ansicht.</div>
-        )}
-
-        {!loading && split.list.length > 0 && active.startsWith("ALL_") && (() => {
-          const boysGroups = groupByAge(split.boys);
-          const girlsGroups = groupByAge(split.girls);
-
-          return (
-            <>
-              <SectionTitle title="Boys Overall U21 (18 Loch)" />
-              {split.boys.map((r, idx) => renderRow(r, idx))}
-
-              {boysGroups.map((g) => (
-                <div key={`boys-${g.ag}`}>
-                 <SectionTitle title={CATEGORY_LABELS[`Boys-${g.ag}`] ?? `Boys • ${g.ag}`} />
-                  {g.list.map((r, idx) => renderRow(r, idx))}
-                </div>
-              ))}
-
-              <SectionTitle title="Girls Overall U21 (18 Loch)" />
-              {split.girls.map((r, idx) => renderRow(r, idx))}
-
-              {girlsGroups.map((g) => (
-                <div key={`girls-${g.ag}`}>
-                  <SectionTitle title={CATEGORY_LABELS[`Girls-${g.ag}`] ?? `Girls • ${g.ag}`} />
-                  {g.list.map((r, idx) => renderRow(r, idx))}
-                </div>
-              ))}
-            </>
-          );
-        })()}
-
-        {!loading && split.list.length > 0 && !active.startsWith("ALL_") &&
-          split.list.map((r, idx) => renderRow(r, idx))}
       </div>
     </div>
   );
 }
+ 
 
 export default function LeaderboardPage() {
   return (
