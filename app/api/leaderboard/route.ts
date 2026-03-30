@@ -112,6 +112,38 @@ export async function GET(req: Request) {
     }
 
     const registrations = (regs || []) as RegRow[];
+    const { data: round2Flights, error: round2Err } = await supabase
+  .from("flights")
+  .select(`
+    id,
+    round,
+    start_time,
+    flight_no,
+    flight_players (
+      registration_id
+    )
+  `)
+  .eq("tournament_id", tournamentId)
+  .eq("round", 2)
+  .order("start_time", { ascending: true })
+  .order("flight_no", { ascending: true });
+
+if (round2Err) {
+  console.error("round2Flights error", round2Err);
+}
+
+const round2StartTimeByRegistrationId = new Map<string, string>();
+
+for (const flight of round2Flights || []) {
+  const startTime = flight?.start_time || null;
+  const players = Array.isArray(flight?.flight_players) ? flight.flight_players : [];
+
+  for (const fp of players) {
+    const regId = String(fp?.registration_id || "").trim();
+    if (!regId || !startTime) continue;
+    round2StartTimeByRegistrationId.set(regId, startTime);
+  }
+}
 
     const { data: fp, error: fpErr } = await supabase
       .from("flight_players")
@@ -152,14 +184,16 @@ export async function GET(req: Request) {
     }
 
     const flightInfo = new Map<string, { flight_number: number | null; start_time: string | null }>();
-    for (const r of flightPlayers) {
-      if (r?.registration_id) {
-        flightInfo.set(r.registration_id, {
-          flight_number: r.flight?.flight_number ?? null,
-          start_time: r.flight?.start_time ?? null,
-        });
-      }
-    }
+
+for (const r of flightPlayers) {
+  const regId = String(r?.registration_id || "").trim();
+  if (!regId) continue;
+
+  flightInfo.set(regId, {
+    flight_number: r.flight?.flight_number ?? null,
+    start_time: r.flight?.start_time ?? null,
+  });
+}
 
    const parByHole = new Map<number, number>();
 
@@ -256,24 +290,27 @@ for (const s of scores) {
 
       const fi = flightInfo.get(r.id) || { flight_number: null, start_time: null };
 
-      return {
-        id: r.id,
-        tournament_id: r.tournament_id,
-        first_name: r.first_name,
-        last_name: r.last_name,
-        hcp: r.hcp,
-        nation: r.nation,
-        gender: r.gender,
-        holes,
-        home_club: r.home_club,
-        age_group,
-        score,
-        thru,
-        holes_played: holesPlayed,
-        to_par,
-        flight_number: fi.flight_number,
-        start_time: fi.start_time,
-      };
+    return {
+  id: r.id,
+  tournament_id: r.tournament_id,
+  first_name: r.first_name,
+  last_name: r.last_name,
+  hcp: r.hcp,
+  nation: r.nation,
+  gender: r.gender,
+  holes,
+  home_club: r.home_club,
+  age_group,
+  score,
+  thru,
+  holes_played: holesPlayed,
+  to_par,
+  flight_number: fi.flight_number,
+  start_time: fi.start_time,
+
+  // ✅ NEU:
+  round2_start_time: round2StartTimeByRegistrationId.get(String(r.id || "").trim()) || null,
+};
     });
 
     rows.sort((a: any, b: any) => {

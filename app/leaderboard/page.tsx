@@ -27,6 +27,7 @@ type Row = {
   to_par: number | null;
   flight_number: number | null;
   start_time: string | null;
+  round2_start_time: string | null;
 };
 
 type FilterKey = "ALL_U12" | "ALL_U21" | string;
@@ -167,22 +168,28 @@ const supabase = createClient(
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  async function loadLeaderboard(tId: string) {
-    if (!tId) {
-      setRows([]);
-      setLastUpdated(null);
-      return;
-    }
+ async function loadLeaderboard(tid: string) {
+  if (!tid) {
+    setRows([]);
+    setLastUpdated(null);
+    return;
+  }
 
-    setLoadErr(null);
-    setLoading(true);
-    try {
-      const res = await fetch(`/api/leaderboard?tournamentId=${encodeURIComponent(tId)}`, {
+  setLoadErr(null);
+  setLoading(true);
+
+  try {
+    const res = await fetch(
+      `/api/leaderboard?tournamentId=${encodeURIComponent(tid)}&round=2`,
+      {
         cache: "no-store",
-      });
-      const json = await res.json();
-      if (!res.ok || !json?.ok) throw new Error(json?.error || "Failed to load leaderboard");
-      const raw = Array.isArray(json?.rows) ? (json.rows as any[]) : [];
+      }
+    );
+
+  const json = await res.json();
+  if (!res.ok || !json?.ok) throw new Error(json?.error || "Failed to load leaderboard");
+
+  const raw = Array.isArray(json?.rows) ? (json.rows as any[]) : [];
 
       const cleaned = raw.filter(
         (r) =>
@@ -333,7 +340,7 @@ const supabase = createClient(
 
       <div style={{ fontSize: 12, opacity: 0.7 }}>
         Thru {r.thru || "–"} • {fmtToPar(r.to_par)} • Flight {r.flight_number ?? "–"} • Start{" "}
-        {fmtTime(r.start_time)}
+{fmtTime(r.start_time)} • R2 Start {fmtTime(r.round2_start_time)}
       </div>
 
       {r.home_club ? (
@@ -347,7 +354,7 @@ const supabase = createClient(
         key={`${r.id}-${idx}`}
         style={{
           display: "grid",
-          gridTemplateColumns: "70px 70px 1.6fr 110px 90px 90px 90px 110px 120px",
+          gridTemplateColumns: "70px 70px 1.6fr 110px 90px 90px 90px 110px 110px 120px",
           padding: "12px 14px",
           borderBottom: "1px solid rgba(0,0,0,0.06)",
           alignItems: "center",
@@ -397,10 +404,11 @@ const supabase = createClient(
         <div style={{ opacity: 0.85 }}>{r.thru ? r.thru : "–"}</div>
         <div style={{ opacity: 0.85 }}>{fmtToPar(r.to_par)}</div>
         <div style={{ opacity: 0.85 }}>{r.flight_number ?? "–"}</div>
-        <div style={{ opacity: 0.85 }}>{fmtTime(r.start_time)}</div>
+<div style={{ opacity: 0.85 }}>{fmtTime(r.start_time)}</div>
+<div style={{ opacity: 0.85 }}>{fmtTime(r.round2_start_time)}</div>
 
-        <div style={{ fontWeight: 800 }}>
-          {r.hcp != null ? Number(r.hcp).toFixed(1) : "–"}
+<div style={{ fontWeight: 800 }}>
+  {r.hcp != null ? Number(r.hcp).toFixed(1) : "–"}
           <div
             style={{
               fontSize: 12,
@@ -452,11 +460,11 @@ const supabase = createClient(
 
   /* Der Grid-"Table"-Block bekommt eine Mindestbreite, damit er nicht gequetscht wird */
   .p1-lb-minw {
-    min-width: 860px;
-  }
+  min-width: 980px;
+}
 
   @media (max-width: 420px) {
-    .p1-lb-minw { min-width: 820px; }
+   .p1-lb-minw { min-width: 940px; }
   }
 `}</style>
       <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 14 }}>
@@ -572,7 +580,7 @@ const supabase = createClient(
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "70px 70px 1.6fr 110px 90px 90px 90px 110px 120px",
+            gridTemplateColumns: "70px 70px 1.6fr 110px 90px 90px 90px 110px 110px 120px",
             padding: "12px 14px",
             fontWeight: 900,
             color: GREEN,
@@ -588,8 +596,9 @@ const supabase = createClient(
           <div>Thru</div>
           <div>To Par</div>
           <div>Flight</div>
-          <div>Start</div>
-          <div>HCP</div>
+<div>Start</div>
+<div>R2 Start</div>
+<div>HCP</div>
         </div>
   </div>
 </div>
