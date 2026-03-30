@@ -160,14 +160,13 @@ export async function POST(req: Request) {
     const nextSeat =
       Math.max(0, ...(targetRows || []).map((r: any) => Number(r.seat ?? 0))) + 1;
 
-    const { error: updateErr } = await supabase
-      .from("flight_players")
-      .update({
-        flight_id: targetFlightId,
-        seat: nextSeat,
-        marks_registration_id: null,
-      })
-      .eq("id", existingRow.id);
+   const { error: updateErr } = await supabase
+  .from("flight_players")
+  .update({
+    flight_id: targetFlightId,
+    seat: nextSeat,
+  })
+  .eq("id", existingRow.id);
 
     if (updateErr) {
       return jsonError(`flight_players update failed: ${updateErr.message}`, 500);
