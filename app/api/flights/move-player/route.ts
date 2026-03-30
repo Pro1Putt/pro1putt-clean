@@ -64,18 +64,73 @@ export async function POST(req: Request) {
 
     const supabase = getServiceSupabase();
 
-    const { data: existingRow, error: existingErr } = await supabase
-      .from("flight_players")
-      .select("id, flight_id, registration_id, seat, marks_registration_id")
-      .eq("registration_id", registrationId)
+    const { data: targetFlight, error: targetFlightErr } = await supabase
+      .from("flights")
+      .select("id, tournament_id, round, flight_number")
+      .eq("id", targetFlightId)
       .maybeSingle();
 
-    if (existingErr) {
-      return jsonError(`flight_players read failed: ${existingErr.message}`, 500);
+    if (targetFlightErr) {
+      return jsonError(`target flight read failed: ${targetFlightErr.message}`, 500);
     }
 
-    if (!existingRow) {
+    if (!targetFlight) {
+      return jsonError("Target flight not found", 404);
+    }
+
+    const { data: registrationRows, error: registrationRowsErr } = await supabase
+      .from("flight_players")
+      .select("id, flight_id, registration_id, seat, marks_registration_id")
+      .eq("registration_id", registrationId);
+
+    if (registrationRowsErr) {
+      return jsonError(`flight_players read failed: ${registrationRowsErr.message}`, 500);
+    }
+
+    if (!registrationRows || registrationRows.length === 0) {
       return jsonError("Player is not assigned to a flight", 404);
+    }
+
+    const candidateFlightIds = Array.from(
+      new Set(
+        registrationRows
+          .map((r: any) => normStr(r.flight_id))
+          .filter(Boolean)
+      )
+    );
+
+    if (candidateFlightIds.length === 0) {
+      return jsonError("Player has no valid flight assignment", 404);
+    }
+
+    const { data: candidateFlights, error: candidateFlightsErr } = await supabase
+      .from("flights")
+      .select("id, tournament_id, round, flight_number")
+      .in("id", candidateFlightIds);
+
+    if (candidateFlightsErr) {
+      return jsonError(`candidate flights read failed: ${candidateFlightsErr.message}`, 500);
+    }
+
+    const candidateFlightMap = new Map(
+      (candidateFlights || []).map((f: any) => [normStr(f.id), f])
+    );
+
+    const existingRow =
+      (registrationRows || []).find((r: any) => {
+        const f = candidateFlightMap.get(normStr(r.flight_id));
+        if (!f) return false;
+        return (
+          normStr(f.tournament_id) === normStr(targetFlight.tournament_id) &&
+          Number(f.round) === Number(targetFlight.round)
+        );
+      }) || null;
+
+    if (!existingRow) {
+      return jsonError(
+        "No flight assignment found for this player in the same tournament/round as the target flight",
+        404
+      );
     }
 
     const oldFlightId = normStr(existingRow.flight_id);
@@ -110,6 +165,7 @@ export async function POST(req: Request) {
       .update({
         flight_id: targetFlightId,
         seat: nextSeat,
+        marks_registration_id: null,
       })
       .eq("id", existingRow.id);
 
@@ -136,6 +192,8 @@ export async function POST(req: Request) {
       old_flight_id: oldFlightId,
       target_flight_id: targetFlightId,
       seat: movedRow?.seat ?? nextSeat,
+      round: targetFlight.round,
+      tournament_id: targetFlight.tournament_id,
     });
   } catch (e: any) {
     return jsonError(e?.message || "Unknown error", 500);
