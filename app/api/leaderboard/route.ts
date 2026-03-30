@@ -66,7 +66,7 @@ type ParRow = {
 };
 
 type ScoreRow = {
-  registration_id: string;
+  player_id: string;
   hole_number: number;
   strokes: number;
   updated_at: string | null;
@@ -161,23 +161,34 @@ export async function GET(req: Request) {
       }
     }
 
-    const parByHole = new Map<number, number>();
-    {
-      const { data: pars } = await supabase
-        .from("tournament_holes")
-        .select("hole,par")
-        .eq("tournament_id", tournamentId);
+   const parByHole = new Map<number, number>();
 
-      for (const p of (pars || []) as any as ParRow[]) {
-        const h = safeNum((p as any).hole);
-        const par = safeNum((p as any).par);
-        if (h && par) parByHole.set(h, par);
-      }
-    }
+const { data: pars, error: pErr } = await supabase
+  .from("v_registration_holes")
+  .select("hole_number, par")
+  .eq("tournament_id", tournamentId);
+
+const seen = new Set<number>();
+
+for (const p of (pars || []) as any[]) {
+  const h = safeNum((p as any).hole_number);
+const par = safeNum((p as any).par);
+
+if (h && par && !seen.has(h)) {
+  parByHole.set(h, par);
+  seen.add(h);
+}
+}
+
+console.log(
+  "PAR MAP SIZE",
+  parByHole.size,
+  Array.from(parByHole.entries()).slice(0, 5)
+);
 
   const { data: scoreData, error: scoreErr } = await supabase
   .from("scores")
-  .select("registration_id,hole_number,strokes,updated_at,round_number")
+  .select("player_id,hole_number,strokes,updated_at,round_number")
   .eq("tournament_id", tournamentId)
   .order("updated_at", { ascending: false });
 
@@ -193,19 +204,19 @@ export async function GET(req: Request) {
     // Deshalb indexieren wir über registration_id.
     const latestScoreByRegAndHole = new Map<string, number>();
 
-    for (const s of scores) {
-  const regId = String(s.registration_id || "").trim();
-      const hole = safeNum(s.hole_number);
-      const strokes = safeNum(s.strokes);
+for (const s of scores) {
+  const regId = String(s.player_id || "").trim();
+  const hole = safeNum(s.hole_number);
+  const strokes = safeNum(s.strokes);
 
-      if (!regId || hole == null || strokes == null) continue;
+  if (!regId || hole == null || strokes == null) continue;
 
-      const key = `${regId}::${hole}`;
+  const key = `${regId}::${hole}`;
 
-      if (!latestScoreByRegAndHole.has(key)) {
-        latestScoreByRegAndHole.set(key, strokes);
-      }
-    }
+  if (!latestScoreByRegAndHole.has(key)) {
+    latestScoreByRegAndHole.set(key, strokes);
+  }
+}
 
     const rows = registrations.map((r) => {
       const holes = Number(r.holes || 18);
@@ -235,6 +246,13 @@ export async function GET(req: Request) {
       const hasAnyScore = holesPlayed > 0;
       const score = hasAnyScore ? strokesSum : null;
       const to_par = hasAnyScore && parSum > 0 ? strokesSum - parSum : null;
+      console.log("LB DEBUG", {
+  player: `${r.first_name} ${r.last_name}`,
+  holesPlayed,
+  strokesSum,
+  parSum,
+  to_par,
+});
 
       const fi = flightInfo.get(r.id) || { flight_number: null, start_time: null };
 

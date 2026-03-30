@@ -60,13 +60,13 @@ export async function GET(req: Request) {
     const parByHole = new Map<number, number>();
     {
       const { data: pars, error: pErr } = await supabase
-        .from("tournament_holes")
-        .select("hole,par")
-        .eq("tournament_id", tournamentId);
+ .from("v_registration_holes")
+.select("hole_number, par")
+.eq("tournament_id", tournamentId);
 
       if (!pErr && pars) {
         for (const p of pars as any as ParRow[]) {
-          const h = safeNum((p as any).hole);
+          const h = safeNum((p as any).hole_number);
           const par = safeNum((p as any).par);
           if (h && par) parByHole.set(h, par);
         }

@@ -95,9 +95,11 @@ function fmtTime(iso: string | null | undefined) {
 }
 
 function fmtToPar(v: number | null | undefined) {
-  if (v == null) return "–";
+  if (v === null || v === undefined) return "";
+
   if (v === 0) return "E";
-  return v > 0 ? `+${v}` : `${v}`;
+  if (v > 0) return `+${v}`;
+  return `${v}`;
 }
 
 function fmtScore(score: number | null | undefined) {
