@@ -43,9 +43,14 @@ type RegRow = {
   tournament_id: string;
   first_name: string;
   last_name: string;
+  hcp: number | null;
   nation: string | null;
-  gender: "Boys" | "Girls" | null;
+  gender: string | null;
   home_club: string | null;
+  birthdate: string | null;
+
+  // 👉 DAS FEHLT:
+  holes: number | null;
 };
 
 type ScoreRow = {
