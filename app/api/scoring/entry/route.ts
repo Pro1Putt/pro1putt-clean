@@ -12,6 +12,7 @@ function getServiceSupabase() {
 export async function POST(req: Request) {
   try {
     const body = await req.json();
+    console.log("SCORING ENTRY HIT", JSON.stringify(body));
 
     const {
       tournament_id,
@@ -30,46 +31,79 @@ export async function POST(req: Request) {
       !hole_number ||
       !entered_by ||
       !for_registration_id ||
-      !strokes
+      strokes === null ||
+      typeof strokes === "undefined"
     ) {
-      return NextResponse.json({ ok: false, error: "Missing fields" }, { status: 400 });
+      return NextResponse.json(
+        { ok: false, error: "Missing fields", body },
+        { status: 400 }
+      );
     }
 
-    const payload: any = {
+    const supabase = getServiceSupabase();
+
+    const holeEntryPayload: any = {
       tournament_id,
       round,
       hole_number,
       entered_by,
       for_registration_id,
-      strokes,
+      strokes: Number(strokes),
     };
 
-    // IMPORTANT:
-    // Only write rule_ball / rule_note if the client actually sent them.
-    // Otherwise we would overwrite existing values on "strokes-only" saves.
     if (typeof rule_ball !== "undefined") {
-      payload.rule_ball = !!rule_ball;
+      holeEntryPayload.rule_ball = !!rule_ball;
     }
 
     if (typeof rule_note !== "undefined") {
       const s = String(rule_note ?? "").trim();
-      payload.rule_note = s ? s : null;
+      holeEntryPayload.rule_note = s ? s : null;
     }
 
-    const supabase = getServiceSupabase();
-
-    const { error } = await supabase
+    const { error: holeEntryError } = await supabase
       .from("hole_entries")
-      .upsert(payload, {
+      .upsert(holeEntryPayload, {
         onConflict: "tournament_id,round,hole_number,entered_by,for_registration_id",
       });
 
-    if (error) {
-      return NextResponse.json({ ok: false, error: error.message }, { status: 500 });
+    if (holeEntryError) {
+      console.log("HOLE_ENTRIES ERROR", holeEntryError.message);
+      return NextResponse.json(
+        { ok: false, error: holeEntryError.message, step: "hole_entries" },
+        { status: 500 }
+      );
     }
 
+    const { error: scoreInsertError } = await supabase
+      .from("scores")
+      .insert({
+        tournament_id,
+        round_number: Number(round),
+        hole_number: Number(hole_number),
+        player_id: for_registration_id,
+        entered_by,
+        strokes: Number(strokes),
+        ...(typeof rule_ball !== "undefined" ? { rule_ball_played: !!rule_ball } : {}),
+        ...(typeof rule_note !== "undefined"
+          ? { notes: String(rule_note ?? "").trim() || null }
+          : {}),
+      });
+
+    if (scoreInsertError) {
+      console.log("SCORES ERROR", scoreInsertError.message);
+      return NextResponse.json(
+        { ok: false, error: scoreInsertError.message, step: "scores" },
+        { status: 500 }
+      );
+    }
+
+    console.log("SCORING ENTRY SAVED OK");
     return NextResponse.json({ ok: true });
   } catch (e: any) {
-    return NextResponse.json({ ok: false, error: e?.message || "Server error" }, { status: 500 });
+    console.log("SCORING ENTRY CATCH", e?.message || e);
+    return NextResponse.json(
+      { ok: false, error: e?.message || "Server error" },
+      { status: 500 }
+    );
   }
 }
