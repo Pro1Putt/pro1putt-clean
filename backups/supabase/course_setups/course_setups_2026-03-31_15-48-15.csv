@@ -1,0 +1,2 @@
+id,tournament_id,course_name,tee_name,gender,hole_count,slope,course_rating,par_total,created_at
+4ba2e900-c69e-44bb-b720-fb114f76d2d4,7716349a-8bb0-46c6-b60c-3594eb7ea60f,WINSTON Open Course,Default Tee,Boys,18,,,,2026-03-31T06:45:22.670948+00:00
