@@ -246,37 +246,35 @@ for (const flight of (round3Flights || []) as any[]) {
     round3StartTimeByRegistrationId.set(regId, startTime);
   }
 }
-    // ------------------------------------------------------------
-    // PARS
-    // ------------------------------------------------------------
-    const parByHole = new Map<number, number>();
+// ------------------------------------------------------------
+// PARS (TEST DIREKT AUS holes)
+// ------------------------------------------------------------
+const parByHole = new Map<number, number>();
 
 const { data: pars, error: pErr } = await supabase
-  .from("v_registration_holes")
+  .from("holes")
   .select("hole_number, par")
-  .eq("tournament_id", tournamentId);
+  .eq("tournament_id", tournamentId)
+  .order("hole_number", { ascending: true });
+
+console.log("DIRECT holes PARS", pars);
+console.log("DIRECT holes ERROR", pErr);
 
 if (pErr) {
   return NextResponse.json({ ok: false, error: pErr.message }, { status: 500 });
 }
 
-const seen = new Set<number>();
-
 for (const p of (pars || []) as any[]) {
   const h = safeNum(p?.hole_number);
   const par = safeNum(p?.par);
 
-  if (h != null && par != null && !seen.has(h)) {
+  if (h != null && par != null) {
     parByHole.set(h, par);
-    seen.add(h);
   }
 }
 
-console.log(
-  "PAR MAP SIZE",
-  parByHole.size,
-  Array.from(parByHole.entries()).slice(0, 9)
-);
+console.log("DIRECT PAR MAP SIZE", parByHole.size);
+console.log("DIRECT PAR MAP", Array.from(parByHole.entries()));
 
     const rows = registrations.map((r) => {
     const holes = Number(r.holes || 18);
@@ -311,6 +309,13 @@ const age_group = normalizeGroupForHoles(baseGroup, holes);
 
       const hasAnyScore = holesPlayed > 0;
       const score = hasAnyScore ? strokesSum : null;
+      console.log("TO_PAR CHECK", {
+  player: `${r.first_name} ${r.last_name}`,
+  holesPlayed,
+  strokesSum,
+  parSum,
+  hasAnyScore,
+});
       const to_par = hasAnyScore && parSum > 0 ? strokesSum - parSum : null;
 
       console.log("LB DEBUG", {
