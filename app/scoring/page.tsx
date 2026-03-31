@@ -147,15 +147,16 @@ export default function ScoreEntryMask() {
       return;
     }
 
-    const rows = Array.from({ length: holeCount }, (_, i) => i + 1)
-      .filter((hole) => scores[hole] && scores[hole].trim() !== "")
-      .map((hole) => ({
-        tournament_id: TOURNAMENT_ID,
-        player_id: selectedPlayerId,
-        round_number: selectedRound, // 👈 DAS IST DER FIX
-        hole_number: hole,
-        strokes: Number(scores[hole]),
-      }));
+  const rows = Array.from({ length: holeCount }, (_, i) => i + 1)
+  .filter((hole) => scores[hole] && scores[hole].trim() !== "")
+  .map((hole) => ({
+    tournament_id: TOURNAMENT_ID,
+    registration_id: selectedPlayerId,
+    entered_by: selectedPlayerId, // ✅ DAS IST DER FIX
+    round_number: selectedRound,
+    hole_number: hole,
+    strokes: Number(scores[hole]),
+  }));
 
     if (!rows.length) {
       setMessage("Bitte mindestens einen Score eintragen.");
@@ -166,7 +167,7 @@ export default function ScoreEntryMask() {
     setMessage("");
 
     const { error } = await supabase.from("scores").upsert(rows, {
-     onConflict: "tournament_id,player_id,round_number,hole_number"
+    onConflict: "registration_id,tournament_id,round_number,hole_number"
     });
 
     if (error) {
