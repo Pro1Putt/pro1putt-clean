@@ -65,15 +65,25 @@ export async function GET(req: Request) {
     const { searchParams } = new URL(req.url);
 
     const tournamentId = String(searchParams.get("tournamentId") || "").trim();
-    const round = Number(searchParams.get("round") || "1");
+    const roundParam = String(searchParams.get("round") || "overall").trim().toLowerCase();
+const isOverall =
+  roundParam === "overall" ||
+  roundParam === "gesamt" ||
+  roundParam === "total" ||
+  roundParam === "all";
+
+const selectedRound = isOverall ? null : Number(roundParam);
 
     if (!tournamentId) {
       return NextResponse.json({ ok: false, error: "Missing tournamentId" }, { status: 400 });
     }
 
-    if (![1, 2, 3].includes(round)) {
-      return NextResponse.json({ ok: false, error: "round must be 1,2,3" }, { status: 400 });
-    }
+    if (!isOverall && ![1, 2, 3].includes(Number(selectedRound))) {
+  return NextResponse.json(
+    { ok: false, error: "round must be 1, 2, 3 or overall" },
+    { status: 400 }
+  );
+}
 
     const supabase = getServiceSupabase();
 
@@ -104,19 +114,21 @@ export async function GET(req: Request) {
     // ------------------------------------------------------------
     // SCORES DER GEWÄHLTEN RUNDE LADEN
     // ------------------------------------------------------------
-    let scoreQuery = supabase
-      .from("scores")
-      .select("registration_id,player_id,hole_number,strokes,updated_at,round_number")
-      .eq("tournament_id", tournamentId);
+  let scoreQuery = supabase
+  .from("scores")
+  .select("registration_id,player_id,hole_number,strokes,updated_at,round_number")
+  .eq("tournament_id", tournamentId);
 
-    if (round === 1) {
-      scoreQuery = scoreQuery.or("round_number.eq.1,round_number.is.null");
-    } else {
-      scoreQuery = scoreQuery.eq("round_number", round);
-    }
+if (!isOverall) {
+  if (Number(selectedRound) === 1) {
+    scoreQuery = scoreQuery.or("round_number.eq.1,round_number.is.null");
+  } else {
+    scoreQuery = scoreQuery.eq("round_number", Number(selectedRound));
+  }
+}
 
-    const { data: scoreData, error: scoreErr } = await scoreQuery
-      .order("updated_at", { ascending: false });
+const { data: scoreData, error: scoreErr } = await scoreQuery
+  .order("updated_at", { ascending: false });
 
     if (scoreErr) {
       console.error("score query error", scoreErr);
@@ -125,7 +137,7 @@ export async function GET(req: Request) {
 
     const rawScores = (scoreData || []) as ScoreRow[];
 
-    console.log("LEADERBOARD raw scores found:", rawScores.length, "round:", round);
+    console.log("LEADERBOARD raw scores found:", rawScores.length, "round:", selectedRound);
     console.log("LEADERBOARD raw sample scores:", rawScores.slice(0, 20));
 
     // ------------------------------------------------------------
@@ -158,7 +170,7 @@ export async function GET(req: Request) {
     // ------------------------------------------------------------
     // FLIGHTS DER AKTUELLEN RUNDE
     // ------------------------------------------------------------
-    const { data: currentRoundFlights, error: currentFlightsErr } = await supabase
+    let currentFlightsQuery = supabase
       .from("flights")
       .select(`
         id,
@@ -170,8 +182,13 @@ export async function GET(req: Request) {
           marks_registration_id
         )
       `)
-      .eq("tournament_id", tournamentId)
-      .eq("round", round)
+      .eq("tournament_id", tournamentId);
+
+    if (!isOverall) {
+      currentFlightsQuery = currentFlightsQuery.eq("round", Number(selectedRound));
+    }
+
+    const { data: currentRoundFlights, error: currentFlightsErr } = await currentFlightsQuery
       .order("start_time", { ascending: true })
       .order("flight_number", { ascending: true });
 
@@ -300,7 +317,7 @@ export async function GET(req: Request) {
     console.log("DIRECT PAR MAP SIZE", parByHole.size);
     console.log("DIRECT PAR MAP", Array.from(parByHole.entries()));
 
-    const rows = registrations.map((r) => {
+       const rows = registrations.map((r) => {
       const regId = String(r.id || "").trim();
       const holes = Number(r.holes || 18);
       const maxHole = holes === 9 ? 9 : 18;
@@ -310,7 +327,14 @@ export async function GET(req: Request) {
       if (r.birthdate) {
         const age = calcAge(String(r.birthdate), String(tRow.start_date));
         const baseGroup = ageGroupFromAge(age);
-        age_group = normalizeGroupForHoles(baseGroup, holes) as "U8" | "U10" | "U12" | "U14" | "U16" | "U18" | "U21";
+        age_group = normalizeGroupForHoles(baseGroup, holes) as
+          | "U8"
+          | "U10"
+          | "U12"
+          | "U14"
+          | "U16"
+          | "U18"
+          | "U21";
       }
 
       let strokesSum = 0;
@@ -318,27 +342,40 @@ export async function GET(req: Request) {
       let holesPlayed = 0;
       let thru = 0;
 
+      let r1 = 0;
+      let r2 = 0;
+      let r3 = 0;
+
       const holeValues: Array<{ hole: number; strokes: number; par: number | null }> = [];
 
-      for (let h = 1; h <= maxHole; h++) {
-        const scoreKey = `${regId}-${h}`;
-        const val = latestScoreByRegAndHole.get(scoreKey);
+      for (const s of rawScores) {
+        const scoreOwnerId = String(s.registration_id || s.player_id || "").trim();
+        if (scoreOwnerId !== regId) continue;
 
-        if (val == null) continue;
+        const hole = safeNum(s.hole_number);
+        const strokes = safeNum(s.strokes);
+        const roundNr = safeNum(s.round_number) || 1;
 
-        const par = parByHole.get(h) ?? null;
+        if (hole == null || strokes == null) continue;
+        if (hole < 1 || hole > maxHole) continue;
 
-        strokesSum += val;
+        const par = parByHole.get(hole) ?? null;
+
+        strokesSum += strokes;
         holesPlayed += 1;
-        thru = h;
+        thru = Math.max(thru, hole);
 
         if (par != null) {
           parSum += par;
         }
 
+        if (roundNr === 1) r1 += strokes;
+        if (roundNr === 2) r2 += strokes;
+        if (roundNr === 3) r3 += strokes;
+
         holeValues.push({
-          hole: h,
-          strokes: val,
+          hole,
+          strokes,
           par,
         });
       }
@@ -350,7 +387,8 @@ export async function GET(req: Request) {
       console.log("LB PLAYER DETAIL", {
         player: `${r.first_name} ${r.last_name}`,
         regId,
-        round,
+        selectedRound,
+        isOverall,
         holes,
         maxHole,
         holeValues,
@@ -360,6 +398,9 @@ export async function GET(req: Request) {
         thru,
         score,
         to_par,
+        r1,
+        r2,
+        r3,
       });
 
       const fi = flightInfo.get(regId) || {
@@ -386,24 +427,41 @@ export async function GET(req: Request) {
         start_time: fi.start_time,
         round2_start_time: round2StartTimeByRegistrationId.get(regId) || null,
         round3_start_time: round3StartTimeByRegistrationId.get(regId) || null,
+        round1_score: r1 || null,
+        round2_score: r2 || null,
+        round3_score: r3 || null,
+        total_score: strokesSum || null,
       };
     });
 
     rows.sort((a, b) => {
-      const ap = a.to_par;
-      const bp = b.to_par;
+      if (isOverall) {
+        const at = a.total_score;
+        const bt = b.total_score;
 
-      if (ap != null && bp != null && ap !== bp) return ap - bp;
-      if (ap != null && bp == null) return -1;
-      if (ap == null && bp != null) return 1;
+        if (at != null && bt != null && at !== bt) return at - bt;
+        if (at != null && bt == null) return -1;
+        if (at == null && bt != null) return 1;
 
-      const as = a.score;
-      const bs = b.score;
-      if (as != null && bs != null && as !== bs) return as - bs;
-      if (as != null && bs == null) return -1;
-      if (as == null && bs != null) return 1;
+        const aPlayed = Number(a.holes_played || 0);
+        const bPlayed = Number(b.holes_played || 0);
+        if (aPlayed !== bPlayed) return bPlayed - aPlayed;
+      } else {
+        const ap = a.to_par;
+        const bp = b.to_par;
 
-      if (a.thru !== b.thru) return b.thru - a.thru;
+        if (ap != null && bp != null && ap !== bp) return ap - bp;
+        if (ap != null && bp == null) return -1;
+        if (ap == null && bp != null) return 1;
+
+        const as = a.score;
+        const bs = b.score;
+        if (as != null && bs != null && as !== bs) return as - bs;
+        if (as != null && bs == null) return -1;
+        if (as == null && bs != null) return 1;
+
+        if (a.thru !== b.thru) return b.thru - a.thru;
+      }
 
       const ah = Number(a.hcp ?? 999);
       const bh = Number(b.hcp ?? 999);

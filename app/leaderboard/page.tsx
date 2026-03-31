@@ -28,6 +28,10 @@ type Row = {
   start_time: string | null;
   round2_start_time: string | null;
   round3_start_time: string | null;
+  round1_score: number | null;
+round2_score: number | null;
+round3_score: number | null;
+total_score: number | null;
 };
 
 type FilterKey = "ALL_U12" | "ALL_U21" | string;
@@ -122,7 +126,7 @@ function LeaderboardInner() {
 
   const [tournaments, setTournaments] = useState<Tournament[]>([]);
   const [tournamentId, setTournamentId] = useState<string>(tournamentIdFromUrl);
-  const [selectedRound, setSelectedRound] = useState<number>(1);
+  const [selectedRound, setSelectedRound] = useState<"overall" | 1 | 2 | 3>("overall");
 
   const [rows, setRows] = useState<Row[]>([]);
   const [loading, setLoading] = useState(true);
@@ -164,7 +168,7 @@ function LeaderboardInner() {
     };
   }, [tournamentIdFromUrl, tournamentId]);
 
-  async function loadLeaderboard(tid: string, round: number) {
+  async function loadLeaderboard(tid: string, round: "overall" | 1 | 2 | 3) { 
     if (!tid) {
       setRows([]);
       setLastUpdated(null);
@@ -329,7 +333,7 @@ function LeaderboardInner() {
                 fontSize: 18,
               }}
             >
-              {fmtScore(r.score)}
+             {fmtScore(selectedRound === "overall" ? r.total_score : r.score)}
             </div>
           </div>
 
@@ -405,7 +409,7 @@ function LeaderboardInner() {
         </div>
 
         <div style={{ fontWeight: 900, color: GREEN, textAlign: "center" }}>
-          {fmtScore(r.score)}
+         {fmtScore(selectedRound === "overall" ? r.total_score : r.score)}
         </div>
 
         <div style={{ opacity: 0.85, textAlign: "center" }}>{r.thru ? r.thru : "–"}</div>
@@ -547,8 +551,11 @@ function LeaderboardInner() {
         <div style={{ fontWeight: 900, color: GREEN, marginBottom: 6 }}>Runde</div>
 
         <select
-          value={selectedRound}
-          onChange={(e) => setSelectedRound(Number(e.target.value))}
+  value={selectedRound}
+  onChange={(e) => {
+    const v = e.target.value;
+    setSelectedRound(v === "overall" ? "overall" : Number(v) as 1 | 2 | 3);
+  }}
           style={{
             width: "100%",
             padding: "12px 12px",
@@ -557,9 +564,10 @@ function LeaderboardInner() {
             outline: "none",
           }}
         >
-          <option value={1}>Runde 1</option>
-          <option value={2}>Runde 2</option>
-          <option value={3}>Runde 3</option>
+          <option value="overall">Gesamt</option>
+<option value={1}>Runde 1</option>
+<option value={2}>Runde 2</option>
+<option value={3}>Runde 3</option>
         </select>
 
         {loadErr && (
@@ -627,7 +635,7 @@ function LeaderboardInner() {
               <div>Rank</div>
               <div>Med.</div>
               <div>Name</div>
-              <div>Score</div>
+              <div>{selectedRound === "overall" ? "Gesamt" : "Score"}</div>
               <div>Thru</div>
               <div>To Par</div>
               <div>Flight</div>
