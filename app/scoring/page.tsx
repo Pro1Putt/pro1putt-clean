@@ -186,7 +186,7 @@ export default function ScoreEntryMask() {
 
     const { data, error } = await supabase
       .from("scores")
-      .select("player_id, hole_number, strokes, tournament_id, round")
+     .select("player_id, hole_number, strokes, tournament_id, round_number")
       .eq("tournament_id", TOURNAMENT_ID)
       .eq("player_id", selectedPlayerId)
       .eq("round", selectedRound)
