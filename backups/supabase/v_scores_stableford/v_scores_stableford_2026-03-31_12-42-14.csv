@@ -1,34 +1,19 @@
 score_id,tournament_id,round_number,registration_id,first_name,last_name,gender,hcp,course_setup_id,setup_course_name,setup_tee_name,setup_slope,setup_course_rating,setup_par_total,playing_handicap,hole_number,par,stroke_index,length_m,gross_strokes,handicap_strokes_on_hole,net_strokes,stableford_points
 ce3691d9-3395-4e98-be20-09615584b93c,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,07cfbc31-606f-4838-ba17-578e0720215d,Aaron,Kastein,Boys,-0.8,,,,,,,,6,,,,4,0,4,0
 bce78d27-9770-43f1-9e2a-15381e3d1467,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,07cfbc31-606f-4838-ba17-578e0720215d,Aaron,Kastein,Boys,-0.8,,,,,,,,13,,,,4,0,4,0
-894bf823-8ff4-47c9-a2bf-651dd8e36c2d,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,0a22a191-8264-4398-8468-2e96074d3366,Nicolas,Gregg,Boys,5.8,,,,,,,,1,,,,5,0,5,0
 49819cb9-3e6b-4627-81d7-70da05ecf197,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,21380286-b867-4919-83b5-08eaac386dfe,Louis Maximilian,Eirund,Boys,20.5,,,,,,,,1,,,,6,0,6,0
 a8fd7a14-9f66-4479-9c73-52c58ff17131,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,07cfbc31-606f-4838-ba17-578e0720215d,Aaron,Kastein,Boys,-0.8,,,,,,,,14,,,,6,0,6,0
-414a181a-1a22-408e-bba4-7e9d620b5699,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,2e22731c-34b3-4726-937a-18e90d4213a7,Maximilian Jackson,Sharp,Boys,12.7,,,,,,,,1,,,,6,0,6,0
-08c842c8-ed76-4e01-bc07-1f8dcfc3791e,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,44447724-0d2c-4601-b0c6-e53714d03f63,Emily,Anders,Girls,26,,,,,,,,1,,,,8,0,8,0
 96f3c826-1091-4168-bc90-26b4ef5112a4,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,3b88eb10-8515-40d0-8108-a94529c534cd,Andris,Dzenis,Boys,1.1,,,,,,,,1,,,,4,0,4,0
 8f57bde7-7670-4a53-af16-0e6984d5da80,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,117030b2-c7c3-4bab-ac1d-2b3b81b2b9d1,Felix,Koglin,Boys,2.6,,,,,,,,1,,,,6,0,6,0
-2540de25-c98d-49ac-9048-bd83e7871403,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,78fb4ed0-ba6c-4b98-a34b-bb8fa7f01091,Aaron,Talke,Boys,15.5,,,,,,,,1,,,,6,0,6,0
 43a5d380-c698-47de-818b-bc4fc75c785e,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,117030b2-c7c3-4bab-ac1d-2b3b81b2b9d1,Felix,Koglin,Boys,2.6,,,,,,,,2,,,,4,0,4,0
-5c897d72-b0d6-4eb7-bb14-3681b3ecb9d9,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,7cb8f5cb-1d66-4a8b-a52e-3c0ab48ff137,Julian,Klocke,Boys,11.7,,,,,,,,1,,,,7,0,7,0
 896aa54f-a32f-47fb-8e0e-b530342380d3,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,6edb8092-3291-45fa-8651-a88b460512ad,Karsten,Kropat,Boys,1.3,,,,,,,,1,,,,5,0,5,0
-65bd737f-4f0c-4f28-a1cb-8fdabdd2f514,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,9d71aa32-e0cc-4394-b494-f2cca4e7d382,Noah,Lanfermann,Boys,12.8,,,,,,,,1,,,,8,0,8,0
-1f9cae39-d113-4832-8c8a-f938dc49be45,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,bd565cdc-2b20-4ee1-8358-1c3f10ec8acf,Sophie,Leonhardt,Girls,30.3,,,,,,,,1,,,,6,0,6,0
-4071916a-7530-4420-941d-105090565767,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,c9c44f56-2b25-4444-be7a-60dcb33140b2,Oskar,Arnold,Boys,11.4,,,,,,,,1,,,,4,0,4,0
 a3b8ff47-769a-46fa-8a41-658e4ca50936,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,6edb8092-3291-45fa-8651-a88b460512ad,Karsten,Kropat,Boys,1.3,,,,,,,,2,,,,5,0,5,0
 478e3f09-9a2d-496b-b6c4-82d759eecd98,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,b0f8374f-c18d-481e-852b-dfa6aa011ac8,Luis,Behr,Boys,2.2,,,,,,,,1,,,,6,0,6,0
 8263c5ab-4b55-42af-ae8a-44f0348d72d8,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,b0f8374f-c18d-481e-852b-dfa6aa011ac8,Luis,Behr,Boys,2.2,,,,,,,,2,,,,4,0,4,0
-ffe5b4b9-1a0e-415f-8ac1-a8d85a867e6e,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,ee5ab7c6-0546-4277-8d04-5e6b48ea52a3,Theo,Ewers,Boys,17.8,,,,,,,,1,,,,6,0,6,0
-4c79d554-ce7a-4b39-80a1-b7f8da2c16e7,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,fdd25cd4-90fe-4002-b08b-95ff807080ba,Eleonor Madicken,Seiffarth,Girls,4.4,,,,,,,,1,,,,7,0,7,0
 5ab67869-ada7-4195-a870-a7756a4d7ba3,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,19b44c8b-f73c-464f-a197-236cf91f225b,Phillip,Hövermann,Boys,4.4,,,,,,,,1,,,,5,0,5,0
-e5c27b1e-b22b-4fc8-a439-6b41a1510fd1,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,0a22a191-8264-4398-8468-2e96074d3366,Nicolas,Gregg,Boys,5.8,,,,,,,,2,,,,5,0,5,0
-44f19c8b-e261-498a-8818-8914e9ec590d,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,2e22731c-34b3-4726-937a-18e90d4213a7,Maximilian Jackson,Sharp,Boys,12.7,,,,,,,,2,,,,4,0,4,0
 351c108e-42c4-484d-ad5d-cd649653a13e,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,19b44c8b-f73c-464f-a197-236cf91f225b,Phillip,Hövermann,Boys,4.4,,,,,,,,2,,,,4,0,4,0
 306eea1b-33b0-47d3-9c92-d221ce01c89a,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,c0fb8d2a-417b-4d68-918c-fc6d0b9b032c,Louiza Sofie,Menzel,Girls,9.8,,,,,,,,1,,,,6,0,6,0
 633edbb3-5b43-4a0e-b4fe-ffa53d74e03c,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,c0fb8d2a-417b-4d68-918c-fc6d0b9b032c,Louiza Sofie,Menzel,Girls,9.8,,,,,,,,2,,,,6,0,6,0
-8d72091c-f3c7-4104-b87d-e55c05f3be6c,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,7cb8f5cb-1d66-4a8b-a52e-3c0ab48ff137,Julian,Klocke,Boys,11.7,,,,,,,,2,,,,7,0,7,0
-ef6d4f03-2ba9-4051-9745-2a021fc5a9e5,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,9d71aa32-e0cc-4394-b494-f2cca4e7d382,Noah,Lanfermann,Boys,12.8,,,,,,,,2,,,,5,0,5,0
-fe3b2fef-c64f-4deb-9d2f-88fd3f7469cd,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,c9c44f56-2b25-4444-be7a-60dcb33140b2,Oskar,Arnold,Boys,11.4,,,,,,,,2,,,,8,0,8,0
 d70085e2-bd5e-4ff7-b705-0234fc16d965,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,885a2ebf-a33e-44a1-a5dd-ef1922c7778b,Elias,Didjurgis,Boys,20,,,,,,,,1,,,,6,0,6,0
 7f06596e-a50e-4e7d-a642-7ae6a388a07b,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,639dca59-1a8d-409a-82c6-584dbb5f34e9,Linda,Wöhler-Moorhoff,Girls,-1.8,,,,,,,,1,,,,5,0,5,0
 11c453fc-9a6b-42ad-b07f-de17e198556d,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,639dca59-1a8d-409a-82c6-584dbb5f34e9,Linda,Wöhler-Moorhoff,Girls,-1.8,,,,,,,,2,,,,4,0,4,0
@@ -51,25 +36,31 @@ d3f14678-a23e-4a43-9b65-a3225094f461,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,9dce
 a295bebf-5786-46ee-9b9d-2a09c5f64199,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,9dcefb0b-f81d-400a-90bc-514b64341425,Maddox,Cordes,Boys,5.4,,,,,,,,2,,,,5,0,5,0
 1bcfb098-3a21-4cf8-8547-e47d958d0a22,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,e5564605-a162-4973-b880-2fa2245b8a54,Carl,Balz,Boys,5.5,,,,,,,,1,,,,7,0,7,0
 5bcc41d1-34a0-43d1-9da7-b9b51ede184d,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,f88170d0-1f22-42fc-b06f-f43ce3d2c8ff,Carl Friedrich,Lehmann,Boys,8,,,,,,,,1,,,,6,0,6,0
-9313f0dd-61a3-4c50-a0e1-f49d3bfa930c,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,fdd25cd4-90fe-4002-b08b-95ff807080ba,Eleonor Madicken,Seiffarth,Girls,4.4,,,,,,,,2,,,,9,0,9,0
+894bf823-8ff4-47c9-a2bf-651dd8e36c2d,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,0a22a191-8264-4398-8468-2e96074d3366,Nicolas,Gregg,Boys,5.8,,,,,,,,1,,,,5,0,5,0
+e5c27b1e-b22b-4fc8-a439-6b41a1510fd1,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,0a22a191-8264-4398-8468-2e96074d3366,Nicolas,Gregg,Boys,5.8,,,,,,,,2,,,,5,0,5,0
+414a181a-1a22-408e-bba4-7e9d620b5699,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,2e22731c-34b3-4726-937a-18e90d4213a7,Maximilian Jackson,Sharp,Boys,12.7,,,,,,,,1,,,,6,0,6,0
+44f19c8b-e261-498a-8818-8914e9ec590d,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,2e22731c-34b3-4726-937a-18e90d4213a7,Maximilian Jackson,Sharp,Boys,12.7,,,,,,,,2,,,,4,0,4,0
+65bd737f-4f0c-4f28-a1cb-8fdabdd2f514,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,9d71aa32-e0cc-4394-b494-f2cca4e7d382,Noah,Lanfermann,Boys,12.8,,,,,,,,1,,,,8,0,8,0
+ef6d4f03-2ba9-4051-9745-2a021fc5a9e5,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,9d71aa32-e0cc-4394-b494-f2cca4e7d382,Noah,Lanfermann,Boys,12.8,,,,,,,,2,,,,5,0,5,0
+5c897d72-b0d6-4eb7-bb14-3681b3ecb9d9,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,7cb8f5cb-1d66-4a8b-a52e-3c0ab48ff137,Julian,Klocke,Boys,11.7,,,,,,,,1,,,,7,0,7,0
+8d72091c-f3c7-4104-b87d-e55c05f3be6c,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,7cb8f5cb-1d66-4a8b-a52e-3c0ab48ff137,Julian,Klocke,Boys,11.7,,,,,,,,2,,,,7,0,7,0
+2540de25-c98d-49ac-9048-bd83e7871403,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,78fb4ed0-ba6c-4b98-a34b-bb8fa7f01091,Aaron,Talke,Boys,15.5,,,,,,,,1,,,,6,0,6,0
+ffe5b4b9-1a0e-415f-8ac1-a8d85a867e6e,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,ee5ab7c6-0546-4277-8d04-5e6b48ea52a3,Theo,Ewers,Boys,17.8,,,,,,,,1,,,,6,0,6,0
+08c842c8-ed76-4e01-bc07-1f8dcfc3791e,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,44447724-0d2c-4601-b0c6-e53714d03f63,Emily,Anders,Girls,26,,,,,,,,1,,,,8,0,8,0
+1f9cae39-d113-4832-8c8a-f938dc49be45,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,bd565cdc-2b20-4ee1-8358-1c3f10ec8acf,Sophie,Leonhardt,Girls,30.3,,,,,,,,1,,,,6,0,6,0
+4c79d554-ce7a-4b39-80a1-b7f8da2c16e7,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,fdd25cd4-90fe-4002-b08b-95ff807080ba,Eleonor Madicken,Seiffarth,Girls,4.4,,,,,,,,1,,,,7,0,7,0
+4071916a-7530-4420-941d-105090565767,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,c9c44f56-2b25-4444-be7a-60dcb33140b2,Oskar,Arnold,Boys,11.4,,,,,,,,1,,,,4,0,4,0
+fe3b2fef-c64f-4deb-9d2f-88fd3f7469cd,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,c9c44f56-2b25-4444-be7a-60dcb33140b2,Oskar,Arnold,Boys,11.4,,,,,,,,2,,,,8,0,8,0
 ad877f8d-ab7e-4d6f-8680-48ba718de661,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,07cfbc31-606f-4838-ba17-578e0720215d,Aaron,Kastein,Boys,-0.8,,,,,,,,4,,,,3,0,3,0
-ae86a868-e06f-41ba-9fb6-26f7bc7cc6b8,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,0a22a191-8264-4398-8468-2e96074d3366,Nicolas,Gregg,Boys,5.8,,,,,,,,3,,,,5,0,5,0
-120e5935-7bea-4f3c-bf9a-a1c9f5e52e63,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,2e22731c-34b3-4726-937a-18e90d4213a7,Maximilian Jackson,Sharp,Boys,12.7,,,,,,,,3,,,,4,0,4,0
 8c08ce64-f483-4ebb-b46d-3972060f17bd,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,07cfbc31-606f-4838-ba17-578e0720215d,Aaron,Kastein,Boys,-0.8,,,,,,,,5,,,,3,0,3,0
 b728917c-8729-4db4-aab9-0951982ffb44,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,07cfbc31-606f-4838-ba17-578e0720215d,Aaron,Kastein,Boys,-0.8,,,,,,,,15,,,,4,0,4,0
 11dc5ebe-7114-4889-8c36-efbb58fe06f2,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,e1cc61b9-4c31-4d8e-8bee-b567ce5cca28,Bent Laurenz,Bund,Boys,1.2,,,,,,,,2,,,,3,0,3,0
-fbdfb896-525a-47e7-b191-8f893097823d,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,7cb8f5cb-1d66-4a8b-a52e-3c0ab48ff137,Julian,Klocke,Boys,11.7,,,,,,,,3,,,,5,0,5,0
-39ee8322-0efa-4841-bd0e-75665e54babe,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,9d71aa32-e0cc-4394-b494-f2cca4e7d382,Noah,Lanfermann,Boys,12.8,,,,,,,,3,,,,4,0,4,0
-2029cfbd-41d8-4b3e-ae5d-dbf640109ba6,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,c9c44f56-2b25-4444-be7a-60dcb33140b2,Oskar,Arnold,Boys,11.4,,,,,,,,3,,,,4,0,4,0
-166e1193-3987-4746-84e5-451297d97e5f,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,fdd25cd4-90fe-4002-b08b-95ff807080ba,Eleonor Madicken,Seiffarth,Girls,4.4,,,,,,,,3,,,,5,0,5,0
 0e970fb4-7bd9-4f0c-aef5-16ceb046649b,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,e1cc61b9-4c31-4d8e-8bee-b567ce5cca28,Bent Laurenz,Bund,Boys,1.2,,,,,,,,3,,,,4,0,4,0
 90854cf0-763c-489e-b00e-d01f6312b9dc,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,e1cc61b9-4c31-4d8e-8bee-b567ce5cca28,Bent Laurenz,Bund,Boys,1.2,,,,,,,,4,,,,4,0,4,0
 cb7a06b5-71ff-4e74-93a2-361cb8d64dab,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,3b88eb10-8515-40d0-8108-a94529c534cd,Andris,Dzenis,Boys,1.1,,,,,,,,3,,,,3,0,3,0
-0f514162-73fe-4bea-9b1c-08b2dcc0df7a,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,fdd25cd4-90fe-4002-b08b-95ff807080ba,Eleonor Madicken,Seiffarth,Girls,4.4,,,,,,,,4,,,,2,0,2,0
 bb0d37e1-44c1-498d-81ba-aedfe01107a3,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,3b88eb10-8515-40d0-8108-a94529c534cd,Andris,Dzenis,Boys,1.1,,,,,,,,4,,,,4,0,4,0
 9351bb0e-b4de-4e2b-a3b6-22e5c4856474,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,117030b2-c7c3-4bab-ac1d-2b3b81b2b9d1,Felix,Koglin,Boys,2.6,,,,,,,,3,,,,5,0,5,0
 12ed675d-39eb-4605-b5cb-50f74cdaf436,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,6edb8092-3291-45fa-8651-a88b460512ad,Karsten,Kropat,Boys,1.3,,,,,,,,3,,,,3,0,3,0
-2cbaab47-8dcd-4d61-90ba-9fe7ee26c7ef,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,fdd25cd4-90fe-4002-b08b-95ff807080ba,Eleonor Madicken,Seiffarth,Girls,4.4,,,,,,,,5,,,,3,0,3,0
 81a4966e-e7e2-4db8-9b73-20d6cc1211ca,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,639dca59-1a8d-409a-82c6-584dbb5f34e9,Linda,Wöhler-Moorhoff,Girls,-1.8,,,,,,,,3,,,,3,0,3,0
 765dcdf7-f966-460e-adfd-23704036d592,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,7c4671ff-76ee-4a70-b912-6aa7354774ee,Leander,Wienands,Boys,-1.1,,,,,,,,3,,,,8,0,8,0
 871d0cfa-8e6e-450f-addc-379c84833e6c,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,7c4671ff-76ee-4a70-b912-6aa7354774ee,Leander,Wienands,Boys,-1.1,,,,,,,,4,,,,3,0,3,0
@@ -102,6 +93,14 @@ c8226cf9-dab0-465e-920b-bf67af039485,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,e556
 0655c5df-4811-4a9d-ba68-3b7b66da09c6,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,e5564605-a162-4973-b880-2fa2245b8a54,Carl,Balz,Boys,5.5,,,,,,,,4,,,,3,0,3,0
 952edbdd-0ad9-4307-b203-8591a14968ab,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,f88170d0-1f22-42fc-b06f-f43ce3d2c8ff,Carl Friedrich,Lehmann,Boys,8,,,,,,,,2,,,,4,0,4,0
 3b45905b-c7be-430c-bf08-fffab8389fad,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,f88170d0-1f22-42fc-b06f-f43ce3d2c8ff,Carl Friedrich,Lehmann,Boys,8,,,,,,,,3,,,,7,0,7,0
+ae86a868-e06f-41ba-9fb6-26f7bc7cc6b8,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,0a22a191-8264-4398-8468-2e96074d3366,Nicolas,Gregg,Boys,5.8,,,,,,,,3,,,,5,0,5,0
+120e5935-7bea-4f3c-bf9a-a1c9f5e52e63,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,2e22731c-34b3-4726-937a-18e90d4213a7,Maximilian Jackson,Sharp,Boys,12.7,,,,,,,,3,,,,4,0,4,0
+39ee8322-0efa-4841-bd0e-75665e54babe,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,9d71aa32-e0cc-4394-b494-f2cca4e7d382,Noah,Lanfermann,Boys,12.8,,,,,,,,3,,,,4,0,4,0
+fbdfb896-525a-47e7-b191-8f893097823d,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,7cb8f5cb-1d66-4a8b-a52e-3c0ab48ff137,Julian,Klocke,Boys,11.7,,,,,,,,3,,,,5,0,5,0
+9313f0dd-61a3-4c50-a0e1-f49d3bfa930c,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,fdd25cd4-90fe-4002-b08b-95ff807080ba,Eleonor Madicken,Seiffarth,Girls,4.4,,,,,,,,2,,,,9,0,9,0
+166e1193-3987-4746-84e5-451297d97e5f,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,fdd25cd4-90fe-4002-b08b-95ff807080ba,Eleonor Madicken,Seiffarth,Girls,4.4,,,,,,,,3,,,,5,0,5,0
+0f514162-73fe-4bea-9b1c-08b2dcc0df7a,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,fdd25cd4-90fe-4002-b08b-95ff807080ba,Eleonor Madicken,Seiffarth,Girls,4.4,,,,,,,,4,,,,2,0,2,0
+2029cfbd-41d8-4b3e-ae5d-dbf640109ba6,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,c9c44f56-2b25-4444-be7a-60dcb33140b2,Oskar,Arnold,Boys,11.4,,,,,,,,3,,,,4,0,4,0
 676116a8-0420-49f9-a602-598afc9a05d2,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,07cfbc31-606f-4838-ba17-578e0720215d,Aaron,Kastein,Boys,-0.8,,,,,,,,7,,,,3,0,3,0
 751fb5c5-e8af-431b-bba0-e4c4bbfecee9,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,07cfbc31-606f-4838-ba17-578e0720215d,Aaron,Kastein,Boys,-0.8,,,,,,,,8,,,,4,0,4,0
 3c333dfa-1e0c-447a-b169-b116e8452e0a,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,07cfbc31-606f-4838-ba17-578e0720215d,Aaron,Kastein,Boys,-0.8,,,,,,,,9,,,,4,0,4,0
@@ -110,15 +109,12 @@ d5ae8e01-de2c-47f6-9cb5-e83a4347e4d7,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,07cf
 8e6a3c85-b61d-422f-956a-490155fa8362,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,07cfbc31-606f-4838-ba17-578e0720215d,Aaron,Kastein,Boys,-0.8,,,,,,,,17,,,,5,0,5,0
 5f8d79be-c3b8-4533-b4d3-b8c301013132,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,07cfbc31-606f-4838-ba17-578e0720215d,Aaron,Kastein,Boys,-0.8,,,,,,,,18,,,,5,0,5,0
 b798e6c7-80e0-444e-a945-f2c6d6ef9607,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,e1cc61b9-4c31-4d8e-8bee-b567ce5cca28,Bent Laurenz,Bund,Boys,1.2,,,,,,,,6,,,,5,0,5,0
-81dd00d5-e554-41fd-8bb8-fd87c91255be,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,7cb8f5cb-1d66-4a8b-a52e-3c0ab48ff137,Julian,Klocke,Boys,11.7,,,,,,,,4,,,,4,0,4,0
-50e0e341-f066-4a70-9202-1d105d2e996b,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,2e22731c-34b3-4726-937a-18e90d4213a7,Maximilian Jackson,Sharp,Boys,12.7,,,,,,,,4,,,,4,0,4,0
 3189db57-249d-4d24-897c-78a075b0b733,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,21380286-b867-4919-83b5-08eaac386dfe,Louis Maximilian,Eirund,Boys,20.5,,,,,,,,8,,,,5,0,5,0
 15010d7b-1be2-42ac-99af-16b066b4fb3a,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,e1cc61b9-4c31-4d8e-8bee-b567ce5cca28,Bent Laurenz,Bund,Boys,1.2,,,,,,,,7,,,,2,0,2,0
 008105af-5a0c-4e5a-82c0-802330487e85,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,e1cc61b9-4c31-4d8e-8bee-b567ce5cca28,Bent Laurenz,Bund,Boys,1.2,,,,,,,,8,,,,4,0,4,0
 f6c2b5bf-c936-46ae-a2cf-2a26e8478661,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,e1cc61b9-4c31-4d8e-8bee-b567ce5cca28,Bent Laurenz,Bund,Boys,1.2,,,,,,,,9,,,,5,0,5,0
 0ab57859-314e-4a07-a4a1-749914d9bb00,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,19b44c8b-f73c-464f-a197-236cf91f225b,Phillip,Hövermann,Boys,4.4,,,,,,,,7,,,,4,0,4,0
 65fa9bab-65ea-4160-8c74-8f9d2281ffdd,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,19b44c8b-f73c-464f-a197-236cf91f225b,Phillip,Hövermann,Boys,4.4,,,,,,,,9,,,,5,0,5,0
-3dd9379a-b303-4cbb-889a-133b1153dcd8,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,7cb8f5cb-1d66-4a8b-a52e-3c0ab48ff137,Julian,Klocke,Boys,11.7,,,,,,,,6,,,,6,0,6,0
 3d6af37f-dfe5-4e85-98c0-933189f537fd,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,885a2ebf-a33e-44a1-a5dd-ef1922c7778b,Elias,Didjurgis,Boys,20,,,,,,,,2,,,,9,0,9,0
 7a8fa8fa-79a0-4d9e-b377-c2e4f3ea9154,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,19b44c8b-f73c-464f-a197-236cf91f225b,Phillip,Hövermann,Boys,4.4,,,,,,,,10,,,,5,0,5,0
 9ad0291d-1d58-4073-b7a6-b3d3d1ad693f,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,c0fb8d2a-417b-4d68-918c-fc6d0b9b032c,Louiza Sofie,Menzel,Girls,9.8,,,,,,,,7,,,,4,0,4,0
@@ -159,6 +155,10 @@ cc72e245-d9a6-4ae3-b42f-58d3f2e7c5e5,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,e556
 368d9941-fde0-4152-a490-e02c71b66527,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,e5564605-a162-4973-b880-2fa2245b8a54,Carl,Balz,Boys,5.5,,,,,,,,16,,,,5,0,5,0
 ce93bf65-fd04-456d-bc0b-a0abe55644ab,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,e5564605-a162-4973-b880-2fa2245b8a54,Carl,Balz,Boys,5.5,,,,,,,,17,,,,6,0,6,0
 93d811c2-f1d3-4b23-ac93-14decbabd831,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,e5564605-a162-4973-b880-2fa2245b8a54,Carl,Balz,Boys,5.5,,,,,,,,18,,,,6,0,6,0
+50e0e341-f066-4a70-9202-1d105d2e996b,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,2e22731c-34b3-4726-937a-18e90d4213a7,Maximilian Jackson,Sharp,Boys,12.7,,,,,,,,4,,,,4,0,4,0
+141cf592-6e26-4b75-a3b6-4e09706045f4,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,2e22731c-34b3-4726-937a-18e90d4213a7,Maximilian Jackson,Sharp,Boys,12.7,,,,,,,,7,,,,3,0,3,0
+832ba0f7-e9ec-4a10-af6d-9a63141d3bfd,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,2e22731c-34b3-4726-937a-18e90d4213a7,Maximilian Jackson,Sharp,Boys,12.7,,,,,,,,8,,,,5,0,5,0
+81dd00d5-e554-41fd-8bb8-fd87c91255be,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,7cb8f5cb-1d66-4a8b-a52e-3c0ab48ff137,Julian,Klocke,Boys,11.7,,,,,,,,4,,,,4,0,4,0
 ba0b0ca9-b805-4d98-8e24-f514fdcc6a21,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,07cfbc31-606f-4838-ba17-578e0720215d,Aaron,Kastein,Boys,-0.8,,,,,,,,3,,,,5,0,5,0
 6bb0585e-80b9-4e54-b2f5-aada2891b9a7,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,07cfbc31-606f-4838-ba17-578e0720215d,Aaron,Kastein,Boys,-0.8,,,,,,,,12,,,,5,0,5,0
 41d0c95b-155d-46d7-bd7a-9b54dc8caa63,,1,2e22731c-34b3-4726-937a-18e90d4213a7,Maximilian Jackson,Sharp,Boys,12.7,,,,,,,,1,,,,4,0,4,0
@@ -207,12 +207,24 @@ c83c4107-f931-4ae9-9c62-e08141b5977a,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,f881
 8657eb23-8717-445b-abc4-8c8c77815f24,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,f88170d0-1f22-42fc-b06f-f43ce3d2c8ff,Carl Friedrich,Lehmann,Boys,8,,,,,,,,16,,,,4,0,4,0
 273c2199-9307-4f74-b2fe-ce5996a2be73,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,f88170d0-1f22-42fc-b06f-f43ce3d2c8ff,Carl Friedrich,Lehmann,Boys,8,,,,,,,,17,,,,5,0,5,0
 228fb7a3-542a-41a3-89a6-e17fd18bfb5f,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,f88170d0-1f22-42fc-b06f-f43ce3d2c8ff,Carl Friedrich,Lehmann,Boys,8,,,,,,,,18,,,,6,0,6,0
+4dfeefb2-3882-4d38-9bc1-13eb999edb45,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,2e22731c-34b3-4726-937a-18e90d4213a7,Maximilian Jackson,Sharp,Boys,12.7,,,,,,,,9,,,,6,0,6,0
+954d4c6c-20b5-44f0-8cfd-090b99f4c765,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,2e22731c-34b3-4726-937a-18e90d4213a7,Maximilian Jackson,Sharp,Boys,12.7,,,,,,,,10,,,,5,0,5,0
+2e4f0a49-2b99-40cc-bbb1-e64918caf899,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,2e22731c-34b3-4726-937a-18e90d4213a7,Maximilian Jackson,Sharp,Boys,12.7,,,,,,,,11,,,,4,0,4,0
+6de33ee0-a032-444d-8f79-732a3757f5ca,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,2e22731c-34b3-4726-937a-18e90d4213a7,Maximilian Jackson,Sharp,Boys,12.7,,,,,,,,12,,,,4,0,4,0
+9a9d2151-eec2-4cb3-a544-6925e4b8e686,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,2e22731c-34b3-4726-937a-18e90d4213a7,Maximilian Jackson,Sharp,Boys,12.7,,,,,,,,13,,,,7,0,7,0
+9444bcf9-436b-4528-86d8-8b9e99e43fa7,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,2e22731c-34b3-4726-937a-18e90d4213a7,Maximilian Jackson,Sharp,Boys,12.7,,,,,,,,14,,,,7,0,7,0
+ce757896-3617-4d06-8395-e7e453dd6756,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,2e22731c-34b3-4726-937a-18e90d4213a7,Maximilian Jackson,Sharp,Boys,12.7,,,,,,,,15,,,,4,0,4,0
+9d65b961-e0e6-41bb-8c9d-5ffd77dd6929,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,2e22731c-34b3-4726-937a-18e90d4213a7,Maximilian Jackson,Sharp,Boys,12.7,,,,,,,,16,,,,6,0,6,0
+b2234fdc-c786-4872-b4cd-bdd770f9d659,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,2e22731c-34b3-4726-937a-18e90d4213a7,Maximilian Jackson,Sharp,Boys,12.7,,,,,,,,17,,,,5,0,5,0
+85448415-9f1b-469d-90ae-bec70dc46f28,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,2e22731c-34b3-4726-937a-18e90d4213a7,Maximilian Jackson,Sharp,Boys,12.7,,,,,,,,18,,,,9,0,9,0
+3dd9379a-b303-4cbb-889a-133b1153dcd8,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,7cb8f5cb-1d66-4a8b-a52e-3c0ab48ff137,Julian,Klocke,Boys,11.7,,,,,,,,6,,,,6,0,6,0
+122068f3-e0da-4fa8-baf2-196fc898e6f5,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,7cb8f5cb-1d66-4a8b-a52e-3c0ab48ff137,Julian,Klocke,Boys,11.7,,,,,,,,7,,,,3,0,3,0
+70c4a742-307d-42c8-a243-b5f1cbc1a7b2,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,7cb8f5cb-1d66-4a8b-a52e-3c0ab48ff137,Julian,Klocke,Boys,11.7,,,,,,,,8,,,,5,0,5,0
 6a2f35a3-2edf-47c4-bbcd-6dc551957b2a,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,07cfbc31-606f-4838-ba17-578e0720215d,Aaron,Kastein,Boys,-0.8,,,,,,,,1,,,,5,0,5,0
 3c9f621c-22a1-4882-95dd-e2668ab8daab,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,07cfbc31-606f-4838-ba17-578e0720215d,Aaron,Kastein,Boys,-0.8,,,,,,,,2,,,,5,0,5,0
 d5584c2b-5ee6-4c97-bd20-0c03239b2384,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,07cfbc31-606f-4838-ba17-578e0720215d,Aaron,Kastein,Boys,-0.8,,,,,,,,11,,,,3,0,3,0
 d1050cac-3d9b-47ac-ba55-8ed1cf8675e3,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,e1cc61b9-4c31-4d8e-8bee-b567ce5cca28,Bent Laurenz,Bund,Boys,1.2,,,,,,,,10,,,,4,0,4,0
 ef65128b-ad99-4769-8685-4f1f4083f7a4,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,3b88eb10-8515-40d0-8108-a94529c534cd,Andris,Dzenis,Boys,1.1,,,,,,,,2,,,,4,0,4,0
-d9618a1d-9881-43b0-95ee-7dde269a1384,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,2e22731c-34b3-4726-937a-18e90d4213a7,Maximilian Jackson,Sharp,Boys,12.7,,,,,,,,6,,,,4,0,4,0
 39370815-116f-4dec-be25-b4a051537ca0,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,d3d57160-318c-4c35-bb5c-de5a5f07d0e7,Henry Pete,Nischk,Boys,19,,,,,,,,3,,,,5,0,5,0
 898c1512-18e0-4f23-a81f-3f57fa67796b,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,e0adbbeb-e7b5-42d4-9ba3-1d70c15bc9f5,Jonathan,Schmitz,Boys,16.8,,,,,,,,8,,,,4,0,4,0
 ffebbbd4-5802-4b64-944a-1375a4efb35c,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,e0adbbeb-e7b5-42d4-9ba3-1d70c15bc9f5,Jonathan,Schmitz,Boys,16.8,,,,,,,,9,,,,5,0,5,0
@@ -249,10 +261,15 @@ ba4c93ae-6066-466b-a79f-e9307617c9e5,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,5d11
 325c70a3-65ba-42d7-863c-258c9ef3ec08,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,5d110f0c-2f85-4f21-bfea-d8a96880f0f4,Frieda Taisia,Renting,Girls,4,,,,,,,,17,,,,5,0,5,0
 e5891171-dfeb-467c-bc5c-9eb46110188d,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,5d110f0c-2f85-4f21-bfea-d8a96880f0f4,Frieda Taisia,Renting,Girls,4,,,,,,,,18,,,,4,0,4,0
 1299590e-ab79-4fc6-a1fa-214cea356daa,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,ce23d191-feba-4728-82f1-dc3429b95532,Marlon,Hauschild,Boys,5.4,,,,,,,,8,,,,5,0,5,0
+d9618a1d-9881-43b0-95ee-7dde269a1384,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,2e22731c-34b3-4726-937a-18e90d4213a7,Maximilian Jackson,Sharp,Boys,12.7,,,,,,,,6,,,,4,0,4,0
+d243ef8c-2275-4cce-8e71-f96f533515af,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,c9c44f56-2b25-4444-be7a-60dcb33140b2,Oskar,Arnold,Boys,11.4,,,,,,,,4,,,,3,0,3,0
+8675f67d-700d-4c59-ae83-5faa3f26adc0,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,c9c44f56-2b25-4444-be7a-60dcb33140b2,Oskar,Arnold,Boys,11.4,,,,,,,,5,,,,5,0,5,0
+c29f322d-1ac2-4636-a162-8629181e3914,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,c9c44f56-2b25-4444-be7a-60dcb33140b2,Oskar,Arnold,Boys,11.4,,,,,,,,6,,,,6,0,6,0
+9445d35e-9017-4ec1-ba33-62d76c42fc03,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,c9c44f56-2b25-4444-be7a-60dcb33140b2,Oskar,Arnold,Boys,11.4,,,,,,,,7,,,,4,0,4,0
+aa41c3ba-cd06-44f0-8c61-89f0895c233d,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,c9c44f56-2b25-4444-be7a-60dcb33140b2,Oskar,Arnold,Boys,11.4,,,,,,,,8,,,,6,0,6,0
 5b9b492c-3c6d-401d-9151-e6b24bb0b3cd,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,e1cc61b9-4c31-4d8e-8bee-b567ce5cca28,Bent Laurenz,Bund,Boys,1.2,,,,,,,,11,,,,3,0,3,0
 cf048f4b-45fc-44f7-9d47-92b3843f16d6,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,e1cc61b9-4c31-4d8e-8bee-b567ce5cca28,Bent Laurenz,Bund,Boys,1.2,,,,,,,,12,,,,3,0,3,0
 88e32a97-6645-4f1b-bd9f-05893b7b8096,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,21380286-b867-4919-83b5-08eaac386dfe,Louis Maximilian,Eirund,Boys,20.5,,,,,,,,4,,,,4,0,4,0
-bfffce82-3aeb-4b51-8d00-c4b1e976842c,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,9d71aa32-e0cc-4394-b494-f2cca4e7d382,Noah,Lanfermann,Boys,12.8,,,,,,,,6,,,,5,0,5,0
 abd40c90-ea99-46c7-9e40-749f1a7b38f7,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,117030b2-c7c3-4bab-ac1d-2b3b81b2b9d1,Felix,Koglin,Boys,2.6,,,,,,,,4,,,,4,0,4,0
 a69acd4c-fdfc-4769-8f7c-bc34da148938,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,885a2ebf-a33e-44a1-a5dd-ef1922c7778b,Elias,Didjurgis,Boys,20,,,,,,,,6,,,,5,0,5,0
 a8cebbcd-1b3d-46be-9778-50ff0cc87ed8,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,117030b2-c7c3-4bab-ac1d-2b3b81b2b9d1,Felix,Koglin,Boys,2.6,,,,,,,,5,,,,4,0,4,0
@@ -299,6 +316,17 @@ cce68046-a6e1-424e-b087-38a0b01589aa,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,1170
 5aa3f2e5-044a-4c6b-acbd-4a6ab2b239d9,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,ce23d191-feba-4728-82f1-dc3429b95532,Marlon,Hauschild,Boys,5.4,,,,,,,,7,,,,4,0,4,0
 6deea696-160d-486e-b5ca-de5cfb2db300,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,e5564605-a162-4973-b880-2fa2245b8a54,Carl,Balz,Boys,5.5,,,,,,,,8,,,,5,0,5,0
 95842b62-0bad-41f8-a849-3e7449b164e9,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,e5564605-a162-4973-b880-2fa2245b8a54,Carl,Balz,Boys,5.5,,,,,,,,10,,,,5,0,5,0
+deb12b7a-909c-4e9c-bff3-d1f3edd285b4,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,9d71aa32-e0cc-4394-b494-f2cca4e7d382,Noah,Lanfermann,Boys,12.8,,,,,,,,4,,,,5,0,5,0
+17234f4b-6782-4635-9bba-58f0aec6e8de,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,9d71aa32-e0cc-4394-b494-f2cca4e7d382,Noah,Lanfermann,Boys,12.8,,,,,,,,5,,,,5,0,5,0
+bfffce82-3aeb-4b51-8d00-c4b1e976842c,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,9d71aa32-e0cc-4394-b494-f2cca4e7d382,Noah,Lanfermann,Boys,12.8,,,,,,,,6,,,,5,0,5,0
+3dcfe010-d59a-4685-8d49-470d4838d25e,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,9d71aa32-e0cc-4394-b494-f2cca4e7d382,Noah,Lanfermann,Boys,12.8,,,,,,,,7,,,,3,0,3,0
+ce9a9aa1-c200-4e28-afed-36e87b524d12,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,9d71aa32-e0cc-4394-b494-f2cca4e7d382,Noah,Lanfermann,Boys,12.8,,,,,,,,8,,,,6,0,6,0
+341f4b1d-bd2b-4ab7-905e-d8665008b5e9,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,9d71aa32-e0cc-4394-b494-f2cca4e7d382,Noah,Lanfermann,Boys,12.8,,,,,,,,9,,,,6,0,6,0
+a7ef8e4b-5a3d-4de3-bcdd-11b6f0dec038,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,9d71aa32-e0cc-4394-b494-f2cca4e7d382,Noah,Lanfermann,Boys,12.8,,,,,,,,10,,,,5,0,5,0
+9e935e91-c6da-4fe6-abdd-48fd43b2f197,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,9d71aa32-e0cc-4394-b494-f2cca4e7d382,Noah,Lanfermann,Boys,12.8,,,,,,,,11,,,,3,0,3,0
+56e995eb-4c3d-4940-a10b-01160631495e,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,9d71aa32-e0cc-4394-b494-f2cca4e7d382,Noah,Lanfermann,Boys,12.8,,,,,,,,12,,,,4,0,4,0
+4848ee6a-c35c-4aa1-b215-be4f011c4f70,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,9d71aa32-e0cc-4394-b494-f2cca4e7d382,Noah,Lanfermann,Boys,12.8,,,,,,,,13,,,,4,0,4,0
+39a5ecbf-718e-47db-9451-063cbeb68b9d,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,c9c44f56-2b25-4444-be7a-60dcb33140b2,Oskar,Arnold,Boys,11.4,,,,,,,,18,,,,5,0,5,0
 141ba4c0-36ce-40f1-bd1e-e5702f1bdab4,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,6edb8092-3291-45fa-8651-a88b460512ad,Karsten,Kropat,Boys,1.3,,,,,,,,4,,,,5,0,5,0
 03fa496b-8ce4-48a1-b100-5382aa7e9e9a,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,6edb8092-3291-45fa-8651-a88b460512ad,Karsten,Kropat,Boys,1.3,,,,,,,,5,,,,4,0,4,0
 ae5045f3-d0cc-4158-bdec-1c3aecbd5c43,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,6edb8092-3291-45fa-8651-a88b460512ad,Karsten,Kropat,Boys,1.3,,,,,,,,6,,,,5,0,5,0
@@ -353,6 +381,12 @@ c1b886e8-f3ab-4091-814a-648d6c48644d,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,ce23
 0ae95549-adfb-48d6-90db-6beabb182552,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,9dcefb0b-f81d-400a-90bc-514b64341425,Maddox,Cordes,Boys,5.4,,,,,,,,9,,,,5,0,5,0
 5d04e365-97b6-481f-8678-c08b3e6d07d6,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,9dcefb0b-f81d-400a-90bc-514b64341425,Maddox,Cordes,Boys,5.4,,,,,,,,10,,,,5,0,5,0
 d57ed8be-d4e3-43e5-a8d9-3a5054dccad9,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,e5564605-a162-4973-b880-2fa2245b8a54,Carl,Balz,Boys,5.5,,,,,,,,7,,,,4,0,4,0
+41f08d1a-7483-490c-ac7f-48dac3d21d25,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,0a22a191-8264-4398-8468-2e96074d3366,Nicolas,Gregg,Boys,5.8,,,,,,,,4,,,,4,0,4,0
+29bc8825-8916-4218-b960-f5b0f88fcf7e,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,0a22a191-8264-4398-8468-2e96074d3366,Nicolas,Gregg,Boys,5.8,,,,,,,,6,,,,5,0,5,0
+4244ebe9-b212-40c8-85fc-7844a3aca12a,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,0a22a191-8264-4398-8468-2e96074d3366,Nicolas,Gregg,Boys,5.8,,,,,,,,7,,,,4,0,4,0
+240a64a9-371e-422e-a88b-aaa750ae3a5b,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,0a22a191-8264-4398-8468-2e96074d3366,Nicolas,Gregg,Boys,5.8,,,,,,,,8,,,,5,0,5,0
+a4a9e069-ef5a-4fed-829a-cc26054fa893,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,0a22a191-8264-4398-8468-2e96074d3366,Nicolas,Gregg,Boys,5.8,,,,,,,,9,,,,7,0,7,0
+3420b36a-5973-4f5f-993b-659ba192c42a,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,0a22a191-8264-4398-8468-2e96074d3366,Nicolas,Gregg,Boys,5.8,,,,,,,,10,,,,6,0,6,0
 32c128cc-6728-4578-b30d-5cf26dd99b28,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,19b44c8b-f73c-464f-a197-236cf91f225b,Phillip,Hövermann,Boys,4.4,,,,,,,,6,,,,3,0,3,0
 0b58814e-be4a-488d-867d-4adc3b76d72c,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,19b44c8b-f73c-464f-a197-236cf91f225b,Phillip,Hövermann,Boys,4.4,,,,,,,,12,,,,5,0,5,0
 1ece05b0-56c6-4916-947c-aa3c59bd3b6f,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,19b44c8b-f73c-464f-a197-236cf91f225b,Phillip,Hövermann,Boys,4.4,,,,,,,,13,,,,6,0,6,0
@@ -397,8 +431,24 @@ d6eed41e-3b2d-40c6-8335-8abaa651e68d,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,9dce
 c1deee65-7e23-4b29-8caa-b97ccb5dca48,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,9dcefb0b-f81d-400a-90bc-514b64341425,Maddox,Cordes,Boys,5.4,,,,,,,,16,,,,4,0,4,0
 cf92b3f9-c72c-4767-bcd1-48d613f7ad22,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,9dcefb0b-f81d-400a-90bc-514b64341425,Maddox,Cordes,Boys,5.4,,,,,,,,17,,,,6,0,6,0
 5d87aaac-5c46-4ee0-a20b-40bc52c8bca5,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,9dcefb0b-f81d-400a-90bc-514b64341425,Maddox,Cordes,Boys,5.4,,,,,,,,18,,,,5,0,5,0
+ff0c2541-ebb5-4259-9f30-3608ea4640ae,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,0a22a191-8264-4398-8468-2e96074d3366,Nicolas,Gregg,Boys,5.8,,,,,,,,11,,,,3,0,3,0
+12c9917c-b458-452e-b2ac-0e4bde87bae3,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,0a22a191-8264-4398-8468-2e96074d3366,Nicolas,Gregg,Boys,5.8,,,,,,,,12,,,,4,0,4,0
+cffb8090-ce90-45b3-bba8-fe9342be68db,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,0a22a191-8264-4398-8468-2e96074d3366,Nicolas,Gregg,Boys,5.8,,,,,,,,13,,,,5,0,5,0
+21bc55f8-e226-4334-bd7c-eef6f349d817,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,0a22a191-8264-4398-8468-2e96074d3366,Nicolas,Gregg,Boys,5.8,,,,,,,,14,,,,5,0,5,0
+52c7c733-1397-4eb7-964c-e3292715760a,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,0a22a191-8264-4398-8468-2e96074d3366,Nicolas,Gregg,Boys,5.8,,,,,,,,15,,,,3,0,3,0
+c348e081-ccbf-48c9-a9d1-50b5d2d9d148,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,0a22a191-8264-4398-8468-2e96074d3366,Nicolas,Gregg,Boys,5.8,,,,,,,,16,,,,4,0,4,0
+0a56dd2e-cc77-4215-a9cd-4781add33b3a,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,0a22a191-8264-4398-8468-2e96074d3366,Nicolas,Gregg,Boys,5.8,,,,,,,,17,,,,5,0,5,0
+65089127-2389-418d-bc4e-9a7903714e75,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,0a22a191-8264-4398-8468-2e96074d3366,Nicolas,Gregg,Boys,5.8,,,,,,,,18,,,,4,0,4,0
+9f84c256-109e-42f1-8e57-cd2ff90e05f3,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,9d71aa32-e0cc-4394-b494-f2cca4e7d382,Noah,Lanfermann,Boys,12.8,,,,,,,,14,,,,5,0,5,0
+caf5981b-269f-47f4-b0a4-419d0e614efb,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,9d71aa32-e0cc-4394-b494-f2cca4e7d382,Noah,Lanfermann,Boys,12.8,,,,,,,,15,,,,4,0,4,0
+ee4f3134-8817-4283-aba6-0ff5b918ae1f,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,9d71aa32-e0cc-4394-b494-f2cca4e7d382,Noah,Lanfermann,Boys,12.8,,,,,,,,16,,,,5,0,5,0
+2b6b9ebb-140b-4c29-8a0e-4625c4274b71,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,9d71aa32-e0cc-4394-b494-f2cca4e7d382,Noah,Lanfermann,Boys,12.8,,,,,,,,17,,,,5,0,5,0
+d2aacc71-f8ba-478e-bce0-d0152932e60b,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,9d71aa32-e0cc-4394-b494-f2cca4e7d382,Noah,Lanfermann,Boys,12.8,,,,,,,,18,,,,5,0,5,0
+51a4fbc6-dc3b-4911-b344-a60262fd7db0,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,7cb8f5cb-1d66-4a8b-a52e-3c0ab48ff137,Julian,Klocke,Boys,11.7,,,,,,,,9,,,,6,0,6,0
+e32f46cd-2023-4da0-844c-ce157a771f41,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,7cb8f5cb-1d66-4a8b-a52e-3c0ab48ff137,Julian,Klocke,Boys,11.7,,,,,,,,10,,,,5,0,5,0
+242e5202-608b-480a-a86a-f9db7397731f,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,7cb8f5cb-1d66-4a8b-a52e-3c0ab48ff137,Julian,Klocke,Boys,11.7,,,,,,,,11,,,,4,0,4,0
+7f396990-8d0b-4cb7-8b62-d117cfc5bd9e,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,7cb8f5cb-1d66-4a8b-a52e-3c0ab48ff137,Julian,Klocke,Boys,11.7,,,,,,,,12,,,,5,0,5,0
 27464de5-549d-4a46-985a-6ef01f3a1c4a,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,c0fb8d2a-417b-4d68-918c-fc6d0b9b032c,Louiza Sofie,Menzel,Girls,9.8,,,,,,,,6,,,,5,0,5,0
-1be35688-cc34-493f-9b57-da1bc0c42bb1,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,0a22a191-8264-4398-8468-2e96074d3366,Nicolas,Gregg,Boys,5.8,,,,,,,,5,,,,3,0,3,0
 c03a8519-fef0-4962-ab3f-6e43d066bf93,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,21380286-b867-4919-83b5-08eaac386dfe,Louis Maximilian,Eirund,Boys,20.5,,,,,,,,9,,,,7,0,7,0
 84970741-6d5a-4cd2-a2b4-a13bbc98fe69,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,c0fb8d2a-417b-4d68-918c-fc6d0b9b032c,Louiza Sofie,Menzel,Girls,9.8,,,,,,,,8,,,,6,0,6,0
 2249b5dc-6aa1-41c9-a6cd-92cc2eca75c3,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,c0fb8d2a-417b-4d68-918c-fc6d0b9b032c,Louiza Sofie,Menzel,Girls,9.8,,,,,,,,9,,,,7,0,7,0
@@ -410,8 +460,6 @@ abae4c54-efb5-4c1f-b0e2-e5689158210f,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,c0fb
 9949f635-80c1-415a-9266-d1674f82efe6,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,885a2ebf-a33e-44a1-a5dd-ef1922c7778b,Elias,Didjurgis,Boys,20,,,,,,,,4,,,,3,0,3,0
 7b159f09-c016-4172-88a3-5698c469e1f2,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,c0fb8d2a-417b-4d68-918c-fc6d0b9b032c,Louiza Sofie,Menzel,Girls,9.8,,,,,,,,14,,,,6,0,6,0
 8c386773-959c-4294-a419-580873075d52,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,c3364e8d-93bc-472c-a6ff-b4f68265a4d5,Lena,Szymańska,Girls,3.2,,,,,,,,1,,,,6,0,6,0
-9e206e1e-e901-4518-965b-39295d9517f6,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,7cb8f5cb-1d66-4a8b-a52e-3c0ab48ff137,Julian,Klocke,Boys,11.7,,,,,,,,5,,,,5,0,5,0
-70effaa7-4a13-428b-b7ce-cc6203ee2d54,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,2e22731c-34b3-4726-937a-18e90d4213a7,Maximilian Jackson,Sharp,Boys,12.7,,,,,,,,5,,,,6,0,6,0
 ca6da3ab-8ca0-4d63-93a8-43cd872e7c0c,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,c3364e8d-93bc-472c-a6ff-b4f68265a4d5,Lena,Szymańska,Girls,3.2,,,,,,,,2,,,,7,0,7,0
 22eac146-d435-4604-923d-6274bd5f86ab,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,c0fb8d2a-417b-4d68-918c-fc6d0b9b032c,Louiza Sofie,Menzel,Girls,9.8,,,,,,,,15,,,,3,0,3,0
 2193fd0e-6a16-4724-bba0-eff2a9f0bf9b,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,c0fb8d2a-417b-4d68-918c-fc6d0b9b032c,Louiza Sofie,Menzel,Girls,9.8,,,,,,,,16,,,,5,0,5,0
@@ -457,3 +505,121 @@ dbbb0b25-c7c5-42e6-b156-c050141f3c2e,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,47b6
 37a21239-96a8-45d0-9ec0-325156d4c0ff,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,e5564605-a162-4973-b880-2fa2245b8a54,Carl,Balz,Boys,5.5,,,,,,,,13,,,,4,0,4,0
 f48a4a2e-9587-4766-9113-46c9ae856cfa,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,e5564605-a162-4973-b880-2fa2245b8a54,Carl,Balz,Boys,5.5,,,,,,,,14,,,,6,0,6,0
 1b3659f3-f010-4327-b27a-00c8a2488aa4,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,f88170d0-1f22-42fc-b06f-f43ce3d2c8ff,Carl Friedrich,Lehmann,Boys,8,,,,,,,,5,,,,4,0,4,0
+1be35688-cc34-493f-9b57-da1bc0c42bb1,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,0a22a191-8264-4398-8468-2e96074d3366,Nicolas,Gregg,Boys,5.8,,,,,,,,5,,,,3,0,3,0
+70effaa7-4a13-428b-b7ce-cc6203ee2d54,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,2e22731c-34b3-4726-937a-18e90d4213a7,Maximilian Jackson,Sharp,Boys,12.7,,,,,,,,5,,,,6,0,6,0
+9e206e1e-e901-4518-965b-39295d9517f6,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,7cb8f5cb-1d66-4a8b-a52e-3c0ab48ff137,Julian,Klocke,Boys,11.7,,,,,,,,5,,,,5,0,5,0
+082b57ce-df2e-4d27-a9da-567b8ffcde66,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,7cb8f5cb-1d66-4a8b-a52e-3c0ab48ff137,Julian,Klocke,Boys,11.7,,,,,,,,13,,,,5,0,5,0
+4e15cba3-bb82-41e3-b46a-d24f9819d999,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,7cb8f5cb-1d66-4a8b-a52e-3c0ab48ff137,Julian,Klocke,Boys,11.7,,,,,,,,14,,,,5,0,5,0
+365c91f7-f99c-4008-b6af-020fcef8230c,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,7cb8f5cb-1d66-4a8b-a52e-3c0ab48ff137,Julian,Klocke,Boys,11.7,,,,,,,,15,,,,3,0,3,0
+9ff784f2-ee8d-4900-a266-0bbdb55b73df,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,7cb8f5cb-1d66-4a8b-a52e-3c0ab48ff137,Julian,Klocke,Boys,11.7,,,,,,,,16,,,,5,0,5,0
+cb09e404-2fc9-4cac-82b2-5b926ddc158b,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,7cb8f5cb-1d66-4a8b-a52e-3c0ab48ff137,Julian,Klocke,Boys,11.7,,,,,,,,17,,,,6,0,6,0
+eea9dfe6-cb50-4f33-9081-7a9d3b07a3cc,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,7cb8f5cb-1d66-4a8b-a52e-3c0ab48ff137,Julian,Klocke,Boys,11.7,,,,,,,,18,,,,6,0,6,0
+ba3e28fc-ba22-4817-9766-64beb0c3fde0,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,06ccd75a-85fb-49da-b531-5ea45a09645f,Rafael,Pich,Boys,20.6,,,,,,,,1,,,,7,0,7,0
+aba11123-0754-4859-849f-0bcf537c5f75,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,06ccd75a-85fb-49da-b531-5ea45a09645f,Rafael,Pich,Boys,20.6,,,,,,,,2,,,,6,0,6,0
+d9b0eb84-ebfc-4451-b306-dfffb9c01720,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,06ccd75a-85fb-49da-b531-5ea45a09645f,Rafael,Pich,Boys,20.6,,,,,,,,3,,,,5,0,5,0
+8bc08cdd-6b2f-42af-9d19-65a1e01aaf35,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,06ccd75a-85fb-49da-b531-5ea45a09645f,Rafael,Pich,Boys,20.6,,,,,,,,4,,,,4,0,4,0
+c5a02864-ec3e-4714-9cb6-576a7c9416fb,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,06ccd75a-85fb-49da-b531-5ea45a09645f,Rafael,Pich,Boys,20.6,,,,,,,,5,,,,6,0,6,0
+313a617a-8c3a-4b2f-8976-0141014338d1,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,06ccd75a-85fb-49da-b531-5ea45a09645f,Rafael,Pich,Boys,20.6,,,,,,,,6,,,,6,0,6,0
+bccf8979-6f7e-47e0-b028-b58cf9f3b940,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,06ccd75a-85fb-49da-b531-5ea45a09645f,Rafael,Pich,Boys,20.6,,,,,,,,7,,,,3,0,3,0
+dd163318-3ecc-46b2-ae46-74ddbf1067b9,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,06ccd75a-85fb-49da-b531-5ea45a09645f,Rafael,Pich,Boys,20.6,,,,,,,,8,,,,6,0,6,0
+a1ac2be4-88a1-457d-ab2a-4a4ff01e6fbe,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,06ccd75a-85fb-49da-b531-5ea45a09645f,Rafael,Pich,Boys,20.6,,,,,,,,9,,,,7,0,7,0
+36ae0d58-bc72-45a5-9152-ff674f4b5685,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,06ccd75a-85fb-49da-b531-5ea45a09645f,Rafael,Pich,Boys,20.6,,,,,,,,10,,,,6,0,6,0
+173de48a-ee33-40e6-b9f7-a90b30ae31d5,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,06ccd75a-85fb-49da-b531-5ea45a09645f,Rafael,Pich,Boys,20.6,,,,,,,,11,,,,4,0,4,0
+88653950-2e3a-487e-9c43-223038c0ad4c,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,06ccd75a-85fb-49da-b531-5ea45a09645f,Rafael,Pich,Boys,20.6,,,,,,,,12,,,,6,0,6,0
+9b863d89-5ab2-4af6-bd0d-8d897f78c7d4,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,06ccd75a-85fb-49da-b531-5ea45a09645f,Rafael,Pich,Boys,20.6,,,,,,,,13,,,,6,0,6,0
+3a4edc96-58e7-4f31-8736-20e380e82a51,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,06ccd75a-85fb-49da-b531-5ea45a09645f,Rafael,Pich,Boys,20.6,,,,,,,,14,,,,6,0,6,0
+8d051aba-65f2-452d-bc6b-4e81a5d8da92,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,06ccd75a-85fb-49da-b531-5ea45a09645f,Rafael,Pich,Boys,20.6,,,,,,,,15,,,,4,0,4,0
+fb2744a2-c7d4-4467-bdf2-d63d1dfafb51,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,06ccd75a-85fb-49da-b531-5ea45a09645f,Rafael,Pich,Boys,20.6,,,,,,,,16,,,,6,0,6,0
+9f0545f4-25c2-4b75-ac44-1f987a8855af,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,06ccd75a-85fb-49da-b531-5ea45a09645f,Rafael,Pich,Boys,20.6,,,,,,,,17,,,,6,0,6,0
+6b507f38-c7f6-4ab1-82fc-ec5cc855060a,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,06ccd75a-85fb-49da-b531-5ea45a09645f,Rafael,Pich,Boys,20.6,,,,,,,,18,,,,7,0,7,0
+e289733c-be76-49b7-ae5b-0f52b921bd14,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,78fb4ed0-ba6c-4b98-a34b-bb8fa7f01091,Aaron,Talke,Boys,15.5,,,,,,,,2,,,,9,0,9,0
+82d1ee48-bdb8-49f7-859d-df46fb0d5ea0,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,78fb4ed0-ba6c-4b98-a34b-bb8fa7f01091,Aaron,Talke,Boys,15.5,,,,,,,,3,,,,5,0,5,0
+f3c253fe-7634-4ecd-ae4b-82f9e1482583,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,78fb4ed0-ba6c-4b98-a34b-bb8fa7f01091,Aaron,Talke,Boys,15.5,,,,,,,,4,,,,4,0,4,0
+f33dd8a2-4ce2-4805-853b-a894f126e0b1,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,78fb4ed0-ba6c-4b98-a34b-bb8fa7f01091,Aaron,Talke,Boys,15.5,,,,,,,,5,,,,4,0,4,0
+a9405580-f6df-4155-9abb-ce67172632c7,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,78fb4ed0-ba6c-4b98-a34b-bb8fa7f01091,Aaron,Talke,Boys,15.5,,,,,,,,6,,,,6,0,6,0
+366515dd-9a50-4e60-86cd-e1b2f1d0c121,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,78fb4ed0-ba6c-4b98-a34b-bb8fa7f01091,Aaron,Talke,Boys,15.5,,,,,,,,7,,,,3,0,3,0
+dfb471c4-37dd-418b-b1fc-343da9f33da9,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,78fb4ed0-ba6c-4b98-a34b-bb8fa7f01091,Aaron,Talke,Boys,15.5,,,,,,,,8,,,,5,0,5,0
+59ce2aeb-0d6b-4615-8f70-8401b860fe1e,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,78fb4ed0-ba6c-4b98-a34b-bb8fa7f01091,Aaron,Talke,Boys,15.5,,,,,,,,9,,,,8,0,8,0
+c0812517-27ac-4440-bd4e-3464bc4618b7,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,78fb4ed0-ba6c-4b98-a34b-bb8fa7f01091,Aaron,Talke,Boys,15.5,,,,,,,,10,,,,5,0,5,0
+4d454d48-d2a6-4e2c-af98-7fc0598a4a67,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,78fb4ed0-ba6c-4b98-a34b-bb8fa7f01091,Aaron,Talke,Boys,15.5,,,,,,,,11,,,,3,0,3,0
+53067e1f-7ce5-4de6-be58-8ab656bc36d1,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,78fb4ed0-ba6c-4b98-a34b-bb8fa7f01091,Aaron,Talke,Boys,15.5,,,,,,,,12,,,,3,0,3,0
+969a4ef8-49e6-4e65-89cd-cdf7b0987631,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,78fb4ed0-ba6c-4b98-a34b-bb8fa7f01091,Aaron,Talke,Boys,15.5,,,,,,,,13,,,,5,0,5,0
+322ead51-20c0-4c7a-8599-ffa582ed8ac9,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,78fb4ed0-ba6c-4b98-a34b-bb8fa7f01091,Aaron,Talke,Boys,15.5,,,,,,,,14,,,,6,0,6,0
+4080d0c4-03d7-4741-b393-bf3ceb2ee043,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,78fb4ed0-ba6c-4b98-a34b-bb8fa7f01091,Aaron,Talke,Boys,15.5,,,,,,,,15,,,,4,0,4,0
+27d55095-e230-4618-a90b-ae6679e7e8ce,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,78fb4ed0-ba6c-4b98-a34b-bb8fa7f01091,Aaron,Talke,Boys,15.5,,,,,,,,16,,,,4,0,4,0
+6e316cfc-93b8-4390-9b33-92108c39fe3d,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,78fb4ed0-ba6c-4b98-a34b-bb8fa7f01091,Aaron,Talke,Boys,15.5,,,,,,,,17,,,,6,0,6,0
+5cf0c4a9-9f5d-4ab2-ad69-51841a8c660a,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,78fb4ed0-ba6c-4b98-a34b-bb8fa7f01091,Aaron,Talke,Boys,15.5,,,,,,,,18,,,,13,0,13,0
+743a2f9c-3c21-4d34-91c7-22d08c9799be,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,ee5ab7c6-0546-4277-8d04-5e6b48ea52a3,Theo,Ewers,Boys,17.8,,,,,,,,2,,,,5,0,5,0
+d573f195-c3af-4945-bf10-d0fd4bd52be5,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,ee5ab7c6-0546-4277-8d04-5e6b48ea52a3,Theo,Ewers,Boys,17.8,,,,,,,,3,,,,5,0,5,0
+fc7587e3-2fd2-4450-8de6-9c964195c9d2,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,ee5ab7c6-0546-4277-8d04-5e6b48ea52a3,Theo,Ewers,Boys,17.8,,,,,,,,4,,,,4,0,4,0
+6ea1ab5b-0abb-4774-a992-9c238d2a165c,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,ee5ab7c6-0546-4277-8d04-5e6b48ea52a3,Theo,Ewers,Boys,17.8,,,,,,,,5,,,,5,0,5,0
+5bd9286d-3e2c-44c7-b463-618f0789e0a0,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,ee5ab7c6-0546-4277-8d04-5e6b48ea52a3,Theo,Ewers,Boys,17.8,,,,,,,,6,,,,4,0,4,0
+281e8c35-9555-463b-b678-dc16178e5ee0,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,ee5ab7c6-0546-4277-8d04-5e6b48ea52a3,Theo,Ewers,Boys,17.8,,,,,,,,7,,,,4,0,4,0
+bb0f68a6-24a7-4155-94e6-c6e758325a38,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,ee5ab7c6-0546-4277-8d04-5e6b48ea52a3,Theo,Ewers,Boys,17.8,,,,,,,,8,,,,5,0,5,0
+48cfc049-8be5-4304-a288-fe223d9f3614,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,ee5ab7c6-0546-4277-8d04-5e6b48ea52a3,Theo,Ewers,Boys,17.8,,,,,,,,9,,,,9,0,9,0
+51a03b31-4697-482b-9c4d-62f9491718cc,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,ee5ab7c6-0546-4277-8d04-5e6b48ea52a3,Theo,Ewers,Boys,17.8,,,,,,,,10,,,,4,0,4,0
+24460893-be7e-4d5f-93bf-fe4928ca483c,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,ee5ab7c6-0546-4277-8d04-5e6b48ea52a3,Theo,Ewers,Boys,17.8,,,,,,,,11,,,,4,0,4,0
+b7ee9d02-3964-4fc4-863b-ca6f2e5f0416,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,ee5ab7c6-0546-4277-8d04-5e6b48ea52a3,Theo,Ewers,Boys,17.8,,,,,,,,12,,,,5,0,5,0
+3baf9baa-2658-47a5-a83b-b6aa07008223,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,ee5ab7c6-0546-4277-8d04-5e6b48ea52a3,Theo,Ewers,Boys,17.8,,,,,,,,13,,,,5,0,5,0
+f20dd55f-484c-45eb-b0ba-9c1e4c27ffbf,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,ee5ab7c6-0546-4277-8d04-5e6b48ea52a3,Theo,Ewers,Boys,17.8,,,,,,,,14,,,,6,0,6,0
+4c8fdefc-c2d3-4866-ab9e-f75a688be5a1,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,ee5ab7c6-0546-4277-8d04-5e6b48ea52a3,Theo,Ewers,Boys,17.8,,,,,,,,15,,,,4,0,4,0
+41935db1-f223-4850-9e8e-2f5c7f8dc323,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,ee5ab7c6-0546-4277-8d04-5e6b48ea52a3,Theo,Ewers,Boys,17.8,,,,,,,,16,,,,4,0,4,0
+8b7278b8-3eb7-4559-8de9-e3631af2404f,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,ee5ab7c6-0546-4277-8d04-5e6b48ea52a3,Theo,Ewers,Boys,17.8,,,,,,,,17,,,,6,0,6,0
+1ecf5f54-2acb-4d7d-af05-0f963b08e8db,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,ee5ab7c6-0546-4277-8d04-5e6b48ea52a3,Theo,Ewers,Boys,17.8,,,,,,,,18,,,,5,0,5,0
+cdf3b3f6-1c51-4d93-912c-e5b71c0bd58a,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,44447724-0d2c-4601-b0c6-e53714d03f63,Emily,Anders,Girls,26,,,,,,,,2,,,,6,0,6,0
+92eb3ded-af1e-4a1d-aeaa-6c0f2ffef34d,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,44447724-0d2c-4601-b0c6-e53714d03f63,Emily,Anders,Girls,26,,,,,,,,3,,,,5,0,5,0
+f54a8a4f-1812-43ee-bb2d-56206b0c9007,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,44447724-0d2c-4601-b0c6-e53714d03f63,Emily,Anders,Girls,26,,,,,,,,4,,,,4,0,4,0
+5abb5b5c-317b-4f36-98e0-cb273c4cfd79,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,44447724-0d2c-4601-b0c6-e53714d03f63,Emily,Anders,Girls,26,,,,,,,,5,,,,5,0,5,0
+df2987d4-2d19-43e4-b5fc-5bea2bdb8599,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,44447724-0d2c-4601-b0c6-e53714d03f63,Emily,Anders,Girls,26,,,,,,,,6,,,,7,0,7,0
+3642b029-92e0-49fc-ab75-7262e6481ea4,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,44447724-0d2c-4601-b0c6-e53714d03f63,Emily,Anders,Girls,26,,,,,,,,7,,,,3,0,3,0
+dc6169ac-2070-47cb-ae65-48b9d765eeeb,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,44447724-0d2c-4601-b0c6-e53714d03f63,Emily,Anders,Girls,26,,,,,,,,8,,,,5,0,5,0
+1b7c2ec8-d2ac-4ebc-8362-09317d39db15,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,44447724-0d2c-4601-b0c6-e53714d03f63,Emily,Anders,Girls,26,,,,,,,,9,,,,8,0,8,0
+ae066ea3-9d05-4f14-a078-a8b1df7b4732,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,44447724-0d2c-4601-b0c6-e53714d03f63,Emily,Anders,Girls,26,,,,,,,,10,,,,4,0,4,0
+93842d43-2f2a-44a3-a34a-8e1e1659a52c,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,44447724-0d2c-4601-b0c6-e53714d03f63,Emily,Anders,Girls,26,,,,,,,,11,,,,3,0,3,0
+9d2a635a-34db-43e7-8180-591b3d8d2eaf,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,44447724-0d2c-4601-b0c6-e53714d03f63,Emily,Anders,Girls,26,,,,,,,,12,,,,6,0,6,0
+66036e3c-7a9e-4721-9ace-5a2dc1107029,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,44447724-0d2c-4601-b0c6-e53714d03f63,Emily,Anders,Girls,26,,,,,,,,13,,,,6,0,6,0
+bacf56b3-dd5c-4720-bb15-6e44becf5bfc,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,44447724-0d2c-4601-b0c6-e53714d03f63,Emily,Anders,Girls,26,,,,,,,,14,,,,7,0,7,0
+b28a0804-06d4-48b3-a5db-7a35183adbd0,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,44447724-0d2c-4601-b0c6-e53714d03f63,Emily,Anders,Girls,26,,,,,,,,15,,,,4,0,4,0
+a851330f-4e5d-4422-acc8-25fb5026377a,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,44447724-0d2c-4601-b0c6-e53714d03f63,Emily,Anders,Girls,26,,,,,,,,16,,,,5,0,5,0
+3b21a054-e00a-4d15-8e44-3dd91d8feaae,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,44447724-0d2c-4601-b0c6-e53714d03f63,Emily,Anders,Girls,26,,,,,,,,17,,,,7,0,7,0
+a7d66861-3881-4b10-b153-63c3ead9fecf,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,44447724-0d2c-4601-b0c6-e53714d03f63,Emily,Anders,Girls,26,,,,,,,,18,,,,6,0,6,0
+66a74021-4a8a-4ea4-a33a-cc424bb5c99f,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,bd565cdc-2b20-4ee1-8358-1c3f10ec8acf,Sophie,Leonhardt,Girls,30.3,,,,,,,,2,,,,5,0,5,0
+da40e4d0-8d1b-4ed4-923d-94b172ee2e77,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,bd565cdc-2b20-4ee1-8358-1c3f10ec8acf,Sophie,Leonhardt,Girls,30.3,,,,,,,,3,,,,6,0,6,0
+a5e71f94-9314-4172-87b7-a7e2ffed7841,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,bd565cdc-2b20-4ee1-8358-1c3f10ec8acf,Sophie,Leonhardt,Girls,30.3,,,,,,,,4,,,,3,0,3,0
+6835a20c-18d1-46ef-b672-1315bcf037c1,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,bd565cdc-2b20-4ee1-8358-1c3f10ec8acf,Sophie,Leonhardt,Girls,30.3,,,,,,,,5,,,,4,0,4,0
+7b7c3621-d262-4148-8fb6-1824e23fc508,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,bd565cdc-2b20-4ee1-8358-1c3f10ec8acf,Sophie,Leonhardt,Girls,30.3,,,,,,,,6,,,,3,0,3,0
+c785b1f1-40a6-4936-b8be-38c9eaa1129f,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,bd565cdc-2b20-4ee1-8358-1c3f10ec8acf,Sophie,Leonhardt,Girls,30.3,,,,,,,,7,,,,6,0,6,0
+0bee0b6e-f005-4c8e-813d-23801bce887e,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,bd565cdc-2b20-4ee1-8358-1c3f10ec8acf,Sophie,Leonhardt,Girls,30.3,,,,,,,,8,,,,6,0,6,0
+ebddcfe6-dbe1-4294-8445-3f911a92b801,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,bd565cdc-2b20-4ee1-8358-1c3f10ec8acf,Sophie,Leonhardt,Girls,30.3,,,,,,,,9,,,,7,0,7,0
+57df711d-6bb3-4c20-aa66-b4d9cc11134f,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,bd565cdc-2b20-4ee1-8358-1c3f10ec8acf,Sophie,Leonhardt,Girls,30.3,,,,,,,,10,,,,5,0,5,0
+32226bb2-0924-4038-abf4-55f413f844d3,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,bd565cdc-2b20-4ee1-8358-1c3f10ec8acf,Sophie,Leonhardt,Girls,30.3,,,,,,,,11,,,,4,0,4,0
+f774a9bf-090b-4af8-8258-ad4a8d15e81b,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,bd565cdc-2b20-4ee1-8358-1c3f10ec8acf,Sophie,Leonhardt,Girls,30.3,,,,,,,,12,,,,4,0,4,0
+dacccdd3-8b58-443b-8784-85b6b86bb978,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,bd565cdc-2b20-4ee1-8358-1c3f10ec8acf,Sophie,Leonhardt,Girls,30.3,,,,,,,,13,,,,4,0,4,0
+9b4f983d-cb7e-4976-bf68-0e9b500c15b2,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,bd565cdc-2b20-4ee1-8358-1c3f10ec8acf,Sophie,Leonhardt,Girls,30.3,,,,,,,,14,,,,6,0,6,0
+3d9d38d3-4d3b-4eee-a525-1ccce4d97a55,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,bd565cdc-2b20-4ee1-8358-1c3f10ec8acf,Sophie,Leonhardt,Girls,30.3,,,,,,,,15,,,,4,0,4,0
+a5ad1c94-8ee1-4e46-9a7f-eb55838a32db,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,bd565cdc-2b20-4ee1-8358-1c3f10ec8acf,Sophie,Leonhardt,Girls,30.3,,,,,,,,16,,,,6,0,6,0
+c5dcb167-f7f9-4bd2-8745-7d219f390942,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,bd565cdc-2b20-4ee1-8358-1c3f10ec8acf,Sophie,Leonhardt,Girls,30.3,,,,,,,,17,,,,7,0,7,0
+498e30af-97ba-4b54-be88-ab5b626acb0a,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,bd565cdc-2b20-4ee1-8358-1c3f10ec8acf,Sophie,Leonhardt,Girls,30.3,,,,,,,,18,,,,3,0,3,0
+2cbaab47-8dcd-4d61-90ba-9fe7ee26c7ef,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,fdd25cd4-90fe-4002-b08b-95ff807080ba,Eleonor Madicken,Seiffarth,Girls,4.4,,,,,,,,5,,,,3,0,3,0
+3aa2bdb7-7a7d-49c8-998a-10eb25e169c7,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,fdd25cd4-90fe-4002-b08b-95ff807080ba,Eleonor Madicken,Seiffarth,Girls,4.4,,,,,,,,6,,,,4,0,4,0
+8968a5d6-89c2-4fb6-987f-a4d8a21b4af0,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,fdd25cd4-90fe-4002-b08b-95ff807080ba,Eleonor Madicken,Seiffarth,Girls,4.4,,,,,,,,7,,,,4,0,4,0
+ec26cd35-fca9-4fd0-adb9-cb1b45671bd4,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,fdd25cd4-90fe-4002-b08b-95ff807080ba,Eleonor Madicken,Seiffarth,Girls,4.4,,,,,,,,8,,,,6,0,6,0
+8685b0d6-860e-49f2-9f61-90fb5bb1250d,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,fdd25cd4-90fe-4002-b08b-95ff807080ba,Eleonor Madicken,Seiffarth,Girls,4.4,,,,,,,,9,,,,7,0,7,0
+22cecaca-37b0-43b8-b252-833349a936ce,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,fdd25cd4-90fe-4002-b08b-95ff807080ba,Eleonor Madicken,Seiffarth,Girls,4.4,,,,,,,,10,,,,6,0,6,0
+8346d888-d00c-416f-a552-df04f952b3ea,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,fdd25cd4-90fe-4002-b08b-95ff807080ba,Eleonor Madicken,Seiffarth,Girls,4.4,,,,,,,,11,,,,3,0,3,0
+512fe53b-f87a-41d3-9214-99743bcd4a06,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,fdd25cd4-90fe-4002-b08b-95ff807080ba,Eleonor Madicken,Seiffarth,Girls,4.4,,,,,,,,12,,,,6,0,6,0
+3b071fa4-2ff7-478d-97f5-cb9078d2b888,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,fdd25cd4-90fe-4002-b08b-95ff807080ba,Eleonor Madicken,Seiffarth,Girls,4.4,,,,,,,,13,,,,4,0,4,0
+9374536b-c1c8-4506-946d-6b9bc7228517,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,fdd25cd4-90fe-4002-b08b-95ff807080ba,Eleonor Madicken,Seiffarth,Girls,4.4,,,,,,,,14,,,,5,0,5,0
+95efbd03-048f-472f-ac93-3519539aff8d,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,fdd25cd4-90fe-4002-b08b-95ff807080ba,Eleonor Madicken,Seiffarth,Girls,4.4,,,,,,,,15,,,,3,0,3,0
+8d457a4d-1128-4282-8423-2aa587020d1c,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,fdd25cd4-90fe-4002-b08b-95ff807080ba,Eleonor Madicken,Seiffarth,Girls,4.4,,,,,,,,16,,,,3,0,3,0
+77bc918b-e58e-4787-a711-f12fcc815f67,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,fdd25cd4-90fe-4002-b08b-95ff807080ba,Eleonor Madicken,Seiffarth,Girls,4.4,,,,,,,,17,,,,5,0,5,0
+280f1b46-64f4-4739-a027-12617809e58b,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,fdd25cd4-90fe-4002-b08b-95ff807080ba,Eleonor Madicken,Seiffarth,Girls,4.4,,,,,,,,18,,,,4,0,4,0
+7d18ae2f-f293-4c78-bc0e-109615bae640,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,c9c44f56-2b25-4444-be7a-60dcb33140b2,Oskar,Arnold,Boys,11.4,,,,,,,,9,,,,6,0,6,0
+843ca23c-6ae6-40da-8987-085b900f7523,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,c9c44f56-2b25-4444-be7a-60dcb33140b2,Oskar,Arnold,Boys,11.4,,,,,,,,10,,,,4,0,4,0
+185663e5-b25a-48a2-8afe-d93c8246c5b0,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,c9c44f56-2b25-4444-be7a-60dcb33140b2,Oskar,Arnold,Boys,11.4,,,,,,,,11,,,,3,0,3,0
+7c982dd6-58dd-484f-87ed-acaba2f2fa65,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,c9c44f56-2b25-4444-be7a-60dcb33140b2,Oskar,Arnold,Boys,11.4,,,,,,,,12,,,,5,0,5,0
+83427e58-17d8-496c-9f01-aa6669817b2f,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,c9c44f56-2b25-4444-be7a-60dcb33140b2,Oskar,Arnold,Boys,11.4,,,,,,,,13,,,,5,0,5,0
+c2f12e92-22aa-4b6d-a93a-6e0de25a0b1e,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,c9c44f56-2b25-4444-be7a-60dcb33140b2,Oskar,Arnold,Boys,11.4,,,,,,,,14,,,,6,0,6,0
+55ab3297-568b-44e5-b085-6a7df8a82336,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,c9c44f56-2b25-4444-be7a-60dcb33140b2,Oskar,Arnold,Boys,11.4,,,,,,,,15,,,,4,0,4,0
+9b058d2d-de6c-4820-a2b5-c2266cef5cda,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,c9c44f56-2b25-4444-be7a-60dcb33140b2,Oskar,Arnold,Boys,11.4,,,,,,,,16,,,,5,0,5,0
+15f3725e-5c88-4769-bfc4-a12348d8b476,7716349a-8bb0-46c6-b60c-3594eb7ea60f,1,c9c44f56-2b25-4444-be7a-60dcb33140b2,Oskar,Arnold,Boys,11.4,,,,,,,,17,,,,5,0,5,0
