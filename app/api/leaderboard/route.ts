@@ -310,7 +310,7 @@ export async function GET(req: Request) {
       if (r.birthdate) {
         const age = calcAge(String(r.birthdate), String(tRow.start_date));
         const baseGroup = ageGroupFromAge(age);
-        age_group = normalizeGroupForHoles(baseGroup, holes);
+        age_group = normalizeGroupForHoles(baseGroup, holes) as "U8" | "U10" | "U12" | "U14" | "U16" | "U18" | "U21";
       }
 
       let strokesSum = 0;
