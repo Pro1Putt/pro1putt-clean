@@ -1,6 +1,19 @@
 [
   {
     "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
+    "registration_id": "06ccd75a-85fb-49da-b531-5ea45a09645f",
+    "first_name": "Rafael",
+    "last_name": "Pich",
+    "gender": "Boys",
+    "hcp": 20.6,
+    "setup_tee_name": null,
+    "rounds_played": 1,
+    "stableford_total": 0,
+    "gross_total": 101,
+    "net_total": 101
+  },
+  {
+    "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
     "registration_id": "07cfbc31-606f-4838-ba17-578e0720215d",
     "first_name": "Aaron",
     "last_name": "Kastein",
@@ -139,8 +152,8 @@
     "setup_tee_name": null,
     "rounds_played": 1,
     "stableford_total": 0,
-    "gross_total": 8,
-    "net_total": 8
+    "gross_total": 99,
+    "net_total": 99
   },
   {
     "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
@@ -230,8 +243,8 @@
     "setup_tee_name": null,
     "rounds_played": 1,
     "stableford_total": 0,
-    "gross_total": 6,
-    "net_total": 6
+    "gross_total": 99,
+    "net_total": 99
   },
   {
     "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
@@ -321,8 +334,8 @@
     "setup_tee_name": null,
     "rounds_played": 1,
     "stableford_total": 0,
-    "gross_total": 6,
-    "net_total": 6
+    "gross_total": 89,
+    "net_total": 89
   },
   {
     "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
@@ -360,8 +373,8 @@
     "setup_tee_name": null,
     "rounds_played": 1,
     "stableford_total": 0,
-    "gross_total": 89,
-    "net_total": 89
+    "gross_total": 88,
+    "net_total": 88
   },
   {
     "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
@@ -451,8 +464,8 @@
     "setup_tee_name": null,
     "rounds_played": 1,
     "stableford_total": 0,
-    "gross_total": 6,
-    "net_total": 6
+    "gross_total": 90,
+    "net_total": 90
   },
   {
     "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
@@ -477,8 +490,8 @@
     "setup_tee_name": null,
     "rounds_played": 1,
     "stableford_total": 0,
-    "gross_total": 26,
-    "net_total": 26
+    "gross_total": 86,
+    "net_total": 86
   },
   {
     "tournament_id": null,
