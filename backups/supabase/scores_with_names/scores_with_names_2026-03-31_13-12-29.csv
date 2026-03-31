@@ -36,8 +36,6 @@ tournament_id,first_name,last_name,player_id,hole_number,strokes
 7716349a-8bb0-46c6-b60c-3594eb7ea60f,Maddox,Cordes,9dcefb0b-f81d-400a-90bc-514b64341425,2,5
 7716349a-8bb0-46c6-b60c-3594eb7ea60f,Carl,Balz,e5564605-a162-4973-b880-2fa2245b8a54,1,7
 7716349a-8bb0-46c6-b60c-3594eb7ea60f,Carl Friedrich,Lehmann,f88170d0-1f22-42fc-b06f-f43ce3d2c8ff,1,6
-7716349a-8bb0-46c6-b60c-3594eb7ea60f,Oskar,Arnold,c9c44f56-2b25-4444-be7a-60dcb33140b2,1,4
-7716349a-8bb0-46c6-b60c-3594eb7ea60f,Oskar,Arnold,c9c44f56-2b25-4444-be7a-60dcb33140b2,2,8
 7716349a-8bb0-46c6-b60c-3594eb7ea60f,Nicolas,Gregg,0a22a191-8264-4398-8468-2e96074d3366,1,5
 7716349a-8bb0-46c6-b60c-3594eb7ea60f,Nicolas,Gregg,0a22a191-8264-4398-8468-2e96074d3366,2,5
 7716349a-8bb0-46c6-b60c-3594eb7ea60f,Maximilian Jackson,Sharp,2e22731c-34b3-4726-937a-18e90d4213a7,1,6
@@ -51,6 +49,8 @@ tournament_id,first_name,last_name,player_id,hole_number,strokes
 7716349a-8bb0-46c6-b60c-3594eb7ea60f,Emily,Anders,44447724-0d2c-4601-b0c6-e53714d03f63,1,8
 7716349a-8bb0-46c6-b60c-3594eb7ea60f,Sophie,Leonhardt,bd565cdc-2b20-4ee1-8358-1c3f10ec8acf,1,6
 7716349a-8bb0-46c6-b60c-3594eb7ea60f,Eleonor Madicken,Seiffarth,fdd25cd4-90fe-4002-b08b-95ff807080ba,1,7
+7716349a-8bb0-46c6-b60c-3594eb7ea60f,Oskar,Arnold,c9c44f56-2b25-4444-be7a-60dcb33140b2,1,4
+7716349a-8bb0-46c6-b60c-3594eb7ea60f,Oskar,Arnold,c9c44f56-2b25-4444-be7a-60dcb33140b2,2,8
 7716349a-8bb0-46c6-b60c-3594eb7ea60f,Aaron,Kastein,07cfbc31-606f-4838-ba17-578e0720215d,4,3
 7716349a-8bb0-46c6-b60c-3594eb7ea60f,Aaron,Kastein,07cfbc31-606f-4838-ba17-578e0720215d,5,3
 7716349a-8bb0-46c6-b60c-3594eb7ea60f,Aaron,Kastein,07cfbc31-606f-4838-ba17-578e0720215d,15,4
@@ -93,7 +93,6 @@ tournament_id,first_name,last_name,player_id,hole_number,strokes
 7716349a-8bb0-46c6-b60c-3594eb7ea60f,Carl,Balz,e5564605-a162-4973-b880-2fa2245b8a54,4,3
 7716349a-8bb0-46c6-b60c-3594eb7ea60f,Carl Friedrich,Lehmann,f88170d0-1f22-42fc-b06f-f43ce3d2c8ff,2,4
 7716349a-8bb0-46c6-b60c-3594eb7ea60f,Carl Friedrich,Lehmann,f88170d0-1f22-42fc-b06f-f43ce3d2c8ff,3,7
-7716349a-8bb0-46c6-b60c-3594eb7ea60f,Oskar,Arnold,c9c44f56-2b25-4444-be7a-60dcb33140b2,3,4
 7716349a-8bb0-46c6-b60c-3594eb7ea60f,Nicolas,Gregg,0a22a191-8264-4398-8468-2e96074d3366,3,5
 7716349a-8bb0-46c6-b60c-3594eb7ea60f,Maximilian Jackson,Sharp,2e22731c-34b3-4726-937a-18e90d4213a7,3,4
 7716349a-8bb0-46c6-b60c-3594eb7ea60f,Noah,Lanfermann,9d71aa32-e0cc-4394-b494-f2cca4e7d382,3,4
@@ -101,6 +100,7 @@ tournament_id,first_name,last_name,player_id,hole_number,strokes
 7716349a-8bb0-46c6-b60c-3594eb7ea60f,Eleonor Madicken,Seiffarth,fdd25cd4-90fe-4002-b08b-95ff807080ba,2,9
 7716349a-8bb0-46c6-b60c-3594eb7ea60f,Eleonor Madicken,Seiffarth,fdd25cd4-90fe-4002-b08b-95ff807080ba,3,5
 7716349a-8bb0-46c6-b60c-3594eb7ea60f,Eleonor Madicken,Seiffarth,fdd25cd4-90fe-4002-b08b-95ff807080ba,4,2
+7716349a-8bb0-46c6-b60c-3594eb7ea60f,Oskar,Arnold,c9c44f56-2b25-4444-be7a-60dcb33140b2,3,4
 7716349a-8bb0-46c6-b60c-3594eb7ea60f,Aaron,Kastein,07cfbc31-606f-4838-ba17-578e0720215d,7,3
 7716349a-8bb0-46c6-b60c-3594eb7ea60f,Aaron,Kastein,07cfbc31-606f-4838-ba17-578e0720215d,8,4
 7716349a-8bb0-46c6-b60c-3594eb7ea60f,Aaron,Kastein,07cfbc31-606f-4838-ba17-578e0720215d,9,4
@@ -261,21 +261,12 @@ tournament_id,first_name,last_name,player_id,hole_number,strokes
 7716349a-8bb0-46c6-b60c-3594eb7ea60f,Frieda Taisia,Renting,5d110f0c-2f85-4f21-bfea-d8a96880f0f4,17,5
 7716349a-8bb0-46c6-b60c-3594eb7ea60f,Frieda Taisia,Renting,5d110f0c-2f85-4f21-bfea-d8a96880f0f4,18,4
 7716349a-8bb0-46c6-b60c-3594eb7ea60f,Marlon,Hauschild,ce23d191-feba-4728-82f1-dc3429b95532,8,5
+7716349a-8bb0-46c6-b60c-3594eb7ea60f,Maximilian Jackson,Sharp,2e22731c-34b3-4726-937a-18e90d4213a7,6,4
 7716349a-8bb0-46c6-b60c-3594eb7ea60f,Oskar,Arnold,c9c44f56-2b25-4444-be7a-60dcb33140b2,4,3
 7716349a-8bb0-46c6-b60c-3594eb7ea60f,Oskar,Arnold,c9c44f56-2b25-4444-be7a-60dcb33140b2,5,5
 7716349a-8bb0-46c6-b60c-3594eb7ea60f,Oskar,Arnold,c9c44f56-2b25-4444-be7a-60dcb33140b2,6,6
 7716349a-8bb0-46c6-b60c-3594eb7ea60f,Oskar,Arnold,c9c44f56-2b25-4444-be7a-60dcb33140b2,7,4
 7716349a-8bb0-46c6-b60c-3594eb7ea60f,Oskar,Arnold,c9c44f56-2b25-4444-be7a-60dcb33140b2,8,6
-7716349a-8bb0-46c6-b60c-3594eb7ea60f,Oskar,Arnold,c9c44f56-2b25-4444-be7a-60dcb33140b2,9,6
-7716349a-8bb0-46c6-b60c-3594eb7ea60f,Oskar,Arnold,c9c44f56-2b25-4444-be7a-60dcb33140b2,10,4
-7716349a-8bb0-46c6-b60c-3594eb7ea60f,Oskar,Arnold,c9c44f56-2b25-4444-be7a-60dcb33140b2,11,3
-7716349a-8bb0-46c6-b60c-3594eb7ea60f,Oskar,Arnold,c9c44f56-2b25-4444-be7a-60dcb33140b2,12,5
-7716349a-8bb0-46c6-b60c-3594eb7ea60f,Oskar,Arnold,c9c44f56-2b25-4444-be7a-60dcb33140b2,13,5
-7716349a-8bb0-46c6-b60c-3594eb7ea60f,Oskar,Arnold,c9c44f56-2b25-4444-be7a-60dcb33140b2,14,6
-7716349a-8bb0-46c6-b60c-3594eb7ea60f,Oskar,Arnold,c9c44f56-2b25-4444-be7a-60dcb33140b2,15,4
-7716349a-8bb0-46c6-b60c-3594eb7ea60f,Oskar,Arnold,c9c44f56-2b25-4444-be7a-60dcb33140b2,16,5
-7716349a-8bb0-46c6-b60c-3594eb7ea60f,Oskar,Arnold,c9c44f56-2b25-4444-be7a-60dcb33140b2,17,6
-7716349a-8bb0-46c6-b60c-3594eb7ea60f,Maximilian Jackson,Sharp,2e22731c-34b3-4726-937a-18e90d4213a7,6,4
 7716349a-8bb0-46c6-b60c-3594eb7ea60f,Bent Laurenz,Bund,e1cc61b9-4c31-4d8e-8bee-b567ce5cca28,11,3
 7716349a-8bb0-46c6-b60c-3594eb7ea60f,Bent Laurenz,Bund,e1cc61b9-4c31-4d8e-8bee-b567ce5cca28,12,3
 7716349a-8bb0-46c6-b60c-3594eb7ea60f,Louis Maximilian,Eirund,21380286-b867-4919-83b5-08eaac386dfe,4,4
@@ -325,7 +316,6 @@ tournament_id,first_name,last_name,player_id,hole_number,strokes
 7716349a-8bb0-46c6-b60c-3594eb7ea60f,Marlon,Hauschild,ce23d191-feba-4728-82f1-dc3429b95532,7,4
 7716349a-8bb0-46c6-b60c-3594eb7ea60f,Carl,Balz,e5564605-a162-4973-b880-2fa2245b8a54,8,5
 7716349a-8bb0-46c6-b60c-3594eb7ea60f,Carl,Balz,e5564605-a162-4973-b880-2fa2245b8a54,10,5
-7716349a-8bb0-46c6-b60c-3594eb7ea60f,Oskar,Arnold,c9c44f56-2b25-4444-be7a-60dcb33140b2,18,5
 7716349a-8bb0-46c6-b60c-3594eb7ea60f,Noah,Lanfermann,9d71aa32-e0cc-4394-b494-f2cca4e7d382,4,5
 7716349a-8bb0-46c6-b60c-3594eb7ea60f,Noah,Lanfermann,9d71aa32-e0cc-4394-b494-f2cca4e7d382,5,5
 7716349a-8bb0-46c6-b60c-3594eb7ea60f,Noah,Lanfermann,9d71aa32-e0cc-4394-b494-f2cca4e7d382,6,5
@@ -336,6 +326,7 @@ tournament_id,first_name,last_name,player_id,hole_number,strokes
 7716349a-8bb0-46c6-b60c-3594eb7ea60f,Noah,Lanfermann,9d71aa32-e0cc-4394-b494-f2cca4e7d382,11,3
 7716349a-8bb0-46c6-b60c-3594eb7ea60f,Noah,Lanfermann,9d71aa32-e0cc-4394-b494-f2cca4e7d382,12,4
 7716349a-8bb0-46c6-b60c-3594eb7ea60f,Noah,Lanfermann,9d71aa32-e0cc-4394-b494-f2cca4e7d382,13,4
+7716349a-8bb0-46c6-b60c-3594eb7ea60f,Oskar,Arnold,c9c44f56-2b25-4444-be7a-60dcb33140b2,18,5
 7716349a-8bb0-46c6-b60c-3594eb7ea60f,Karsten,Kropat,6edb8092-3291-45fa-8651-a88b460512ad,4,5
 7716349a-8bb0-46c6-b60c-3594eb7ea60f,Karsten,Kropat,6edb8092-3291-45fa-8651-a88b460512ad,5,4
 7716349a-8bb0-46c6-b60c-3594eb7ea60f,Karsten,Kropat,6edb8092-3291-45fa-8651-a88b460512ad,6,5
@@ -623,3 +614,12 @@ tournament_id,first_name,last_name,player_id,hole_number,strokes
 7716349a-8bb0-46c6-b60c-3594eb7ea60f,Eleonor Madicken,Seiffarth,fdd25cd4-90fe-4002-b08b-95ff807080ba,16,3
 7716349a-8bb0-46c6-b60c-3594eb7ea60f,Eleonor Madicken,Seiffarth,fdd25cd4-90fe-4002-b08b-95ff807080ba,17,5
 7716349a-8bb0-46c6-b60c-3594eb7ea60f,Eleonor Madicken,Seiffarth,fdd25cd4-90fe-4002-b08b-95ff807080ba,18,4
+7716349a-8bb0-46c6-b60c-3594eb7ea60f,Oskar,Arnold,c9c44f56-2b25-4444-be7a-60dcb33140b2,9,6
+7716349a-8bb0-46c6-b60c-3594eb7ea60f,Oskar,Arnold,c9c44f56-2b25-4444-be7a-60dcb33140b2,10,4
+7716349a-8bb0-46c6-b60c-3594eb7ea60f,Oskar,Arnold,c9c44f56-2b25-4444-be7a-60dcb33140b2,11,3
+7716349a-8bb0-46c6-b60c-3594eb7ea60f,Oskar,Arnold,c9c44f56-2b25-4444-be7a-60dcb33140b2,12,5
+7716349a-8bb0-46c6-b60c-3594eb7ea60f,Oskar,Arnold,c9c44f56-2b25-4444-be7a-60dcb33140b2,13,5
+7716349a-8bb0-46c6-b60c-3594eb7ea60f,Oskar,Arnold,c9c44f56-2b25-4444-be7a-60dcb33140b2,14,6
+7716349a-8bb0-46c6-b60c-3594eb7ea60f,Oskar,Arnold,c9c44f56-2b25-4444-be7a-60dcb33140b2,15,4
+7716349a-8bb0-46c6-b60c-3594eb7ea60f,Oskar,Arnold,c9c44f56-2b25-4444-be7a-60dcb33140b2,16,5
+7716349a-8bb0-46c6-b60c-3594eb7ea60f,Oskar,Arnold,c9c44f56-2b25-4444-be7a-60dcb33140b2,17,5
