@@ -21,7 +21,6 @@ type Row = {
   holes: number;
   gender: "Boys" | "Girls";
   age_group: "U8" | "U10" | "U12" | "U14" | "U16" | "U18" | "U21";
-
   score: number | null;
   thru: number;
   to_par: number | null;
@@ -46,31 +45,26 @@ const AGE_ORDER: Record<string, number> = {
   U18: 6,
   U21: 7,
 };
+
 const CATEGORY_LABELS: Record<string, string> = {
   "Boys-U21": "Boys Kategorie 20–21",
   "Girls-U21": "Girls Kategorie 20–21",
-
   "Boys-U18": "Boys Kategorie 17–19",
   "Girls-U18": "Girls Kategorie 17–19",
-
   "Boys-U16": "Boys Kategorie 15–16",
   "Girls-U16": "Girls Kategorie 15–16",
-
   "Boys-U14": "Boys Kategorie 13–14",
   "Girls-U14": "Girls Kategorie 13–14",
-
   "Boys-U12": "Boys Kategorie 11–12",
   "Girls-U12": "Girls Kategorie 11–12",
-
   "Boys-U10": "Boys Kategorie 9–10",
   "Girls-U10": "Girls Kategorie 9–10",
-
   "Boys-U8": "Boys Kategorie U8",
   "Girls-U8": "Girls Kategorie U8",
-
-  "ALL_U21": "Overall U21 (18 Loch)",
-  "ALL_U12": "Overall U12 (9 Loch)",
+  ALL_U21: "Overall U21 (18 Loch)",
+  ALL_U12: "Overall U12 (9 Loch)",
 };
+
 function flagEmoji(iso2: string | null | undefined) {
   const code = String(iso2 || "").trim().toUpperCase();
   if (code.length !== 2) return "";
@@ -98,7 +92,6 @@ function fmtTime(iso: string | null | undefined) {
 
 function fmtToPar(v: number | null | undefined) {
   if (v === null || v === undefined) return "";
-
   if (v === 0) return "E";
   if (v > 0) return `+${v}`;
   return `${v}`;
@@ -118,18 +111,18 @@ function fmtTournament(t: Tournament) {
   return parts.join(" ");
 }
 
-/** ✅ Wichtig: useSearchParams() ist jetzt NICHT mehr im Page-Root, sondern in diesem Inner-Component */
 function LeaderboardInner() {
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-);
+  const supabase = createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  );
 
   const sp = useSearchParams();
   const tournamentIdFromUrl = (sp.get("tournamentId") || "").trim();
 
   const [tournaments, setTournaments] = useState<Tournament[]>([]);
   const [tournamentId, setTournamentId] = useState<string>(tournamentIdFromUrl);
+  const [selectedRound, setSelectedRound] = useState<number>(1);
 
   const [rows, setRows] = useState<Row[]>([]);
   const [loading, setLoading] = useState(true);
@@ -140,11 +133,13 @@ const supabase = createClient(
 
   useEffect(() => {
     let cancelled = false;
+
     (async () => {
       try {
         const res = await fetch("/api/tournaments", { cache: "no-store" });
         const json = await res.json();
         if (!res.ok) throw new Error(json?.error || "Failed to load tournaments");
+
         const list: Tournament[] = Array.isArray(json?.tournaments) ? json.tournaments : [];
         if (cancelled) return;
 
@@ -163,34 +158,34 @@ const supabase = createClient(
         if (!cancelled) setLoadErr(e?.message || "Load error");
       }
     })();
+
     return () => {
       cancelled = true;
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [tournamentIdFromUrl, tournamentId]);
 
- async function loadLeaderboard(tid: string) {
-  if (!tid) {
-    setRows([]);
-    setLastUpdated(null);
-    return;
-  }
+  async function loadLeaderboard(tid: string, round: number) {
+    if (!tid) {
+      setRows([]);
+      setLastUpdated(null);
+      return;
+    }
 
-  setLoadErr(null);
-  setLoading(true);
+    setLoadErr(null);
+    setLoading(true);
 
-  try {
-    const res = await fetch(
-     `/api/leaderboard?tournamentId=${encodeURIComponent(tid)}&round=1`,
-      {
-        cache: "no-store",
+    try {
+      const res = await fetch(
+        `/api/leaderboard?tournamentId=${encodeURIComponent(tid)}&round=${round}`,
+        { cache: "no-store" }
+      );
+
+      const json = await res.json();
+      if (!res.ok || !json?.ok) {
+        throw new Error(json?.error || "Failed to load leaderboard");
       }
-    );
 
-  const json = await res.json();
-  if (!res.ok || !json?.ok) throw new Error(json?.error || "Failed to load leaderboard");
-
-  const raw = Array.isArray(json?.rows) ? (json.rows as any[]) : [];
+      const raw = Array.isArray(json?.rows) ? (json.rows as any[]) : [];
 
       const cleaned = raw.filter(
         (r) =>
@@ -200,7 +195,12 @@ const supabase = createClient(
       );
 
       setRows(cleaned as Row[]);
-      setLastUpdated(new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }));
+      setLastUpdated(
+        new Date().toLocaleTimeString([], {
+          hour: "2-digit",
+          minute: "2-digit",
+        })
+      );
     } catch (e: any) {
       setRows([]);
       setLoadErr(e?.message || "Load error");
@@ -211,41 +211,42 @@ const supabase = createClient(
 
   useEffect(() => {
     if (!tournamentId) return;
-    loadLeaderboard(tournamentId);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [tournamentId]);
+    loadLeaderboard(tournamentId, selectedRound);
+  }, [tournamentId, selectedRound]);
 
   useEffect(() => {
-  if (!tournamentId) return;
+    if (!tournamentId) return;
 
-  const channel = supabase
-    .channel(`scores-${tournamentId}`)
-    .on(
-      "postgres_changes",
-      {
-        event: "*",
-        schema: "public",
-        table: "scores",
-        filter: `tournament_id=eq.${tournamentId}`,
-      },
-      () => {
-        loadLeaderboard(tournamentId);
-      }
-    )
-    .subscribe();
+    const channel = supabase
+      .channel(`scores-${tournamentId}-r${selectedRound}`)
+      .on(
+        "postgres_changes",
+        {
+          event: "*",
+          schema: "public",
+          table: "scores",
+          filter: `tournament_id=eq.${tournamentId}`,
+        },
+        () => {
+          loadLeaderboard(tournamentId, selectedRound);
+        }
+      )
+      .subscribe();
 
-  return () => {
-    supabase.removeChannel(channel);
-  };
-}, [tournamentId]);
+    return () => {
+      supabase.removeChannel(channel);
+    };
+  }, [supabase, tournamentId, selectedRound]);
 
   const tabs = useMemo(() => {
     const set = new Set<string>();
+
     for (const r of rows) {
       if ((r.gender === "Boys" || r.gender === "Girls") && r.age_group) {
         set.add(`${r.gender}-${r.age_group}`);
       }
     }
+
     return Array.from(set).sort((a, b) => {
       const [ga, aa] = a.split("-");
       const [gb, ab] = b.split("-");
@@ -274,6 +275,7 @@ const supabase = createClient(
 
   function Tab({ k, label }: { k: FilterKey; label: string }) {
     const selected = active === k;
+
     return (
       <button
         type="button"
@@ -299,132 +301,136 @@ const supabase = createClient(
     const isMobile = typeof window !== "undefined" && window.innerWidth <= 640;
 
     if (isMobile) {
-  return (
-    <div
-      key={`${r.id}-${idx}`}
-      style={{
-        padding: "14px",
-        borderBottom: "1px solid rgba(0,0,0,0.06)",
-        display: "flex",
-        flexDirection: "column",
-        gap: 8,
-      }}
-    >
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-          <div style={{ fontWeight: 900, color: GREEN, fontSize: 18 }}>#{displayRank}</div>
-          <div style={{ fontSize: 18 }}>{medal(displayRank)}</div>
-        </div>
-
+      return (
         <div
+          key={`${r.id}-${idx}`}
           style={{
-            padding: "6px 12px",
-            borderRadius: 999,
-            background: "rgba(30,70,32,0.12)",
-            border: "1px solid rgba(30,70,32,0.25)",
-            color: GREEN,
-            fontWeight: 900,
-            fontSize: 18,
+            padding: "14px",
+            borderBottom: "1px solid rgba(0,0,0,0.06)",
+            display: "flex",
+            flexDirection: "column",
+            gap: 8,
           }}
         >
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+              <div style={{ fontWeight: 900, color: GREEN, fontSize: 18 }}>#{displayRank}</div>
+              <div style={{ fontSize: 18 }}>{medal(displayRank)}</div>
+            </div>
+
+            <div
+              style={{
+                padding: "6px 12px",
+                borderRadius: 999,
+                background: "rgba(30,70,32,0.12)",
+                border: "1px solid rgba(30,70,32,0.25)",
+                color: GREEN,
+                fontWeight: 900,
+                fontSize: 18,
+              }}
+            >
+              {fmtScore(r.score)}
+            </div>
+          </div>
+
+          <div style={{ fontWeight: 800 }}>
+            {flagEmoji(r.nation)} {r.first_name} {r.last_name}
+          </div>
+
+          <div style={{ fontSize: 12, opacity: 0.7 }}>
+            {r.gender} • {r.age_group} • {r.holes}L • HCP{" "}
+            {r.hcp != null ? Number(r.hcp).toFixed(1) : "–"}
+          </div>
+
+          <div style={{ fontSize: 12, opacity: 0.7 }}>
+            Thru {r.thru || "–"} • {fmtToPar(r.to_par)} • Flight {r.flight_number ?? "–"} • Start{" "}
+            {fmtTime(r.start_time)} • R2 Start {fmtTime(r.round2_start_time)} • R3 Start{" "}
+            {fmtTime(r.round3_start_time)}
+          </div>
+
+          {r.home_club ? <div style={{ fontSize: 12, opacity: 0.6 }}>{r.home_club}</div> : null}
+        </div>
+      );
+    }
+
+    return (
+      <div
+        key={`${r.id}-${idx}`}
+        style={{
+          display: "grid",
+          gridTemplateColumns:
+            "60px 50px minmax(320px, 2.8fr) 90px 70px 80px 70px 80px 90px 90px 90px",
+          columnGap: 8,
+          padding: "12px 14px",
+          borderBottom: "1px solid rgba(0,0,0,0.06)",
+          alignItems: "center",
+          fontSize: 14,
+        }}
+      >
+        <div style={{ fontWeight: 900, color: GREEN }}>{displayRank}</div>
+        <div style={{ fontSize: 16 }}>{medal(displayRank)}</div>
+
+        <div style={{ display: "flex", gap: 10, alignItems: "center", minWidth: 0 }}>
+          <span style={{ fontSize: 18, flex: "0 0 auto" }}>{flagEmoji(r.nation)}</span>
+
+          <div style={{ minWidth: 0 }}>
+            <div
+              style={{
+                fontWeight: 800,
+                fontSize: 15,
+                lineHeight: "18px",
+                whiteSpace: "normal",
+                wordBreak: "break-word",
+              }}
+            >
+              {r.first_name} {r.last_name}
+            </div>
+
+            <div
+              style={{
+                fontSize: 12,
+                opacity: 0.65,
+                whiteSpace: "nowrap",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+              }}
+            >
+              {r.gender} • {r.age_group} • {r.holes}L
+              {r.home_club ? ` • ${r.home_club}` : ""}
+            </div>
+          </div>
+        </div>
+
+        <div style={{ fontWeight: 900, color: GREEN, textAlign: "center" }}>
           {fmtScore(r.score)}
         </div>
-      </div>
 
-      <div style={{ fontWeight: 800 }}>
-        {flagEmoji(r.nation)} {r.first_name} {r.last_name}
-      </div>
-
-      <div style={{ fontSize: 12, opacity: 0.7 }}>
-        {r.gender} • {r.age_group} • {r.holes}L • HCP {r.hcp != null ? Number(r.hcp).toFixed(1) : "–"}
-      </div>
-
-      <div style={{ fontSize: 12, opacity: 0.7 }}>
-       Thru {r.thru || "–"} • {fmtToPar(r.to_par)} • Flight {r.flight_number ?? "–"} • Start{" "}
-{fmtTime(r.start_time)} • R2 Start {fmtTime(r.round2_start_time)} • R3 Start{" "}
-{fmtTime(r.round3_start_time)}
-      </div>
-
-      {r.home_club ? (
-        <div style={{ fontSize: 12, opacity: 0.6 }}>{r.home_club}</div>
-      ) : null}
-    </div>
-  );
-}
-    return (
-  <div
-    key={`${r.id}-${idx}`}
-    style={{
-      display: "grid",
-     gridTemplateColumns: "60px 50px minmax(320px, 2.8fr) 90px 70px 80px 70px 80px 90px 90px 90px",
-      columnGap: 8,
-      padding: "12px 14px",
-      borderBottom: "1px solid rgba(0,0,0,0.06)",
-      alignItems: "center",
-      fontSize: 14,
-    }}
-  >
-    <div style={{ fontWeight: 900, color: GREEN }}>{displayRank}</div>
-    <div style={{ fontSize: 16 }}>{medal(displayRank)}</div>
-
-    <div style={{ display: "flex", gap: 10, alignItems: "center", minWidth: 0 }}>
-      <span style={{ fontSize: 18, flex: "0 0 auto" }}>{flagEmoji(r.nation)}</span>
-
-      <div style={{ minWidth: 0 }}>
-        <div
-          style={{
-            fontWeight: 800,
-            fontSize: 15,
-            lineHeight: "18px",
-            whiteSpace: "normal",
-            wordBreak: "break-word",
-          }}
-        >
-          {r.first_name} {r.last_name}
-        </div>
-
-        <div
-          style={{
-            fontSize: 12,
-            opacity: 0.65,
-            whiteSpace: "nowrap",
-            overflow: "hidden",
-            textOverflow: "ellipsis",
-          }}
-        >
-          {r.gender} • {r.age_group} • {r.holes}L
-          {r.home_club ? ` • ${r.home_club}` : ""}
+        <div style={{ opacity: 0.85, textAlign: "center" }}>{r.thru ? r.thru : "–"}</div>
+        <div style={{ opacity: 0.85, textAlign: "center" }}>{fmtToPar(r.to_par)}</div>
+        <div style={{ opacity: 0.85, textAlign: "center" }}>{r.flight_number ?? "–"}</div>
+        <div style={{ opacity: 0.85, textAlign: "center" }}>{fmtTime(r.start_time)}</div>
+        <div style={{ opacity: 0.85, textAlign: "center" }}>{fmtTime(r.round2_start_time)}</div>
+        <div style={{ opacity: 0.85, textAlign: "center" }}>{fmtTime(r.round3_start_time)}</div>
+        <div style={{ fontWeight: 800, textAlign: "center" }}>
+          {r.hcp != null ? Number(r.hcp).toFixed(1) : "–"}
         </div>
       </div>
-    </div>
-
-    <div style={{ fontWeight: 900, color: GREEN, textAlign: "center" }}>
-      {fmtScore(r.score)}
-    </div>
-
-    <div style={{ opacity: 0.85, textAlign: "center" }}>{r.thru ? r.thru : "–"}</div>
-    <div style={{ opacity: 0.85, textAlign: "center" }}>{fmtToPar(r.to_par)}</div>
-    <div style={{ opacity: 0.85, textAlign: "center" }}>{r.flight_number ?? "–"}</div>
-    <div style={{ opacity: 0.85, textAlign: "center" }}>{fmtTime(r.start_time)}</div>
-    <div style={{ opacity: 0.85, textAlign: "center" }}>{fmtTime(r.round2_start_time)}</div>
-    <div style={{ opacity: 0.85, textAlign: "center" }}>{fmtTime(r.round3_start_time)}</div>
-    <div style={{ fontWeight: 800, textAlign: "center" }}>
-      {r.hcp != null ? Number(r.hcp).toFixed(1) : "–"}
-    </div>
-  </div>
-);
+    );
   }
 
   const showDynamicTabs = tabs.length > 0;
-  const alloverWanted = active === "ALL_U12" ? ["U8", "U10", "U12"] : ["U14", "U16", "U18", "U21"];
+  const alloverWanted =
+    active === "ALL_U12" ? ["U8", "U10", "U12"] : ["U14", "U16", "U18", "U21"];
 
   function groupByAge(list: Row[]) {
     const map = new Map<string, Row[]>();
+
     for (const r of list) {
       const k = String(r.age_group || "").toUpperCase();
       if (!map.has(k)) map.set(k, []);
       map.get(k)!.push(r);
     }
+
     return alloverWanted
       .map((ag) => ({ ag, list: map.get(ag) || [] }))
       .filter((g) => g.list.length > 0);
@@ -432,44 +438,62 @@ const supabase = createClient(
 
   function SectionTitle({ title }: { title: string }) {
     return (
-      <div style={{ padding: "10px 14px", fontWeight: 900, color: GREEN, background: "#ffffff" }}>
+      <div
+        style={{
+          padding: "10px 14px",
+          fontWeight: 900,
+          color: GREEN,
+          background: "#ffffff",
+        }}
+      >
         {title}
       </div>
     );
   }
 
+  const boysOverallTitle =
+    active === "ALL_U12" ? "Boys Overall U12 (9 Loch)" : "Boys Overall U21 (18 Loch)";
+
+  const girlsOverallTitle =
+    active === "ALL_U12" ? "Girls Overall U12 (9 Loch)" : "Girls Overall U21 (18 Loch)";
+
   return (
     <div style={{ maxWidth: 1100, margin: "40px auto", padding: "0 14px" }}>
       <style>{`
-  /* MOBILE: Tabelle nicht abschneiden, sondern horizontal scrollen */
-  .p1-lb-tablewrap {
-    width: 100%;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-  }
+        .p1-lb-tablewrap {
+          width: 100%;
+          overflow-x: auto;
+          -webkit-overflow-scrolling: touch;
+        }
 
-  /* Der Grid-"Table"-Block bekommt eine Mindestbreite, damit er nicht gequetscht wird */
-.p1-lb-minw {
-  min-width: 1070px;
-}
+        .p1-lb-minw {
+          min-width: 1070px;
+        }
 
- @media (max-width: 420px) {
-   .p1-lb-minw { min-width: 1030px; }
-  }
-`}</style>
+        @media (max-width: 420px) {
+          .p1-lb-minw {
+            min-width: 1030px;
+          }
+        }
+      `}</style>
+
       <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 14 }}>
-        <img src={LOGO_URL} alt="PRO1PUTT" style={{ height: 40, width: "auto", display: "block" }} />
+        <img
+          src={LOGO_URL}
+          alt="PRO1PUTT"
+          style={{ height: 40, width: "auto", display: "block" }}
+        />
 
         <div style={{ flex: 1 }}>
           <h1 style={{ fontSize: 28, fontWeight: 900, color: GREEN, margin: 0 }}>Leaderboard</h1>
           <div style={{ fontSize: 12, opacity: 0.7 }}>
-  {lastUpdated ? `Live · zuletzt aktualisiert ${lastUpdated}` : "Live"}
-</div>
+            {lastUpdated ? `Live · zuletzt aktualisiert ${lastUpdated}` : "Live"}
+          </div>
         </div>
 
         <button
           type="button"
-          onClick={() => loadLeaderboard(tournamentId)}
+          onClick={() => loadLeaderboard(tournamentId, selectedRound)}
           style={{
             padding: "10px 14px",
             borderRadius: 12,
@@ -494,6 +518,7 @@ const supabase = createClient(
         }}
       >
         <div style={{ fontWeight: 900, color: GREEN, marginBottom: 6 }}>Turnier</div>
+
         <select
           value={tournamentId}
           onChange={(e) => setTournamentId(e.target.value)}
@@ -503,6 +528,7 @@ const supabase = createClient(
             borderRadius: 12,
             border: "1px solid rgba(0,0,0,0.15)",
             outline: "none",
+            marginBottom: 10,
           }}
         >
           <option value="" disabled>
@@ -513,6 +539,24 @@ const supabase = createClient(
               {fmtTournament(t)}
             </option>
           ))}
+        </select>
+
+        <div style={{ fontWeight: 900, color: GREEN, marginBottom: 6 }}>Runde</div>
+
+        <select
+          value={selectedRound}
+          onChange={(e) => setSelectedRound(Number(e.target.value))}
+          style={{
+            width: "100%",
+            padding: "12px 12px",
+            borderRadius: 12,
+            border: "1px solid rgba(0,0,0,0.15)",
+            outline: "none",
+          }}
+        >
+          <option value={1}>Runde 1</option>
+          <option value={2}>Runde 2</option>
+          <option value={3}>Runde 3</option>
         </select>
 
         {loadErr && (
@@ -532,7 +576,7 @@ const supabase = createClient(
         )}
       </div>
 
-           <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginTop: 10, marginBottom: 12 }}>
+      <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginTop: 10, marginBottom: 12 }}>
         <Tab k="ALL_U21" label="Allover • U21 (18 Loch)" />
         <Tab k="ALL_U12" label="Allover • U12 (9 Loch)" />
 
@@ -549,11 +593,7 @@ const supabase = createClient(
 
         {showDynamicTabs &&
           tabs.map((k) => (
-            <Tab
-              key={k}
-              k={k}
-              label={CATEGORY_LABELS[k] ?? k}
-            />
+            <Tab key={k} k={k} label={CATEGORY_LABELS[k] ?? k} />
           ))}
       </div>
 
@@ -570,11 +610,12 @@ const supabase = createClient(
             <div
               style={{
                 display: "grid",
-              gridTemplateColumns: "60px 50px minmax(320px, 2.8fr) 90px 70px 80px 70px 80px 90px 90px 90px",
-columnGap: 10,
-padding: "12px 14px",
-fontWeight: 900,
-color: GREEN,
+                gridTemplateColumns:
+                  "60px 50px minmax(320px, 2.8fr) 90px 70px 80px 70px 80px 90px 90px 90px",
+                columnGap: 10,
+                padding: "12px 14px",
+                fontWeight: 900,
+                color: GREEN,
                 borderBottom: "1px solid rgba(0,0,0,0.08)",
                 background: "#f5f7f5",
                 fontSize: 13,
@@ -599,36 +640,43 @@ color: GREEN,
               <div style={{ padding: 16, opacity: 0.7 }}>Keine Spieler in dieser Ansicht.</div>
             )}
 
-            {!loading && split.list.length > 0 && active.startsWith("ALL_") && (() => {
-              const boysGroups = groupByAge(split.boys);
-              const girlsGroups = groupByAge(split.girls);
+            {!loading &&
+              split.list.length > 0 &&
+              active.startsWith("ALL_") &&
+              (() => {
+                const boysGroups = groupByAge(split.boys);
+                const girlsGroups = groupByAge(split.girls);
 
-              return (
-                <>
-                  <SectionTitle title="Boys Overall U21 (18 Loch)" />
-                  {split.boys.map((r, idx) => renderRow(r, idx))}
+                return (
+                  <>
+                    <SectionTitle title={boysOverallTitle} />
+                    {split.boys.map((r, idx) => renderRow(r, idx))}
 
-                  {boysGroups.map((g) => (
-                    <div key={`boys-${g.ag}`}>
-                      <SectionTitle title={CATEGORY_LABELS[`Boys-${g.ag}`] ?? `Boys • ${g.ag}`} />
-                      {g.list.map((r, idx) => renderRow(r, idx))}
-                    </div>
-                  ))}
+                    {boysGroups.map((g) => (
+                      <div key={`boys-${g.ag}`}>
+                        <SectionTitle title={CATEGORY_LABELS[`Boys-${g.ag}`] ?? `Boys • ${g.ag}`} />
+                        {g.list.map((r, idx) => renderRow(r, idx))}
+                      </div>
+                    ))}
 
-                  <SectionTitle title="Girls Overall U21 (18 Loch)" />
-                  {split.girls.map((r, idx) => renderRow(r, idx))}
+                    <SectionTitle title={girlsOverallTitle} />
+                    {split.girls.map((r, idx) => renderRow(r, idx))}
 
-                  {girlsGroups.map((g) => (
-                    <div key={`girls-${g.ag}`}>
-                      <SectionTitle title={CATEGORY_LABELS[`Girls-${g.ag}`] ?? `Girls • ${g.ag}`} />
-                      {g.list.map((r, idx) => renderRow(r, idx))}
-                    </div>
-                  ))}
-                </>
-              );
-            })()}
+                    {girlsGroups.map((g) => (
+                      <div key={`girls-${g.ag}`}>
+                        <SectionTitle
+                          title={CATEGORY_LABELS[`Girls-${g.ag}`] ?? `Girls • ${g.ag}`}
+                        />
+                        {g.list.map((r, idx) => renderRow(r, idx))}
+                      </div>
+                    ))}
+                  </>
+                );
+              })()}
 
-            {!loading && split.list.length > 0 && !active.startsWith("ALL_") &&
+            {!loading &&
+              split.list.length > 0 &&
+              !active.startsWith("ALL_") &&
               split.list.map((r, idx) => renderRow(r, idx))}
           </div>
         </div>
@@ -636,7 +684,6 @@ color: GREEN,
     </div>
   );
 }
- 
 
 export default function LeaderboardPage() {
   return (

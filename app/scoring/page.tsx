@@ -35,7 +35,7 @@ export default function ScoreEntryMask() {
   const [loadingPlayers, setLoadingPlayers] = useState(true);
   const [search, setSearch] = useState("");
   const [selectedPlayerId, setSelectedPlayerId] = useState<string>("");
-  const [selectedRound, setSelectedRound] = useState<number>(1);
+  const [selectedRound, setSelectedRound] = useState<number>(2);
   const [scores, setScores] = useState<Record<number, string>>({});
   const [loadingScores, setLoadingScores] = useState(false);
   const [saving, setSaving] = useState(false);
