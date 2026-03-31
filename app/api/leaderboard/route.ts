@@ -48,15 +48,14 @@ type RegRow = {
   gender: string | null;
   home_club: string | null;
   birthdate: string | null;
-
-  // 👉 DAS FEHLT:
   holes: number | null;
 };
 
 type ScoreRow = {
-  player_id: string;
-  hole_number: number;
-  strokes: number;
+  registration_id: string | null;
+  player_id: string | null;
+  hole_number: number | null;
+  strokes: number | null;
   updated_at: string | null;
   round_number: number | null;
 };
@@ -91,10 +90,10 @@ export async function GET(req: Request) {
       );
     }
 
-   const { data: regs, error: regErr } = await supabase
-  .from("registrations")
-  .select("id,tournament_id,first_name,last_name,hcp,nation,gender,birthdate,holes,home_club")
-  .eq("tournament_id", tournamentId);
+    const { data: regs, error: regErr } = await supabase
+      .from("registrations")
+      .select("id,tournament_id,first_name,last_name,hcp,nation,gender,birthdate,holes,home_club")
+      .eq("tournament_id", tournamentId);
 
     if (regErr) {
       return NextResponse.json({ ok: false, error: regErr.message }, { status: 500 });
@@ -103,41 +102,61 @@ export async function GET(req: Request) {
     const registrations = (regs || []) as RegRow[];
 
     // ------------------------------------------------------------
-    // SCORES NUR FÜR DIE AKTUELLE RUNDE
+    // SCORES DER GEWÄHLTEN RUNDE LADEN
     // ------------------------------------------------------------
-    const { data: scoreData, error: scoreErr } = await supabase
+    let scoreQuery = supabase
       .from("scores")
-      .select("player_id,hole_number,strokes,updated_at,round_number")
-      .eq("tournament_id", tournamentId)
-      .eq("round_number", round)
+      .select("registration_id,player_id,hole_number,strokes,updated_at,round_number")
+      .eq("tournament_id", tournamentId);
+
+    if (round === 1) {
+      scoreQuery = scoreQuery.or("round_number.eq.1,round_number.is.null");
+    } else {
+      scoreQuery = scoreQuery.eq("round_number", round);
+    }
+
+    const { data: scoreData, error: scoreErr } = await scoreQuery
       .order("updated_at", { ascending: false });
 
     if (scoreErr) {
+      console.error("score query error", scoreErr);
       return NextResponse.json({ ok: false, error: scoreErr.message }, { status: 500 });
     }
 
-    const scores = (scoreData || []) as ScoreRow[];
-    console.log("LEADERBOARD scores found:", scores.length, "round:", round);
+    const rawScores = (scoreData || []) as ScoreRow[];
 
-    // neueste Score je Spieler + Loch
+    console.log("LEADERBOARD raw scores found:", rawScores.length, "round:", round);
+    console.log("LEADERBOARD raw sample scores:", rawScores.slice(0, 20));
+
+    // ------------------------------------------------------------
+    // PRO REGISTRATION/HOLE NUR DEN NEUESTEN SCORE BEHALTEN
+    // ------------------------------------------------------------
     const latestScoreByRegAndHole = new Map<string, number>();
 
-    for (const s of scores) {
-      const regId = String(s.player_id || "").trim();
+    for (const s of rawScores) {
+      const scoreOwnerId = String(s.registration_id || s.player_id || "").trim();
       const hole = safeNum(s.hole_number);
       const strokes = safeNum(s.strokes);
 
-      if (!regId || hole == null || strokes == null) continue;
+      if (!scoreOwnerId || hole == null || strokes == null) continue;
 
-      const key = `${regId}::${hole}`;
+      const key = `${scoreOwnerId}-${hole}`;
 
+      // Da nach updated_at DESC sortiert wurde:
+      // erster Treffer = neuester Score
       if (!latestScoreByRegAndHole.has(key)) {
         latestScoreByRegAndHole.set(key, strokes);
       }
     }
 
+    console.log("LEADERBOARD latestScoreByRegAndHole size:", latestScoreByRegAndHole.size);
+    console.log(
+      "LEADERBOARD latestScoreByRegAndHole sample:",
+      Array.from(latestScoreByRegAndHole.entries()).slice(0, 30)
+    );
+
     // ------------------------------------------------------------
-    // FLIGHTS DER AKTUELLEN RUNDE SAUBER LADEN
+    // FLIGHTS DER AKTUELLEN RUNDE
     // ------------------------------------------------------------
     const { data: currentRoundFlights, error: currentFlightsErr } = await supabase
       .from("flights")
@@ -180,7 +199,7 @@ export async function GET(req: Request) {
     }
 
     // ------------------------------------------------------------
-    // RUNDE-2-STARTZEITEN LADEN
+    // RUNDE-2-STARTZEITEN
     // ------------------------------------------------------------
     const { data: round2Flights, error: round2Err } = await supabase
       .from("flights")
@@ -214,121 +233,136 @@ export async function GET(req: Request) {
         round2StartTimeByRegistrationId.set(regId, startTime);
       }
     }
-const { data: round3Flights, error: round3Err } = await supabase
-  .from("flights")
-  .select(`
-    id,
-    round,
-    start_time,
-    flight_number,
-    flight_players (
-      registration_id
-    )
-  `)
-  .eq("tournament_id", tournamentId)
-  .eq("round", 3)
-  .order("start_time", { ascending: true })
-  .order("flight_number", { ascending: true });
 
-if (round3Err) {
-  console.error("round3Flights error", round3Err);
-}
+    // ------------------------------------------------------------
+    // RUNDE-3-STARTZEITEN
+    // ------------------------------------------------------------
+    const { data: round3Flights, error: round3Err } = await supabase
+      .from("flights")
+      .select(`
+        id,
+        round,
+        start_time,
+        flight_number,
+        flight_players (
+          registration_id
+        )
+      `)
+      .eq("tournament_id", tournamentId)
+      .eq("round", 3)
+      .order("start_time", { ascending: true })
+      .order("flight_number", { ascending: true });
 
-const round3StartTimeByRegistrationId = new Map<string, string>();
+    if (round3Err) {
+      console.error("round3Flights error", round3Err);
+    }
 
-for (const flight of (round3Flights || []) as any[]) {
-  const startTime = flight?.start_time || null;
-  const players = Array.isArray(flight?.flight_players) ? flight.flight_players : [];
+    const round3StartTimeByRegistrationId = new Map<string, string>();
 
-  for (const fp of players) {
-    const regId = String(fp?.registration_id || "").trim();
-    if (!regId || !startTime) continue;
-    round3StartTimeByRegistrationId.set(regId, startTime);
-  }
-}
-// ------------------------------------------------------------
-// PARS (TEST DIREKT AUS holes)
-// ------------------------------------------------------------
-const parByHole = new Map<number, number>();
+    for (const flight of (round3Flights || []) as any[]) {
+      const startTime = flight?.start_time || null;
+      const players = Array.isArray(flight?.flight_players) ? flight.flight_players : [];
 
-const { data: pars, error: pErr } = await supabase
-  .from("holes")
-  .select("hole_number, par")
-  .eq("tournament_id", tournamentId)
-  .order("hole_number", { ascending: true });
+      for (const fp of players) {
+        const regId = String(fp?.registration_id || "").trim();
+        if (!regId || !startTime) continue;
+        round3StartTimeByRegistrationId.set(regId, startTime);
+      }
+    }
 
-console.log("DIRECT holes PARS", pars);
-console.log("DIRECT holes ERROR", pErr);
+    // ------------------------------------------------------------
+    // PARS
+    // ------------------------------------------------------------
+    const parByHole = new Map<number, number>();
 
-if (pErr) {
-  return NextResponse.json({ ok: false, error: pErr.message }, { status: 500 });
-}
+    const { data: pars, error: pErr } = await supabase
+      .from("holes")
+      .select("hole_number, par")
+      .eq("tournament_id", tournamentId)
+      .order("hole_number", { ascending: true });
 
-for (const p of (pars || []) as any[]) {
-  const h = safeNum(p?.hole_number);
-  const par = safeNum(p?.par);
+    console.log("DIRECT holes PARS", pars);
+    console.log("DIRECT holes ERROR", pErr);
 
-  if (h != null && par != null) {
-    parByHole.set(h, par);
-  }
-}
+    if (pErr) {
+      return NextResponse.json({ ok: false, error: pErr.message }, { status: 500 });
+    }
 
-console.log("DIRECT PAR MAP SIZE", parByHole.size);
-console.log("DIRECT PAR MAP", Array.from(parByHole.entries()));
+    for (const p of (pars || []) as any[]) {
+      const h = safeNum(p?.hole_number);
+      const par = safeNum(p?.par);
+
+      if (h != null && par != null) {
+        parByHole.set(h, par);
+      }
+    }
+
+    console.log("DIRECT PAR MAP SIZE", parByHole.size);
+    console.log("DIRECT PAR MAP", Array.from(parByHole.entries()));
 
     const rows = registrations.map((r) => {
-    const holes = Number(r.holes || 18);
-const maxHole = holes === 9 ? 9 : 18;
+      const regId = String(r.id || "").trim();
+      const holes = Number(r.holes || 18);
+      const maxHole = holes === 9 ? 9 : 18;
 
-const age = calcAge(String(r.birthdate), String(tRow.start_date));
-const baseGroup = ageGroupFromAge(age);
-const age_group = normalizeGroupForHoles(baseGroup, holes);
+      let age_group: "U8" | "U10" | "U12" | "U14" | "U16" | "U18" | "U21" = "U21";
+
+      if (r.birthdate) {
+        const age = calcAge(String(r.birthdate), String(tRow.start_date));
+        const baseGroup = ageGroupFromAge(age);
+        age_group = normalizeGroupForHoles(baseGroup, holes);
+      }
 
       let strokesSum = 0;
       let parSum = 0;
       let holesPlayed = 0;
       let thru = 0;
 
-    for (let h = 1; h <= maxHole; h++) {
- const val = latestScoreByRegAndHole.get(`${r.id}::${h}`);
+      const holeValues: Array<{ hole: number; strokes: number; par: number | null }> = [];
 
-  if (val != null) {
-    strokesSum += Number(val);
-    holesPlayed++;
-    thru = h;
+      for (let h = 1; h <= maxHole; h++) {
+        const scoreKey = `${regId}-${h}`;
+        const val = latestScoreByRegAndHole.get(scoreKey);
 
-    const par = parByHole.get(Number(h));
+        if (val == null) continue;
 
-    if (par != null) {
-      parSum += Number(par);
-    } else {
-      console.log("❌ missing par for hole", h);
-    }
-  }
-}
+        const par = parByHole.get(h) ?? null;
+
+        strokesSum += val;
+        holesPlayed += 1;
+        thru = h;
+
+        if (par != null) {
+          parSum += par;
+        }
+
+        holeValues.push({
+          hole: h,
+          strokes: val,
+          par,
+        });
+      }
 
       const hasAnyScore = holesPlayed > 0;
       const score = hasAnyScore ? strokesSum : null;
-      console.log("TO_PAR CHECK", {
-  player: `${r.first_name} ${r.last_name}`,
-  holesPlayed,
-  strokesSum,
-  parSum,
-  hasAnyScore,
-});
       const to_par = hasAnyScore && parSum > 0 ? strokesSum - parSum : null;
 
-      console.log("LB DEBUG", {
+      console.log("LB PLAYER DETAIL", {
         player: `${r.first_name} ${r.last_name}`,
-        regId: String(r.id || "").trim(),
+        regId,
         round,
-        holesPlayed,
+        holes,
+        maxHole,
+        holeValues,
         strokesSum,
         parSum,
+        holesPlayed,
+        thru,
+        score,
         to_par,
       });
 
-      const fi = flightInfo.get(String(r.id || "").trim()) || {
+      const fi = flightInfo.get(regId) || {
         flight_number: null,
         start_time: null,
       };
@@ -350,14 +384,12 @@ const age_group = normalizeGroupForHoles(baseGroup, holes);
         to_par,
         flight_number: fi.flight_number,
         start_time: fi.start_time,
-        round2_start_time:
-          round2StartTimeByRegistrationId.get(String(r.id || "").trim()) || null,
-          round3_start_time:
-  round3StartTimeByRegistrationId.get(String(r.id || "").trim()) || null,
+        round2_start_time: round2StartTimeByRegistrationId.get(regId) || null,
+        round3_start_time: round3StartTimeByRegistrationId.get(regId) || null,
       };
     });
 
-    rows.sort((a: any, b: any) => {
+    rows.sort((a, b) => {
       const ap = a.to_par;
       const bp = b.to_par;
 
@@ -381,9 +413,11 @@ const age_group = normalizeGroupForHoles(baseGroup, holes);
       const bn = `${b.last_name || ""} ${b.first_name || ""}`.toLowerCase();
       return an.localeCompare(bn);
     });
-console.log("LB registrations count", registrations.length);
-console.log("LB rows count", rows.length);
-console.log("LB first rows", rows.slice(0, 5));
+
+    console.log("LB registrations count", registrations.length);
+    console.log("LB rows count", rows.length);
+    console.log("LB first rows", rows.slice(0, 5));
+
     return NextResponse.json({ ok: true, rows });
   } catch (e: any) {
     return NextResponse.json(
