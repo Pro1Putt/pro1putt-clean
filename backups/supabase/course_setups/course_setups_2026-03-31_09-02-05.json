@@ -1,0 +1,14 @@
+[
+  {
+    "id": "4ba2e900-c69e-44bb-b720-fb114f76d2d4",
+    "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
+    "course_name": "WINSTON Open Course",
+    "tee_name": "Default Tee",
+    "gender": "Boys",
+    "hole_count": 18,
+    "slope": null,
+    "course_rating": null,
+    "par_total": null,
+    "created_at": "2026-03-31T06:45:22.670948+00:00"
+  }
+]
