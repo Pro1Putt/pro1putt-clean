@@ -1,6 +1,19 @@
 [
   {
     "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
+    "registration_id": "06ccd75a-85fb-49da-b531-5ea45a09645f",
+    "first_name": "Rafael",
+    "last_name": "Pich",
+    "gender": "Boys",
+    "hcp": 20.6,
+    "setup_tee_name": null,
+    "rounds_played": 1,
+    "stableford_total": 0,
+    "gross_total": 101,
+    "net_total": 101
+  },
+  {
+    "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
     "registration_id": "07cfbc31-606f-4838-ba17-578e0720215d",
     "first_name": "Aaron",
     "last_name": "Kastein",
@@ -35,8 +48,8 @@
     "setup_tee_name": null,
     "rounds_played": 1,
     "stableford_total": 0,
-    "gross_total": 18,
-    "net_total": 18
+    "gross_total": 82,
+    "net_total": 82
   },
   {
     "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
@@ -74,8 +87,8 @@
     "setup_tee_name": null,
     "rounds_played": 1,
     "stableford_total": 0,
-    "gross_total": 41,
-    "net_total": 41
+    "gross_total": 76,
+    "net_total": 76
   },
   {
     "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
@@ -113,8 +126,8 @@
     "setup_tee_name": null,
     "rounds_played": 1,
     "stableford_total": 0,
-    "gross_total": 28,
-    "net_total": 28
+    "gross_total": 93,
+    "net_total": 93
   },
   {
     "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
@@ -139,8 +152,8 @@
     "setup_tee_name": null,
     "rounds_played": 1,
     "stableford_total": 0,
-    "gross_total": 8,
-    "net_total": 8
+    "gross_total": 99,
+    "net_total": 99
   },
   {
     "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
@@ -165,8 +178,8 @@
     "setup_tee_name": null,
     "rounds_played": 1,
     "stableford_total": 0,
-    "gross_total": 49,
-    "net_total": 49
+    "gross_total": 83,
+    "net_total": 83
   },
   {
     "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
@@ -178,8 +191,8 @@
     "setup_tee_name": null,
     "rounds_played": 1,
     "stableford_total": 0,
-    "gross_total": 24,
-    "net_total": 24
+    "gross_total": 74,
+    "net_total": 74
   },
   {
     "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
@@ -217,8 +230,8 @@
     "setup_tee_name": null,
     "rounds_played": 1,
     "stableford_total": 0,
-    "gross_total": 27,
-    "net_total": 27
+    "gross_total": 84,
+    "net_total": 84
   },
   {
     "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
@@ -230,8 +243,8 @@
     "setup_tee_name": null,
     "rounds_played": 1,
     "stableford_total": 0,
-    "gross_total": 6,
-    "net_total": 6
+    "gross_total": 99,
+    "net_total": 99
   },
   {
     "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
@@ -256,8 +269,8 @@
     "setup_tee_name": null,
     "rounds_played": 1,
     "stableford_total": 0,
-    "gross_total": 34,
-    "net_total": 34
+    "gross_total": 92,
+    "net_total": 92
   },
   {
     "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
@@ -282,8 +295,8 @@
     "setup_tee_name": null,
     "rounds_played": 1,
     "stableford_total": 0,
-    "gross_total": 22,
-    "net_total": 22
+    "gross_total": 87,
+    "net_total": 87
   },
   {
     "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
@@ -295,8 +308,8 @@
     "setup_tee_name": null,
     "rounds_played": 1,
     "stableford_total": 0,
-    "gross_total": 33,
-    "net_total": 33
+    "gross_total": 83,
+    "net_total": 83
   },
   {
     "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
@@ -308,8 +321,8 @@
     "setup_tee_name": null,
     "rounds_played": 1,
     "stableford_total": 0,
-    "gross_total": 14,
-    "net_total": 14
+    "gross_total": 74,
+    "net_total": 74
   },
   {
     "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
@@ -321,8 +334,8 @@
     "setup_tee_name": null,
     "rounds_played": 1,
     "stableford_total": 0,
-    "gross_total": 6,
-    "net_total": 6
+    "gross_total": 89,
+    "net_total": 89
   },
   {
     "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
@@ -334,8 +347,8 @@
     "setup_tee_name": null,
     "rounds_played": 1,
     "stableford_total": 0,
-    "gross_total": 27,
-    "net_total": 27
+    "gross_total": 89,
+    "net_total": 89
   },
   {
     "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
@@ -360,8 +373,8 @@
     "setup_tee_name": null,
     "rounds_played": 1,
     "stableford_total": 0,
-    "gross_total": 16,
-    "net_total": 16
+    "gross_total": 88,
+    "net_total": 88
   },
   {
     "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
@@ -373,8 +386,8 @@
     "setup_tee_name": null,
     "rounds_played": 1,
     "stableford_total": 0,
-    "gross_total": 37,
-    "net_total": 37
+    "gross_total": 81,
+    "net_total": 81
   },
   {
     "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
@@ -438,8 +451,8 @@
     "setup_tee_name": null,
     "rounds_played": 1,
     "stableford_total": 0,
-    "gross_total": 45,
-    "net_total": 45
+    "gross_total": 90,
+    "net_total": 90
   },
   {
     "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
@@ -451,8 +464,8 @@
     "setup_tee_name": null,
     "rounds_played": 1,
     "stableford_total": 0,
-    "gross_total": 6,
-    "net_total": 6
+    "gross_total": 90,
+    "net_total": 90
   },
   {
     "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
@@ -464,8 +477,8 @@
     "setup_tee_name": null,
     "rounds_played": 1,
     "stableford_total": 0,
-    "gross_total": 21,
-    "net_total": 21
+    "gross_total": 86,
+    "net_total": 86
   },
   {
     "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
@@ -477,8 +490,8 @@
     "setup_tee_name": null,
     "rounds_played": 1,
     "stableford_total": 0,
-    "gross_total": 26,
-    "net_total": 26
+    "gross_total": 86,
+    "net_total": 86
   },
   {
     "tournament_id": null,
