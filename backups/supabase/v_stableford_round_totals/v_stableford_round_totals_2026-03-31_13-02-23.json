@@ -266,9 +266,9 @@
     "setup_slope": null,
     "setup_course_rating": null,
     "playing_handicap": null,
-    "holes_played": 1,
-    "gross_total": 6,
-    "net_total": 6,
+    "holes_played": 18,
+    "gross_total": 89,
+    "net_total": 89,
     "stableford_total": 0
   },
   {
@@ -284,8 +284,8 @@
     "setup_course_rating": null,
     "playing_handicap": null,
     "holes_played": 18,
-    "gross_total": 89,
-    "net_total": 89,
+    "gross_total": 88,
+    "net_total": 88,
     "stableford_total": 0
   },
   {
@@ -325,6 +325,23 @@
   {
     "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
     "round_number": 1,
+    "registration_id": "fdd25cd4-90fe-4002-b08b-95ff807080ba",
+    "first_name": "Eleonor Madicken",
+    "last_name": "Seiffarth",
+    "gender": "Girls",
+    "hcp": 4.4,
+    "setup_tee_name": null,
+    "setup_slope": null,
+    "setup_course_rating": null,
+    "playing_handicap": null,
+    "holes_played": 18,
+    "gross_total": 86,
+    "net_total": 86,
+    "stableford_total": 0
+  },
+  {
+    "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
+    "round_number": 1,
     "registration_id": "9dcefb0b-f81d-400a-90bc-514b64341425",
     "first_name": "Maddox",
     "last_name": "Cordes",
@@ -337,23 +354,6 @@
     "holes_played": 18,
     "gross_total": 83,
     "net_total": 83,
-    "stableford_total": 0
-  },
-  {
-    "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
-    "round_number": 1,
-    "registration_id": "fdd25cd4-90fe-4002-b08b-95ff807080ba",
-    "first_name": "Eleonor Madicken",
-    "last_name": "Seiffarth",
-    "gender": "Girls",
-    "hcp": 4.4,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "playing_handicap": null,
-    "holes_played": 5,
-    "gross_total": 26,
-    "net_total": 26,
     "stableford_total": 0
   },
   {
