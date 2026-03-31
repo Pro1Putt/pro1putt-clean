@@ -354,19 +354,22 @@ function LeaderboardInner() {
     }
 
     return (
-      <div
-        key={`${r.id}-${idx}`}
-        style={{
-          display: "grid",
-          gridTemplateColumns:
-            "60px 50px minmax(320px, 2.8fr) 90px 70px 80px 70px 80px 90px 90px 90px",
-          columnGap: 8,
-          padding: "12px 14px",
-          borderBottom: "1px solid rgba(0,0,0,0.06)",
-          alignItems: "center",
-          fontSize: 14,
-        }}
-      >
+    <div
+  key={`${r.id}-${idx}`}
+  onClick={() => {
+   window.location.href = `/player/${r.id}?tournamentId=${encodeURIComponent(tournamentId)}`;
+  }}
+  style={{
+    display: "grid",
+    gridTemplateColumns: "64px 56px minmax(260px, 2.4fr) 96px 72px 84px 72px 88px 96px 120px",
+    padding: "12px 14px",
+    borderBottom: "1px solid rgba(0,0,0,0.06)",
+    alignItems: "center",
+    columnGap: 10,
+    fontSize: 14,
+    cursor: "pointer",
+  }}
+>
         <div style={{ fontWeight: 900, color: GREEN }}>{displayRank}</div>
         <div style={{ fontSize: 16 }}>{medal(displayRank)}</div>
 
