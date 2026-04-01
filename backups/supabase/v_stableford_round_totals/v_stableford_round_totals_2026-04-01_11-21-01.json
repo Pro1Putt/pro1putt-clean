@@ -1,0 +1,19 @@
+[
+  {
+    "tournament_id": null,
+    "round_number": 1,
+    "registration_id": "2e22731c-34b3-4726-937a-18e90d4213a7",
+    "first_name": "Maximilian Jackson",
+    "last_name": "Sharp",
+    "gender": "Boys",
+    "hcp": 12.7,
+    "setup_tee_name": null,
+    "setup_slope": null,
+    "setup_course_rating": null,
+    "playing_handicap": null,
+    "holes_played": 3,
+    "gross_total": 12,
+    "net_total": 12,
+    "stableford_total": 0
+  }
+]

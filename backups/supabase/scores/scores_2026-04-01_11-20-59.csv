@@ -1,0 +1,4 @@
+id,player_id,hole_number,strokes,updated_at,tournament_id,is_provisional,counts_as,notes,ball_no,entered_by,rule_ball_played,rule_ball_note,rule_ball,rule_ball_alt_strokes,rule_ball_status,rule_ball_counts,round_number,registration_id
+41d0c95b-155d-46d7-bd7a-9b54dc8caa63,2e22731c-34b3-4726-937a-18e90d4213a7,1,4,2026-03-30T12:33:05.131378+00:00,,false,,,1,2e22731c-34b3-4726-937a-18e90d4213a7,false,,false,,,,1,
+9bc73ac4-a832-4330-be69-7e9423db91da,2e22731c-34b3-4726-937a-18e90d4213a7,2,5,2026-03-30T12:33:05.131378+00:00,,false,,,1,2e22731c-34b3-4726-937a-18e90d4213a7,false,,false,,,,1,
+36dfdd39-0c25-4de9-b843-d0a64dffe051,2e22731c-34b3-4726-937a-18e90d4213a7,3,3,2026-03-30T12:33:05.131378+00:00,,false,,,1,2e22731c-34b3-4726-937a-18e90d4213a7,false,,false,,,,1,

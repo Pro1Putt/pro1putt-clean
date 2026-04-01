@@ -1,0 +1,2 @@
+tournament_id,round_number,registration_id,first_name,last_name,gender,hcp,setup_tee_name,setup_slope,setup_course_rating,playing_handicap,holes_played,gross_total,net_total,stableford_total
+,1,2e22731c-34b3-4726-937a-18e90d4213a7,Maximilian Jackson,Sharp,Boys,12.7,,,,,3,12,12,0

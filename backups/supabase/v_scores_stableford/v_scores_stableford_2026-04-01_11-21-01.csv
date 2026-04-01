@@ -1,0 +1,4 @@
+score_id,tournament_id,round_number,registration_id,first_name,last_name,gender,hcp,course_setup_id,setup_course_name,setup_tee_name,setup_slope,setup_course_rating,setup_par_total,playing_handicap,hole_number,par,stroke_index,length_m,gross_strokes,handicap_strokes_on_hole,net_strokes,stableford_points
+36dfdd39-0c25-4de9-b843-d0a64dffe051,,1,2e22731c-34b3-4726-937a-18e90d4213a7,Maximilian Jackson,Sharp,Boys,12.7,,,,,,,,3,,,,3,0,3,0
+9bc73ac4-a832-4330-be69-7e9423db91da,,1,2e22731c-34b3-4726-937a-18e90d4213a7,Maximilian Jackson,Sharp,Boys,12.7,,,,,,,,2,,,,5,0,5,0
+41d0c95b-155d-46d7-bd7a-9b54dc8caa63,,1,2e22731c-34b3-4726-937a-18e90d4213a7,Maximilian Jackson,Sharp,Boys,12.7,,,,,,,,1,,,,4,0,4,0
