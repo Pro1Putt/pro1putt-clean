@@ -143,21 +143,23 @@ function TabButton({
   return (
     <button
       onClick={onClick}
-    style={{
-  border: "none",
-  cursor: "pointer",
-  padding: "12px 18px",
-  borderRadius: 999,
-  fontWeight: 800,
-  fontSize: 14,
-  transition: "all 0.2s ease",
-  background: active ? "#0b5d3b" : "#ffffff",
-  color: active ? "#ffffff" : "#17362b",
-  boxShadow: active
-    ? "0 10px 24px rgba(11,93,59,0.18)"
-    : "0 4px 14px rgba(8,33,22,0.06)",
-  border: active ? "1px solid #0b5d3b" : "1px solid rgba(11,93,59,0.10)",
-}}
+      style={{
+        border: "none",
+        cursor: "pointer",
+        padding: "12px 18px",
+        borderRadius: 999,
+        fontWeight: 800,
+        fontSize: 14,
+        transition: "all 0.2s ease",
+        background: active ? "#0b5d3b" : "#ffffff",
+        color: active ? "#ffffff" : "#17362b",
+        boxShadow: active
+          ? "0 10px 24px rgba(11,93,59,0.18)"
+          : "0 4px 14px rgba(8,33,22,0.06)",
+        border: active
+          ? "1px solid #0b5d3b"
+          : "1px solid rgba(11,93,59,0.10)",
+      }}
     >
       {children}
     </button>
