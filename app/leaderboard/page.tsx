@@ -144,7 +144,6 @@ function TabButton({
     <button
       onClick={onClick}
       style={{
-        border: "none",
         cursor: "pointer",
         padding: "12px 18px",
         borderRadius: 999,
@@ -159,6 +158,7 @@ function TabButton({
         border: active
           ? "1px solid #0b5d3b"
           : "1px solid rgba(11,93,59,0.10)",
+        outline: "none",
       }}
     >
       {children}
