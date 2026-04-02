@@ -553,7 +553,6 @@ export default function Page() {
             }}
           >
             <StatCard label="Turnier" value="30.03.2026 – 01.04.2026" />
-            <StatCard label="Stand" value="02.04.2026 · 11:03" />
             <StatCard label="18 Loch Spieler" value={total18} />
             <StatCard label="9 Loch Spieler" value={total9} />
           </div>
