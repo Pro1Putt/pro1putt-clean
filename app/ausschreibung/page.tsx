@@ -589,16 +589,15 @@ Slope- oder Windfunktionen sind nicht zulässig.</li>
             <Card title="Alterskategorien (Boys & Girls)">
               <div style={{ fontWeight: 900, color: DARK, marginBottom: 6 }}>Overall U21 (18 Loch)</div>
               <ul style={{ margin: "0 0 12px", paddingLeft: 18 }}>
-                <li>Kategorie 20–21</li>
-                <li>Kategorie 17–19</li>
-                <li>Kategorie 15–16</li>
-                <li>Kategorie 13–14</li>
+                <li>Kategorie U21</li>
+                <li>Kategorie U18</li>
+                <li>Kategorie U14</li>
+          
               </ul>
 
               <div style={{ fontWeight: 900, color: DARK, marginBottom: 6 }}>Overall U12 (9 Loch)</div>
               <ul style={{ margin: 0, paddingLeft: 18 }}>
-                <li>Kategorie 11–12</li>
-                <li>Kategorie 9–10</li>
+                <li>Kategorie U12</li>
                 <li>Kategorie U8</li>
               </ul>
 
