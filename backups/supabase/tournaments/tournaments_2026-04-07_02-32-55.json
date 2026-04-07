@@ -1,16 +1,17 @@
 [
   {
-    "id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
-    "name": "PRO1PUTT – Open Faldo Course (Bad Saarow)",
-    "course_name": "Bad Saarow Faldo",
-    "start_date": "2026-09-25",
-    "created_at": "2026-02-12T09:59:04.315366+00:00",
+    "id": "e9b23d74-ab9d-4ba5-86bf-744915e1ee28",
+    "name": "Test",
+    "course_name": "Seddiner See North Course",
+    "start_date": "2026-04-11",
+    "created_at": "2026-04-04T13:35:43.7307+00:00",
     "par": 72,
-    "location": "Faldo Course",
+    "location": null,
     "is_active": true,
-    "paypal_url_9": "https://www.paypal.com/ncp/payment/M8CJWZ4SLCT34",
-    "paypal_url_18": "https://www.paypal.com/ncp/payment/SRBRNY5CVE4Q2",
-    "scoring_pin": null
+    "paypal_url_9": null,
+    "paypal_url_18": null,
+    "scoring_pin": "",
+    "slug": null
   },
   {
     "id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
@@ -23,7 +24,8 @@
     "is_active": true,
     "paypal_url_9": "https://www.paypal.com/ncp/payment/M8CJWZ4SLCT34",
     "paypal_url_18": "https://www.paypal.com/ncp/payment/SRBRNY5CVE4Q2",
-    "scoring_pin": "1234"
+    "scoring_pin": "1234",
+    "slug": "winston-open"
   },
   {
     "id": "36d5df41-5864-4103-b413-169bbd683077",
@@ -36,6 +38,21 @@
     "is_active": true,
     "paypal_url_9": "https://www.paypal.com/ncp/payment/M8CJWZ4SLCT34",
     "paypal_url_18": "https://www.paypal.com/ncp/payment/SRBRNY5CVE4Q2",
-    "scoring_pin": null
+    "scoring_pin": null,
+    "slug": "green-eagle"
+  },
+  {
+    "id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
+    "name": "PRO1PUTT – Open Faldo Course (Bad Saarow)",
+    "course_name": "Bad Saarow Faldo",
+    "start_date": "2026-09-25",
+    "created_at": "2026-02-12T09:59:04.315366+00:00",
+    "par": 72,
+    "location": "Faldo Course",
+    "is_active": true,
+    "paypal_url_9": "https://www.paypal.com/ncp/payment/M8CJWZ4SLCT34",
+    "paypal_url_18": "https://www.paypal.com/ncp/payment/SRBRNY5CVE4Q2",
+    "scoring_pin": null,
+    "slug": "bad-saarow"
   }
 ]
