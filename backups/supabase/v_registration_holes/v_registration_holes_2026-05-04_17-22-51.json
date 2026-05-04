@@ -899,5 +899,22 @@
     "par": null,
     "stroke_index": null,
     "length_m": null
+  },
+  {
+    "registration_id": "d9a55926-e2fd-4b89-b902-8218e6710edd",
+    "tournament_id": "36d5df41-5864-4103-b413-169bbd683077",
+    "first_name": "Piet-Constantin",
+    "last_name": "Folkerts",
+    "gender": "Boys",
+    "course_setup_id": null,
+    "setup_course_name": null,
+    "setup_tee_name": null,
+    "setup_slope": null,
+    "setup_course_rating": null,
+    "setup_par_total": null,
+    "hole_number": null,
+    "par": null,
+    "stroke_index": null,
+    "length_m": null
   }
 ]
