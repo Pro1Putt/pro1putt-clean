@@ -1,0 +1,4 @@
+registration_id,player_name,handicap,tournament_id,tournament_name,flight_id,flight_number,total_holes,total_strokes,holes_played,flight_status
+19b44c8b-f73c-464f-a197-236cf91f225b,Phillip Hövermann,4.4,7716349a-8bb0-46c6-b60c-3594eb7ea60f,PRO1PUTT – Open Classics WINSTONopen,41c2590e-ea22-44bf-b862-6b8068962a10,1,18,0,0,active
+5d110f0c-2f85-4f21-bfea-d8a96880f0f4,Frieda Taisia Renting,4,7716349a-8bb0-46c6-b60c-3594eb7ea60f,PRO1PUTT – Open Classics WINSTONopen,41c2590e-ea22-44bf-b862-6b8068962a10,1,18,0,0,active
+78fb4ed0-ba6c-4b98-a34b-bb8fa7f01091,Aaron Talke,15.5,7716349a-8bb0-46c6-b60c-3594eb7ea60f,PRO1PUTT – Open Classics WINSTONopen,41c2590e-ea22-44bf-b862-6b8068962a10,1,18,0,0,active
