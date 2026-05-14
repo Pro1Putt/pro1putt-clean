@@ -1,0 +1,41 @@
+[
+  {
+    "registration_id": "19b44c8b-f73c-464f-a197-236cf91f225b",
+    "player_name": "Phillip Hövermann",
+    "handicap": 4.4,
+    "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
+    "tournament_name": "PRO1PUTT – Open Classics WINSTONopen",
+    "flight_id": "41c2590e-ea22-44bf-b862-6b8068962a10",
+    "flight_number": 1,
+    "total_holes": 18,
+    "total_strokes": 0,
+    "holes_played": 0,
+    "flight_status": "active"
+  },
+  {
+    "registration_id": "5d110f0c-2f85-4f21-bfea-d8a96880f0f4",
+    "player_name": "Frieda Taisia Renting",
+    "handicap": 4,
+    "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
+    "tournament_name": "PRO1PUTT – Open Classics WINSTONopen",
+    "flight_id": "41c2590e-ea22-44bf-b862-6b8068962a10",
+    "flight_number": 1,
+    "total_holes": 18,
+    "total_strokes": 0,
+    "holes_played": 0,
+    "flight_status": "active"
+  },
+  {
+    "registration_id": "78fb4ed0-ba6c-4b98-a34b-bb8fa7f01091",
+    "player_name": "Aaron Talke",
+    "handicap": 15.5,
+    "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
+    "tournament_name": "PRO1PUTT – Open Classics WINSTONopen",
+    "flight_id": "41c2590e-ea22-44bf-b862-6b8068962a10",
+    "flight_number": 1,
+    "total_holes": 18,
+    "total_strokes": 0,
+    "holes_played": 0,
+    "flight_status": "active"
+  }
+]
