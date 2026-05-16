@@ -76,12 +76,12 @@ export default function LiveLeaderboard({ tournamentId }: Props) {
   }, [fetchData]);
 
   const filteredPlayers = players.filter((p) => {
-    if (activeFilter === "girls") return p.gender?.toLowerCase() === "female" || p.gender?.toLowerCase() === "girl" || p.gender === "f" || p.gender === "w";
-    if (activeFilter === "boys") return p.gender?.toLowerCase() === "male" || p.gender?.toLowerCase() === "boy" || p.gender === "m";
-    if (activeFilter === "9hole") return p.holes === 9;
-    if (activeFilter === "18hole") return p.holes === 18;
-    return true;
-  });
+  if (activeFilter === "girls") return p.gender === "Girls";
+  if (activeFilter === "boys") return p.gender === "Boys";
+  if (activeFilter === "9hole") return p.holes === 9;
+  if (activeFilter === "18hole") return p.holes === 18;
+  return true;
+});
 
   const livePlayers = filteredPlayers.filter(p => p.is_live || p.is_finished);
   const registeredPlayers = filteredPlayers.filter(p => !p.is_live && !p.is_finished);
@@ -240,12 +240,13 @@ export default function LiveLeaderboard({ tournamentId }: Props) {
                       {index + 1}
                     </div>
                     <div style={{ fontSize: 18 }}>{medal}</div>
-                    <div>
-                      <div style={{ fontWeight: 800, color: "#17362b" }}>{player.name}</div>
-                      <div style={{ fontSize: 12, color: "#668278" }}>
-                        {player.holes} Loch{player.flight_number ? ` · Flight ${player.flight_number}` : ""}
-                      </div>
-                    </div>
+                   <div>
+  <div style={{ fontWeight: 800, color: "#17362b" }}>{player.name}</div>
+  <div style={{ fontSize: 12, color: "#668278" }}>
+    {player.gender} {player.age_group} · {player.holes} Loch
+    {player.flight_number ? ` · Flight ${player.flight_number}` : ""}
+  </div>
+</div>
                     <div style={{ color: "#4f675e", fontSize: 14 }}>{player.home_club || "—"}</div>
                     <div style={{ textAlign: "center", color: "#17362b" }}>
                       {player.hcp != null ? player.hcp : "—"}
