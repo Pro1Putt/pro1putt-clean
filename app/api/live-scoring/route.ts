@@ -7,18 +7,38 @@ function getServiceSupabase() {
   return createClient(url, key, { auth: { persistSession: false } });
 }
 
+function calcAgeGroup(birthdate: string, holes: number): string {
+  const today = new Date();
+  const birth = new Date(birthdate);
+  const age = today.getFullYear() - birth.getFullYear();
+  if (holes === 9) {
+    if (age <= 8) return "U8";
+    if (age <= 10) return "U10";
+    return "U12";
+  } else {
+    if (age <= 14) return "U14";
+    if (age <= 16) return "U16";
+    if (age <= 18) return "U18";
+    return "U21";
+  }
+}
+
+function normalizeGender(g: string): string {
+  const lower = (g || "").toLowerCase();
+  if (lower.includes("girl") || lower === "f" || lower === "w" || lower === "female") return "Girls";
+  if (lower.includes("boy") || lower === "m" || lower === "male") return "Boys";
+  return g;
+}
+
 export async function GET(req: Request) {
   try {
     const { searchParams } = new URL(req.url);
     const tournamentId = searchParams.get("tournamentId") || "";
-
-    if (!tournamentId) {
-      return NextResponse.json({ ok: false, error: "Missing tournamentId" }, { status: 400 });
-    }
+    if (!tournamentId) return NextResponse.json({ ok: false, error: "Missing tournamentId" }, { status: 400 });
 
     const supabase = getServiceSupabase();
 
-    // Alle Registrierungen für dieses Turnier laden
+    // Registrierungen laden
     const { data: registrations } = await supabase
       .from("registrations")
       .select("id, first_name, last_name, hcp, home_club, gender, birthdate, holes, player_pin, flight_id")
@@ -28,70 +48,49 @@ export async function GET(req: Request) {
       return NextResponse.json({ ok: true, players: [], live: false });
     }
 
-    // Alle Flights für dieses Turnier laden
+    // Flights laden
     const { data: flights } = await supabase
       .from("flights")
-      .select("id, flight_number, status, holes, tournament_id")
+      .select("id, flight_number, status, holes, round_number")
       .eq("tournament_id", tournamentId);
 
     const flightMap = new Map((flights || []).map((f: any) => [f.id, f]));
 
-    // Alle hole_scores für dieses Turnier laden
+    // Scores laden
     const flightIds = (flights || []).map((f: any) => f.id);
-    
     let scores: any[] = [];
     if (flightIds.length > 0) {
       const { data: scoreData } = await supabase
         .from("hole_scores")
-        .select("flight_id, player_id, hole_number, strokes_self, penalty_strokes, confirmed")
+        .select("flight_id, player_id, hole_number, strokes_self, penalty_strokes, confirmed, round_number")
         .in("flight_id", flightIds)
         .eq("confirmed", true);
       scores = scoreData || [];
     }
 
-    // Scores pro Spieler aggregieren
-    const scoresByPlayer = new Map<string, { totalStrokes: number; holesPlayed: number; penalties: number }>();
+    // Scores pro Spieler pro Runde aggregieren
+    const scoresByPlayer = new Map<string, Record<number, { strokes: number; holes: number }>>();
     for (const score of scores) {
-      const key = score.player_id;
-      if (!scoresByPlayer.has(key)) {
-        scoresByPlayer.set(key, { totalStrokes: 0, holesPlayed: 0, penalties: 0 });
+      if (!scoresByPlayer.has(score.player_id)) {
+        scoresByPlayer.set(score.player_id, { 1: { strokes: 0, holes: 0 }, 2: { strokes: 0, holes: 0 }, 3: { strokes: 0, holes: 0 } });
       }
-      const entry = scoresByPlayer.get(key)!;
-      entry.totalStrokes += score.strokes_self || 0;
-      entry.penalties += score.penalty_strokes || 0;
-      entry.holesPlayed += 1;
+      const flight = flightMap.get(score.flight_id);
+      const round = score.round_number || flight?.round_number || 1;
+      const entry = scoresByPlayer.get(score.player_id)!;
+      if (!entry[round]) entry[round] = { strokes: 0, holes: 0 };
+      entry[round].strokes += (score.strokes_self || 0) + (score.penalty_strokes || 0);
+      entry[round].holes += 1;
     }
 
-    // Spieler mit Scores zusammenführen
     const players = registrations.map((reg: any) => {
-      const scoreData = scoresByPlayer.get(reg.id);
+      const roundData = scoresByPlayer.get(reg.id) || { 1: { strokes: 0, holes: 0 }, 2: { strokes: 0, holes: 0 }, 3: { strokes: 0, holes: 0 } };
       const flight = reg.flight_id ? flightMap.get(reg.flight_id) : null;
 
-      // Gender normalisieren
-      const genderRaw = (reg.gender || "").toLowerCase();
-      const gender = genderRaw.includes("girl") || genderRaw === "f" || genderRaw === "w" || genderRaw === "female"
-        ? "Girls"
-        : genderRaw.includes("boy") || genderRaw === "m" || genderRaw === "male"
-        ? "Boys"
-        : reg.gender;
-
-      // Altersklasse berechnen
-      let ageGroup = "";
-      if (reg.birthdate) {
-        const today = new Date();
-        const birth = new Date(reg.birthdate);
-        const age = today.getFullYear() - birth.getFullYear();
-        if (reg.holes === 9) {
-          if (age <= 8) ageGroup = "U8";
-          else if (age <= 10) ageGroup = "U10";
-          else ageGroup = "U12";
-        } else {
-          if (age <= 14) ageGroup = "U14";
-          else if (age <= 16) ageGroup = "U16";
-          else if (age <= 18) ageGroup = "U18";
-          else ageGroup = "U21";
-        }
-      }
+      const r1 = roundData[1]?.holes > 0 ? roundData[1].strokes : null;
+      const r2 = roundData[2]?.holes > 0 ? roundData[2].strokes : null;
+      const r3 = roundData[3]?.holes > 0 ? roundData[3].strokes : null;
+      const total = (r1 || 0) + (r2 || 0) + (r3 || 0) || null;
+      const holesPlayed = (roundData[1]?.holes || 0) + (roundData[2]?.holes || 0) + (roundData[3]?.holes || 0);
 
       return {
         id: reg.id,
@@ -100,35 +99,33 @@ export async function GET(req: Request) {
         last_name: reg.last_name,
         hcp: reg.hcp,
         home_club: reg.home_club,
-        gender,
-        age_group: ageGroup,
+        gender: normalizeGender(reg.gender || ""),
+        age_group: reg.birthdate ? calcAgeGroup(reg.birthdate, reg.holes || 18) : "",
         holes: reg.holes || 18,
         flight_number: flight?.flight_number || null,
         flight_status: flight?.status || null,
-        total_strokes: scoreData ? scoreData.totalStrokes + scoreData.penalties : null,
-        holes_played: scoreData?.holesPlayed || 0,
-        thru: scoreData?.holesPlayed || 0,
-        is_live: !!scoreData && scoreData.holesPlayed > 0,
+        round1: r1,
+        round2: r2,
+        round3: r3,
+        total_strokes: total,
+        holes_played: holesPlayed,
+        is_live: holesPlayed > 0,
         is_finished: flight?.status === "completed",
       };
     });
 
-    // Nach Score sortieren
+    // Sortieren: nach Total, dann nach Nachname
     players.sort((a: any, b: any) => {
       if (a.total_strokes !== null && b.total_strokes !== null) return a.total_strokes - b.total_strokes;
       if (a.total_strokes !== null) return -1;
       if (b.total_strokes !== null) return 1;
-      const an = `${a.last_name} ${a.first_name}`.toLowerCase();
-      const bn = `${b.last_name} ${b.first_name}`.toLowerCase();
-      return an.localeCompare(bn);
+      return `${a.last_name} ${a.first_name}`.localeCompare(`${b.last_name} ${b.first_name}`);
     });
-
-    const hasLiveData = players.some((p: any) => p.is_live);
 
     return NextResponse.json({
       ok: true,
       players,
-      live: hasLiveData,
+      live: players.some((p: any) => p.is_live),
       updated_at: new Date().toISOString(),
     });
   } catch (e: any) {
