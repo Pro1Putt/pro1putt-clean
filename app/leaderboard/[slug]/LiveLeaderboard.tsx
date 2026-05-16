@@ -14,6 +14,7 @@ interface LivePlayer {
   hcp: number | null;
   home_club: string | null;
   gender: string | null;
+  age_group: string;
   holes: number;
   flight_number: number | null;
   flight_status: string | null;
