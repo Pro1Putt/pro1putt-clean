@@ -581,18 +581,9 @@ function PlaceholderTournament({
           </div>
         </section>
 
-        <section
-          style={{
-            background: "#ffffff",
-            border: "1px solid rgba(11,93,59,0.08)",
-            boxShadow: "0 10px 30px rgba(8,33,22,0.06)",
-            borderRadius: 24,
-            padding: 24,
-            color: "#17362b",
-          }}
-        >
-          Für dieses Turnier legen wir als Nächstes die echten Daten an.
-        </section>
+        <section style={{ display: "grid", gap: 16 }}>
+  <LiveLeaderboard tournamentId={tournamentId} />
+</section>
       </div>
     </main>
   );
