@@ -128,12 +128,6 @@ function buildPinEmailHtml(a: RegistrationEmailArgs) {
           </div>
         </div>
 
-        <!-- Buttons -->
-        <div style="margin-top:16px;">
-          <a href="${escapeHtml(pinUrl)}"
-            style="display:inline-block;background:#1e4620;color:#fff;text-decoration:none;font-weight:900;padding:12px 18px;border-radius:999px;">
-            Check-in / Scoring öffnen →
-          </a>
 
           <a href="${escapeHtml(leaderboardUrl)}"
             style="display:inline-block;background:#e9efe9;color:#1e4620;text-decoration:none;font-weight:900;padding:12px 18px;border-radius:999px;border:1px solid rgba(30,70,32,.25);margin-left:10px;">
