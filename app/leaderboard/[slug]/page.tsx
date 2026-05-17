@@ -64,6 +64,13 @@ const TOURNAMENTS: Record<string, TournamentConfig> = {
     dateLabel: "Termin folgt",
     hasStaticData: false,
   },
+  "test": {
+    title: "Test Turnier",
+    subtitle: "Live Testing",
+    dateLabel: "Immer verfügbar",
+    hasStaticData: false,
+    tournamentId: "e9b23d74-ab9d-4ba5-86bf-744915e1ee28",
+  },
 };
 
 const girlsU14: Row[] = [

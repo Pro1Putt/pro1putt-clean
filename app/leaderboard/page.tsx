@@ -7,12 +7,14 @@ const TOURNAMENT_SLUGS: Record<string, string> = {
   "7716349a-8bb0-46c6-b60c-3594eb7ea60f": "winston-open",
   "d4a92ae2-6ecd-4043-8b5a-82414c597036": "bad-saarow",
   "36d5df41-5864-4103-b413-169bbd683077": "green-eagle",
+  "e9b23d74-ab9d-4ba5-86bf-744915e1ee28": "test",
 };
 
-const TOURNAMENT_META: Record<string, { dateLabel: string; subtitle: string; registrations?: number }> = {
+const TOURNAMENT_META: Record<string, { dateLabel: string; subtitle: string }> = {
   "winston-open": { dateLabel: "30.03. – 01.04.2026", subtitle: "WINSTONopen · Abgeschlossen" },
   "bad-saarow":   { dateLabel: "25. – 27.09.2026",   subtitle: "Bad Saarow Faldo Course" },
   "green-eagle":  { dateLabel: "02. – 04.10.2026",   subtitle: "Green Eagle North Course" },
+  "test":         { dateLabel: "Immer verfügbar",     subtitle: "Internes Test-Turnier" },
 };
 
 type Tournament = {
