@@ -35,8 +35,7 @@
     "setup_tee_name": null,
     "setup_slope": null,
     "setup_course_rating": null,
-    "setup_par_total": null,
-    "playing_handicap": null
+    "setup_par_total": null
   },
   {
     "id": "e0adbbeb-e7b5-42d4-9ba3-1d70c15bc9f5",
@@ -74,8 +73,7 @@
     "setup_tee_name": null,
     "setup_slope": null,
     "setup_course_rating": null,
-    "setup_par_total": null,
-    "playing_handicap": null
+    "setup_par_total": null
   },
   {
     "id": "46fdab66-f422-4168-83fc-70e67f137b2d",
@@ -113,8 +111,7 @@
     "setup_tee_name": null,
     "setup_slope": null,
     "setup_course_rating": null,
-    "setup_par_total": null,
-    "playing_handicap": null
+    "setup_par_total": null
   },
   {
     "id": "19b44c8b-f73c-464f-a197-236cf91f225b",
@@ -152,8 +149,7 @@
     "setup_tee_name": null,
     "setup_slope": null,
     "setup_course_rating": null,
-    "setup_par_total": null,
-    "playing_handicap": null
+    "setup_par_total": null
   },
   {
     "id": "bd4c0e3c-0e92-41ac-a62f-ef3d754fe8e9",
@@ -191,8 +187,7 @@
     "setup_tee_name": null,
     "setup_slope": null,
     "setup_course_rating": null,
-    "setup_par_total": null,
-    "playing_handicap": null
+    "setup_par_total": null
   },
   {
     "id": "aa58db5e-c5e0-4b49-bc34-962cab23acb4",
@@ -230,8 +225,7 @@
     "setup_tee_name": null,
     "setup_slope": null,
     "setup_course_rating": null,
-    "setup_par_total": null,
-    "playing_handicap": null
+    "setup_par_total": null
   },
   {
     "id": "e079de2e-0a2f-40a5-b7cc-affd6a9c093a",
@@ -269,8 +263,7 @@
     "setup_tee_name": null,
     "setup_slope": null,
     "setup_course_rating": null,
-    "setup_par_total": null,
-    "playing_handicap": null
+    "setup_par_total": null
   },
   {
     "id": "885a2ebf-a33e-44a1-a5dd-ef1922c7778b",
@@ -308,8 +301,7 @@
     "setup_tee_name": null,
     "setup_slope": null,
     "setup_course_rating": null,
-    "setup_par_total": null,
-    "playing_handicap": null
+    "setup_par_total": null
   },
   {
     "id": "becafb16-662c-4276-bb91-a5b09034bec9",
@@ -347,8 +339,7 @@
     "setup_tee_name": null,
     "setup_slope": null,
     "setup_course_rating": null,
-    "setup_par_total": null,
-    "playing_handicap": null
+    "setup_par_total": null
   },
   {
     "id": "05246053-44ff-4ddc-9119-619c0fe7675e",
@@ -386,8 +377,7 @@
     "setup_tee_name": null,
     "setup_slope": null,
     "setup_course_rating": null,
-    "setup_par_total": null,
-    "playing_handicap": null
+    "setup_par_total": null
   },
   {
     "id": "5d110f0c-2f85-4f21-bfea-d8a96880f0f4",
@@ -425,8 +415,7 @@
     "setup_tee_name": null,
     "setup_slope": null,
     "setup_course_rating": null,
-    "setup_par_total": null,
-    "playing_handicap": null
+    "setup_par_total": null
   },
   {
     "id": "78fb4ed0-ba6c-4b98-a34b-bb8fa7f01091",
@@ -464,8 +453,235 @@
     "setup_tee_name": null,
     "setup_slope": null,
     "setup_course_rating": null,
-    "setup_par_total": null,
-    "playing_handicap": null
+    "setup_par_total": null
+  },
+  {
+    "id": "2e24c477-5488-4904-a957-f8061b0dc47f",
+    "created_at": "2026-02-21T17:54:48.970882+00:00",
+    "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
+    "holes": 18,
+    "first_name": "Louiza Sofie",
+    "last_name": "Menzel",
+    "email": "jennifer.menzel@outlook.de",
+    "hcp": 9.8,
+    "birthdate": "2014-07-20",
+    "home_club": "GLBW",
+    "coach": "Thilo Pantzke",
+    "walkup_song": "Rede X Lush Live",
+    "caddie": false,
+    "wagr": false,
+    "college_interest": true,
+    "nation": "DE",
+    "player_pin": "9348",
+    "gender": "Girls",
+    "r1_finalized_at": null,
+    "r2_finalized_at": null,
+    "r3_finalized_at": null,
+    "r1_scorecard_pdf_url": null,
+    "r2_scorecard_pdf_url": null,
+    "r3_scorecard_pdf_url": null,
+    "is_final": false,
+    "tee": "Rot",
+    "slope": 131,
+    "course_rating": 74.6,
+    "tee_color": "Rot",
+    "flight_id": "2f323ce4-d757-4872-8100-471f5d8bae49",
+    "course_setup_id": null,
+    "setup_course_name": null,
+    "setup_tee_name": null,
+    "setup_slope": null,
+    "setup_course_rating": null,
+    "setup_par_total": null
+  },
+  {
+    "id": "e8a390b9-2b41-4f46-a50a-185e532c5ecd",
+    "created_at": "2026-02-21T17:35:04.599851+00:00",
+    "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
+    "holes": 18,
+    "first_name": "Maddox",
+    "last_name": "Cordes",
+    "email": "jochencordes@mac.com",
+    "hcp": 5.4,
+    "birthdate": "2011-09-25",
+    "home_club": "GLBW",
+    "coach": "Max Dülm",
+    "walkup_song": "Who let the dogs out",
+    "caddie": false,
+    "wagr": false,
+    "college_interest": true,
+    "nation": "DE",
+    "player_pin": "1380",
+    "gender": "Boys",
+    "r1_finalized_at": null,
+    "r2_finalized_at": null,
+    "r3_finalized_at": null,
+    "r1_scorecard_pdf_url": null,
+    "r2_scorecard_pdf_url": null,
+    "r3_scorecard_pdf_url": null,
+    "is_final": false,
+    "tee": "Gelb",
+    "slope": 133,
+    "course_rating": 72.8,
+    "tee_color": "Gelb",
+    "flight_id": "40662df9-5176-4b08-9d8b-5e04639c6dbe",
+    "course_setup_id": null,
+    "setup_course_name": null,
+    "setup_tee_name": null,
+    "setup_slope": null,
+    "setup_course_rating": null,
+    "setup_par_total": null
+  },
+  {
+    "id": "84a783cc-96d7-494c-9413-5c6075d22010",
+    "created_at": "2026-02-21T17:33:37.894557+00:00",
+    "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
+    "holes": 18,
+    "first_name": "Lennart",
+    "last_name": "Schult",
+    "email": "phumitsch@aol.com",
+    "hcp": 6,
+    "birthdate": "2010-12-04",
+    "home_club": "GLBW",
+    "coach": "Philipp Rodek",
+    "walkup_song": "The fate of Ophelia",
+    "caddie": true,
+    "wagr": false,
+    "college_interest": true,
+    "nation": "DE",
+    "player_pin": "6009",
+    "gender": "Boys",
+    "r1_finalized_at": null,
+    "r2_finalized_at": null,
+    "r3_finalized_at": null,
+    "r1_scorecard_pdf_url": null,
+    "r2_scorecard_pdf_url": null,
+    "r3_scorecard_pdf_url": null,
+    "is_final": false,
+    "tee": "Gelb",
+    "slope": 133,
+    "course_rating": 72.8,
+    "tee_color": "Gelb",
+    "flight_id": "40662df9-5176-4b08-9d8b-5e04639c6dbe",
+    "course_setup_id": null,
+    "setup_course_name": null,
+    "setup_tee_name": null,
+    "setup_slope": null,
+    "setup_course_rating": null,
+    "setup_par_total": null
+  },
+  {
+    "id": "0b59272e-3ec8-4a3c-b41f-cee486ef768f",
+    "created_at": "2026-02-21T17:37:29.953496+00:00",
+    "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
+    "holes": 18,
+    "first_name": "Ferdinand",
+    "last_name": "Löffler",
+    "email": "ferdinand.loeffler@gmx.de",
+    "hcp": 6.8,
+    "birthdate": "2011-03-16",
+    "home_club": "GLBW",
+    "coach": "Philipp Rodiek",
+    "walkup_song": "7 Nation Army",
+    "caddie": false,
+    "wagr": false,
+    "college_interest": true,
+    "nation": "DE",
+    "player_pin": "9171",
+    "gender": "Boys",
+    "r1_finalized_at": null,
+    "r2_finalized_at": null,
+    "r3_finalized_at": null,
+    "r1_scorecard_pdf_url": null,
+    "r2_scorecard_pdf_url": null,
+    "r3_scorecard_pdf_url": null,
+    "is_final": false,
+    "tee": "Gelb",
+    "slope": 133,
+    "course_rating": 72.8,
+    "tee_color": "Gelb",
+    "flight_id": "282e2895-7630-412f-b1c5-efca1982d1b4",
+    "course_setup_id": null,
+    "setup_course_name": null,
+    "setup_tee_name": null,
+    "setup_slope": null,
+    "setup_course_rating": null,
+    "setup_par_total": null
+  },
+  {
+    "id": "e8b46f1f-53ef-47a5-8957-145544d34328",
+    "created_at": "2026-02-21T17:29:23.808506+00:00",
+    "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
+    "holes": 9,
+    "first_name": "Valentin",
+    "last_name": "Bohl",
+    "email": "michaela.bohl@gmx.de",
+    "hcp": 25.7,
+    "birthdate": "2014-07-16",
+    "home_club": "Golf- und Countryclub Seddiner See",
+    "coach": "Nick Baron",
+    "walkup_song": "Should I stay or should I go (The Clash)",
+    "caddie": true,
+    "wagr": false,
+    "college_interest": false,
+    "nation": "DE",
+    "player_pin": "6042",
+    "gender": "Boys",
+    "r1_finalized_at": null,
+    "r2_finalized_at": null,
+    "r3_finalized_at": null,
+    "r1_scorecard_pdf_url": null,
+    "r2_scorecard_pdf_url": null,
+    "r3_scorecard_pdf_url": null,
+    "is_final": false,
+    "tee": "Rot",
+    "slope": 115,
+    "course_rating": 36,
+    "tee_color": "Rot",
+    "flight_id": "358cac0e-9c6b-4458-bc36-8e80bf5e5521",
+    "course_setup_id": null,
+    "setup_course_name": null,
+    "setup_tee_name": null,
+    "setup_slope": null,
+    "setup_course_rating": null,
+    "setup_par_total": null
+  },
+  {
+    "id": "5ab228f0-fb0e-46a2-88bd-94a48716f49d",
+    "created_at": "2026-05-17T16:45:46.104103+00:00",
+    "tournament_id": "e9b23d74-ab9d-4ba5-86bf-744915e1ee28",
+    "holes": 9,
+    "first_name": "Player",
+    "last_name": "1",
+    "email": "jennifer.menzel@outlook.de",
+    "hcp": 23,
+    "birthdate": "2014-05-17",
+    "home_club": "Test",
+    "coach": "Test",
+    "walkup_song": "Test",
+    "caddie": true,
+    "wagr": false,
+    "college_interest": false,
+    "nation": "DE",
+    "player_pin": "9059",
+    "gender": "Girls",
+    "r1_finalized_at": null,
+    "r2_finalized_at": null,
+    "r3_finalized_at": null,
+    "r1_scorecard_pdf_url": null,
+    "r2_scorecard_pdf_url": null,
+    "r3_scorecard_pdf_url": null,
+    "is_final": false,
+    "tee": null,
+    "slope": null,
+    "course_rating": null,
+    "tee_color": null,
+    "flight_id": "68bebc43-cb05-433a-bd95-853ff2ca46a7",
+    "course_setup_id": null,
+    "setup_course_name": null,
+    "setup_tee_name": null,
+    "setup_slope": null,
+    "setup_course_rating": null,
+    "setup_par_total": null
   },
   {
     "id": "c0fb8d2a-417b-4d68-918c-fc6d0b9b032c",
@@ -503,8 +719,7 @@
     "setup_tee_name": null,
     "setup_slope": null,
     "setup_course_rating": null,
-    "setup_par_total": null,
-    "playing_handicap": null
+    "setup_par_total": null
   },
   {
     "id": "ee5ab7c6-0546-4277-8d04-5e6b48ea52a3",
@@ -542,8 +757,7 @@
     "setup_tee_name": null,
     "setup_slope": null,
     "setup_course_rating": null,
-    "setup_par_total": null,
-    "playing_handicap": null
+    "setup_par_total": null
   },
   {
     "id": "2cc9e7cd-f36e-4f27-ac2e-6959eecef670",
@@ -581,8 +795,7 @@
     "setup_tee_name": null,
     "setup_slope": null,
     "setup_course_rating": null,
-    "setup_par_total": null,
-    "playing_handicap": null
+    "setup_par_total": null
   },
   {
     "id": "098132e4-eb31-43dd-b487-8f6aea7501e6",
@@ -620,8 +833,7 @@
     "setup_tee_name": null,
     "setup_slope": null,
     "setup_course_rating": null,
-    "setup_par_total": null,
-    "playing_handicap": null
+    "setup_par_total": null
   },
   {
     "id": "5a59d344-5329-4443-8d6e-6a3950ea6610",
@@ -659,8 +871,7 @@
     "setup_tee_name": null,
     "setup_slope": null,
     "setup_course_rating": null,
-    "setup_par_total": null,
-    "playing_handicap": null
+    "setup_par_total": null
   },
   {
     "id": "9f598abc-49d9-4080-9cd4-ebd4e9e3ab7d",
@@ -698,66 +909,26 @@
     "setup_tee_name": null,
     "setup_slope": null,
     "setup_course_rating": null,
-    "setup_par_total": null,
-    "playing_handicap": null
+    "setup_par_total": null
   },
   {
-    "id": "e8b46f1f-53ef-47a5-8957-145544d34328",
-    "created_at": "2026-02-21T17:29:23.808506+00:00",
+    "id": "d4f2b88a-1c8e-4358-a2a7-ecbc4aed496f",
+    "created_at": "2026-04-13T21:50:56.916429+00:00",
     "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
-    "holes": 9,
-    "first_name": "Valentin",
-    "last_name": "Bohl",
-    "email": "michaela.bohl@gmx.de",
-    "hcp": 25.7,
-    "birthdate": "2014-07-16",
-    "home_club": "Golf- und Countryclub Seddiner See",
-    "coach": "Nick Baron",
-    "walkup_song": "Should I stay or should I go (The Clash)",
+    "holes": 18,
+    "first_name": "Julian",
+    "last_name": "Schwarz",
+    "email": "jurek.schwarz@gmx.de",
+    "hcp": -2.5,
+    "birthdate": "2007-06-07",
+    "home_club": "GLC Berlin Wannsee",
+    "coach": "Max Tscherner",
+    "walkup_song": "Ice Ice Baby",
     "caddie": true,
-    "wagr": false,
-    "college_interest": false,
-    "nation": "DE",
-    "player_pin": "6042",
-    "gender": "Boys",
-    "r1_finalized_at": null,
-    "r2_finalized_at": null,
-    "r3_finalized_at": null,
-    "r1_scorecard_pdf_url": null,
-    "r2_scorecard_pdf_url": null,
-    "r3_scorecard_pdf_url": null,
-    "is_final": false,
-    "tee": "Rot",
-    "slope": 115,
-    "course_rating": 36,
-    "tee_color": "Rot",
-    "flight_id": null,
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null,
-    "playing_handicap": null
-  },
-  {
-    "id": "0b59272e-3ec8-4a3c-b41f-cee486ef768f",
-    "created_at": "2026-02-21T17:37:29.953496+00:00",
-    "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
-    "holes": 18,
-    "first_name": "Ferdinand",
-    "last_name": "Löffler",
-    "email": "ferdinand.loeffler@gmx.de",
-    "hcp": 6.8,
-    "birthdate": "2011-03-16",
-    "home_club": "GLBW",
-    "coach": "Philipp Rodiek",
-    "walkup_song": "7 Nation Army",
-    "caddie": false,
-    "wagr": false,
+    "wagr": true,
     "college_interest": true,
     "nation": "DE",
-    "player_pin": "9171",
+    "player_pin": "8414",
     "gender": "Boys",
     "r1_finalized_at": null,
     "r2_finalized_at": null,
@@ -766,76 +937,36 @@
     "r2_scorecard_pdf_url": null,
     "r3_scorecard_pdf_url": null,
     "is_final": false,
-    "tee": "Gelb",
-    "slope": 133,
-    "course_rating": 72.8,
-    "tee_color": "Gelb",
-    "flight_id": null,
+    "tee": null,
+    "slope": null,
+    "course_rating": null,
+    "tee_color": null,
+    "flight_id": "40662df9-5176-4b08-9d8b-5e04639c6dbe",
     "course_setup_id": null,
     "setup_course_name": null,
     "setup_tee_name": null,
     "setup_slope": null,
     "setup_course_rating": null,
-    "setup_par_total": null,
-    "playing_handicap": null
+    "setup_par_total": null
   },
   {
-    "id": "e8a390b9-2b41-4f46-a50a-185e532c5ecd",
-    "created_at": "2026-02-21T17:35:04.599851+00:00",
+    "id": "08d26a81-b59d-4162-ad72-b07ee5d75c64",
+    "created_at": "2026-02-21T17:32:05.955159+00:00",
     "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
     "holes": 18,
-    "first_name": "Maddox",
-    "last_name": "Cordes",
-    "email": "jochencordes@mac.com",
-    "hcp": 5.4,
-    "birthdate": "2011-09-25",
-    "home_club": "GLBW",
-    "coach": "Max Dülm",
-    "walkup_song": "Who let the dogs out",
-    "caddie": false,
-    "wagr": false,
-    "college_interest": true,
-    "nation": "DE",
-    "player_pin": "1380",
-    "gender": "Boys",
-    "r1_finalized_at": null,
-    "r2_finalized_at": null,
-    "r3_finalized_at": null,
-    "r1_scorecard_pdf_url": null,
-    "r2_scorecard_pdf_url": null,
-    "r3_scorecard_pdf_url": null,
-    "is_final": false,
-    "tee": "Gelb",
-    "slope": 133,
-    "course_rating": 72.8,
-    "tee_color": "Gelb",
-    "flight_id": null,
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null,
-    "playing_handicap": null
-  },
-  {
-    "id": "84a783cc-96d7-494c-9413-5c6075d22010",
-    "created_at": "2026-02-21T17:33:37.894557+00:00",
-    "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
-    "holes": 18,
-    "first_name": "Lennart",
+    "first_name": "Tom",
     "last_name": "Schult",
     "email": "phumitsch@aol.com",
-    "hcp": 6,
-    "birthdate": "2010-12-04",
+    "hcp": 16.4,
+    "birthdate": "2013-01-25",
     "home_club": "GLBW",
-    "coach": "Philipp Rodek",
-    "walkup_song": "The fate of Ophelia",
+    "coach": "Brandon Roll",
+    "walkup_song": "Roar Katy Perry",
     "caddie": true,
     "wagr": false,
     "college_interest": true,
     "nation": "DE",
-    "player_pin": "6009",
+    "player_pin": "1572",
     "gender": "Boys",
     "r1_finalized_at": null,
     "r2_finalized_at": null,
@@ -848,33 +979,32 @@
     "slope": 133,
     "course_rating": 72.8,
     "tee_color": "Gelb",
-    "flight_id": null,
+    "flight_id": "282e2895-7630-412f-b1c5-efca1982d1b4",
     "course_setup_id": null,
     "setup_course_name": null,
     "setup_tee_name": null,
     "setup_slope": null,
     "setup_course_rating": null,
-    "setup_par_total": null,
-    "playing_handicap": null
+    "setup_par_total": null
   },
   {
-    "id": "2e24c477-5488-4904-a957-f8061b0dc47f",
-    "created_at": "2026-02-21T17:54:48.970882+00:00",
-    "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
-    "holes": 18,
-    "first_name": "Louiza Sofie",
-    "last_name": "Menzel",
+    "id": "4747714c-9ad7-46b7-b3d0-c24ea4dd5442",
+    "created_at": "2026-05-18T07:04:54.56191+00:00",
+    "tournament_id": "e9b23d74-ab9d-4ba5-86bf-744915e1ee28",
+    "holes": 9,
+    "first_name": "Player",
+    "last_name": "2",
     "email": "jennifer.menzel@outlook.de",
-    "hcp": 9.8,
-    "birthdate": "2014-07-20",
-    "home_club": "GLBW",
-    "coach": "Thilo Pantzke",
-    "walkup_song": "Rede X Lush Live",
+    "hcp": 45,
+    "birthdate": "2015-09-13",
+    "home_club": "Test",
+    "coach": "Test",
+    "walkup_song": "Test",
     "caddie": false,
     "wagr": false,
     "college_interest": true,
     "nation": "DE",
-    "player_pin": "9348",
+    "player_pin": "8500",
     "gender": "Girls",
     "r1_finalized_at": null,
     "r2_finalized_at": null,
@@ -883,18 +1013,17 @@
     "r2_scorecard_pdf_url": null,
     "r3_scorecard_pdf_url": null,
     "is_final": false,
-    "tee": "Rot",
-    "slope": 131,
-    "course_rating": 74.6,
-    "tee_color": "Rot",
+    "tee": null,
+    "slope": null,
+    "course_rating": null,
+    "tee_color": null,
     "flight_id": null,
     "course_setup_id": null,
     "setup_course_name": null,
     "setup_tee_name": null,
     "setup_slope": null,
     "setup_course_rating": null,
-    "setup_par_total": null,
-    "playing_handicap": null
+    "setup_par_total": null
   },
   {
     "id": "4d134271-956f-42fd-95ea-0a6b725123e6",
@@ -932,8 +1061,7 @@
     "setup_tee_name": null,
     "setup_slope": null,
     "setup_course_rating": null,
-    "setup_par_total": null,
-    "playing_handicap": null
+    "setup_par_total": null
   },
   {
     "id": "bd565cdc-2b20-4ee1-8358-1c3f10ec8acf",
@@ -971,8 +1099,7 @@
     "setup_tee_name": null,
     "setup_slope": null,
     "setup_course_rating": null,
-    "setup_par_total": null,
-    "playing_handicap": null
+    "setup_par_total": null
   },
   {
     "id": "c3364e8d-93bc-472c-a6ff-b4f68265a4d5",
@@ -1010,8 +1137,7 @@
     "setup_tee_name": null,
     "setup_slope": null,
     "setup_course_rating": null,
-    "setup_par_total": null,
-    "playing_handicap": null
+    "setup_par_total": null
   },
   {
     "id": "44447724-0d2c-4601-b0c6-e53714d03f63",
@@ -1049,8 +1175,7 @@
     "setup_tee_name": null,
     "setup_slope": null,
     "setup_course_rating": null,
-    "setup_par_total": null,
-    "playing_handicap": null
+    "setup_par_total": null
   },
   {
     "id": "fdd25cd4-90fe-4002-b08b-95ff807080ba",
@@ -1088,8 +1213,7 @@
     "setup_tee_name": null,
     "setup_slope": null,
     "setup_course_rating": null,
-    "setup_par_total": null,
-    "playing_handicap": null
+    "setup_par_total": null
   },
   {
     "id": "fad947a7-7081-4b4e-8f64-0cc412d50fd1",
@@ -1127,8 +1251,7 @@
     "setup_tee_name": null,
     "setup_slope": null,
     "setup_course_rating": null,
-    "setup_par_total": null,
-    "playing_handicap": null
+    "setup_par_total": null
   },
   {
     "id": "9d71aa32-e0cc-4394-b494-f2cca4e7d382",
@@ -1166,8 +1289,7 @@
     "setup_tee_name": null,
     "setup_slope": null,
     "setup_course_rating": null,
-    "setup_par_total": null,
-    "playing_handicap": null
+    "setup_par_total": null
   },
   {
     "id": "117030b2-c7c3-4bab-ac1d-2b3b81b2b9d1",
@@ -1205,47 +1327,7 @@
     "setup_tee_name": null,
     "setup_slope": null,
     "setup_course_rating": null,
-    "setup_par_total": null,
-    "playing_handicap": null
-  },
-  {
-    "id": "08d26a81-b59d-4162-ad72-b07ee5d75c64",
-    "created_at": "2026-02-21T17:32:05.955159+00:00",
-    "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
-    "holes": 18,
-    "first_name": "Tom",
-    "last_name": "Schult",
-    "email": "phumitsch@aol.com",
-    "hcp": 16.4,
-    "birthdate": "2013-01-25",
-    "home_club": "GLBW",
-    "coach": "Brandon Roll",
-    "walkup_song": "Roar Katy Perry",
-    "caddie": true,
-    "wagr": false,
-    "college_interest": true,
-    "nation": "DE",
-    "player_pin": "1572",
-    "gender": "Boys",
-    "r1_finalized_at": null,
-    "r2_finalized_at": null,
-    "r3_finalized_at": null,
-    "r1_scorecard_pdf_url": null,
-    "r2_scorecard_pdf_url": null,
-    "r3_scorecard_pdf_url": null,
-    "is_final": false,
-    "tee": "Gelb",
-    "slope": 133,
-    "course_rating": 72.8,
-    "tee_color": "Gelb",
-    "flight_id": null,
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null,
-    "playing_handicap": null
+    "setup_par_total": null
   },
   {
     "id": "f88170d0-1f22-42fc-b06f-f43ce3d2c8ff",
@@ -1283,8 +1365,7 @@
     "setup_tee_name": null,
     "setup_slope": null,
     "setup_course_rating": null,
-    "setup_par_total": null,
-    "playing_handicap": null
+    "setup_par_total": null
   },
   {
     "id": "b0f8374f-c18d-481e-852b-dfa6aa011ac8",
@@ -1322,8 +1403,7 @@
     "setup_tee_name": null,
     "setup_slope": null,
     "setup_course_rating": null,
-    "setup_par_total": null,
-    "playing_handicap": null
+    "setup_par_total": null
   },
   {
     "id": "7cb8f5cb-1d66-4a8b-a52e-3c0ab48ff137",
@@ -1361,8 +1441,7 @@
     "setup_tee_name": null,
     "setup_slope": null,
     "setup_course_rating": null,
-    "setup_par_total": null,
-    "playing_handicap": null
+    "setup_par_total": null
   },
   {
     "id": "6edb8092-3291-45fa-8651-a88b460512ad",
@@ -1400,47 +1479,7 @@
     "setup_tee_name": null,
     "setup_slope": null,
     "setup_course_rating": null,
-    "setup_par_total": null,
-    "playing_handicap": null
-  },
-  {
-    "id": "d4f2b88a-1c8e-4358-a2a7-ecbc4aed496f",
-    "created_at": "2026-04-13T21:50:56.916429+00:00",
-    "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
-    "holes": 18,
-    "first_name": "Julian",
-    "last_name": "Schwarz",
-    "email": "jurek.schwarz@gmx.de",
-    "hcp": -2.5,
-    "birthdate": "2007-06-07",
-    "home_club": "GLC Berlin Wannsee",
-    "coach": "Max Tscherner",
-    "walkup_song": "Ice Ice Baby",
-    "caddie": true,
-    "wagr": true,
-    "college_interest": true,
-    "nation": "DE",
-    "player_pin": "8414",
-    "gender": "Boys",
-    "r1_finalized_at": null,
-    "r2_finalized_at": null,
-    "r3_finalized_at": null,
-    "r1_scorecard_pdf_url": null,
-    "r2_scorecard_pdf_url": null,
-    "r3_scorecard_pdf_url": null,
-    "is_final": false,
-    "tee": null,
-    "slope": null,
-    "course_rating": null,
-    "tee_color": null,
-    "flight_id": null,
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null,
-    "playing_handicap": null
+    "setup_par_total": null
   },
   {
     "id": "707a8d7f-48c8-4aa2-ba77-a822a334b283",
@@ -1478,8 +1517,7 @@
     "setup_tee_name": null,
     "setup_slope": null,
     "setup_course_rating": null,
-    "setup_par_total": null,
-    "playing_handicap": null
+    "setup_par_total": null
   },
   {
     "id": "9dcefb0b-f81d-400a-90bc-514b64341425",
@@ -1517,8 +1555,7 @@
     "setup_tee_name": null,
     "setup_slope": null,
     "setup_course_rating": null,
-    "setup_par_total": null,
-    "playing_handicap": null
+    "setup_par_total": null
   },
   {
     "id": "639dca59-1a8d-409a-82c6-584dbb5f34e9",
@@ -1556,8 +1593,7 @@
     "setup_tee_name": null,
     "setup_slope": null,
     "setup_course_rating": null,
-    "setup_par_total": null,
-    "playing_handicap": null
+    "setup_par_total": null
   },
   {
     "id": "2e22731c-34b3-4726-937a-18e90d4213a7",
@@ -1595,8 +1631,7 @@
     "setup_tee_name": null,
     "setup_slope": null,
     "setup_course_rating": null,
-    "setup_par_total": null,
-    "playing_handicap": null
+    "setup_par_total": null
   },
   {
     "id": "47b6392b-6476-4a2b-897e-2347b126ab86",
@@ -1634,8 +1669,7 @@
     "setup_tee_name": null,
     "setup_slope": null,
     "setup_course_rating": null,
-    "setup_par_total": null,
-    "playing_handicap": null
+    "setup_par_total": null
   },
   {
     "id": "7c4671ff-76ee-4a70-b912-6aa7354774ee",
@@ -1673,8 +1707,7 @@
     "setup_tee_name": null,
     "setup_slope": null,
     "setup_course_rating": null,
-    "setup_par_total": null,
-    "playing_handicap": null
+    "setup_par_total": null
   },
   {
     "id": "07cfbc31-606f-4838-ba17-578e0720215d",
@@ -1712,8 +1745,7 @@
     "setup_tee_name": null,
     "setup_slope": null,
     "setup_course_rating": null,
-    "setup_par_total": null,
-    "playing_handicap": null
+    "setup_par_total": null
   },
   {
     "id": "e5564605-a162-4973-b880-2fa2245b8a54",
@@ -1751,8 +1783,7 @@
     "setup_tee_name": null,
     "setup_slope": null,
     "setup_course_rating": null,
-    "setup_par_total": null,
-    "playing_handicap": null
+    "setup_par_total": null
   },
   {
     "id": "c9c44f56-2b25-4444-be7a-60dcb33140b2",
@@ -1790,8 +1821,7 @@
     "setup_tee_name": null,
     "setup_slope": null,
     "setup_course_rating": null,
-    "setup_par_total": null,
-    "playing_handicap": null
+    "setup_par_total": null
   },
   {
     "id": "0a22a191-8264-4398-8468-2e96074d3366",
@@ -1829,8 +1859,7 @@
     "setup_tee_name": null,
     "setup_slope": null,
     "setup_course_rating": null,
-    "setup_par_total": null,
-    "playing_handicap": null
+    "setup_par_total": null
   },
   {
     "id": "21380286-b867-4919-83b5-08eaac386dfe",
@@ -1868,8 +1897,7 @@
     "setup_tee_name": null,
     "setup_slope": null,
     "setup_course_rating": null,
-    "setup_par_total": null,
-    "playing_handicap": null
+    "setup_par_total": null
   },
   {
     "id": "0d19a809-374b-46bc-ac56-5d1417af6bbf",
@@ -1907,8 +1935,7 @@
     "setup_tee_name": null,
     "setup_slope": null,
     "setup_course_rating": null,
-    "setup_par_total": null,
-    "playing_handicap": null
+    "setup_par_total": null
   },
   {
     "id": "06ccd75a-85fb-49da-b531-5ea45a09645f",
@@ -1946,8 +1973,7 @@
     "setup_tee_name": null,
     "setup_slope": null,
     "setup_course_rating": null,
-    "setup_par_total": null,
-    "playing_handicap": null
+    "setup_par_total": null
   },
   {
     "id": "db214db6-5b8c-432b-a14b-322a17f0f720",
@@ -1985,8 +2011,7 @@
     "setup_tee_name": null,
     "setup_slope": null,
     "setup_course_rating": null,
-    "setup_par_total": null,
-    "playing_handicap": null
+    "setup_par_total": null
   },
   {
     "id": "d3d57160-318c-4c35-bb5c-de5a5f07d0e7",
@@ -2024,8 +2049,7 @@
     "setup_tee_name": null,
     "setup_slope": null,
     "setup_course_rating": null,
-    "setup_par_total": null,
-    "playing_handicap": null
+    "setup_par_total": null
   },
   {
     "id": "e1cc61b9-4c31-4d8e-8bee-b567ce5cca28",
@@ -2063,8 +2087,7 @@
     "setup_tee_name": null,
     "setup_slope": null,
     "setup_course_rating": null,
-    "setup_par_total": null,
-    "playing_handicap": null
+    "setup_par_total": null
   },
   {
     "id": "ce23d191-feba-4728-82f1-dc3429b95532",
@@ -2102,8 +2125,7 @@
     "setup_tee_name": null,
     "setup_slope": null,
     "setup_course_rating": null,
-    "setup_par_total": null,
-    "playing_handicap": null
+    "setup_par_total": null
   },
   {
     "id": "d9a55926-e2fd-4b89-b902-8218e6710edd",
@@ -2141,7 +2163,6 @@
     "setup_tee_name": null,
     "setup_slope": null,
     "setup_course_rating": null,
-    "setup_par_total": null,
-    "playing_handicap": null
+    "setup_par_total": null
   }
 ]
