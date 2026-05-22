@@ -360,6 +360,18 @@
     "round_number": 1
   },
   {
+    "id": "41c2590e-ea22-44bf-b862-6b8068962a10",
+    "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
+    "round": 1,
+    "flight_number": 1,
+    "holes": 18,
+    "start_time": "2026-03-30T08:00:00+00:00",
+    "created_at": "2026-03-29T14:17:14.699959+00:00",
+    "gender": "Boys",
+    "status": "active",
+    "round_number": 1
+  },
+  {
     "id": "d351948a-e18e-466c-9847-c10301498b04",
     "tournament_id": "e9b23d74-ab9d-4ba5-86bf-744915e1ee28",
     "round": 1,
@@ -380,19 +392,7 @@
     "start_time": null,
     "created_at": "2026-05-18T07:22:07.618682+00:00",
     "gender": "9Loch",
-    "status": "active",
-    "round_number": 1
-  },
-  {
-    "id": "41c2590e-ea22-44bf-b862-6b8068962a10",
-    "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
-    "round": 1,
-    "flight_number": 1,
-    "holes": 18,
-    "start_time": "2026-03-30T08:00:00+00:00",
-    "created_at": "2026-03-29T14:17:14.699959+00:00",
-    "gender": "Boys",
-    "status": "active",
+    "status": "completed",
     "round_number": 1
   },
   {
