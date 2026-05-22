@@ -31,14 +31,12 @@ function normalizeGender(g: string): string {
   return g;
 }
 
-// Spieler in Dreier-Flights aufteilen
 function makeFlights(players: any[], flightNumberStart: number, gender: string, round: number) {
   const flights = [];
   let flightNum = flightNumberStart;
 
   for (let i = 0; i < players.length; i += 3) {
     const group = players.slice(i, i + 3);
-    // Wenn letzter Flight nur 1 Spieler hat, zum vorherigen hinzufügen
     if (group.length === 1 && flights.length > 0) {
       flights[flights.length - 1].players.push(group[0]);
     } else {
@@ -49,6 +47,16 @@ function makeFlights(players: any[], flightNumberStart: number, gender: string, 
   return flights;
 }
 
+// Startzeit berechnen: 10:00 Uhr + 10 Minuten pro Flight
+function calcStartTime(flightIndex: number): string {
+  const startHour = 10;
+  const startMinute = 0;
+  const totalMinutes = startHour * 60 + startMinute + flightIndex * 10;
+  const h = Math.floor(totalMinutes / 60).toString().padStart(2, "0");
+  const m = (totalMinutes % 60).toString().padStart(2, "0");
+  return `${h}:${m}`;
+}
+
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
   const tournamentId = searchParams.get("tournamentId") || "";
@@ -56,7 +64,6 @@ export async function GET(req: Request) {
 
   const supabase = getSupabase();
 
-  // Registrierungen laden
   const { data: regs } = await supabase
     .from("registrations")
     .select("id, first_name, last_name, hcp, gender, birthdate, holes, flight_id, player_pin")
@@ -68,15 +75,13 @@ export async function GET(req: Request) {
     age_group: r.birthdate ? calcAgeGroup(r.birthdate, r.holes || 18) : "",
   }));
 
-  // Flights für diese Runde laden
   const { data: flightsData } = await supabase
     .from("flights")
-    .select("id, flight_number, round, gender, status, holes")
+    .select("id, flight_number, round, gender, status, holes, start_time")
     .eq("tournament_id", tournamentId)
     .eq("round", round)
     .order("flight_number");
 
-  // Spieler den Flights zuordnen
   const flights = await Promise.all((flightsData || []).map(async (f: any) => {
     const players = registrations.filter((r: any) => r.flight_id === f.id);
     return { ...f, players };
@@ -89,7 +94,6 @@ export async function POST(req: Request) {
   const { tournamentId, round } = await req.json();
   const supabase = getSupabase();
 
-  // Alle Registrierungen laden
   const { data: regs } = await supabase
     .from("registrations")
     .select("id, first_name, last_name, hcp, gender, birthdate, holes, player_pin")
@@ -106,7 +110,7 @@ export async function POST(req: Request) {
     hcp: r.hcp || 999,
   }));
 
-  // Bestehende Flights für diese Runde löschen
+  // Bestehende Flights löschen
   const { data: existingFlights } = await supabase
     .from("flights")
     .select("id")
@@ -120,10 +124,8 @@ export async function POST(req: Request) {
   // Sortierung je nach Runde
   let sortedRegs = [...registrations];
   if (round === 1) {
-    // Runde 1: Nach HCP sortieren (niedrigstes zuerst)
     sortedRegs.sort((a, b) => (a.hcp || 999) - (b.hcp || 999));
   } else {
-    // Runde 2 & 3: Nach Ergebnis sortieren
     const { data: scores } = await supabase
       .from("hole_scores")
       .select("player_id, strokes_self, penalty_strokes")
@@ -139,17 +141,16 @@ export async function POST(req: Request) {
     sortedRegs.sort((a, b) => {
       const aScore = totalByPlayer.get(a.id) || 999;
       const bScore = totalByPlayer.get(b.id) || 999;
-      if (round === 2) return aScore - bScore; // Beste zuerst
-      return bScore - aScore; // Runde 3: Beste zuletzt
+      if (round === 2) return aScore - bScore;
+      return bScore - aScore;
     });
   }
 
-  // Girls/Boys trennen
+  // Girls/Boys/9Loch trennen
   const girls18 = sortedRegs.filter(r => r.gender === "Girls" && r.holes === 18);
   const boys18 = sortedRegs.filter(r => r.gender === "Boys" && r.holes === 18);
   const nine = sortedRegs.filter(r => r.holes === 9);
 
-  // Flights erstellen
   let flightNum = 1;
   const allFlightGroups = [
     ...makeFlights(girls18, flightNum, "Girls", round),
@@ -157,9 +158,20 @@ export async function POST(req: Request) {
     ...makeFlights(nine, flightNum + Math.ceil(girls18.length / 3) + Math.ceil(boys18.length / 3), "9Loch", round),
   ];
 
-  // Flights in DB speichern und Spieler zuweisen
+  // Flights speichern
   let flightsCreated = 0;
+  let flightIndex = 0;
+
   for (const group of allFlightGroups) {
+    const startTime = calcStartTime(flightIndex);
+    // 9-Loch Flights starten nach allen 18-Loch Flights
+    const is9hole = group.gender === "9Loch";
+    const total18Flights = Math.ceil(girls18.length / 3) + Math.ceil(boys18.length / 3);
+    const adjustedIndex = is9hole
+      ? total18Flights + allFlightGroups.filter(g => g.gender === "9Loch").indexOf(group)
+      : flightIndex;
+    const finalStartTime = calcStartTime(adjustedIndex);
+
     const { data: newFlight } = await supabase
       .from("flights")
       .insert({
@@ -170,6 +182,7 @@ export async function POST(req: Request) {
         gender: group.gender,
         status: "active",
         holes: group.players[0]?.holes || 18,
+        start_time: finalStartTime,
       })
       .select()
       .single();
@@ -183,10 +196,10 @@ export async function POST(req: Request) {
           .eq("id", player.id);
       }
 
-      // flight_players Einträge erstellen mit Zähler-Zuweisung
+      // flight_players mit Zähler-Zuweisung
       for (let i = 0; i < group.players.length; i++) {
         const player = group.players[i];
-        const countsFor = group.players[(i + 1) % group.players.length]; // Jeder zählt für den nächsten
+        const countsFor = group.players[(i + 1) % group.players.length];
         await supabase.from("flight_players").upsert({
           flight_id: newFlight.id,
           registration_id: player.id,
@@ -195,8 +208,21 @@ export async function POST(req: Request) {
         }, { onConflict: "flight_id,seat" });
       }
 
+      // flight_pins befüllen (wichtig für hole_scores!)
+      for (const player of group.players) {
+        await supabase.from("flight_pins").upsert({
+          tournament_id: tournamentId,
+          flight_id: newFlight.id,
+          role: "player",
+          player_name: `${player.first_name} ${player.last_name}`,
+          pin: player.player_pin,
+        }, { onConflict: "pin,flight_id" });
+      }
+
       flightsCreated++;
     }
+
+    flightIndex++;
   }
 
   return NextResponse.json({ ok: true, flights_created: flightsCreated });
