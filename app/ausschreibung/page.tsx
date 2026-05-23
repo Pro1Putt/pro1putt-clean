@@ -52,25 +52,19 @@ function EventCard({
   location,
   intro,
   bullets,
+  actionButton,
 }: {
   title: string;
   date: string;
   location: string;
   intro: string;
   bullets: string[];
+  actionButton?: React.ReactNode;
 }) {
   return (
     <div className="p1-eventcard">
       <div style={{ display: "flex", flexWrap: "wrap", gap: 10, alignItems: "center" }}>
-        <div
-          style={{
-            fontSize: 13,
-            fontWeight: 900,
-            letterSpacing: 1,
-            color: GREEN,
-            textTransform: "uppercase",
-          }}
-        >
+        <div style={{ fontSize: 13, fontWeight: 900, letterSpacing: 1, color: GREEN, textTransform: "uppercase" }}>
           LIMITED ENTRY
         </div>
         <span style={{ opacity: 0.55 }}>•</span>
@@ -80,7 +74,6 @@ function EventCard({
       </div>
 
       <div style={{ fontWeight: 900, fontSize: 22, color: DARK, lineHeight: 1.15 }}>{title}</div>
-
       <div style={{ opacity: 0.82, lineHeight: 1.65 }}>{intro}</div>
 
       <ul style={{ margin: "6px 0 0", paddingLeft: 18, opacity: 0.86, lineHeight: 1.7 }}>
@@ -89,15 +82,12 @@ function EventCard({
         ))}
       </ul>
 
-      {/* BUTTONS — immer gleich hoch */}
-     <div className="p1-event-actions">
-  <a href="https://www.pro1putt.com/leaderboard/winston-open" className="p1-btn-primary">
-    Ergebnisse ansehen →
-  </a>
-  <a href="#bedingungen" className="p1-btn-soft">
-    Bedingungen ansehen
-  </a>
-</div>
+      <div className="p1-event-actions">
+        {actionButton}
+        <a href="#bedingungen" className="p1-btn-soft">
+          Bedingungen ansehen
+        </a>
+      </div>
 
       <div className="p1-eventmeta">
         <div style={{ opacity: 0.85 }}>
@@ -401,44 +391,44 @@ style={{
               gap: 18,
             }}
           >
-            <EventCard
-              title="PRO1PUTT Open Classics – WINSTONopen"
-              date="30.03.–01.04.2026"
-              location="WINSTONopen (WINSTONgolf)"
-              intro="Auf dem renommierten WINSTONopen – sportlich anspruchsvoll, erstklassig gepflegt und bekannt aus internationalen Profi-Events. Jetzt sind die besten Juniorinnen & Junioren dran."
-              bullets={[
-                "WAGR & EGR zertifiziert – Punkte sichern",
-                "Top-Bedingungen – internationaler Kurs",
-                "Gemeinsames Abendessen am Finaltag",
-                "Hole-in-One Preis",
-              ]}
-            />
+           <EventCard
+  title="PRO1PUTT Open Classics – WINSTONopen"
+  date="30.03.–01.04.2026"
+  location="WINSTONopen (WINSTONgolf)"
+  intro="Auf dem renommierten WINSTONopen – sportlich anspruchsvoll, erstklassig gepflegt und bekannt aus internationalen Profi-Events. Jetzt sind die besten Juniorinnen & Junioren dran."
+  bullets={["WAGR & EGR zertifiziert – Punkte sichern","Top-Bedingungen – internationaler Kurs","Gemeinsames Abendessen am Finaltag","Hole-in-One Preis"]}
+  actionButton={
+    <a href="https://www.pro1putt.com/leaderboard/winston-open" className="p1-btn-primary">
+      Ergebnisse ansehen →
+    </a>
+  }
+/>
 
-            <EventCard
-              title="PRO1PUTT Open – Faldo Course Bad Saarow"
-              date="25.–27.09.2026"
-              location="Faldo Course (Bad Saarow)"
-              intro="Der Faldo Course – Design von Sir Nick Faldo, Championship-Anspruch, Turnierhistorie. Eine Bühne, auf der Junioren Golf-Geschichte schreiben."
-              bullets={[
-                "WAGR & EGR zertifiziert – Punkte sichern",
-                "Kurs-Setup auf Top-Niveau",
-                "Gemeinsames Abendessen am Finaltag",
-                "Hole-in-One Preis",
-              ]}
-            />
+<EventCard
+  title="PRO1PUTT Open – Faldo Course Bad Saarow"
+  date="25.–27.09.2026"
+  location="Faldo Course (Bad Saarow)"
+  intro="Der Faldo Course – Design von Sir Nick Faldo, Championship-Anspruch, Turnierhistorie. Eine Bühne, auf der Junioren Golf-Geschichte schreiben."
+  bullets={["WAGR & EGR zertifiziert – Punkte sichern","Kurs-Setup auf Top-Niveau","Gemeinsames Abendessen am Finaltag","Hole-in-One Preis"]}
+  actionButton={
+    <a href="/register" className="p1-btn-primary">
+      Jetzt anmelden →
+    </a>
+  }
+/>
 
-            <EventCard
-              title="PRO1PUTT Open Finals – Green Eagle North Course"
-              date="02.–04.10.2026"
-              location="Green Eagle – North Course"
-              intro="Der North Course: Länge, Wasser, Championship-Design – bekannt aus großen Profi-Events. Ein Finale, das jeder Spieler nie vergisst."
-              bullets={[
-                "WAGR & EGR zertifiziert – Punkte sichern",
-                "Unvergessliches Erlebnis auf Pro-Level",
-                "Gemeinsames Abendessen am Finaltag",
-                "Hole-in-One Preis",
-              ]}
-            />
+<EventCard
+  title="PRO1PUTT Open Finals – Green Eagle North Course"
+  date="02.–04.10.2026"
+  location="Green Eagle – North Course"
+  intro="Der North Course: Länge, Wasser, Championship-Design – bekannt aus großen Profi-Events. Ein Finale, das jeder Spieler nie vergisst."
+  bullets={["WAGR & EGR zertifiziert – Punkte sichern","Unvergessliches Erlebnis auf Pro-Level","Gemeinsames Abendessen am Finaltag","Hole-in-One Preis"]}
+  actionButton={
+    <a href="/register" className="p1-btn-primary">
+      Jetzt anmelden →
+    </a>
+  }
+/>
           </div>
         </div>
       </section>
