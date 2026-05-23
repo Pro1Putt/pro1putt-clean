@@ -29,7 +29,10 @@
     "slope": null,
     "course_rating": null,
     "tee_color": null,
-    "flight_id": null
+    "flight_id": null,
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "e0adbbeb-e7b5-42d4-9ba3-1d70c15bc9f5",
@@ -61,7 +64,10 @@
     "slope": 115,
     "course_rating": 36,
     "tee_color": "Rot",
-    "flight_id": null
+    "flight_id": null,
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "46fdab66-f422-4168-83fc-70e67f137b2d",
@@ -93,7 +99,10 @@
     "slope": 120,
     "course_rating": 72,
     "tee_color": "Gelb",
-    "flight_id": null
+    "flight_id": null,
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "19b44c8b-f73c-464f-a197-236cf91f225b",
@@ -125,7 +134,10 @@
     "slope": 120,
     "course_rating": 72,
     "tee_color": "Gelb",
-    "flight_id": "41c2590e-ea22-44bf-b862-6b8068962a10"
+    "flight_id": "41c2590e-ea22-44bf-b862-6b8068962a10",
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "bd4c0e3c-0e92-41ac-a62f-ef3d754fe8e9",
@@ -157,7 +169,10 @@
     "slope": 118,
     "course_rating": 74,
     "tee_color": "Rot",
-    "flight_id": null
+    "flight_id": null,
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "aa58db5e-c5e0-4b49-bc34-962cab23acb4",
@@ -189,7 +204,10 @@
     "slope": 113,
     "course_rating": 37,
     "tee_color": "Orange",
-    "flight_id": null
+    "flight_id": null,
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "e079de2e-0a2f-40a5-b7cc-affd6a9c093a",
@@ -221,7 +239,10 @@
     "slope": 120,
     "course_rating": 72,
     "tee_color": "Gelb",
-    "flight_id": null
+    "flight_id": null,
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "885a2ebf-a33e-44a1-a5dd-ef1922c7778b",
@@ -253,7 +274,10 @@
     "slope": 115,
     "course_rating": 36,
     "tee_color": "Rot",
-    "flight_id": null
+    "flight_id": null,
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "becafb16-662c-4276-bb91-a5b09034bec9",
@@ -285,7 +309,10 @@
     "slope": null,
     "course_rating": null,
     "tee_color": null,
-    "flight_id": null
+    "flight_id": null,
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "05246053-44ff-4ddc-9119-619c0fe7675e",
@@ -317,7 +344,10 @@
     "slope": null,
     "course_rating": null,
     "tee_color": null,
-    "flight_id": null
+    "flight_id": null,
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "5d110f0c-2f85-4f21-bfea-d8a96880f0f4",
@@ -349,7 +379,10 @@
     "slope": 118,
     "course_rating": 74,
     "tee_color": "Rot",
-    "flight_id": "41c2590e-ea22-44bf-b862-6b8068962a10"
+    "flight_id": "41c2590e-ea22-44bf-b862-6b8068962a10",
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "78fb4ed0-ba6c-4b98-a34b-bb8fa7f01091",
@@ -381,7 +414,10 @@
     "slope": 120,
     "course_rating": 72,
     "tee_color": "Gelb",
-    "flight_id": "41c2590e-ea22-44bf-b862-6b8068962a10"
+    "flight_id": "41c2590e-ea22-44bf-b862-6b8068962a10",
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "2e24c477-5488-4904-a957-f8061b0dc47f",
@@ -413,7 +449,10 @@
     "slope": 131,
     "course_rating": 74.6,
     "tee_color": "Rot",
-    "flight_id": "2f323ce4-d757-4872-8100-471f5d8bae49"
+    "flight_id": "2f323ce4-d757-4872-8100-471f5d8bae49",
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "e8a390b9-2b41-4f46-a50a-185e532c5ecd",
@@ -445,7 +484,10 @@
     "slope": 133,
     "course_rating": 72.8,
     "tee_color": "Gelb",
-    "flight_id": "40662df9-5176-4b08-9d8b-5e04639c6dbe"
+    "flight_id": "40662df9-5176-4b08-9d8b-5e04639c6dbe",
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "84a783cc-96d7-494c-9413-5c6075d22010",
@@ -477,7 +519,10 @@
     "slope": 133,
     "course_rating": 72.8,
     "tee_color": "Gelb",
-    "flight_id": "40662df9-5176-4b08-9d8b-5e04639c6dbe"
+    "flight_id": "40662df9-5176-4b08-9d8b-5e04639c6dbe",
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "0b59272e-3ec8-4a3c-b41f-cee486ef768f",
@@ -509,7 +554,10 @@
     "slope": 133,
     "course_rating": 72.8,
     "tee_color": "Gelb",
-    "flight_id": "282e2895-7630-412f-b1c5-efca1982d1b4"
+    "flight_id": "282e2895-7630-412f-b1c5-efca1982d1b4",
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "e8b46f1f-53ef-47a5-8957-145544d34328",
@@ -541,39 +589,10 @@
     "slope": 115,
     "course_rating": 36,
     "tee_color": "Rot",
-    "flight_id": "358cac0e-9c6b-4458-bc36-8e80bf5e5521"
-  },
-  {
-    "id": "5ab228f0-fb0e-46a2-88bd-94a48716f49d",
-    "created_at": "2026-05-17T16:45:46.104103+00:00",
-    "tournament_id": "e9b23d74-ab9d-4ba5-86bf-744915e1ee28",
-    "holes": 9,
-    "first_name": "Player",
-    "last_name": "1",
-    "email": "jennifer.menzel@outlook.de",
-    "hcp": 23,
-    "birthdate": "2014-05-17",
-    "home_club": "Test",
-    "coach": "Test",
-    "walkup_song": "Test",
-    "caddie": true,
-    "wagr": false,
-    "college_interest": false,
-    "nation": "DE",
-    "player_pin": "9059",
-    "gender": "Girls",
-    "r1_finalized_at": null,
-    "r2_finalized_at": null,
-    "r3_finalized_at": null,
-    "r1_scorecard_pdf_url": null,
-    "r2_scorecard_pdf_url": null,
-    "r3_scorecard_pdf_url": null,
-    "is_final": false,
-    "tee": null,
-    "slope": null,
-    "course_rating": null,
-    "tee_color": null,
-    "flight_id": "e5ba2ae0-b7a7-4d5b-8918-529fc877e8c5"
+    "flight_id": "358cac0e-9c6b-4458-bc36-8e80bf5e5521",
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "c0fb8d2a-417b-4d68-918c-fc6d0b9b032c",
@@ -605,7 +624,10 @@
     "slope": 118,
     "course_rating": 74,
     "tee_color": "Rot",
-    "flight_id": null
+    "flight_id": null,
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "ee5ab7c6-0546-4277-8d04-5e6b48ea52a3",
@@ -637,7 +659,10 @@
     "slope": 120,
     "course_rating": 72,
     "tee_color": "Gelb",
-    "flight_id": null
+    "flight_id": null,
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "2cc9e7cd-f36e-4f27-ac2e-6959eecef670",
@@ -669,7 +694,10 @@
     "slope": 115,
     "course_rating": 36,
     "tee_color": "Rot",
-    "flight_id": null
+    "flight_id": null,
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "098132e4-eb31-43dd-b487-8f6aea7501e6",
@@ -701,7 +729,10 @@
     "slope": 115,
     "course_rating": 36,
     "tee_color": "Rot",
-    "flight_id": null
+    "flight_id": null,
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "5a59d344-5329-4443-8d6e-6a3950ea6610",
@@ -733,7 +764,10 @@
     "slope": 115,
     "course_rating": 36,
     "tee_color": "Rot",
-    "flight_id": null
+    "flight_id": null,
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "9f598abc-49d9-4080-9cd4-ebd4e9e3ab7d",
@@ -765,7 +799,80 @@
     "slope": 120,
     "course_rating": 72,
     "tee_color": "Gelb",
-    "flight_id": null
+    "flight_id": null,
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
+  },
+  {
+    "id": "7086b484-7a23-475d-a3f3-d1697246bc3d",
+    "created_at": "2026-05-23T19:12:59.464423+00:00",
+    "tournament_id": "e9b23d74-ab9d-4ba5-86bf-744915e1ee28",
+    "holes": 9,
+    "first_name": "Test",
+    "last_name": "3",
+    "email": "jennifer.menzel@outlook.de",
+    "hcp": 46,
+    "birthdate": "2015-05-20",
+    "home_club": "test",
+    "coach": "test",
+    "walkup_song": "test",
+    "caddie": false,
+    "wagr": false,
+    "college_interest": false,
+    "nation": "ES",
+    "player_pin": "3250",
+    "gender": "Girls",
+    "r1_finalized_at": null,
+    "r2_finalized_at": null,
+    "r3_finalized_at": null,
+    "r1_scorecard_pdf_url": null,
+    "r2_scorecard_pdf_url": null,
+    "r3_scorecard_pdf_url": null,
+    "is_final": false,
+    "tee": null,
+    "slope": null,
+    "course_rating": null,
+    "tee_color": null,
+    "flight_id": "2fd35462-279d-4156-a7b3-b93e260845c9",
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
+  },
+  {
+    "id": "5ab228f0-fb0e-46a2-88bd-94a48716f49d",
+    "created_at": "2026-05-17T16:45:46.104103+00:00",
+    "tournament_id": "e9b23d74-ab9d-4ba5-86bf-744915e1ee28",
+    "holes": 9,
+    "first_name": "Player",
+    "last_name": "1",
+    "email": "jennifer.menzel@outlook.de",
+    "hcp": 23,
+    "birthdate": "2014-05-17",
+    "home_club": "Test",
+    "coach": "Test",
+    "walkup_song": "Test",
+    "caddie": true,
+    "wagr": false,
+    "college_interest": false,
+    "nation": "DE",
+    "player_pin": "9059",
+    "gender": "Girls",
+    "r1_finalized_at": null,
+    "r2_finalized_at": null,
+    "r3_finalized_at": null,
+    "r1_scorecard_pdf_url": null,
+    "r2_scorecard_pdf_url": null,
+    "r3_scorecard_pdf_url": null,
+    "is_final": false,
+    "tee": null,
+    "slope": null,
+    "course_rating": null,
+    "tee_color": null,
+    "flight_id": "2fd35462-279d-4156-a7b3-b93e260845c9",
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": ""
   },
   {
     "id": "d4f2b88a-1c8e-4358-a2a7-ecbc4aed496f",
@@ -797,7 +904,10 @@
     "slope": null,
     "course_rating": null,
     "tee_color": null,
-    "flight_id": "40662df9-5176-4b08-9d8b-5e04639c6dbe"
+    "flight_id": "40662df9-5176-4b08-9d8b-5e04639c6dbe",
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "08d26a81-b59d-4162-ad72-b07ee5d75c64",
@@ -829,39 +939,10 @@
     "slope": 133,
     "course_rating": 72.8,
     "tee_color": "Gelb",
-    "flight_id": "282e2895-7630-412f-b1c5-efca1982d1b4"
-  },
-  {
-    "id": "4747714c-9ad7-46b7-b3d0-c24ea4dd5442",
-    "created_at": "2026-05-18T07:04:54.56191+00:00",
-    "tournament_id": "e9b23d74-ab9d-4ba5-86bf-744915e1ee28",
-    "holes": 9,
-    "first_name": "Player",
-    "last_name": "2",
-    "email": "jennifer.menzel@outlook.de",
-    "hcp": 45,
-    "birthdate": "2015-09-13",
-    "home_club": "Test",
-    "coach": "Test",
-    "walkup_song": "Test",
-    "caddie": false,
-    "wagr": false,
-    "college_interest": true,
-    "nation": "DE",
-    "player_pin": "8500",
-    "gender": "Girls",
-    "r1_finalized_at": null,
-    "r2_finalized_at": null,
-    "r3_finalized_at": null,
-    "r1_scorecard_pdf_url": null,
-    "r2_scorecard_pdf_url": null,
-    "r3_scorecard_pdf_url": null,
-    "is_final": false,
-    "tee": null,
-    "slope": null,
-    "course_rating": null,
-    "tee_color": null,
-    "flight_id": "e5ba2ae0-b7a7-4d5b-8918-529fc877e8c5"
+    "flight_id": "282e2895-7630-412f-b1c5-efca1982d1b4",
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "4d134271-956f-42fd-95ea-0a6b725123e6",
@@ -893,7 +974,10 @@
     "slope": 120,
     "course_rating": 72,
     "tee_color": "Gelb",
-    "flight_id": null
+    "flight_id": null,
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "bd565cdc-2b20-4ee1-8358-1c3f10ec8acf",
@@ -925,7 +1009,10 @@
     "slope": 118,
     "course_rating": 74,
     "tee_color": "Rot",
-    "flight_id": null
+    "flight_id": null,
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "c3364e8d-93bc-472c-a6ff-b4f68265a4d5",
@@ -957,7 +1044,10 @@
     "slope": 118,
     "course_rating": 74,
     "tee_color": "Rot",
-    "flight_id": null
+    "flight_id": null,
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "44447724-0d2c-4601-b0c6-e53714d03f63",
@@ -989,7 +1079,10 @@
     "slope": 118,
     "course_rating": 74,
     "tee_color": "Rot",
-    "flight_id": null
+    "flight_id": null,
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "fdd25cd4-90fe-4002-b08b-95ff807080ba",
@@ -1021,7 +1114,10 @@
     "slope": 118,
     "course_rating": 74,
     "tee_color": "Rot",
-    "flight_id": null
+    "flight_id": null,
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "fad947a7-7081-4b4e-8f64-0cc412d50fd1",
@@ -1053,7 +1149,10 @@
     "slope": 120,
     "course_rating": 72,
     "tee_color": "Gelb",
-    "flight_id": null
+    "flight_id": null,
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "9d71aa32-e0cc-4394-b494-f2cca4e7d382",
@@ -1085,7 +1184,10 @@
     "slope": 120,
     "course_rating": 72,
     "tee_color": "Gelb",
-    "flight_id": null
+    "flight_id": null,
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "117030b2-c7c3-4bab-ac1d-2b3b81b2b9d1",
@@ -1117,7 +1219,45 @@
     "slope": 120,
     "course_rating": 72,
     "tee_color": "Gelb",
-    "flight_id": null
+    "flight_id": null,
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
+  },
+  {
+    "id": "4747714c-9ad7-46b7-b3d0-c24ea4dd5442",
+    "created_at": "2026-05-18T07:04:54.56191+00:00",
+    "tournament_id": "e9b23d74-ab9d-4ba5-86bf-744915e1ee28",
+    "holes": 9,
+    "first_name": "Player",
+    "last_name": "2",
+    "email": "jennifer.menzel@outlook.de",
+    "hcp": 45,
+    "birthdate": "2015-09-13",
+    "home_club": "Test",
+    "coach": "Test",
+    "walkup_song": "Test",
+    "caddie": false,
+    "wagr": false,
+    "college_interest": true,
+    "nation": "DE",
+    "player_pin": "8500",
+    "gender": "Girls",
+    "r1_finalized_at": null,
+    "r2_finalized_at": null,
+    "r3_finalized_at": null,
+    "r1_scorecard_pdf_url": null,
+    "r2_scorecard_pdf_url": null,
+    "r3_scorecard_pdf_url": null,
+    "is_final": false,
+    "tee": null,
+    "slope": null,
+    "course_rating": null,
+    "tee_color": null,
+    "flight_id": "2fd35462-279d-4156-a7b3-b93e260845c9",
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "f88170d0-1f22-42fc-b06f-f43ce3d2c8ff",
@@ -1149,7 +1289,10 @@
     "slope": null,
     "course_rating": null,
     "tee_color": null,
-    "flight_id": null
+    "flight_id": null,
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "b0f8374f-c18d-481e-852b-dfa6aa011ac8",
@@ -1181,7 +1324,10 @@
     "slope": 120,
     "course_rating": 72,
     "tee_color": "Gelb",
-    "flight_id": null
+    "flight_id": null,
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "7cb8f5cb-1d66-4a8b-a52e-3c0ab48ff137",
@@ -1213,7 +1359,10 @@
     "slope": 120,
     "course_rating": 72,
     "tee_color": "Gelb",
-    "flight_id": null
+    "flight_id": null,
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "6edb8092-3291-45fa-8651-a88b460512ad",
@@ -1245,7 +1394,10 @@
     "slope": 120,
     "course_rating": 72,
     "tee_color": "Gelb",
-    "flight_id": null
+    "flight_id": null,
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "707a8d7f-48c8-4aa2-ba77-a822a334b283",
@@ -1277,7 +1429,10 @@
     "slope": 120,
     "course_rating": 72,
     "tee_color": "Gelb",
-    "flight_id": null
+    "flight_id": null,
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "9dcefb0b-f81d-400a-90bc-514b64341425",
@@ -1309,7 +1464,10 @@
     "slope": 120,
     "course_rating": 72,
     "tee_color": "Gelb",
-    "flight_id": null
+    "flight_id": null,
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "639dca59-1a8d-409a-82c6-584dbb5f34e9",
@@ -1341,7 +1499,10 @@
     "slope": 118,
     "course_rating": 74,
     "tee_color": "Rot",
-    "flight_id": null
+    "flight_id": null,
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "2e22731c-34b3-4726-937a-18e90d4213a7",
@@ -1373,7 +1534,10 @@
     "slope": 120,
     "course_rating": 72,
     "tee_color": "Gelb",
-    "flight_id": null
+    "flight_id": null,
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "47b6392b-6476-4a2b-897e-2347b126ab86",
@@ -1405,7 +1569,10 @@
     "slope": 120,
     "course_rating": 72,
     "tee_color": "Gelb",
-    "flight_id": null
+    "flight_id": null,
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "7c4671ff-76ee-4a70-b912-6aa7354774ee",
@@ -1437,7 +1604,10 @@
     "slope": 120,
     "course_rating": 72,
     "tee_color": "Gelb",
-    "flight_id": null
+    "flight_id": null,
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "07cfbc31-606f-4838-ba17-578e0720215d",
@@ -1469,7 +1639,10 @@
     "slope": 120,
     "course_rating": 72,
     "tee_color": "Gelb",
-    "flight_id": null
+    "flight_id": null,
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "e5564605-a162-4973-b880-2fa2245b8a54",
@@ -1501,7 +1674,10 @@
     "slope": 120,
     "course_rating": 72,
     "tee_color": "Gelb",
-    "flight_id": null
+    "flight_id": null,
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "c9c44f56-2b25-4444-be7a-60dcb33140b2",
@@ -1533,7 +1709,10 @@
     "slope": 120,
     "course_rating": 72,
     "tee_color": "Gelb",
-    "flight_id": null
+    "flight_id": null,
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "0a22a191-8264-4398-8468-2e96074d3366",
@@ -1565,7 +1744,10 @@
     "slope": 120,
     "course_rating": 72,
     "tee_color": "Gelb",
-    "flight_id": null
+    "flight_id": null,
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "21380286-b867-4919-83b5-08eaac386dfe",
@@ -1597,7 +1779,10 @@
     "slope": 115,
     "course_rating": 36,
     "tee_color": "Rot",
-    "flight_id": null
+    "flight_id": null,
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "0d19a809-374b-46bc-ac56-5d1417af6bbf",
@@ -1629,7 +1814,10 @@
     "slope": 120,
     "course_rating": 72,
     "tee_color": "Gelb",
-    "flight_id": null
+    "flight_id": null,
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "06ccd75a-85fb-49da-b531-5ea45a09645f",
@@ -1661,7 +1849,10 @@
     "slope": 120,
     "course_rating": 72,
     "tee_color": "Gelb",
-    "flight_id": null
+    "flight_id": null,
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "db214db6-5b8c-432b-a14b-322a17f0f720",
@@ -1693,7 +1884,10 @@
     "slope": 115,
     "course_rating": 36,
     "tee_color": "Rot",
-    "flight_id": null
+    "flight_id": null,
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "d3d57160-318c-4c35-bb5c-de5a5f07d0e7",
@@ -1725,7 +1919,10 @@
     "slope": 115,
     "course_rating": 36,
     "tee_color": "Rot",
-    "flight_id": null
+    "flight_id": null,
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "e1cc61b9-4c31-4d8e-8bee-b567ce5cca28",
@@ -1757,39 +1954,10 @@
     "slope": null,
     "course_rating": null,
     "tee_color": null,
-    "flight_id": null
-  },
-  {
-    "id": "e6bc24d2-e246-49de-b369-146a148067f5",
-    "created_at": "2026-05-18T07:15:03.520541+00:00",
-    "tournament_id": "e9b23d74-ab9d-4ba5-86bf-744915e1ee28",
-    "holes": 18,
-    "first_name": "Player",
-    "last_name": "3",
-    "email": "jennifer.menzel@outlook.de",
-    "hcp": 12,
-    "birthdate": "2010-03-07",
-    "home_club": "Test",
-    "coach": "Test",
-    "walkup_song": "Test",
-    "caddie": false,
-    "wagr": false,
-    "college_interest": false,
-    "nation": "US",
-    "player_pin": "5112",
-    "gender": "Boys",
-    "r1_finalized_at": null,
-    "r2_finalized_at": null,
-    "r3_finalized_at": null,
-    "r1_scorecard_pdf_url": null,
-    "r2_scorecard_pdf_url": null,
-    "r3_scorecard_pdf_url": null,
-    "is_final": false,
-    "tee": null,
-    "slope": null,
-    "course_rating": null,
-    "tee_color": null,
-    "flight_id": "d351948a-e18e-466c-9847-c10301498b04"
+    "flight_id": null,
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "ce23d191-feba-4728-82f1-dc3429b95532",
@@ -1821,7 +1989,10 @@
     "slope": 120,
     "course_rating": 72,
     "tee_color": "Gelb",
-    "flight_id": null
+    "flight_id": null,
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "d9a55926-e2fd-4b89-b902-8218e6710edd",
@@ -1853,6 +2024,44 @@
     "slope": null,
     "course_rating": null,
     "tee_color": null,
-    "flight_id": null
+    "flight_id": null,
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
+  },
+  {
+    "id": "e6bc24d2-e246-49de-b369-146a148067f5",
+    "created_at": "2026-05-18T07:15:03.520541+00:00",
+    "tournament_id": "e9b23d74-ab9d-4ba5-86bf-744915e1ee28",
+    "holes": 18,
+    "first_name": "Player",
+    "last_name": "3",
+    "email": "jennifer.menzel@outlook.de",
+    "hcp": 12,
+    "birthdate": "2010-03-07",
+    "home_club": "Test",
+    "coach": "Test",
+    "walkup_song": "Test",
+    "caddie": false,
+    "wagr": false,
+    "college_interest": false,
+    "nation": "US",
+    "player_pin": "5112",
+    "gender": "Boys",
+    "r1_finalized_at": null,
+    "r2_finalized_at": null,
+    "r3_finalized_at": null,
+    "r1_scorecard_pdf_url": null,
+    "r2_scorecard_pdf_url": null,
+    "r3_scorecard_pdf_url": null,
+    "is_final": false,
+    "tee": null,
+    "slope": null,
+    "course_rating": null,
+    "tee_color": null,
+    "flight_id": "2fd35462-279d-4156-a7b3-b93e260845c9",
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   }
 ]
