@@ -90,14 +90,14 @@ function EventCard({
       </ul>
 
       {/* BUTTONS — immer gleich hoch */}
-      <div className="p1-event-actions">
-        <a href="/register" className="p1-btn-primary">
-          Jetzt anmelden →
-        </a>
-        <a href="#bedingungen" className="p1-btn-soft">
-          Bedingungen ansehen
-        </a>
-      </div>
+     <div className="p1-event-actions">
+  <a href="https://www.pro1putt.com/leaderboard/winston-open" className="p1-btn-primary">
+    Ergebnisse ansehen →
+  </a>
+  <a href="#bedingungen" className="p1-btn-soft">
+    Bedingungen ansehen
+  </a>
+</div>
 
       <div className="p1-eventmeta">
         <div style={{ opacity: 0.85 }}>
