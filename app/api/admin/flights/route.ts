@@ -174,7 +174,7 @@ export async function POST(req: Request) {
       : flightIndex;
     const finalStartTime = calcStartTime(adjustedIndex);
 
-    const { data: newFlight } = await supabase
+    const { data: newFlight, error: flightError } = await supabase
       .from("flights")
       .insert({
         tournament_id: tournamentId,
@@ -188,6 +188,10 @@ export async function POST(req: Request) {
       })
       .select()
       .single();
+      if (flightError) {
+  console.error("Flight insert error:", flightError);
+  continue;
+}
 
     if (newFlight) {
       // Spieler dem Flight zuweisen
