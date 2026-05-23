@@ -163,7 +163,7 @@ export async function POST(req: Request) {
   // Flights speichern
   let flightsCreated = 0;
   let flightIndex = 0;
-
+console.log("DEBUG", { girls18: girls18.length, boys18: boys18.length, nine: nine.length, allGroups: allFlightGroups.length, regs: sortedRegs.length });
   for (const group of allFlightGroups) {
     const startTime = calcStartTime(flightIndex);
     // 9-Loch Flights starten nach allen 18-Loch Flights
