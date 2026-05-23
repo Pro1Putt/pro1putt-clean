@@ -35,7 +35,7 @@ function calcStartTime(flightIndex: number): string {
   const totalMinutes = 10 * 60 + flightIndex * 10;
   const h = Math.floor(totalMinutes / 60).toString().padStart(2, "0");
   const m = (totalMinutes % 60).toString().padStart(2, "0");
-  return `2026-01-01T${h}:${m}:00+00:00`;
+  return `${h}:${m}`;
 }
 
 export async function GET(req: Request) {
