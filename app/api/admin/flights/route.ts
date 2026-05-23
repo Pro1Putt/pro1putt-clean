@@ -66,7 +66,7 @@ export async function GET(req: Request) {
 
   const { data: regs } = await supabase
     .from("registrations")
-    .select("id, first_name, last_name, hcp, gender, birthdate, holes, flight_id, player_pin")
+    .select("id, first_name, last_name, hcp, gender, birthdate, holes, flight_id, player_pin, tournament_status, tournament_status_hole, tournament_status_note")
     .eq("tournament_id", tournamentId);
 
   const registrations = (regs || []).map((r: any) => ({
