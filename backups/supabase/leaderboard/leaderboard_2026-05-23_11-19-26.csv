@@ -3,8 +3,8 @@ registration_id,player_name,handicap,tournament_id,tournament_name,flight_id,fli
 0b59272e-3ec8-4a3c-b41f-cee486ef768f,Ferdinand Löffler,6.8,d4a92ae2-6ecd-4043-8b5a-82414c597036,PRO1PUTT – Open Faldo Course (Bad Saarow),282e2895-7630-412f-b1c5-efca1982d1b4,3,18,0,0,active
 19b44c8b-f73c-464f-a197-236cf91f225b,Phillip Hövermann,4.4,7716349a-8bb0-46c6-b60c-3594eb7ea60f,PRO1PUTT – Open Classics WINSTONopen,41c2590e-ea22-44bf-b862-6b8068962a10,1,18,0,0,active
 2e24c477-5488-4904-a957-f8061b0dc47f,Louiza Sofie Menzel,9.8,d4a92ae2-6ecd-4043-8b5a-82414c597036,PRO1PUTT – Open Faldo Course (Bad Saarow),2f323ce4-d757-4872-8100-471f5d8bae49,1,18,0,0,active
-4747714c-9ad7-46b7-b3d0-c24ea4dd5442,Player 2,45,e9b23d74-ab9d-4ba5-86bf-744915e1ee28,Test,e5ba2ae0-b7a7-4d5b-8918-529fc877e8c5,2,9,0,0,active
-5ab228f0-fb0e-46a2-88bd-94a48716f49d,Player 1,23,e9b23d74-ab9d-4ba5-86bf-744915e1ee28,Test,e5ba2ae0-b7a7-4d5b-8918-529fc877e8c5,2,9,0,0,active
+4747714c-9ad7-46b7-b3d0-c24ea4dd5442,Player 2,45,e9b23d74-ab9d-4ba5-86bf-744915e1ee28,Test,e5ba2ae0-b7a7-4d5b-8918-529fc877e8c5,2,9,0,0,completed
+5ab228f0-fb0e-46a2-88bd-94a48716f49d,Player 1,23,e9b23d74-ab9d-4ba5-86bf-744915e1ee28,Test,e5ba2ae0-b7a7-4d5b-8918-529fc877e8c5,2,9,0,0,completed
 5d110f0c-2f85-4f21-bfea-d8a96880f0f4,Frieda Taisia Renting,4,7716349a-8bb0-46c6-b60c-3594eb7ea60f,PRO1PUTT – Open Classics WINSTONopen,41c2590e-ea22-44bf-b862-6b8068962a10,1,18,0,0,active
 78fb4ed0-ba6c-4b98-a34b-bb8fa7f01091,Aaron Talke,15.5,7716349a-8bb0-46c6-b60c-3594eb7ea60f,PRO1PUTT – Open Classics WINSTONopen,41c2590e-ea22-44bf-b862-6b8068962a10,1,18,0,0,active
 84a783cc-96d7-494c-9413-5c6075d22010,Lennart Schult,6,d4a92ae2-6ecd-4043-8b5a-82414c597036,PRO1PUTT – Open Faldo Course (Bad Saarow),40662df9-5176-4b08-9d8b-5e04639c6dbe,2,18,0,0,active
