@@ -1,4 +1,0 @@
-id,tournament_id,pin,role,hole_number,strokes_self,strokes_partner,created_at,updated_at,penalty_strokes,rule_ball,confirmed,confirmed_by,flight_id,player_id,round_number
-870a01f5-0310-4274-a015-23e5329ba57b,e9b23d74-ab9d-4ba5-86bf-744915e1ee28,8500,player,1,5,1,2026-05-22T05:35:18.220732+00:00,2026-05-22T05:35:18.220732+00:00,0,false,false,,e5ba2ae0-b7a7-4d5b-8918-529fc877e8c5,4747714c-9ad7-46b7-b3d0-c24ea4dd5442,1
-aeedb902-6118-41e5-bdcc-62a9e36c7abe,e9b23d74-ab9d-4ba5-86bf-744915e1ee28,8500,player,3,3,3,2026-05-22T05:37:42.864797+00:00,2026-05-22T05:37:42.864797+00:00,0,false,false,,e5ba2ae0-b7a7-4d5b-8918-529fc877e8c5,4747714c-9ad7-46b7-b3d0-c24ea4dd5442,1
-3d88b02d-0edf-44fa-98b2-80016fdbbdc4,e9b23d74-ab9d-4ba5-86bf-744915e1ee28,9059,player,1,1,5,2026-05-22T05:37:14.861069+00:00,2026-05-22T05:37:14.861069+00:00,0,false,false,,e5ba2ae0-b7a7-4d5b-8918-529fc877e8c5,5ab228f0-fb0e-46a2-88bd-94a48716f49d,1
