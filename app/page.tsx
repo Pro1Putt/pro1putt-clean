@@ -306,19 +306,22 @@ export default function HomeV2() {
         title: "Open Classics WINSTONopen",
         date: "30.03.–01.04.2026",
         place: "WINSTONopen",
-        status: "Limited Entry",
+        status: "Abgeschlossen",
+        finished: true,
       },
       {
         title: "Open Faldo Course",
         date: "25.–27.09.2026",
         place: "Bad Saarow",
         status: "Limited Entry",
+        finished: false,
       },
       {
         title: "Open Finals – North Course",
         date: "02.–04.10.2026",
         place: "Green Eagle",
         status: "Limited Entry",
+        finished: false,
       },
     ].map((t) => (
       <div
@@ -368,21 +371,16 @@ export default function HomeV2() {
 
         </div>
 
-        <a
-          href="/register"
-          style={{
-            padding: "14px 18px",
-            background: GREEN,
-            color: "#001a10",
-            borderRadius: 14,
-            fontWeight: 900,
-            textDecoration: "none",
-            textAlign: "center",
-            marginTop: 20,
-          }}
-        >
-          Jetzt anmelden →
-        </a>
+        
+       {t.finished ? (
+          <a href="/leaderboard/winston-open" style={{ padding: "14px 18px", background: "#e8f5ee", color: "#0b5d3b", borderRadius: 14, fontWeight: 900, textDecoration: "none", textAlign: "center", marginTop: 20, display: "block" }}>
+            🏆 Ergebnisse ansehen →
+          </a>
+        ) : (
+          <a href="/register" style={{ padding: "14px 18px", background: GREEN, color: "#001a10", borderRadius: 14, fontWeight: 900, textDecoration: "none", textAlign: "center", marginTop: 20, display: "block" }}>
+            Jetzt anmelden →
+          </a>
+        )}
       </div>
     ))}
   </div>
