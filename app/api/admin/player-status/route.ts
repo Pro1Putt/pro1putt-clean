@@ -14,6 +14,7 @@ export async function POST(req: NextRequest) {
     .update({
       tournament_status: status,
       tournament_status_hole: hole ?? null,
+      tournament_status_note: note ?? null,
     })
     .eq("id", registrationId);
 
