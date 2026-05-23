@@ -498,5 +498,25 @@
     "pin": "8500",
     "is_active": true,
     "created_at": "2026-05-22T05:30:27.848583+00:00"
+  },
+  {
+    "id": "4b915522-3905-4f68-82b3-1ea66bcfffcd",
+    "tournament_id": "e9b23d74-ab9d-4ba5-86bf-744915e1ee28",
+    "flight_id": "d351948a-e18e-466c-9847-c10301498b04",
+    "role": "player",
+    "player_name": "Player 3",
+    "pin": "5112",
+    "is_active": true,
+    "created_at": "2026-05-22T05:42:14.222547+00:00"
+  },
+  {
+    "id": "33f24bfd-bc43-48ab-b7fb-d2829659a6d5",
+    "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
+    "flight_id": "40662df9-5176-4b08-9d8b-5e04639c6dbe",
+    "role": "player",
+    "player_name": "Julian Schwarz",
+    "pin": "8414",
+    "is_active": true,
+    "created_at": "2026-05-22T05:42:14.222547+00:00"
   }
 ]
