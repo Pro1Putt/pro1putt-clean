@@ -32,6 +32,8 @@ function normalizeGender(g: string): string {
 }
 
 function makeFlights(players: any[], flightNumberStart: number, gender: string, round: number) {
+  if (players.length === 0) return [];
+  
   const flights = [];
   let flightNum = flightNumberStart;
 
