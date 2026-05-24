@@ -15,6 +15,7 @@ interface Registration {
   player_pin: string;
   tournament_status: string;
   tournament_status_hole: number | null;
+  marks_registration_id: string | null;  // NEU
 }
 
 interface Flight {
