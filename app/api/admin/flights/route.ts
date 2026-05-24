@@ -62,10 +62,17 @@ export async function GET(req: Request) {
     .eq("round", round)
     .order("flight_number");
 
-  const flights = (flightsData || []).map((f: any) => {
-    const players = registrations.filter((r: any) => r.flight_id === f.id);
-    return { ...f, players };
+ const { data: flightPlayersData } = await supabase
+  .from("flight_players")
+  .select("registration_id, marks_registration_id, flight_id");
+
+const flights = (flightsData || []).map((f: any) => {
+  const players = registrations.filter((r: any) => r.flight_id === f.id).map((p: any) => {
+    const fp = (flightPlayersData || []).find((x: any) => x.registration_id === p.id && x.flight_id === f.id);
+    return { ...p, marks_registration_id: fp?.marks_registration_id || null };
   });
+  return { ...f, players };
+});
 
   return NextResponse.json({ ok: true, registrations, flights });
 }
