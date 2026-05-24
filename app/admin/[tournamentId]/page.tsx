@@ -294,6 +294,14 @@ export default function AdminTournamentPage() {
                             )}
                           </div>
                           <div style={{ fontSize: 12, color: "#668278" }}>HCP: {p.hcp ?? "—"} · PIN: {p.player_pin} · {p.age_group}</div>
+{p.marks_registration_id && (() => {
+  const marksPlayer = flight.players.find((x: any) => x.id === p.marks_registration_id);
+  return marksPlayer ? (
+    <div style={{ fontSize: 11, color: "#0b5d3b", fontWeight: 700 }}>
+      ✏️ Zählt für: {marksPlayer.first_name} {marksPlayer.last_name}
+    </div>
+  ) : null;
+})()}
                         </div>
                         <div style={{ display: "flex", gap: 6 }}>
                           {badge ? (
