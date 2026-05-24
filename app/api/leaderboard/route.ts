@@ -49,7 +49,9 @@ type RegRow = {
   home_club: string | null;
   birthdate: string | null;
   holes: number | null;
-};
+  tournament_status: string | null;
+  tournament_status_hole: number | null;
+};  
 
 type ScoreRow = {
   registration_id: string | null;
@@ -168,7 +170,7 @@ export async function GET(req: Request) {
 
     const { data: regs, error: regErr } = await supabase
       .from("registrations")
-      .select("id,tournament_id,first_name,last_name,hcp,nation,gender,birthdate,holes,home_club")
+      .select("id,tournament_id,first_name,last_name,hcp,nation,gender,birthdate,holes,home_club,tournament_status,tournament_status_hole")
       .eq("tournament_id", tournamentId);
 
     if (regErr) {
@@ -403,12 +405,18 @@ export async function GET(req: Request) {
         round2_holes_played: r2Agg.holes_played,
         round3_holes_played: r3Agg.holes_played,
 
-        total_score,
+       total_score,
         overall_to_par,
+        tournament_status: r.tournament_status || null,
+        tournament_status_hole: r.tournament_status_hole || null,
       };
     });
 
-    rows.sort((a, b) => {
+    rows.sort((a, b) => {// DNF/DQ immer ans Ende
+      const aDnf = a.tournament_status === "dnf" || a.tournament_status === "dq";
+      const bDnf = b.tournament_status === "dnf" || b.tournament_status === "dq";
+      if (aDnf && !bDnf) return 1;
+      if (!aDnf && bDnf) return -1;
       if (isOverall) {
         const at = a.total_score;
         const bt = b.total_score;
