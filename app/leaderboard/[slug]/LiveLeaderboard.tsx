@@ -26,7 +26,9 @@ interface LivePlayer {
   total_strokes: number | null;
   holes_played: number;
   is_live: boolean;
-  is_finished: boolean;
+ is_finished: boolean;
+  tournament_status: string | null;
+  tournament_status_hole: number | null;
 }
 
 interface Props {
@@ -147,7 +149,19 @@ export default function LiveLeaderboard({ tournamentId }: Props) {
                     {player.total_strokes != null ? player.rank : "—"}
                   </div>
                   <div style={{ fontSize: 18 }}>{player.total_strokes != null ? medal(player.rank) : ""}</div>
-                  <div style={{ fontWeight: 800, color: "#17362b" }}>{player.name}</div>
+                  <div style={{ fontWeight: 800, color: "#17362b", display: "flex", alignItems: "center", gap: 6 }}>
+  {player.name}
+  {player.tournament_status === "dnf" && (
+    <span style={{ fontSize: 11, fontWeight: 800, padding: "2px 6px", borderRadius: 999, background: "#fff3e0", color: "#e65100" }}>
+      DNF {player.tournament_status_hole ? `ab Loch ${player.tournament_status_hole}` : ""}
+    </span>
+  )}
+  {player.tournament_status === "dq" && (
+    <span style={{ fontSize: 11, fontWeight: 800, padding: "2px 6px", borderRadius: 999, background: "#fde8e8", color: "#c00" }}>
+      DQ
+    </span>
+  )}
+</div>
                   <div style={{ color: "#4f675e" }}>{player.home_club || "—"}</div>
                   <div style={{ textAlign: "center", color: "#17362b" }}>{player.hcp ?? "—"}</div>
                   <div style={{ textAlign: "center", color: "#17362b" }}>

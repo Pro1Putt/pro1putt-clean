@@ -41,7 +41,7 @@ export async function GET(req: Request) {
     // Registrierungen laden
     const { data: registrations } = await supabase
       .from("registrations")
-      .select("id, first_name, last_name, hcp, home_club, gender, birthdate, holes, player_pin, flight_id")
+      .select("id, first_name, last_name, hcp, home_club, gender, birthdate, holes, player_pin, flight_id, tournament_status, tournament_status_hole")
       .eq("tournament_id", tournamentId);
 
     if (!registrations || registrations.length === 0) {
@@ -111,11 +111,16 @@ export async function GET(req: Request) {
         holes_played: holesPlayed,
         is_live: holesPlayed > 0,
         is_finished: flight?.status === "completed",
+        tournament_status: reg.tournament_status || null,
+        tournament_status_hole: reg.tournament_status_hole || null,
       };
     });
 
     // Sortieren: nach Total, dann nach Nachname
-    players.sort((a: any, b: any) => {
+    players.sort((a: any, b: any) => {const aDnf = a.tournament_status === "dnf" || a.tournament_status === "dq";
+      const bDnf = b.tournament_status === "dnf" || b.tournament_status === "dq";
+      if (aDnf && !bDnf) return 1;
+      if (!aDnf && bDnf) return -1;
       if (a.total_strokes !== null && b.total_strokes !== null) return a.total_strokes - b.total_strokes;
       if (a.total_strokes !== null) return -1;
       if (b.total_strokes !== null) return 1;
