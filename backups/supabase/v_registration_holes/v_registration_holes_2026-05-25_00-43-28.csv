@@ -1,5 +1,4 @@
 registration_id,tournament_id,first_name,last_name,gender,course_setup_id,setup_course_name,setup_tee_name,setup_slope,setup_course_rating,setup_par_total,hole_number,par,stroke_index,length_m
-5ab228f0-fb0e-46a2-88bd-94a48716f49d,e9b23d74-ab9d-4ba5-86bf-744915e1ee28,Player,1,Girls,,,,,,,,,,
 7086b484-7a23-475d-a3f3-d1697246bc3d,e9b23d74-ab9d-4ba5-86bf-744915e1ee28,Test,3,Girls,,,,,,,,,,
 3b88eb10-8515-40d0-8108-a94529c534cd,7716349a-8bb0-46c6-b60c-3594eb7ea60f,Andris,Dzenis,Boys,,,,,,,,,,
 e0adbbeb-e7b5-42d4-9ba3-1d70c15bc9f5,7716349a-8bb0-46c6-b60c-3594eb7ea60f,Jonathan,Schmitz,Boys,,,,,,,,,,
@@ -24,6 +23,7 @@ ee5ab7c6-0546-4277-8d04-5e6b48ea52a3,7716349a-8bb0-46c6-b60c-3594eb7ea60f,Theo,E
 098132e4-eb31-43dd-b487-8f6aea7501e6,7716349a-8bb0-46c6-b60c-3594eb7ea60f,Linus,Niermann,Boys,,,,,,,,,,
 5a59d344-5329-4443-8d6e-6a3950ea6610,36d5df41-5864-4103-b413-169bbd683077,Brooklyn lukas,Nimptschke,Boys,,,,,,,,,,
 9f598abc-49d9-4080-9cd4-ebd4e9e3ab7d,36d5df41-5864-4103-b413-169bbd683077,Jokubas,Nimptschke,Boys,,,,,,,,,,
+5ab228f0-fb0e-46a2-88bd-94a48716f49d,e9b23d74-ab9d-4ba5-86bf-744915e1ee28,Player,1,Girls,,,,,,,,,,
 d4f2b88a-1c8e-4358-a2a7-ecbc4aed496f,d4a92ae2-6ecd-4043-8b5a-82414c597036,Julian,Schwarz,Boys,,,,,,,,,,
 08d26a81-b59d-4162-ad72-b07ee5d75c64,d4a92ae2-6ecd-4043-8b5a-82414c597036,Tom,Schult,Boys,,,,,,,,,,
 4d134271-956f-42fd-95ea-0a6b725123e6,7716349a-8bb0-46c6-b60c-3594eb7ea60f,Leonardo,Könemund,Boys,,,,,,,,,,
