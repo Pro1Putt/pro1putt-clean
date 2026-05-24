@@ -52,6 +52,32 @@
     "flight_status": "active"
   },
   {
+    "registration_id": "4747714c-9ad7-46b7-b3d0-c24ea4dd5442",
+    "player_name": "Player 2",
+    "handicap": 45,
+    "tournament_id": "e9b23d74-ab9d-4ba5-86bf-744915e1ee28",
+    "tournament_name": "Test",
+    "flight_id": "d4a97bf6-ce0f-421e-924f-6e157b580519",
+    "flight_number": 1,
+    "total_holes": 9,
+    "total_strokes": 0,
+    "holes_played": 0,
+    "flight_status": "active"
+  },
+  {
+    "registration_id": "5ab228f0-fb0e-46a2-88bd-94a48716f49d",
+    "player_name": "Player 1",
+    "handicap": 23,
+    "tournament_id": "e9b23d74-ab9d-4ba5-86bf-744915e1ee28",
+    "tournament_name": "Test",
+    "flight_id": "d4a97bf6-ce0f-421e-924f-6e157b580519",
+    "flight_number": 1,
+    "total_holes": 9,
+    "total_strokes": 0,
+    "holes_played": 0,
+    "flight_status": "active"
+  },
+  {
     "registration_id": "5d110f0c-2f85-4f21-bfea-d8a96880f0f4",
     "player_name": "Frieda Taisia Renting",
     "handicap": 4,
@@ -60,6 +86,19 @@
     "flight_id": "41c2590e-ea22-44bf-b862-6b8068962a10",
     "flight_number": 1,
     "total_holes": 18,
+    "total_strokes": 0,
+    "holes_played": 0,
+    "flight_status": "active"
+  },
+  {
+    "registration_id": "7086b484-7a23-475d-a3f3-d1697246bc3d",
+    "player_name": "Test 3",
+    "handicap": 46,
+    "tournament_id": "e9b23d74-ab9d-4ba5-86bf-744915e1ee28",
+    "tournament_name": "Test",
+    "flight_id": "d4a97bf6-ce0f-421e-924f-6e157b580519",
+    "flight_number": 1,
+    "total_holes": 9,
     "total_strokes": 0,
     "holes_played": 0,
     "flight_status": "active"
@@ -98,6 +137,19 @@
     "tournament_name": "PRO1PUTT – Open Faldo Course (Bad Saarow)",
     "flight_id": "40662df9-5176-4b08-9d8b-5e04639c6dbe",
     "flight_number": 2,
+    "total_holes": 18,
+    "total_strokes": 0,
+    "holes_played": 0,
+    "flight_status": "active"
+  },
+  {
+    "registration_id": "e6bc24d2-e246-49de-b369-146a148067f5",
+    "player_name": "Player 3",
+    "handicap": 12,
+    "tournament_id": "e9b23d74-ab9d-4ba5-86bf-744915e1ee28",
+    "tournament_name": "Test",
+    "flight_id": "d4a97bf6-ce0f-421e-924f-6e157b580519",
+    "flight_number": 1,
     "total_holes": 18,
     "total_strokes": 0,
     "holes_played": 0,
