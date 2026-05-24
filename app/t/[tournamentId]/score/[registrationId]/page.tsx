@@ -102,32 +102,36 @@ export default function LiveScoringFlightPage() {
   const [okMsg, setOkMsg] = useState<string | null>(null);
 
   // load flight
-  useEffect(() => {
-    let cancelled = false;
-    async function load() {
-      setLoading(true);
-      setErr(null);
-      try {
-        const res = await fetch(
-          `/api/scoring/flight?tournamentId=${encodeURIComponent(
-            tournamentId
-          )}&round=${round}&registrationId=${encodeURIComponent(registrationId)}`,
-          { cache: "no-store" }
-        );
-        const json = await res.json();
-        if (!json.ok) throw new Error(json.error || "Flight not found");
-        if (!cancelled) setInfo(json.info);
-      } catch (e: any) {
-        if (!cancelled) setErr(e?.message || "Load error");
-      } finally {
-        if (!cancelled) setLoading(false);
-      }
+ useEffect(() => {
+  let cancelled = false;
+  async function load() {
+    setErr(null);
+    try {
+      const res = await fetch(
+        `/api/scoring/flight?tournamentId=${encodeURIComponent(
+          tournamentId
+        )}&round=${round}&registrationId=${encodeURIComponent(registrationId)}`,
+        { cache: "no-store" }
+      );
+      const json = await res.json();
+      if (!json.ok) throw new Error(json.error || "Flight not found");
+      if (!cancelled) setInfo(json.info);
+    } catch (e: any) {
+      if (!cancelled) setErr(e?.message || "Load error");
+    } finally {
+      if (!cancelled) setLoading(false);
     }
-    if (tournamentId && registrationId) load();
+  }
+  if (tournamentId && registrationId) {
+    load();
+    const interval = setInterval(load, 10000);
     return () => {
       cancelled = true;
+      clearInterval(interval);
     };
-  }, [tournamentId, registrationId, round]);
+  }
+  return () => { cancelled = true; };
+}, [tournamentId, registrationId, round]);
 
   const maxHole = useMemo(() => {
     return 18;
