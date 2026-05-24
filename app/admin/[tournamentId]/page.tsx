@@ -295,14 +295,35 @@ export default function AdminTournamentPage() {
                             )}
                           </div>
                           <div style={{ fontSize: 12, color: "#668278" }}>HCP: {p.hcp ?? "—"} · PIN: {p.player_pin} · {p.age_group}</div>
-{p.marks_registration_id && (() => {
-  const marksPlayer = flight.players.find((x: any) => x.id === p.marks_registration_id);
-  return marksPlayer ? (
-    <div style={{ fontSize: 11, color: "#0b5d3b", fontWeight: 700 }}>
-      ✏️ Zählt für: {marksPlayer.first_name} {marksPlayer.last_name}
-    </div>
-  ) : null;
-})()}
+{p.marks_registration_id !== undefined && (
+  <div style={{ fontSize: 11, color: "#668278", marginTop: 2 }}>
+    ✏️ Zählt für:{" "}
+    <select
+      value={p.marks_registration_id || ""}
+      onChange={async (e) => {
+        await fetch("/api/admin/player-status/marker", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            registrationId: p.id,
+            marksRegistrationId: e.target.value,
+            flightId: flight.id,
+          }),
+        });
+        loadData();
+      }}
+      style={{ fontSize: 11, borderRadius: 6, border: "1px solid #ddd", padding: "2px 4px" }}
+    >
+      {flight.players
+        .filter((x: any) => x.id !== p.id)
+        .map((x: any) => (
+          <option key={x.id} value={x.id}>
+            {x.first_name} {x.last_name}
+          </option>
+        ))}
+    </select>
+  </div>
+)}
                         </div>
                         <div style={{ display: "flex", gap: 6 }}>
                           {badge ? (
