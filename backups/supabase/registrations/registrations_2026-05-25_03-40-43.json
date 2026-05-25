@@ -870,8 +870,8 @@
     "course_rating": null,
     "tee_color": null,
     "flight_id": "d4a97bf6-ce0f-421e-924f-6e157b580519",
-    "tournament_status": "active",
-    "tournament_status_hole": null,
+    "tournament_status": "dnf",
+    "tournament_status_hole": 1,
     "tournament_status_note": ""
   },
   {
