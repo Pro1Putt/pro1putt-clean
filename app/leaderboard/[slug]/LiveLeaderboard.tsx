@@ -202,7 +202,7 @@ export default function LiveLeaderboard({ tournamentId }: Props) {
               style={{
                 display: "grid",
                 gridTemplateColumns:
-                  "64px 40px minmax(200px,2fr) minmax(150px,1.5fr) 80px 80px 80px 80px 90px 80px",
+                  "64px 40px minmax(200px,2fr) minmax(150px,1.5fr) 80px 80px 80px 80px 70px 90px 80px",
                 gap: 8,
                 padding: "14px 16px",
                 background: "#f3f8f5",
@@ -220,6 +220,7 @@ export default function LiveLeaderboard({ tournamentId }: Props) {
               <div style={{ textAlign: "center" }}>R1</div>
               <div style={{ textAlign: "center" }}>R2</div>
               <div style={{ textAlign: "center" }}>R3</div>
+              <div style={{ textAlign: "center" }}>Thru</div>
               <div style={{ textAlign: "center" }}>Total</div>
               <div style={{ textAlign: "center" }}>+/-</div>
             </div>
@@ -243,7 +244,7 @@ export default function LiveLeaderboard({ tournamentId }: Props) {
                   style={{
                     display: "grid",
                     gridTemplateColumns:
-                      "64px 40px minmax(200px,2fr) minmax(150px,1.5fr) 80px 80px 80px 80px 90px 80px",
+                      "64px 40px minmax(200px,2fr) minmax(150px,1.5fr) 80px 80px 80px 80px 70px 90px 80px",
                     gap: 8,
                     padding: "14px 16px",
                     borderTop: "1px solid rgba(11,93,59,0.08)",
@@ -311,6 +312,13 @@ export default function LiveLeaderboard({ tournamentId }: Props) {
                   </div>
                   <div style={{ textAlign: "center", color: "#17362b" }}>
                     {player.round3 ?? <span style={{ color: "#ccc" }}>—</span>}
+                  </div>
+                  <div style={{ textAlign: "center", color: "#17362b", fontWeight: 700 }}>
+                    {player.is_finished
+                      ? <span style={{ color: "#0b5d3b" }}>F</span>
+                      : player.holes_played > 0
+                      ? player.holes_played
+                      : <span style={{ color: "#ccc" }}>—</span>}
                   </div>
                   <div style={{ textAlign: "center", fontWeight: 900, color: "#17362b" }}>
                     {player.total_strokes ?? <span style={{ color: "#ccc" }}>—</span>}
