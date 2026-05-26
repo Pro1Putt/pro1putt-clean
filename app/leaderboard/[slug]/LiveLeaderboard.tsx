@@ -35,7 +35,7 @@ interface Props {
   tournamentId: string;
 }
 
-const AGE_GROUP_ORDER = ["U14", "U16", "U18", "U21", "U12", "U10", "U8"];
+const AGE_GROUP_ORDER = ["U21", "U18", "U14", "U12", "U8"];
 
 function medal(rank: number) {
   if (rank === 1) return "🥇";
@@ -80,8 +80,12 @@ export default function LiveLeaderboard({ tournamentId }: Props) {
   );
 
   const girls18 = players.filter(p => p.gender === "Girls" && p.holes === 18);
-  const boys18 = players.filter(p => p.gender === "Boys" && p.holes === 18);
-  const nine = players.filter(p => p.holes === 9);
+  const boys18  = players.filter(p => p.gender === "Boys"  && p.holes === 18);
+  const nine    = players.filter(p => p.holes === 9);
+
+  const nineGirls = nine.filter(p => p.gender === "Girls");
+  const nineBoys  = nine.filter(p => p.gender === "Boys");
+  const nineOther = nine.filter(p => p.gender !== "Girls" && p.gender !== "Boys");
 
   const groupByAge = (list: LivePlayer[]) => {
     const groups: Record<string, LivePlayer[]> = {};
@@ -205,7 +209,7 @@ export default function LiveLeaderboard({ tournamentId }: Props) {
 
   const girlsGroups = groupByAge(girls18);
   const boysGroups = groupByAge(boys18);
-  const nineGroups = groupByAge(nine);
+
 
   return (
     <div style={{ display: "grid", gap: 16 }}>
@@ -233,7 +237,18 @@ export default function LiveLeaderboard({ tournamentId }: Props) {
 
       {activeTab === "girls" && renderGroups(girlsGroups, "18 Loch", "Girls")}
       {activeTab === "boys" && renderGroups(boysGroups, "18 Loch", "Boys")}
-      {activeTab === "9hole" && renderGroups(nineGroups, "9 Loch", "9 Loch")}
+     {activeTab === "9hole" && (
+  <>
+    {renderSection(
+      "9 Loch Overall",
+      "Alle 9 Loch Spieler · Brutto",
+      [...nine].sort((a, b) => (a.total_strokes ?? 999) - (b.total_strokes ?? 999))
+    )}
+    {nineGirls.length > 0 && renderGroups(groupByAge(nineGirls), "9 Loch", "Girls")}
+    {nineBoys.length > 0  && renderGroups(groupByAge(nineBoys),  "9 Loch", "Boys")}
+    {nineOther.length > 0 && renderGroups(groupByAge(nineOther), "9 Loch", "9 Loch")}
+  </>
+)}
     </div>
   );
 }
