@@ -52,19 +52,6 @@
     "flight_status": "active"
   },
   {
-    "registration_id": "e8a390b9-2b41-4f46-a50a-185e532c5ecd",
-    "player_name": "Maddox Cordes",
-    "handicap": 5.4,
-    "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
-    "tournament_name": "PRO1PUTT – Open Faldo Course (Bad Saarow)",
-    "flight_id": "40662df9-5176-4b08-9d8b-5e04639c6dbe",
-    "flight_number": 2,
-    "total_holes": 18,
-    "total_strokes": 0,
-    "holes_played": 0,
-    "flight_status": "active"
-  },
-  {
     "registration_id": "08d26a81-b59d-4162-ad72-b07ee5d75c64",
     "player_name": "Tom Schult",
     "handicap": 16.4,
@@ -73,6 +60,19 @@
     "flight_id": "282e2895-7630-412f-b1c5-efca1982d1b4",
     "flight_number": 3,
     "total_holes": 18,
+    "total_strokes": 0,
+    "holes_played": 0,
+    "flight_status": "active"
+  },
+  {
+    "registration_id": "5ab228f0-fb0e-46a2-88bd-94a48716f49d",
+    "player_name": "Player O.A. 1",
+    "handicap": 23,
+    "tournament_id": "e9b23d74-ab9d-4ba5-86bf-744915e1ee28",
+    "tournament_name": "Test",
+    "flight_id": "d4a97bf6-ce0f-421e-924f-6e157b580519",
+    "flight_number": 1,
+    "total_holes": 9,
     "total_strokes": 0,
     "holes_played": 0,
     "flight_status": "active"
@@ -130,16 +130,16 @@
     "flight_status": "active"
   },
   {
-    "registration_id": "5ab228f0-fb0e-46a2-88bd-94a48716f49d",
-    "player_name": "Player O.A. 1",
-    "handicap": 23,
-    "tournament_id": "e9b23d74-ab9d-4ba5-86bf-744915e1ee28",
-    "tournament_name": "Test",
-    "flight_id": "d4a97bf6-ce0f-421e-924f-6e157b580519",
-    "flight_number": 1,
-    "total_holes": 9,
-    "total_strokes": 34,
-    "holes_played": 8,
+    "registration_id": "e8a390b9-2b41-4f46-a50a-185e532c5ecd",
+    "player_name": "Maddox Cordes",
+    "handicap": 5.4,
+    "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
+    "tournament_name": "PRO1PUTT – Open Faldo Course (Bad Saarow)",
+    "flight_id": "40662df9-5176-4b08-9d8b-5e04639c6dbe",
+    "flight_number": 2,
+    "total_holes": 18,
+    "total_strokes": 0,
+    "holes_played": 0,
     "flight_status": "active"
   },
   {
@@ -151,8 +151,8 @@
     "flight_id": "d4a97bf6-ce0f-421e-924f-6e157b580519",
     "flight_number": 1,
     "total_holes": 9,
-    "total_strokes": 39,
-    "holes_played": 9,
+    "total_strokes": 1,
+    "holes_played": 1,
     "flight_status": "active"
   }
 ]
