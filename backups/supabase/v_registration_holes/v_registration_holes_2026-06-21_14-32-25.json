@@ -612,6 +612,23 @@
     "length_m": null
   },
   {
+    "registration_id": "6c31fd00-3f0e-406d-8145-ddca8aad7a11",
+    "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
+    "first_name": "Oskar",
+    "last_name": "Arnold",
+    "gender": "Boys",
+    "course_setup_id": null,
+    "setup_course_name": null,
+    "setup_tee_name": null,
+    "setup_slope": null,
+    "setup_course_rating": null,
+    "setup_par_total": null,
+    "hole_number": null,
+    "par": null,
+    "stroke_index": null,
+    "length_m": null
+  },
+  {
     "registration_id": "b0f8374f-c18d-481e-852b-dfa6aa011ac8",
     "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
     "first_name": "Luis",
