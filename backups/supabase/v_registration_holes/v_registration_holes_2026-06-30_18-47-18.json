@@ -984,5 +984,22 @@
     "par": null,
     "stroke_index": null,
     "length_m": null
+  },
+  {
+    "registration_id": "7891a157-e3f6-4041-b164-3eae0e253d8e",
+    "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
+    "first_name": "Lucia",
+    "last_name": "Fohrmann",
+    "gender": "Girls",
+    "course_setup_id": null,
+    "setup_course_name": null,
+    "setup_tee_name": null,
+    "setup_slope": null,
+    "setup_course_rating": null,
+    "setup_par_total": null,
+    "hole_number": null,
+    "par": null,
+    "stroke_index": null,
+    "length_m": null
   }
 ]
