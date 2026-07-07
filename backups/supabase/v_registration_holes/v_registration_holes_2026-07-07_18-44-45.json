@@ -17,6 +17,23 @@
     "length_m": null
   },
   {
+    "registration_id": "a2228aa3-5069-4fd7-8f8d-90b08ba1fa2d",
+    "tournament_id": "36d5df41-5864-4103-b413-169bbd683077",
+    "first_name": "Kerstin",
+    "last_name": "Görcke",
+    "gender": "Boys",
+    "course_setup_id": null,
+    "setup_course_name": null,
+    "setup_tee_name": null,
+    "setup_slope": null,
+    "setup_course_rating": null,
+    "setup_par_total": null,
+    "hole_number": null,
+    "par": null,
+    "stroke_index": null,
+    "length_m": null
+  },
+  {
     "registration_id": "3b88eb10-8515-40d0-8108-a94529c534cd",
     "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
     "first_name": "Andris",
