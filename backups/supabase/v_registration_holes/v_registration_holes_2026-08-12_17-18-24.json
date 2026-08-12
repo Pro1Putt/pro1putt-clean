@@ -1069,5 +1069,22 @@
     "par": null,
     "stroke_index": null,
     "length_m": null
+  },
+  {
+    "registration_id": "759b9908-b1f9-40b9-aa6e-6f899daf7bf0",
+    "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
+    "first_name": "Henrik",
+    "last_name": "Hinz",
+    "gender": "Boys",
+    "course_setup_id": null,
+    "setup_course_name": null,
+    "setup_tee_name": null,
+    "setup_slope": null,
+    "setup_course_rating": null,
+    "setup_par_total": null,
+    "hole_number": null,
+    "par": null,
+    "stroke_index": null,
+    "length_m": null
   }
 ]
