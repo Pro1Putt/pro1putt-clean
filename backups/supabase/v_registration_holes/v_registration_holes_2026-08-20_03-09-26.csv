@@ -1,6 +1,5 @@
 registration_id,tournament_id,first_name,last_name,gender,course_setup_id,setup_course_name,setup_tee_name,setup_slope,setup_course_rating,setup_par_total,hole_number,par,stroke_index,length_m
 5ab228f0-fb0e-46a2-88bd-94a48716f49d,e9b23d74-ab9d-4ba5-86bf-744915e1ee28,Player O.A.,1,Girls,,,,,,,,,,
-a2228aa3-5069-4fd7-8f8d-90b08ba1fa2d,36d5df41-5864-4103-b413-169bbd683077,Laurenz Phil,Görcke,Boys,,,,,,,,,,
 3b88eb10-8515-40d0-8108-a94529c534cd,7716349a-8bb0-46c6-b60c-3594eb7ea60f,Andris,Dzenis,Boys,,,,,,,,,,
 e0adbbeb-e7b5-42d4-9ba3-1d70c15bc9f5,7716349a-8bb0-46c6-b60c-3594eb7ea60f,Jonathan,Schmitz,Boys,,,,,,,,,,
 46fdab66-f422-4168-83fc-70e67f137b2d,36d5df41-5864-4103-b413-169bbd683077,Maddox,Cordes,Boys,,,,,,,,,,
@@ -25,6 +24,7 @@ ee5ab7c6-0546-4277-8d04-5e6b48ea52a3,7716349a-8bb0-46c6-b60c-3594eb7ea60f,Theo,E
 5a59d344-5329-4443-8d6e-6a3950ea6610,36d5df41-5864-4103-b413-169bbd683077,Brooklyn lukas,Nimptschke,Boys,,,,,,,,,,
 9f598abc-49d9-4080-9cd4-ebd4e9e3ab7d,36d5df41-5864-4103-b413-169bbd683077,Jokubas,Nimptschke,Boys,,,,,,,,,,
 9cb4c064-6e93-4221-9e26-00d108bfafd4,d4a92ae2-6ecd-4043-8b5a-82414c597036,Joseph,Buhle,Boys,,,,,,,,,,
+85899e68-f5cc-415e-9d6e-340068055f1e,36d5df41-5864-4103-b413-169bbd683077,Leon,Sedlitz,Boys,,,,,,,,,,
 d4f2b88a-1c8e-4358-a2a7-ecbc4aed496f,d4a92ae2-6ecd-4043-8b5a-82414c597036,Julian,Schwarz,Boys,,,,,,,,,,
 08d26a81-b59d-4162-ad72-b07ee5d75c64,d4a92ae2-6ecd-4043-8b5a-82414c597036,Tom,Schult,Boys,,,,,,,,,,
 4d134271-956f-42fd-95ea-0a6b725123e6,7716349a-8bb0-46c6-b60c-3594eb7ea60f,Leonardo,Könemund,Boys,,,,,,,,,,
@@ -65,3 +65,4 @@ d9a55926-e2fd-4b89-b902-8218e6710edd,36d5df41-5864-4103-b413-169bbd683077,Piet-C
 7891a157-e3f6-4041-b164-3eae0e253d8e,d4a92ae2-6ecd-4043-8b5a-82414c597036,Lucia,Fohrmann,Girls,,,,,,,,,,
 b71c36cf-c0f2-444f-bc6c-72627fb0888b,36d5df41-5864-4103-b413-169bbd683077,Piet,Klostermann,Boys,,,,,,,,,,
 759b9908-b1f9-40b9-aa6e-6f899daf7bf0,d4a92ae2-6ecd-4043-8b5a-82414c597036,Henrik,Hinz,Boys,,,,,,,,,,
+50dd6e49-1e4a-41ab-82ca-6d15050216b3,d4a92ae2-6ecd-4043-8b5a-82414c597036,Mateo,Kaffka,Boys,,,,,,,,,,
