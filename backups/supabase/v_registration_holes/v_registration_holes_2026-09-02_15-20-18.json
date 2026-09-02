@@ -1222,5 +1222,22 @@
     "par": null,
     "stroke_index": null,
     "length_m": null
+  },
+  {
+    "registration_id": "79fae2cb-e948-49a9-aa44-6bb1d4ea602b",
+    "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
+    "first_name": "Nicolas",
+    "last_name": "Gregg",
+    "gender": "Boys",
+    "course_setup_id": null,
+    "setup_course_name": null,
+    "setup_tee_name": null,
+    "setup_slope": null,
+    "setup_course_rating": null,
+    "setup_par_total": null,
+    "hole_number": null,
+    "par": null,
+    "stroke_index": null,
+    "length_m": null
   }
 ]
