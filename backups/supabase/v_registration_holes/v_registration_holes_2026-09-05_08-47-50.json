@@ -1222,5 +1222,22 @@
     "par": null,
     "stroke_index": null,
     "length_m": null
+  },
+  {
+    "registration_id": "f759c844-547b-4332-83ae-1d6bfec0f16f",
+    "tournament_id": "36d5df41-5864-4103-b413-169bbd683077",
+    "first_name": "Laurenz Phil",
+    "last_name": "Görcke",
+    "gender": "Boys",
+    "course_setup_id": null,
+    "setup_course_name": null,
+    "setup_tee_name": null,
+    "setup_slope": null,
+    "setup_course_rating": null,
+    "setup_par_total": null,
+    "hole_number": null,
+    "par": null,
+    "stroke_index": null,
+    "length_m": null
   }
 ]
