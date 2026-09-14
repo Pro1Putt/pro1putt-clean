@@ -522,15 +522,6 @@
     "status": "active"
   },
   {
-    "id": "9864d7b2-24e5-4c5d-8d8c-a25621d90022",
-    "flight_id": "d4a97bf6-ce0f-421e-924f-6e157b580519",
-    "registration_id": "5ab228f0-fb0e-46a2-88bd-94a48716f49d",
-    "seat": 2,
-    "marks_registration_id": "4747714c-9ad7-46b7-b3d0-c24ea4dd5442",
-    "created_at": "2026-05-24T05:48:06.619199+00:00",
-    "status": "active"
-  },
-  {
     "id": "405fea43-f859-4b7e-af47-faef1492a8a0",
     "flight_id": "f7cabf5f-c310-4987-b01e-e13b35391b77",
     "registration_id": "ee5ab7c6-0546-4277-8d04-5e6b48ea52a3",
@@ -936,15 +927,6 @@
     "status": "active"
   },
   {
-    "id": "2c18ebd6-0974-4bff-addc-221bc51f346f",
-    "flight_id": "282e2895-7630-412f-b1c5-efca1982d1b4",
-    "registration_id": "08d26a81-b59d-4162-ad72-b07ee5d75c64",
-    "seat": 2,
-    "marks_registration_id": "0b59272e-3ec8-4a3c-b41f-cee486ef768f",
-    "created_at": "2026-05-17T09:32:42.262537+00:00",
-    "status": "active"
-  },
-  {
     "id": "28442784-5db9-487e-86d5-ef62d1c99384",
     "flight_id": "86bdae5f-1d38-4b81-8429-ada3da337b50",
     "registration_id": "44447724-0d2c-4601-b0c6-e53714d03f63",
@@ -1086,15 +1068,6 @@
     "seat": 3,
     "marks_registration_id": "d4f2b88a-1c8e-4358-a2a7-ecbc4aed496f",
     "created_at": "2026-05-17T09:32:41.294939+00:00",
-    "status": "active"
-  },
-  {
-    "id": "6336e3c4-f9a2-48ad-acc4-41165bf8cd69",
-    "flight_id": "282e2895-7630-412f-b1c5-efca1982d1b4",
-    "registration_id": "0b59272e-3ec8-4a3c-b41f-cee486ef768f",
-    "seat": 1,
-    "marks_registration_id": "08d26a81-b59d-4162-ad72-b07ee5d75c64",
-    "created_at": "2026-05-17T09:32:41.943685+00:00",
     "status": "active"
   }
 ]
