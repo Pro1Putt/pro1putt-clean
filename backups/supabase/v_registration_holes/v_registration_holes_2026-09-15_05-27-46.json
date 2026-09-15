@@ -510,6 +510,23 @@
     "length_m": null
   },
   {
+    "registration_id": "9eae9c23-f97d-4974-b2f6-be32ccdce48f",
+    "tournament_id": "36d5df41-5864-4103-b413-169bbd683077",
+    "first_name": "Felix",
+    "last_name": "Oppolzer",
+    "gender": "Boys",
+    "course_setup_id": null,
+    "setup_course_name": null,
+    "setup_tee_name": null,
+    "setup_slope": null,
+    "setup_course_rating": null,
+    "setup_par_total": null,
+    "hole_number": null,
+    "par": null,
+    "stroke_index": null,
+    "length_m": null
+  },
+  {
     "registration_id": "08d26a81-b59d-4162-ad72-b07ee5d75c64",
     "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
     "first_name": "Tom",
