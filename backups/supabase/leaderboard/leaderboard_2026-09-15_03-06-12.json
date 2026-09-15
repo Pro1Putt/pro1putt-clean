@@ -26,9 +26,9 @@
     "flight_status": "active"
   },
   {
-    "registration_id": "d4f2b88a-1c8e-4358-a2a7-ecbc4aed496f",
-    "player_name": "Julian Schwarz",
-    "handicap": -2.5,
+    "registration_id": "84a783cc-96d7-494c-9413-5c6075d22010",
+    "player_name": "Lennart Schult",
+    "handicap": 6,
     "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
     "tournament_name": "PRO1PUTT – Open Faldo Course (Bad Saarow)",
     "flight_id": "40662df9-5176-4b08-9d8b-5e04639c6dbe",
@@ -72,19 +72,6 @@
     "tournament_name": "PRO1PUTT – Open Classics WINSTONopen",
     "flight_id": "41c2590e-ea22-44bf-b862-6b8068962a10",
     "flight_number": 1,
-    "total_holes": 18,
-    "total_strokes": 0,
-    "holes_played": 0,
-    "flight_status": "active"
-  },
-  {
-    "registration_id": "84a783cc-96d7-494c-9413-5c6075d22010",
-    "player_name": "Lennart Schult",
-    "handicap": 6,
-    "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
-    "tournament_name": "PRO1PUTT – Open Faldo Course (Bad Saarow)",
-    "flight_id": "40662df9-5176-4b08-9d8b-5e04639c6dbe",
-    "flight_number": 2,
     "total_holes": 18,
     "total_strokes": 0,
     "holes_played": 0,
