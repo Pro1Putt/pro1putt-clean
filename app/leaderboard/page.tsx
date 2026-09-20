@@ -138,13 +138,46 @@ export default function LeaderboardOverviewPage() {
                   <p style={{ margin: 0, fontSize: 13, color: "#999" }}>📅 {meta.dateLabel}</p>
                 </div>
 
-                <div style={{
-                  background: "linear-gradient(135deg, #0b5d3b, #147a52)",
-                  color: "#fff", borderRadius: 14,
-                  padding: "12px 20px", fontWeight: 800, fontSize: 14,
-                  whiteSpace: "nowrap", flexShrink: 0,
-                }}>
-                  Leaderboard →
+                <div
+                  style={{
+                    display: "flex",
+                    gap: 10,
+                    flexWrap: "wrap",
+                    justifyContent: "flex-end",
+                    flexShrink: 0,
+                  }}
+                >
+                  <a
+                    href={`/public/startliste/${t.id}`}
+                    onClick={(e) => e.stopPropagation()}
+                    style={{
+                      background: "#ffffff",
+                      color: "#0b5d3b",
+                      border: "2px solid #0b5d3b",
+                      borderRadius: 14,
+                      padding: "10px 18px",
+                      fontWeight: 800,
+                      fontSize: 14,
+                      whiteSpace: "nowrap",
+                      textDecoration: "none",
+                    }}
+                  >
+                    Startliste →
+                  </a>
+
+                  <div
+                    style={{
+                      background: "linear-gradient(135deg, #0b5d3b, #147a52)",
+                      color: "#fff",
+                      borderRadius: 14,
+                      padding: "12px 20px",
+                      fontWeight: 800,
+                      fontSize: 14,
+                      whiteSpace: "nowrap",
+                    }}
+                  >
+                    Leaderboard →
+                  </div>
                 </div>
               </div>
             );

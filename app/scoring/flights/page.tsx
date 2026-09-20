@@ -22,6 +22,16 @@ export default function FlightsAdminPage() {
   const [busy, setBusy] = useState(false);
   const [msg, setMsg] = useState<string>("");
 
+  const [publicationStatus, setPublicationStatus] = useState<
+  Record<number, boolean>
+>({
+  1: false,
+  2: false,
+  3: false,
+});
+
+const [publicationBusy, setPublicationBusy] = useState<number | null>(null);
+
   const [flights, setFlights] = useState<any[]>([]);
   const [flightPlayers, setFlightPlayers] = useState<any[]>([]);
   const [unassignedRegistrations, setUnassignedRegistrations] = useState<any[]>([]);
@@ -42,6 +52,40 @@ export default function FlightsAdminPage() {
       }
     })();
   }, [tournamentId]);
+
+  useEffect(() => {
+  if (!tournamentId) return;
+
+  loadPublicationStatus();
+}, [tournamentId]);
+
+  async function loadPublicationStatus() {
+  if (!tournamentId) return;
+
+  try {
+    const res = await fetch(
+      `/api/flights/startlist-publication?tournamentId=${encodeURIComponent(
+        tournamentId
+      )}&_ts=${Date.now()}`,
+      { cache: "no-store" }
+    );
+
+    const json = await res.json();
+
+    if (!res.ok) {
+      console.error("Fehler beim Laden des Veröffentlichungsstatus:", json);
+      return;
+    }
+
+    setPublicationStatus({
+      1: Boolean(json.publications?.find((p: any) => p.round === 1)?.published),
+      2: Boolean(json.publications?.find((p: any) => p.round === 2)?.published),
+      3: Boolean(json.publications?.find((p: any) => p.round === 3)?.published),
+    });
+  } catch (error) {
+    console.error("Fehler beim Laden des Veröffentlichungsstatus:", error);
+  }
+}
 
   async function reload() {
     if (!tournamentId) return;
@@ -73,6 +117,49 @@ export default function FlightsAdminPage() {
       `OK – Flights: ${json.flights?.length ?? 0} / Players: ${json.flight_players?.length ?? 0}`
     );
   }
+async function togglePublication(targetRound: 1 | 2 | 3) {
+  if (!tournamentId) return;
+
+  const newPublished = !publicationStatus[targetRound];
+
+  setPublicationBusy(targetRound);
+
+  try {
+    const res = await fetch("/api/flights/startlist-publication", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({
+        tournamentId,
+        round: targetRound,
+        published: newPublished,
+      }),
+    });
+
+    const json = await res.json().catch(() => ({}));
+
+    if (!res.ok || !json?.success) {
+      setMsg(json?.error || "Fehler beim Ändern der Veröffentlichung.");
+      return;
+    }
+
+    setPublicationStatus((prev) => ({
+      ...prev,
+      [targetRound]: newPublished,
+    }));
+
+    setMsg(
+      newPublished
+        ? `✅ Runde ${targetRound} veröffentlicht`
+        : `✅ Runde ${targetRound} ausgeblendet`
+    );
+  } catch {
+    setMsg("Fehler beim Ändern der Veröffentlichung.");
+  } finally {
+    setPublicationBusy(null);
+  }
+}
 
   async function generateFlights() {
     if (!tournamentId) return;
@@ -470,6 +557,77 @@ export default function FlightsAdminPage() {
           </div>
         </div>
 
+<div
+  style={{
+    padding: 16,
+    borderBottom: "1px solid rgba(0,0,0,0.06)",
+    background: "#fafafa",
+  }}
+>
+  <div
+    style={{
+      fontSize: 14,
+      fontWeight: 900,
+      marginBottom: 12,
+    }}
+  >
+    Öffentliche Startliste
+  </div>
+
+  <div
+    style={{
+      display: "flex",
+      gap: 10,
+      flexWrap: "wrap",
+    }}
+  >
+    {([1, 2, 3] as const).map((r) => {
+      const isPublished = publicationStatus[r];
+      const isBusy = publicationBusy === r;
+
+      return (
+        <div
+          key={r}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: 10,
+            padding: "10px 12px",
+            border: "1px solid rgba(0,0,0,0.10)",
+            borderRadius: 12,
+            background: "white",
+          }}
+        >
+          <div>
+            <div style={{ fontWeight: 800 }}>Runde {r}</div>
+
+            <div
+              style={{
+                fontSize: 12,
+                marginTop: 2,
+                color: isPublished ? "#087443" : "#777",
+              }}
+            >
+              {isPublished ? "● Veröffentlicht" : "● Nicht veröffentlicht"}
+            </div>
+          </div>
+
+          <button
+            style={isPublished ? btn : btnPrimary}
+            disabled={isBusy || !tournamentId}
+            onClick={() => togglePublication(r)}
+          >
+            {isBusy
+              ? "..."
+              : isPublished
+              ? "Ausblenden"
+              : "Veröffentlichen"}
+          </button>
+        </div>
+      );
+    })}
+  </div>
+</div>
         <div style={grid}>
           {flights.length === 0 ? (
             <div style={{ opacity: 0.75, padding: 8 }}>Keine Flights vorhanden.</div>
