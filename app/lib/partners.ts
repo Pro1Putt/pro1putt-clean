@@ -73,4 +73,11 @@ export const partners: Partner[] = [
     href: "https://www.wagr.com",
     variant: "default",
   },
+  {
+    key: "nicholas-baron",
+    name: "Nicholas Baron – PGA Golf Professional",
+    logoSrc: "/partners/nicholas-baron.png",
+    href: "https://www.score72.de/site/",
+    variant: "default",
+  },
 ];
