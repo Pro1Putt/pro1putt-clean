@@ -1,8 +1,8 @@
 [
   {
-    "registration_id": "5d110f0c-2f85-4f21-bfea-d8a96880f0f4",
-    "player_name": "Frieda Taisia Renting",
-    "handicap": 4,
+    "registration_id": "19b44c8b-f73c-464f-a197-236cf91f225b",
+    "player_name": "Phillip Hövermann",
+    "handicap": 4.4,
     "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
     "tournament_name": "PRO1PUTT – Open Classics WINSTONopen",
     "flight_id": "41c2590e-ea22-44bf-b862-6b8068962a10",
@@ -13,35 +13,9 @@
     "flight_status": "active"
   },
   {
-    "registration_id": "84a783cc-96d7-494c-9413-5c6075d22010",
-    "player_name": "Lennart Schult",
-    "handicap": 6,
-    "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
-    "tournament_name": "PRO1PUTT – Open Faldo Course (Bad Saarow)",
-    "flight_id": "40662df9-5176-4b08-9d8b-5e04639c6dbe",
-    "flight_number": 2,
-    "total_holes": 18,
-    "total_strokes": 0,
-    "holes_played": 0,
-    "flight_status": "active"
-  },
-  {
-    "registration_id": "e8a390b9-2b41-4f46-a50a-185e532c5ecd",
-    "player_name": "Maddox Cordes",
-    "handicap": 5.4,
-    "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
-    "tournament_name": "PRO1PUTT – Open Faldo Course (Bad Saarow)",
-    "flight_id": "40662df9-5176-4b08-9d8b-5e04639c6dbe",
-    "flight_number": 2,
-    "total_holes": 18,
-    "total_strokes": 0,
-    "holes_played": 0,
-    "flight_status": "active"
-  },
-  {
-    "registration_id": "19b44c8b-f73c-464f-a197-236cf91f225b",
-    "player_name": "Phillip Hövermann",
-    "handicap": 4.4,
+    "registration_id": "5d110f0c-2f85-4f21-bfea-d8a96880f0f4",
+    "player_name": "Frieda Taisia Renting",
+    "handicap": 4,
     "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
     "tournament_name": "PRO1PUTT – Open Classics WINSTONopen",
     "flight_id": "41c2590e-ea22-44bf-b862-6b8068962a10",
