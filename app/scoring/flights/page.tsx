@@ -39,6 +39,9 @@ const [publicationBusy, setPublicationBusy] = useState<number | null>(null);
   const [moveBusy, setMoveBusy] = useState<string>("");
   const [moveTargets, setMoveTargets] = useState<Record<string, string>>({});
 
+  const [markerBusy, setMarkerBusy] = useState<string>("");
+  const [markerTargets, setMarkerTargets] = useState<Record<string, string>>({});
+
   useEffect(() => {
     (async () => {
       try {
@@ -301,6 +304,46 @@ async function togglePublication(targetRound: 1 | 2 | 3) {
     }
   }
 
+  async function saveMarker(flightPlayerId: string) {
+    const markerRegistrationId = markerTargets[flightPlayerId];
+
+    if (!flightPlayerId || !markerRegistrationId) return;
+
+    setMarkerBusy(flightPlayerId);
+    setMsg("Speichere Zähler…");
+
+    try {
+      const res = await fetch("/api/flights/set-marker", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          flight_player_id: flightPlayerId,
+          marker_registration_id: markerRegistrationId,
+          td_pin: tdPin,
+        }),
+      });
+
+      const json = await res.json().catch(() => ({}));
+
+      if (!res.ok || !json?.ok) {
+        setMsg(json?.error || "Fehler beim Speichern des Zählers");
+        return;
+      }
+
+      await reload();
+
+      setMarkerTargets((prev) => {
+        const next = { ...prev };
+        delete next[flightPlayerId];
+        return next;
+      });
+
+      setMsg("✅ Zähler gespeichert");
+    } finally {
+      setMarkerBusy("");
+    }
+  }
+
   const playersByFlight = useMemo(() => {
     const m = new Map<string, any[]>();
 
@@ -427,7 +470,7 @@ async function togglePublication(targetRound: 1 | 2 | 3) {
   const playerRow: React.CSSProperties = {
     display: "grid",
     gridTemplateColumns:
-      "70px minmax(220px,1.2fr) minmax(180px,1fr) minmax(220px,1fr)",
+      "70px minmax(200px,1.1fr) minmax(300px,1.4fr) minmax(220px,1fr)",
     gap: 10,
     fontSize: 13,
     alignItems: "center",
@@ -680,8 +723,59 @@ async function togglePublication(targetRound: 1 | 2 | 3) {
                             </div>
 
                             <div>
-                              <div style={{ fontSize: 12, opacity: 0.7 }}>Marker</div>
-                              <div>{marksName(fp)}</div>
+                              <div style={{ fontSize: 12, opacity: 0.7, marginBottom: 4 }}>
+                                Zähler · aktuell: {marksName(fp)}
+                              </div>
+
+                              <div style={{ display: "flex", gap: 8 }}>
+                                <select
+                                  style={{ ...input, minWidth: 0, width: "100%" }}
+                                  value={
+                                    markerTargets[String(fp.id)] ??
+                                    String(fp.marks_registration_id ?? "")
+                                  }
+                                  onChange={(e) =>
+                                    setMarkerTargets((prev) => ({
+                                      ...prev,
+                                      [String(fp.id)]: e.target.value,
+                                    }))
+                                  }
+                                >
+                                  <option value="">Zähler auswählen…</option>
+                                  {fps
+                                    .filter(
+                                      (candidate) =>
+                                        String(candidate.registration_id) !==
+                                        String(fp.registration_id)
+                                    )
+                                    .map((candidate) => (
+                                      <option
+                                        key={candidate.registration_id}
+                                        value={candidate.registration_id}
+                                      >
+                                        {playerName(candidate)}
+                                      </option>
+                                    ))}
+                                </select>
+
+                                <button
+                                  style={btn}
+                                  disabled={
+                                    markerBusy === String(fp.id) ||
+                                    !(
+                                      markerTargets[String(fp.id)] ??
+                                      String(fp.marks_registration_id ?? "")
+                                    ) ||
+                                    (
+                                      markerTargets[String(fp.id)] ??
+                                      String(fp.marks_registration_id ?? "")
+                                    ) === String(fp.marks_registration_id ?? "")
+                                  }
+                                  onClick={() => saveMarker(String(fp.id))}
+                                >
+                                  {markerBusy === String(fp.id) ? "..." : "Speichern"}
+                                </button>
+                              </div>
                             </div>
 
                             <div style={{ display: "flex", gap: 8 }}>
