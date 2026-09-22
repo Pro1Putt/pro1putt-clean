@@ -1630,5 +1630,22 @@
     "par": null,
     "stroke_index": null,
     "length_m": null
+  },
+  {
+    "registration_id": "ee1b3cef-c1e0-42f5-ba69-d5bd1b7d55b5",
+    "tournament_id": "36d5df41-5864-4103-b413-169bbd683077",
+    "first_name": "Laurenz",
+    "last_name": "Lambrecht",
+    "gender": "Boys",
+    "course_setup_id": null,
+    "setup_course_name": null,
+    "setup_tee_name": null,
+    "setup_slope": null,
+    "setup_course_rating": null,
+    "setup_par_total": null,
+    "hole_number": null,
+    "par": null,
+    "stroke_index": null,
+    "length_m": null
   }
 ]
