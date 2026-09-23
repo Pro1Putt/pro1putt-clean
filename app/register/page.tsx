@@ -163,7 +163,10 @@ if (url) {
                 Bitte wählen…
               </option>
               {tournaments
-  .filter((t) => !String(t.name || "").toLowerCase().includes("winston"))
+  .filter((t) => {
+    const name = String(t.name || "").toLowerCase();
+    return !name.includes("winston") && !name.includes("faldo") && !name.includes("test");
+  })
   .map((t) => (
                 <option key={t.id} value={t.id}>
                   {(t.name ?? "Turnier") +
