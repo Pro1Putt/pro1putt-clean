@@ -410,11 +410,6 @@ style={{
   location="Faldo Course (Bad Saarow)"
   intro="Der Faldo Course – Design von Sir Nick Faldo, Championship-Anspruch, Turnierhistorie. Eine Bühne, auf der Junioren Golf-Geschichte schreiben."
   bullets={["WAGR & EGR zertifiziert – Punkte sichern","Kurs-Setup auf Top-Niveau","Gemeinsames Abendessen am Finaltag","Hole-in-One Preis"]}
-  actionButton={
-    <a href="/register" className="p1-btn-primary">
-      Jetzt anmelden →
-    </a>
-  }
 />
 
 <EventCard
