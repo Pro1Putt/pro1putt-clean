@@ -158,55 +158,37 @@ export default async function PublicStartlistPage({
       : Math.max(...publishedRounds);
 
   /*
-   * WICHTIG:
-   * Die Flights werden jedes Mal LIVE aus der Datenbank geladen.
-   * Wenn du die Startliste/Flights neu generierst, ändert sich die
-   * öffentliche Seite automatisch mit.
+   * Die öffentliche Startliste verwendet exakt dieselbe Datenquelle
+   * wie /scoring/flights: /api/flights/list
    */
-  const { data: flights } = await supabase
-    .from("flights")
-    .select("*")
-    .eq("tournament_id", tournamentId)
-    .eq("round", round)
-    .order("flight_number", { ascending: true });
+  const baseUrl =
+    process.env.NEXT_PUBLIC_SITE_URL ||
+    process.env.NEXT_PUBLIC_APP_URL ||
+    "https://www.pro1putt.com";
 
-  const flightIds = (flights ?? []).map((flight: any) => flight.id);
-
-  let flightPlayers: any[] = [];
-
-  if (flightIds.length > 0) {
-    const { data } = await supabase
-      .from("flight_players")
-      .select("*")
-      .in("flight_id", flightIds);
-
-    flightPlayers = data ?? [];
-  }
-
-  const registrationIds = Array.from(
-    new Set(
-      flightPlayers
-        .map((entry: any) => entry.registration_id)
-        .filter(Boolean)
-    )
+  const response = await fetch(
+    `${baseUrl}/api/flights/list?tournamentId=${encodeURIComponent(
+      tournamentId
+    )}&round=${round}`,
+    { cache: "no-store" }
   );
 
-  let registrations: any[] = [];
+  const flightData = response.ok ? await response.json() : null;
 
-  if (registrationIds.length > 0) {
-    const { data } = await supabase
-      .from("registrations")
-      .select("id,first_name,last_name,hcp,home_club")
-      .in("id", registrationIds);
+  const flights = flightData?.flights ?? [];
+  const flightPlayers = flightData?.flight_players ?? [];
 
-    registrations = data ?? [];
-  }
-
-  const registrationById = new Map(
-    registrations.map((registration: any) => [
-      String(registration.id),
-      registration,
-    ])
+  /*
+   * /api/flights/list liefert die Registrierungsdaten bereits direkt
+   * an jedem flight_player mit.
+   */
+  const registrationById = new Map<string, any>(
+    flightPlayers
+      .filter((entry: any) => entry.registration)
+      .map((entry: any) => [
+        String(entry.registration_id),
+        entry.registration,
+      ])
   );
 
   const sortedFlights = [...(flights ?? [])].sort((a: any, b: any) => {
