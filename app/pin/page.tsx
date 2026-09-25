@@ -51,12 +51,17 @@ export default function PinPage() {
 
         setTournaments(list);
 
-        // default: nächstes Turnier (nach start_date) oder erstes
-        const sorted = [...list].sort((a, b) => {
-          const da = a.start_date || "9999-12-31";
-          const db = b.start_date || "9999-12-31";
-          return da.localeCompare(db);
-        });
+        // Default: heutiges oder nächstes anstehendes Turnier
+        // Vergangene Turniere dürfen nicht automatisch ausgewählt werden.
+        const today = new Date().toISOString().slice(0, 10);
+        const sorted = [...list]
+          .filter((t) => !t.start_date || t.start_date >= today)
+          .sort((a, b) => {
+            const da = a.start_date || "9999-12-31";
+            const db = b.start_date || "9999-12-31";
+            return da.localeCompare(db);
+          });
+
         setTournamentId(sorted[0]?.id || "");
       } catch (e: any) {
         if (!alive) return;
