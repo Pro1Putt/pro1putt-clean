@@ -68,7 +68,7 @@ export async function POST(req: Request) {
 
 if (regErr) {
   return NextResponse.json(
-    { ok: false, error: "DB error (registrations)" },
+    { ok: false, error: "DB error (registrations)", details: regErr.message, code: regErr.code },
     { status: 500 }
   );
 }
