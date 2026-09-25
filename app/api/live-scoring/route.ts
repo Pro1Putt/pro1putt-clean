@@ -68,6 +68,12 @@ export async function GET(req: Request) {
       scores = scoreData || [];
     }
 
+    // Manuell eingegebene Scores laden
+    const { data: manualScores } = await supabase
+      .from("scores")
+      .select("registration_id,hole_number,strokes,round_number")
+      .eq("tournament_id", tournamentId);
+
     // Scores pro Spieler pro Runde aggregieren
     const scoresByPlayer = new Map<string, Record<number, { strokes: number; holes: number }>>();
     for (const score of scores) {
@@ -79,6 +85,42 @@ export async function GET(req: Request) {
       const entry = scoresByPlayer.get(score.player_id)!;
       if (!entry[round]) entry[round] = { strokes: 0, holes: 0 };
       entry[round].strokes += (score.strokes_self || 0) + (score.penalty_strokes || 0);
+      entry[round].holes += 1;
+    }
+
+    // Manuelle Scores ergänzen.
+    // Existiert für dasselbe Loch bereits ein bestätigter Live-Score,
+    // hat der Live-Score Vorrang und wird nicht doppelt gezählt.
+    for (const score of manualScores || []) {
+      if (!score.registration_id || !score.hole_number || score.strokes == null) continue;
+
+      const round = score.round_number || 1;
+
+      const alreadyLive = scores.some((liveScore: any) => {
+        const flight = flightMap.get(liveScore.flight_id);
+        const liveRound = liveScore.round_number || flight?.round_number || 1;
+
+        return (
+          liveScore.player_id === score.registration_id &&
+          liveScore.hole_number === score.hole_number &&
+          liveRound === round
+        );
+      });
+
+      if (alreadyLive) continue;
+
+      if (!scoresByPlayer.has(score.registration_id)) {
+        scoresByPlayer.set(score.registration_id, {
+          1: { strokes: 0, holes: 0 },
+          2: { strokes: 0, holes: 0 },
+          3: { strokes: 0, holes: 0 },
+        });
+      }
+
+      const entry = scoresByPlayer.get(score.registration_id)!;
+      if (!entry[round]) entry[round] = { strokes: 0, holes: 0 };
+
+      entry[round].strokes += Number(score.strokes);
       entry[round].holes += 1;
     }
 
