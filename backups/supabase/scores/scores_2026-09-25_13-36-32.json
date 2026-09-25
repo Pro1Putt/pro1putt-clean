@@ -14614,5 +14614,26 @@
     "rule_ball_counts": null,
     "round_number": 2,
     "registration_id": "5d110f0c-2f85-4f21-bfea-d8a96880f0f4"
+  },
+  {
+    "id": "11dab53e-5e92-499e-af75-61c225ecde17",
+    "player_id": null,
+    "hole_number": 1,
+    "strokes": 5,
+    "updated_at": "2026-09-25T11:32:58.753309+00:00",
+    "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
+    "is_provisional": false,
+    "counts_as": null,
+    "notes": null,
+    "ball_no": 1,
+    "entered_by": "6c31fd00-3f0e-406d-8145-ddca8aad7a11",
+    "rule_ball_played": false,
+    "rule_ball_note": null,
+    "rule_ball": false,
+    "rule_ball_alt_strokes": null,
+    "rule_ball_status": null,
+    "rule_ball_counts": null,
+    "round_number": 1,
+    "registration_id": "6c31fd00-3f0e-406d-8145-ddca8aad7a11"
   }
 ]
