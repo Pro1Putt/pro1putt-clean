@@ -196,13 +196,13 @@ export default function LiveLeaderboard({ tournamentId }: Props) {
         </div>
 
         <div style={{ overflowX: "auto" }}>
-          <div style={{ minWidth: 900 }}>
+          <div style={{ minWidth: 760 }}>
             {/* Tabellen Header */}
             <div
               style={{
                 display: "grid",
                 gridTemplateColumns:
-                  "64px 40px minmax(200px,2fr) minmax(150px,1.5fr) 80px 80px 80px 80px 70px 90px 80px",
+                  "50px 32px minmax(150px,1.8fr) minmax(110px,1.2fr) 55px 55px 55px 55px 55px 65px 55px",
                 gap: 8,
                 padding: "14px 16px",
                 background: "#f3f8f5",
@@ -244,7 +244,7 @@ export default function LiveLeaderboard({ tournamentId }: Props) {
                   style={{
                     display: "grid",
                     gridTemplateColumns:
-                      "64px 40px minmax(200px,2fr) minmax(150px,1.5fr) 80px 80px 80px 80px 70px 90px 80px",
+                      "50px 32px minmax(150px,1.8fr) minmax(110px,1.2fr) 55px 55px 55px 55px 55px 65px 55px",
                     gap: 8,
                     padding: "14px 16px",
                     borderTop: "1px solid rgba(11,93,59,0.08)",
