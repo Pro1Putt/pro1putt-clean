@@ -82,6 +82,7 @@ export default function LiveLeaderboard({ tournamentId }: Props) {
     const channel = supabase
       .channel("live-lb")
       .on("postgres_changes", { event: "*", schema: "public", table: "hole_scores" }, fetchData)
+      .on("postgres_changes", { event: "*", schema: "public", table: "scores" }, fetchData)
       .subscribe();
     const interval = setInterval(fetchData, 30000);
     return () => {
