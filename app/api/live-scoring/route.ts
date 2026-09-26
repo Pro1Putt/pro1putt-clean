@@ -97,7 +97,7 @@ export async function GET(req: Request) {
 
       const alreadyLive = scores.some((liveScore: any) => {
         const flight = flightMap.get(liveScore.flight_id);
-        const liveRound = liveScore.round_number || flight?.round_number || 1;
+        const liveRound = flight?.round_number || liveScore.round_number || 1;
 
         return (
           liveScore.player_id === score.registration_id &&
