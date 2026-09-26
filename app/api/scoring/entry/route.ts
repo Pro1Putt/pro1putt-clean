@@ -42,9 +42,29 @@ export async function POST(req: Request) {
 
     const supabase = getServiceSupabase();
 
+    // Alte installierte App sendet für Bad Saarow weiterhin Runde 1.
+    // Server korrigiert diese Eingaben auf das laufende Turnier, Runde 2.
+    const BAD_SAAROW_TOURNAMENT_ID = "d4a92ae2-6ecd-4043-8b5a-82414c597036";
+
+    const { data: scoreRegistration } = await supabase
+      .from("registrations")
+      .select("tournament_id")
+      .eq("id", for_registration_id)
+      .maybeSingle();
+
+    const isBadSaarow =
+      scoreRegistration?.tournament_id === BAD_SAAROW_TOURNAMENT_ID;
+
+    const effectiveTournamentId = isBadSaarow
+      ? BAD_SAAROW_TOURNAMENT_ID
+      : tournament_id;
+
+    const effectiveRound =
+      isBadSaarow && Number(round) === 1 ? 2 : Number(round);
+
     const holeEntryPayload: any = {
-      tournament_id,
-      round,
+      tournament_id: effectiveTournamentId,
+      round: effectiveRound,
       hole_number,
       entered_by,
       for_registration_id,
@@ -77,8 +97,8 @@ export async function POST(req: Request) {
     const { error: scoreInsertError } = await supabase
       .from("scores")
       .insert({
-        tournament_id,
-        round_number: Number(round),
+        tournament_id: effectiveTournamentId,
+        round_number: effectiveRound,
         hole_number: Number(hole_number),
         player_id: for_registration_id,
         entered_by,
