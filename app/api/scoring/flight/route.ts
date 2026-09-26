@@ -38,7 +38,7 @@ export async function GET(req: Request) {
       currentRegistration?.tournament_id === BAD_SAAROW_TOURNAMENT_ID &&
       round === 1
     ) {
-      round = 2;
+      round = 3;
     }
 
     // Flight finden

@@ -60,7 +60,7 @@ export async function POST(req: Request) {
       : tournament_id;
 
     const effectiveRound =
-      isBadSaarow && Number(round) === 1 ? 2 : Number(round);
+      isBadSaarow && Number(round) === 1 ? 3 : Number(round);
 
     const holeEntryPayload: any = {
       tournament_id: effectiveTournamentId,
