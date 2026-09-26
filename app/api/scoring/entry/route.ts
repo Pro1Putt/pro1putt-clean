@@ -101,6 +101,7 @@ export async function POST(req: Request) {
         round_number: effectiveRound,
         hole_number: Number(hole_number),
         player_id: for_registration_id,
+        registration_id: for_registration_id,
         entered_by,
         strokes: Number(strokes),
         ...(typeof rule_ball !== "undefined" ? { rule_ball_played: !!rule_ball } : {}),
