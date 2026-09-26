@@ -92,9 +92,26 @@ export async function GET(req: Request) {
     );
 
     const marker = currentFlightPlayer?.marks_registration_id ?? null;
-    const marksPlayer = enriched.find(
-      (m) => m.registration_id === marker
-    );
+
+    // Marker kann in Runde 2 auch in einem anderen Flight spielen.
+    // Deshalb den Namen direkt aus registrations laden.
+    let marksPlayer = null;
+
+    if (marker) {
+      const { data: markerRegistration } = await supabase
+        .from("registrations")
+        .select("id, first_name, last_name")
+        .eq("id", marker)
+        .maybeSingle();
+
+      if (markerRegistration) {
+        marksPlayer = {
+          registration_id: markerRegistration.id,
+          first_name: markerRegistration.first_name,
+          last_name: markerRegistration.last_name,
+        };
+      }
+    }
 
     return NextResponse.json({
       ok: true,
