@@ -1,0 +1,32 @@
+registration_id,player_name,handicap,tournament_id,tournament_name,flight_id,flight_number,total_holes,total_strokes,holes_played,flight_status
+0b2be1cc-3241-4cfe-9af6-0b92a5582cec,Philip Dahlstrom,4.5,d4a92ae2-6ecd-4043-8b5a-82414c597036,PRO1PUTT – Open Faldo Course (Bad Saarow),3e2c8abc-e69c-4b49-8f0f-82ebe1b850eb,2,18,0,0,active
+10f1afa0-aa58-4b13-8d05-4e0b8e462e5f,Aaron Kastein,0,d4a92ae2-6ecd-4043-8b5a-82414c597036,PRO1PUTT – Open Faldo Course (Bad Saarow),52b0b61e-d87a-4cc6-b949-af2c0fed5b59,9,18,0,0,active
+de28cd8e-9d77-4157-807a-369c938090ab,Alexander Mylius,3.9,d4a92ae2-6ecd-4043-8b5a-82414c597036,PRO1PUTT – Open Faldo Course (Bad Saarow),3e2c8abc-e69c-4b49-8f0f-82ebe1b850eb,2,18,0,0,active
+14e39112-6ce6-4eaf-9b97-097f758789f4,Jacob Boether,-1.1,d4a92ae2-6ecd-4043-8b5a-82414c597036,PRO1PUTT – Open Faldo Course (Bad Saarow),7fe83cd3-84bc-4551-b20c-fb96196b4131,1,18,0,0,active
+16bbde86-be42-4588-bf60-d2798fec823b,Julian Schwarz,-2.2,d4a92ae2-6ecd-4043-8b5a-82414c597036,PRO1PUTT – Open Faldo Course (Bad Saarow),7fe83cd3-84bc-4551-b20c-fb96196b4131,1,18,0,0,active
+19b44c8b-f73c-464f-a197-236cf91f225b,Phillip Hövermann,4.4,7716349a-8bb0-46c6-b60c-3594eb7ea60f,PRO1PUTT – Open Classics WINSTONopen,41c2590e-ea22-44bf-b862-6b8068962a10,1,18,0,0,active
+288cb02f-b30e-4cb3-8faf-08f5364d19fc,Justus von Rüden,20.8,d4a92ae2-6ecd-4043-8b5a-82414c597036,PRO1PUTT – Open Faldo Course (Bad Saarow),c46790ac-e60e-4223-8d9e-8ac33a005659,7,18,0,0,active
+2c5f4c05-03c1-4d64-960d-4e7b3c33c949,Elias Didjurgis,9.9,d4a92ae2-6ecd-4043-8b5a-82414c597036,PRO1PUTT – Open Faldo Course (Bad Saarow),fff6d91f-f729-4617-94eb-e143d3c19e5e,5,9,0,0,active
+36381ba5-02d8-474e-a058-58b719674b9a,Paul Jules Nischk,20.9,d4a92ae2-6ecd-4043-8b5a-82414c597036,PRO1PUTT – Open Faldo Course (Bad Saarow),2e7bcbd7-94da-4a02-b6b9-2aac371a3189,8,9,0,0,active
+abd869dc-4fb4-4281-ad1f-d5945e769254,Aaron Talke,10.2,d4a92ae2-6ecd-4043-8b5a-82414c597036,PRO1PUTT – Open Faldo Course (Bad Saarow),fff6d91f-f729-4617-94eb-e143d3c19e5e,5,18,0,0,active
+b64c96a6-6bd0-461d-9f68-f49865e53db5,Valentin Andreas Bohl,15.3,d4a92ae2-6ecd-4043-8b5a-82414c597036,PRO1PUTT – Open Faldo Course (Bad Saarow),9d0b9c98-1cca-4d47-a77b-6c403efd00fa,6,9,0,0,active
+f42128ff-96ff-4c07-8ad5-c344d9767135,Nicolas Metz,20.9,d4a92ae2-6ecd-4043-8b5a-82414c597036,PRO1PUTT – Open Faldo Course (Bad Saarow),c46790ac-e60e-4223-8d9e-8ac33a005659,7,9,0,0,active
+50dd6e49-1e4a-41ab-82ca-6d15050216b3,Mateo Kaffka,21.8,d4a92ae2-6ecd-4043-8b5a-82414c597036,PRO1PUTT – Open Faldo Course (Bad Saarow),2e7bcbd7-94da-4a02-b6b9-2aac371a3189,8,9,0,0,active
+5d110f0c-2f85-4f21-bfea-d8a96880f0f4,Frieda Taisia Renting,4,7716349a-8bb0-46c6-b60c-3594eb7ea60f,PRO1PUTT – Open Classics WINSTONopen,41c2590e-ea22-44bf-b862-6b8068962a10,1,18,0,0,active
+60d9add6-17ee-430f-a974-1bc5cfa95c84,Henry Pete Nischk,11.6,d4a92ae2-6ecd-4043-8b5a-82414c597036,PRO1PUTT – Open Faldo Course (Bad Saarow),9d0b9c98-1cca-4d47-a77b-6c403efd00fa,6,9,0,0,active
+6c31fd00-3f0e-406d-8145-ddca8aad7a11,Oskar Arnold,6.8,d4a92ae2-6ecd-4043-8b5a-82414c597036,PRO1PUTT – Open Faldo Course (Bad Saarow),f508b827-7339-4a50-ad92-ed74535b5029,4,18,0,0,active
+759b9908-b1f9-40b9-aa6e-6f899daf7bf0,Henrik Hinz,8.6,d4a92ae2-6ecd-4043-8b5a-82414c597036,PRO1PUTT – Open Faldo Course (Bad Saarow),f508b827-7339-4a50-ad92-ed74535b5029,4,18,0,0,active
+78fb4ed0-ba6c-4b98-a34b-bb8fa7f01091,Aaron Talke,15.5,7716349a-8bb0-46c6-b60c-3594eb7ea60f,PRO1PUTT – Open Classics WINSTONopen,41c2590e-ea22-44bf-b862-6b8068962a10,1,18,0,0,active
+79fae2cb-e948-49a9-aa44-6bb1d4ea602b,Nicolas Gregg,5.9,d4a92ae2-6ecd-4043-8b5a-82414c597036,PRO1PUTT – Open Faldo Course (Bad Saarow),62c97000-c6b2-4fb7-b796-1dcd92fdcaf3,3,18,0,0,active
+7db2cb2f-f9ed-41d0-bbd8-502f7a9a2ff3,Aidan Nüchter,19.4,d4a92ae2-6ecd-4043-8b5a-82414c597036,PRO1PUTT – Open Faldo Course (Bad Saarow),c46790ac-e60e-4223-8d9e-8ac33a005659,7,9,0,0,active
+84a783cc-96d7-494c-9413-5c6075d22010,Lennart Schult,4,d4a92ae2-6ecd-4043-8b5a-82414c597036,PRO1PUTT – Open Faldo Course (Bad Saarow),3e2c8abc-e69c-4b49-8f0f-82ebe1b850eb,2,18,0,0,active
+eed4f2ad-d027-443d-9d78-a70e0a3b93a7,Jackson Sharp,7.3,d4a92ae2-6ecd-4043-8b5a-82414c597036,PRO1PUTT – Open Faldo Course (Bad Saarow),f508b827-7339-4a50-ad92-ed74535b5029,4,18,0,0,active
+9fab0351-ea45-4762-a3b9-4d61ef1d99b9,Carl Balz,5.3,d4a92ae2-6ecd-4043-8b5a-82414c597036,PRO1PUTT – Open Faldo Course (Bad Saarow),62c97000-c6b2-4fb7-b796-1dcd92fdcaf3,3,18,0,0,active
+5ab228f0-fb0e-46a2-88bd-94a48716f49d,Player O.A. 1,23,e9b23d74-ab9d-4ba5-86bf-744915e1ee28,Test,d4a97bf6-ce0f-421e-924f-6e157b580519,1,9,2,1,active
+39ace5a0-881a-4178-aa2b-2fd274ebc40a,Leander Wienands,-1,d4a92ae2-6ecd-4043-8b5a-82414c597036,PRO1PUTT – Open Faldo Course (Bad Saarow),7fe83cd3-84bc-4551-b20c-fb96196b4131,1,18,4,1,active
+fbc1c0c4-2815-4bdb-af5b-c0a7c4ebf642,Hugo Freund,5.1,d4a92ae2-6ecd-4043-8b5a-82414c597036,PRO1PUTT – Open Faldo Course (Bad Saarow),62c97000-c6b2-4fb7-b796-1dcd92fdcaf3,3,18,5,1,active
+b8d0b9c8-feab-494a-b904-713a3ef84e28,Rafael Pich,17.7,d4a92ae2-6ecd-4043-8b5a-82414c597036,PRO1PUTT – Open Faldo Course (Bad Saarow),9d0b9c98-1cca-4d47-a77b-6c403efd00fa,6,18,5,1,active
+c374f3e1-3ecb-45dd-a720-996aae83628e,Tjark Geiser,23.1,d4a92ae2-6ecd-4043-8b5a-82414c597036,PRO1PUTT – Open Faldo Course (Bad Saarow),2e7bcbd7-94da-4a02-b6b9-2aac371a3189,8,18,5,1,active
+08d26a81-b59d-4162-ad72-b07ee5d75c64,Tom Schult,10.2,d4a92ae2-6ecd-4043-8b5a-82414c597036,PRO1PUTT – Open Faldo Course (Bad Saarow),fff6d91f-f729-4617-94eb-e143d3c19e5e,5,18,6,1,active
+96b9b1f2-6aa1-4ce3-8602-db8885855df9,Henry Porth,24.9,d4a92ae2-6ecd-4043-8b5a-82414c597036,PRO1PUTT – Open Faldo Course (Bad Saarow),52b0b61e-d87a-4cc6-b949-af2c0fed5b59,9,18,9,2,active
+4747714c-9ad7-46b7-b3d0-c24ea4dd5442,Player L.M 2,45,e9b23d74-ab9d-4ba5-86bf-744915e1ee28,Test,d4a97bf6-ce0f-421e-924f-6e157b580519,1,9,9,9,active
