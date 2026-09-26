@@ -15,13 +15,31 @@ export async function GET(req: Request) {
 
     const tournamentId = String(searchParams.get("tournamentId") || "");
     const registrationId = String(searchParams.get("registrationId") || "");
-    const round = Number(searchParams.get("round") || 1);
+    let round = Number(searchParams.get("round") || 1);
+
+    // Sofortlösung für das laufende Bad-Saarow-Turnier:
+    // Alte installierte Apps senden weiterhin round=1.
+    // Für Registrierungen dieses Turniers muss aktuell Runde 2 geladen werden.
+    const BAD_SAAROW_TOURNAMENT_ID = "d4a92ae2-6ecd-4043-8b5a-82414c597036";
 
     if (!tournamentId || !registrationId) {
       return NextResponse.json({ ok: false, error: "Missing params" }, { status: 400 });
     }
 
     const supabase = getServiceSupabase();
+
+    const { data: currentRegistration } = await supabase
+      .from("registrations")
+      .select("tournament_id")
+      .eq("id", registrationId)
+      .maybeSingle();
+
+    if (
+      currentRegistration?.tournament_id === BAD_SAAROW_TOURNAMENT_ID &&
+      round === 1
+    ) {
+      round = 2;
+    }
 
     // Flight finden
     const { data: fp, error: fpErr } = await supabase
