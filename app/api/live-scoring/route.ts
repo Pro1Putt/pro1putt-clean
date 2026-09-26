@@ -63,8 +63,7 @@ export async function GET(req: Request) {
       const { data: scoreData } = await supabase
         .from("hole_scores")
         .select("flight_id, player_id, hole_number, strokes_self, penalty_strokes, confirmed, round_number")
-        .in("flight_id", flightIds)
-        .eq("confirmed", true);
+        .in("flight_id", flightIds);
       scores = scoreData || [];
     }
 
