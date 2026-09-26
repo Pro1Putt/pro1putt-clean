@@ -261,21 +261,32 @@ export async function POST(req: Request) {
     }
 
     async function loadCumTotals() {
-      if (!totalsTournamentCol || !cumScoreCol) return;
-
       const { data, error } = await supabase
-        .from("v_player_cum_totals")
-        .select("*")
-        .eq(totalsTournamentCol, tournamentId);
+        .from("scores")
+        .select("registration_id, player_id, round_number, strokes")
+        .eq("tournament_id", tournamentId)
+        .in("round_number", [1, 2]);
 
-      if (error) return;
+      if (error) {
+        throw new Error(`scores read failed: ${error.message}`);
+      }
 
-      (data || []).forEach((row: TotalsRow) => {
-        const score = toNumber(row[cumScoreCol]);
-        if (totalsRegIdCol && row[totalsRegIdCol]) scoreByRegId.set(String(row[totalsRegIdCol]), score);
-        if (totalsPlayerIdCol && row[totalsPlayerIdCol]) {
-          scoreByPlayerId.set(String(row[totalsPlayerIdCol]), score);
-        }
+      const totals = new Map<string, number>();
+
+      (data || []).forEach((row: any) => {
+        const registrationId = String(row.registration_id || row.player_id || "");
+        const strokes = toNumber(row.strokes);
+
+        if (!registrationId || strokes === null) return;
+
+        totals.set(
+          registrationId,
+          (totals.get(registrationId) || 0) + strokes
+        );
+      });
+
+      totals.forEach((score, registrationId) => {
+        scoreByRegId.set(registrationId, score);
       });
     }
 
