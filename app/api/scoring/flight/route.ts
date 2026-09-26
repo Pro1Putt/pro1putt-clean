@@ -86,8 +86,15 @@ export async function GET(req: Request) {
       gender: r.gender,
     }));
 
-    const marker = fp[0].marks_registration_id;
-    const marksPlayer = enriched.find((m) => m.registration_id === marker);
+    // Marker aus genau dem ausgewählten Flight verwenden
+    const currentFlightPlayer = fp.find(
+      (row: any) => row.flight_id === flightId
+    );
+
+    const marker = currentFlightPlayer?.marks_registration_id ?? null;
+    const marksPlayer = enriched.find(
+      (m) => m.registration_id === marker
+    );
 
     return NextResponse.json({
       ok: true,
