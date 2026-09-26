@@ -212,7 +212,7 @@ async function togglePublication(targetRound: 1 | 2 | 3) {
           tournamentId,
           round,
           td_pin: tdPin,
-          start_time: "10:00",
+          start_time: "09:30",
           interval_minutes: 10,
           overwrite: true,
         }),
@@ -225,7 +225,7 @@ async function togglePublication(targetRound: 1 | 2 | 3) {
         return;
       }
 
-      setMsg("✅ Startzeiten gesetzt ab 10:00");
+      setMsg("✅ Startzeiten gesetzt ab 09:30");
       await reload();
     } finally {
       setBusy(false);
