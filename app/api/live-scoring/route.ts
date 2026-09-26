@@ -146,7 +146,7 @@ export async function GET(req: Request) {
       const r2 = roundData[2]?.holes > 0 ? roundData[2].strokes : null;
       const r3 = roundData[3]?.holes > 0 ? roundData[3].strokes : null;
       const total = (r1 || 0) + (r2 || 0) + (r3 || 0) || null;
-      const holesPlayed = (roundData[1]?.holes || 0) + (roundData[2]?.holes || 0) + (roundData[3]?.holes || 0);
+      const holesPlayed = roundData[2]?.holes || 0;
 
       return {
         id: reg.id,
