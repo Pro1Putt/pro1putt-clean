@@ -81,7 +81,7 @@ export async function GET(req: Request) {
         scoresByPlayer.set(score.player_id, { 1: { strokes: 0, holes: 0 }, 2: { strokes: 0, holes: 0 }, 3: { strokes: 0, holes: 0 } });
       }
       const flight = flightMap.get(score.flight_id);
-      const round = score.round_number || flight?.round_number || 1;
+      const round = flight?.round_number || score.round_number || 1;
       const entry = scoresByPlayer.get(score.player_id)!;
       if (!entry[round]) entry[round] = { strokes: 0, holes: 0 };
       entry[round].strokes += (score.strokes_self || 0) + (score.penalty_strokes || 0);
