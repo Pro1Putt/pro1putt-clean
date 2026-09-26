@@ -60,6 +60,43 @@ export default function LiveLeaderboard({ tournamentId }: Props) {
   const [lastUpdate, setLastUpdate] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState<TabKey>("overall18");
+  const [openPlayerId, setOpenPlayerId] = useState<string | null>(null);
+  const [scorecards, setScorecards] = useState<Record<string, any>>({});
+  const [scorecardLoading, setScorecardLoading] = useState<string | null>(null);
+
+  const toggleScorecard = async (player: LivePlayer) => {
+    if (openPlayerId === player.id) {
+      setOpenPlayerId(null);
+      return;
+    }
+
+    setOpenPlayerId(player.id);
+
+    if (scorecards[player.id]) return;
+
+    try {
+      setScorecardLoading(player.id);
+
+      const res = await fetch(
+        `/api/player-scorecard?tournamentId=${tournamentId}&registrationId=${player.id}`
+      );
+
+      const json = await res.json();
+
+      if (json.ok) {
+        setScorecards((prev) => ({
+          ...prev,
+          [player.id]: json,
+        }));
+      } else {
+        console.error("Scorecard konnte nicht geladen werden:", json);
+      }
+    } catch (e) {
+      console.error("Scorecard konnte nicht geladen werden:", e);
+    } finally {
+      setScorecardLoading(null);
+    }
+  };
 
   const fetchData = useCallback(async () => {
     try {
@@ -268,7 +305,25 @@ export default function LiveLeaderboard({ tournamentId }: Props) {
                       gap: 6,
                     }}
                   >
-                    {player.name}
+                    <button
+                      type="button"
+                      onClick={() => toggleScorecard(player)}
+                      style={{
+                        border: "none",
+                        background: "transparent",
+                        padding: 0,
+                        margin: 0,
+                        font: "inherit",
+                        fontWeight: 800,
+                        color: "#0b5d3b",
+                        cursor: "pointer",
+                        textDecoration: "underline",
+                        textUnderlineOffset: 3,
+                        textAlign: "left",
+                      }}
+                    >
+                      {player.name} {openPlayerId === player.id ? "−" : "+"}
+                    </button>
                     {player.tournament_status === "dnf" && (
                       <span
                         style={{
@@ -331,6 +386,115 @@ export default function LiveLeaderboard({ tournamentId }: Props) {
                       <span style={{ color: "#ccc" }}>—</span>
                     )}
                   </div>
+                    {openPlayerId === player.id && (
+                      <div
+                        style={{
+                          gridColumn: "1 / -1",
+                          marginTop: 8,
+                          padding: 16,
+                          background: "#f7fbf8",
+                          borderRadius: 14,
+                          border: "1px solid rgba(11,93,59,0.08)",
+                        }}
+                      >
+                        {scorecardLoading === player.id ? (
+                          <div
+                            style={{
+                              textAlign: "center",
+                              color: "#668278",
+                              fontWeight: 700,
+                            }}
+                          >
+                            Scorecard wird geladen...
+                          </div>
+                        ) : scorecards[player.id] ? (
+                          <div>
+                            {[1, 2, 3].map((roundNo) => {
+                              const round = scorecards[player.id].rounds?.[roundNo];
+
+                              if (!round || round.holes_played === 0) {
+                                return null;
+                              }
+
+                              return (
+                                <div key={roundNo} style={{ marginBottom: 18 }}>
+                                  <div
+                                    style={{
+                                      fontWeight: 900,
+                                      color: "#17362b",
+                                      marginBottom: 10,
+                                    }}
+                                  >
+                                    Runde {roundNo} · {round.total_strokes ?? "—"} Schläge
+                                  </div>
+
+                                  <div
+                                    style={{
+                                      display: "grid",
+                                      gridTemplateColumns:
+                                        "repeat(auto-fit, minmax(58px, 1fr))",
+                                      gap: 6,
+                                    }}
+                                  >
+                                    {round.holes.map((h: any) => (
+                                      <div
+                                        key={h.hole_number}
+                                        style={{
+                                          padding: "8px 5px",
+                                          borderRadius: 8,
+                                          background: "#ffffff",
+                                          border: "1px solid rgba(11,93,59,0.08)",
+                                          textAlign: "center",
+                                          fontSize: 12,
+                                        }}
+                                      >
+                                        <div
+                                          style={{
+                                            fontSize: 10,
+                                            color: "#668278",
+                                          }}
+                                        >
+                                          Loch {h.hole_number}
+                                        </div>
+
+                                        <div
+                                          style={{
+                                            fontWeight: 900,
+                                            color: "#17362b",
+                                            fontSize: 16,
+                                            margin: "3px 0",
+                                          }}
+                                        >
+                                          {h.strokes ?? "—"}
+                                        </div>
+
+                                        <div
+                                          style={{
+                                            fontSize: 10,
+                                            color: "#668278",
+                                          }}
+                                        >
+                                          Par {h.par ?? "—"}
+                                        </div>
+                                      </div>
+                                    ))}
+                                  </div>
+                                </div>
+                              );
+                            })}
+                          </div>
+                        ) : (
+                          <div
+                            style={{
+                              textAlign: "center",
+                              color: "#668278",
+                            }}
+                          >
+                            Noch keine Lochscores verfügbar.
+                          </div>
+                        )}
+                      </div>
+                    )}
                 </div>
               );
             })}
