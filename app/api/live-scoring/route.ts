@@ -123,9 +123,24 @@ export async function GET(req: Request) {
       entry[round].holes += 1;
     }
 
+    // Aktuellen Flight über flight_players bestimmen.
+    const currentFlightByPlayer = new Map<string, any>();
+
+    const { data: currentFlightPlayers } = await supabase
+      .from("flight_players")
+      .select("registration_id, flight_id")
+      .in("registration_id", registrations.map((r: any) => r.id));
+
+    for (const fp of currentFlightPlayers || []) {
+      const f = flightMap.get(fp.flight_id);
+      if (f && f.round_number === 2) {
+        currentFlightByPlayer.set(fp.registration_id, f);
+      }
+    }
+
     const players = registrations.map((reg: any) => {
       const roundData = scoresByPlayer.get(reg.id) || { 1: { strokes: 0, holes: 0 }, 2: { strokes: 0, holes: 0 }, 3: { strokes: 0, holes: 0 } };
-      const flight = reg.flight_id ? flightMap.get(reg.flight_id) : null;
+      const flight = currentFlightByPlayer.get(reg.id) || (reg.flight_id ? flightMap.get(reg.flight_id) : null);
 
       const r1 = roundData[1]?.holes > 0 ? roundData[1].strokes : null;
       const r2 = roundData[2]?.holes > 0 ? roundData[2].strokes : null;
