@@ -574,7 +574,7 @@ function PlaceholderTournament({
               opacity: 0.94,
             }}
           >
-            Leaderboard wird vorbereitet.
+            Leaderboard ist live.
           </p>
 
           <div
@@ -586,7 +586,7 @@ function PlaceholderTournament({
             }}
           >
             <StatCard label="Turnier" value={dateLabel} />
-            <StatCard label="Status" value="In Vorbereitung" />
+            <StatCard label="Status" value="Live" />
           </div>
         </section>
 
