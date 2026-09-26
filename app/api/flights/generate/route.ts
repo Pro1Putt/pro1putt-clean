@@ -69,7 +69,23 @@ function firstExisting(cols: Set<string>, candidates: string[]) {
 
 function chunk<T>(arr: T[], size: number) {
   const out: T[][] = [];
-  for (let i = 0; i < arr.length; i += size) out.push(arr.slice(i, i + size));
+
+  let i = 0;
+
+  while (i < arr.length) {
+    const remaining = arr.length - i;
+
+    // Bei 4 verbleibenden Spielern: 2 + 2 statt 3 + 1.
+    if (size === 3 && remaining === 4) {
+      out.push(arr.slice(i, i + 2));
+      out.push(arr.slice(i + 2, i + 4));
+      break;
+    }
+
+    out.push(arr.slice(i, i + size));
+    i += size;
+  }
+
   return out;
 }
 
