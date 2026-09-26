@@ -73,8 +73,35 @@ if (regErr) {
   );
 }
 
-const match =
+let match =
   (regs ?? []).find((r: any) => normPin(r?.player_pin) === pin) ?? null;
+
+let resolvedTournamentId = tournamentId;
+
+// Sofort-Fallback für das laufende Bad-Saarow-Turnier.
+// Alte App-Versionen wählen nach dem Startdatum bereits das nächste Turnier.
+if (!match) {
+  const badSaarowTournamentId = "d4a92ae2-6ecd-4043-8b5a-82414c597036";
+
+  const { data: fallbackRegs, error: fallbackErr } = await supabase
+    .from("registrations")
+    .select("id, tournament_id, first_name, last_name, player_pin")
+    .eq("tournament_id", badSaarowTournamentId);
+
+  if (fallbackErr) {
+    return NextResponse.json(
+      { ok: false, error: "DB error (registrations fallback)", details: fallbackErr.message },
+      { status: 500 }
+    );
+  }
+
+  match =
+    (fallbackRegs ?? []).find((r: any) => normPin(r?.player_pin) === pin) ?? null;
+
+  if (match) {
+    resolvedTournamentId = badSaarowTournamentId;
+  }
+}
 
 if (!match) {
   return NextResponse.json(
@@ -87,7 +114,7 @@ if (!match) {
 
       return NextResponse.json({
         ok: true,
-        tournamentId,
+        tournamentId: resolvedTournamentId,
         registrationId: String(match.id),
         role: "player",
         name,
