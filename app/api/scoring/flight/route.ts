@@ -33,15 +33,30 @@ export async function GET(req: Request) {
       return NextResponse.json({ ok: false, error: "Flight not found" }, { status: 404 });
     }
 
-    const flightId = fp[0].flight_id;
+    // Passenden Flight für die angefragte Runde und das Turnier finden
+    const flightIds = fp.map((row: any) => row.flight_id);
 
-    // Flight Infos
-    const { data: flight, error: fErr } = await supabase
+    const { data: matchingFlights, error: fErr } = await supabase
       .from("flights")
-      .select("id, flight_number, start_time, round")
-      .eq("id", flightId)
-      .eq("round", round)
-      .single();
+      .select("id, flight_number, start_time, round, tournament_id")
+      .in("id", flightIds)
+      .eq("round", round);
+
+    if (fErr) {
+      return NextResponse.json({ ok: false, error: fErr.message }, { status: 500 });
+    }
+
+    // Bevorzugt das angefragte Turnier. Falls eine alte App noch die ID
+    // des nächsten Turniers sendet, verwenden wir den Flight der Registration.
+    const flight =
+      (matchingFlights || []).find((f: any) => f.tournament_id === tournamentId) ||
+      (matchingFlights || [])[0];
+
+    if (!flight) {
+      return NextResponse.json({ ok: false, error: "Flight not found for round" }, { status: 404 });
+    }
+
+    const flightId = flight.id;
 
     if (fErr || !flight) {
       return NextResponse.json({ ok: false, error: "Flight not found for round" }, { status: 404 });
