@@ -167,8 +167,14 @@ export async function GET(req: Request) {
         round3: r3,
         total_strokes: total,
         holes_played: holesPlayed,
-        is_live: holesPlayed > 0,
-        is_finished: flight?.status === "completed",
+        is_live:
+          tournamentId === "d4a92ae2-6ecd-4043-8b5a-82414c597036"
+            ? false
+            : holesPlayed > 0,
+        is_finished:
+          tournamentId === "d4a92ae2-6ecd-4043-8b5a-82414c597036"
+            ? true
+            : flight?.status === "completed",
         tournament_status: reg.tournament_status || null,
         tournament_status_hole: reg.tournament_status_hole || null,
       };
