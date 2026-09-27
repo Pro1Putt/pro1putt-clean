@@ -56,57 +56,34 @@ export async function GET(req: Request) {
 
     const flightMap = new Map((flights || []).map((f: any) => [f.id, f]));
 
-    // Scores laden
-    const flightIds = (flights || []).map((f: any) => f.id);
-    let scores: any[] = [];
-    if (flightIds.length > 0) {
-      const { data: scoreData } = await supabase
-        .from("hole_scores")
-        .select("flight_id, player_id, hole_number, strokes_self, penalty_strokes, confirmed, round_number")
-        .in("flight_id", flightIds);
-      scores = scoreData || [];
-    }
-
-    // Manuell eingegebene Scores laden
-    const { data: manualScores } = await supabase
+    // Leaderboard-Scores ausschließlich aus der offiziellen scores-Tabelle laden.
+    // Diese enthält die gespeicherten Ergebnisse für Runde 1, 2 und 3.
+    const { data: manualScores, error: scoresError } = await supabase
       .from("scores")
       .select("registration_id,hole_number,strokes,round_number")
       .eq("tournament_id", tournamentId);
 
-    // Scores pro Spieler pro Runde aggregieren
+    if (scoresError) throw scoresError;
+
+    // Scores pro Spieler und Runde aggregieren.
+    // Pro Spieler / Runde / Loch wird genau ein Wert gezählt.
     const scoresByPlayer = new Map<string, Record<number, { strokes: number; holes: number }>>();
-    for (const score of scores) {
-      if (!scoresByPlayer.has(score.player_id)) {
-        scoresByPlayer.set(score.player_id, { 1: { strokes: 0, holes: 0 }, 2: { strokes: 0, holes: 0 }, 3: { strokes: 0, holes: 0 } });
-      }
-      const flight = flightMap.get(score.flight_id);
-      const round = flight?.round_number || score.round_number || 1;
-      const entry = scoresByPlayer.get(score.player_id)!;
-      if (!entry[round]) entry[round] = { strokes: 0, holes: 0 };
-      entry[round].strokes += (score.strokes_self || 0) + (score.penalty_strokes || 0);
-      entry[round].holes += 1;
-    }
+    const seen = new Set<string>();
 
-    // Manuelle Scores ergänzen.
-    // Existiert für dasselbe Loch bereits ein bestätigter Live-Score,
-    // hat der Live-Score Vorrang und wird nicht doppelt gezählt.
     for (const score of manualScores || []) {
-      if (!score.registration_id || !score.hole_number || score.strokes == null) continue;
+      if (
+        !score.registration_id ||
+        !score.hole_number ||
+        score.strokes == null ||
+        !score.round_number
+      ) continue;
 
-      const round = score.round_number || 1;
+      const round = Number(score.round_number);
+      if (round < 1 || round > 3) continue;
 
-      const alreadyLive = scores.some((liveScore: any) => {
-        const flight = flightMap.get(liveScore.flight_id);
-        const liveRound = flight?.round_number || liveScore.round_number || 1;
-
-        return (
-          liveScore.player_id === score.registration_id &&
-          liveScore.hole_number === score.hole_number &&
-          liveRound === round
-        );
-      });
-
-      if (alreadyLive) continue;
+      const key = `${score.registration_id}:${round}:${score.hole_number}`;
+      if (seen.has(key)) continue;
+      seen.add(key);
 
       if (!scoresByPlayer.has(score.registration_id)) {
         scoresByPlayer.set(score.registration_id, {
@@ -117,8 +94,6 @@ export async function GET(req: Request) {
       }
 
       const entry = scoresByPlayer.get(score.registration_id)!;
-      if (!entry[round]) entry[round] = { strokes: 0, holes: 0 };
-
       entry[round].strokes += Number(score.strokes);
       entry[round].holes += 1;
     }
