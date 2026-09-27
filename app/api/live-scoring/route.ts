@@ -61,7 +61,8 @@ export async function GET(req: Request) {
     const { data: manualScores, error: scoresError } = await supabase
       .from("scores")
       .select("registration_id,hole_number,strokes,round_number")
-      .eq("tournament_id", tournamentId);
+      .eq("tournament_id", tournamentId)
+      .range(0, 4999);
 
     if (scoresError) throw scoresError;
 
