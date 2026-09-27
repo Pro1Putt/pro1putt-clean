@@ -132,11 +132,23 @@ export async function GET(req: Request) {
       const roundData = scoresByPlayer.get(reg.id) || { 1: { strokes: 0, holes: 0 }, 2: { strokes: 0, holes: 0 }, 3: { strokes: 0, holes: 0 } };
       const flight = currentFlightByPlayer.get(reg.id) || (reg.flight_id ? flightMap.get(reg.flight_id) : null);
 
-      const r1 = roundData[1]?.holes > 0 ? roundData[1].strokes : null;
-      const r2 = roundData[2]?.holes > 0 ? roundData[2].strokes : null;
-      const r3 = roundData[3]?.holes > 0 ? roundData[3].strokes : null;
+      let r1 = roundData[1]?.holes > 0 ? roundData[1].strokes : null;
+      let r2 = roundData[2]?.holes > 0 ? roundData[2].strokes : null;
+      let r3 = roundData[3]?.holes > 0 ? roundData[3].strokes : null;
+      let holesPlayed = roundData[3]?.holes || 0;
+
+      // Manuell bestätigtes Endergebnis Jacob Boether – Bad Saarow
+      if (
+        tournamentId === "d4a92ae2-6ecd-4043-8b5a-82414c597036" &&
+        reg.id === "14e39112-6ce6-4eaf-9b97-097f758789f4"
+      ) {
+        r1 = 75;
+        r2 = 72;
+        r3 = 74;
+        holesPlayed = 18;
+      }
+
       const total = (r1 || 0) + (r2 || 0) + (r3 || 0) || null;
-      const holesPlayed = roundData[3]?.holes || 0;
 
       return {
         id: reg.id,
