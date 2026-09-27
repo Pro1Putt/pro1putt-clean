@@ -162,6 +162,7 @@ export async function GET(req: Request) {
 
     return NextResponse.json({
       ok: true,
+      debug_score_rows: manualScores?.length || 0,
       players,
       live: players.some((p: any) => p.is_live),
       updated_at: new Date().toISOString(),
