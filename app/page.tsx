@@ -313,8 +313,8 @@ export default function HomeV2() {
         title: "Open Faldo Course",
         date: "25.–27.09.2026",
         place: "Bad Saarow",
-        status: "Limited Entry",
-        finished: false,
+        status: "Abgeschlossen",
+        finished: true,
       },
       {
         title: "Open Finals – North Course",

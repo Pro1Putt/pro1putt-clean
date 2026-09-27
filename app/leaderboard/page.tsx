@@ -87,7 +87,7 @@ export default function LeaderboardOverviewPage() {
           ) : tournaments.map((t) => {
             const slug = getSlug(t.id);
             const meta = getMeta(t.id);
-            const isFinished = slug === "winston-open";
+            const isFinished = slug === "winston-open" || slug === "bad-saarow";
 
             return (
               <div
