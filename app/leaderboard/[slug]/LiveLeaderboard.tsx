@@ -174,9 +174,16 @@ export default function LiveLeaderboard({ tournamentId }: Props) {
     });
 
   const renderSection = (title: string, subtitle: string, group: LivePlayer[]) => {
-    const sorted = [...group].sort(
-      (a, b) => (a.total_strokes ?? 99999) - (b.total_strokes ?? 99999)
-    );
+    const sorted = [...group].sort((a, b) => {
+      const holesA = a.holes_played ?? 0;
+      const holesB = b.holes_played ?? 0;
+
+      if (holesA !== holesB) {
+        return holesB - holesA;
+      }
+
+      return (a.total_strokes ?? 99999) - (b.total_strokes ?? 99999);
+    });
     const ranked = sorted.map((p, i) => ({ ...p, rank: i + 1 }));
 
     return (
