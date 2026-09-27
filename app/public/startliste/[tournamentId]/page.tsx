@@ -141,7 +141,7 @@ export default async function PublicStartlistPage({
           </div>
 
           <div style={styles.footer}>
-            PRO1PUTT · Tournament Registration & Live Scoring
+            PRO1PUTT · Tournament Registration & Optional Live Scoring
           </div>
         </div>
       </main>
@@ -337,7 +337,7 @@ export default async function PublicStartlistPage({
         )}
 
         <div style={styles.footer}>
-          PRO1PUTT · Tournament Registration & Live Scoring
+          PRO1PUTT · Tournament Registration & Optional Live Scoring
         </div>
       </div>
     </main>

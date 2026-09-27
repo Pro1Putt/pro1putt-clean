@@ -253,7 +253,7 @@ export default function LiveScoringFlightPage() {
       <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 14 }}>
         <img src={LOGO_URL} alt="PRO1PUTT" style={{ height: 46, width: "auto", display: "block" }} />
         <div style={{ flex: 1 }}>
-          <div style={{ fontSize: 22, fontWeight: 1000, color: GREEN }}>Live Scoring</div>
+          <div style={{ fontSize: 22, fontWeight: 1000, color: GREEN }}>Live Scoring (optional)</div>
           <div style={{ fontSize: 12, opacity: 0.7 }}>Round {round}</div>
         </div>
         {statusLoading ? smallPill("Prüfe…") : confirmed ? smallPill("Bestätigt", true) : smallPill("Offen")}

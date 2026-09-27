@@ -46,7 +46,7 @@ const tournamentId = Array.isArray((params as any).tournamentId)
       </div>
 
       <h1 style={{ fontSize: 28, fontWeight: 900, color: "#1e4620" }}>
-        Live Scoring
+        Live Scoring (optional)
       </h1>
 
       <form onSubmit={handleSubmit} style={{ marginTop: 30 }}>

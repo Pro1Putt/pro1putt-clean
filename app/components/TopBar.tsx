@@ -211,7 +211,7 @@ export default function TopBar() {
             <img className="p1-logo" src={LOGO_URL()} alt="PRO1PUTT" />
             <span className="p1-brand-text">
               <span className="p1-brand-title">PRO1PUTT</span>
-              <span className="p1-brand-sub">Tournament Registration & Live Scoring</span>
+              <span className="p1-brand-sub">Tournament Registration & Optional Live Scoring</span>
             </span>
           </a>
 

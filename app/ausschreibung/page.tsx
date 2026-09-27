@@ -515,9 +515,9 @@ style={{
               </ul>
             </Card>
 
-            <Card title="Live-Scoring (verpflichtend)">
+            <Card title="Live-Scoring (optional)">
               Die Eingabe der Ergebnisse nach Beendigung <strong>jedes gespielten Loches</strong> direkt in das
-              Live-Scoring ist verpflichtend.
+              Live-Scoring ist optional.
 
               Trotz Live-Scoring bleibt die ordnungsgemäße Abgabe
 und Gegenzeichnung der Scorekarte gemäß DGV-Regelwerk verpflichtend.

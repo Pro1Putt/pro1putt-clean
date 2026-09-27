@@ -74,7 +74,7 @@ export default function LeaderboardOverviewPage() {
             Leaderboard 2026
           </h1>
           <p style={{ margin: 0, fontSize: 16, opacity: 0.9, maxWidth: 600 }}>
-            Live Scoring & offizielle Ergebnisse aller PRO1PUTT Turniere
+            Optionales Live-Scoring & offizielle Ergebnisse aller PRO1PUTT Turniere
           </p>
         </section>
 
@@ -126,7 +126,7 @@ export default function LeaderboardOverviewPage() {
                         display: "inline-flex", alignItems: "center", gap: 6,
                       }}>
                         <span style={{ width: 7, height: 7, borderRadius: "50%", background: "#e65100", display: "inline-block" }} />
-                        Live Scoring
+                        Live Scoring (optional)
                       </span>
                     )}
                   </div>
