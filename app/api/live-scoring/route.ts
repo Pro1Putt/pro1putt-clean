@@ -152,6 +152,7 @@ export async function GET(req: Request) {
       const bDnf = b.tournament_status === "dnf" || b.tournament_status === "dq";
       if (aDnf && !bDnf) return 1;
       if (!aDnf && bDnf) return -1;
+      if (a.holes_played !== b.holes_played) return b.holes_played - a.holes_played;
       if (a.total_strokes !== null && b.total_strokes !== null) return a.total_strokes - b.total_strokes;
       if (a.total_strokes !== null) return -1;
       if (b.total_strokes !== null) return 1;
