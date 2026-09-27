@@ -58,11 +58,25 @@ export async function GET(req: Request) {
 
     // Leaderboard-Scores ausschließlich aus der offiziellen scores-Tabelle laden.
     // Diese enthält die gespeicherten Ergebnisse für Runde 1, 2 und 3.
-    const { data: manualScores, error: scoresError } = await supabase
-      .from("scores")
-      .select("registration_id,hole_number,strokes,round_number")
-      .eq("tournament_id", tournamentId)
-      .range(0, 4999);
+    const manualScores: any[] = [];
+    let scoresError: any = null;
+
+    for (let from = 0; ; from += 1000) {
+      const { data, error } = await supabase
+        .from("scores")
+        .select("registration_id,hole_number,strokes,round_number")
+        .eq("tournament_id", tournamentId)
+        .range(from, from + 999);
+
+      if (error) {
+        scoresError = error;
+        break;
+      }
+
+      manualScores.push(...(data || []));
+
+      if (!data || data.length < 1000) break;
+    }
 
     if (scoresError) throw scoresError;
 
