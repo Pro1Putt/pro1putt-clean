@@ -373,7 +373,7 @@ export default function HomeV2() {
 
         
        {t.finished ? (
-          <a href="/leaderboard/winston-open" style={{ padding: "14px 18px", background: "#e8f5ee", color: "#0b5d3b", borderRadius: 14, fontWeight: 900, textDecoration: "none", textAlign: "center", marginTop: 20, display: "block" }}>
+          <a href={t.place === "Bad Saarow" ? "/leaderboard/bad-saarow" : "/leaderboard/winston-open"} style={{ padding: "14px 18px", background: "#e8f5ee", color: "#0b5d3b", borderRadius: 14, fontWeight: 900, textDecoration: "none", textAlign: "center", marginTop: 20, display: "block" }}>
             🏆 Ergebnisse ansehen →
           </a>
         ) : (
