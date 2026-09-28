@@ -9017,14 +9017,6 @@
   },
   {
     "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
-    "first_name": "Julian",
-    "last_name": "Schwarz",
-    "player_id": "16bbde86-be42-4588-bf60-d2798fec823b",
-    "hole_number": 3,
-    "strokes": 3
-  },
-  {
-    "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
     "first_name": "Tom",
     "last_name": "Schult",
     "player_id": "08d26a81-b59d-4162-ad72-b07ee5d75c64",
@@ -11334,6 +11326,14 @@
     "player_id": "84a783cc-96d7-494c-9413-5c6075d22010",
     "hole_number": 18,
     "strokes": 6
+  },
+  {
+    "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
+    "first_name": "Julian",
+    "last_name": "Schwarz",
+    "player_id": "16bbde86-be42-4588-bf60-d2798fec823b",
+    "hole_number": 3,
+    "strokes": 3
   },
   {
     "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
