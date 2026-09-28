@@ -503,8 +503,8 @@
     "setup_tee_name": null,
     "rounds_played": 3,
     "stableford_total": 0,
-    "gross_total": 15,
-    "net_total": 15
+    "gross_total": 269,
+    "net_total": 269
   },
   {
     "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
@@ -514,10 +514,10 @@
     "gender": "Boys",
     "hcp": 4.5,
     "setup_tee_name": null,
-    "rounds_played": 2,
+    "rounds_played": 3,
     "stableford_total": 0,
-    "gross_total": 36,
-    "net_total": 36
+    "gross_total": 251,
+    "net_total": 251
   },
   {
     "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
@@ -527,10 +527,10 @@
     "gender": "Boys",
     "hcp": 0,
     "setup_tee_name": null,
-    "rounds_played": 1,
+    "rounds_played": 3,
     "stableford_total": 0,
-    "gross_total": 17,
-    "net_total": 17
+    "gross_total": 211,
+    "net_total": 211
   },
   {
     "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
@@ -540,10 +540,10 @@
     "gender": "Boys",
     "hcp": -1.1,
     "setup_tee_name": null,
-    "rounds_played": 1,
+    "rounds_played": 2,
     "stableford_total": 0,
-    "gross_total": 77,
-    "net_total": 77
+    "gross_total": 147,
+    "net_total": 147
   },
   {
     "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
@@ -553,10 +553,10 @@
     "gender": "Boys",
     "hcp": -2.2,
     "setup_tee_name": null,
-    "rounds_played": 1,
+    "rounds_played": 3,
     "stableford_total": 0,
-    "gross_total": 12,
-    "net_total": 12
+    "gross_total": 207,
+    "net_total": 207
   },
   {
     "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
@@ -566,10 +566,10 @@
     "gender": "Boys",
     "hcp": 20.8,
     "setup_tee_name": null,
-    "rounds_played": 1,
+    "rounds_played": 3,
     "stableford_total": 0,
-    "gross_total": 5,
-    "net_total": 5
+    "gross_total": 303,
+    "net_total": 303
   },
   {
     "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
@@ -579,10 +579,23 @@
     "gender": "Boys",
     "hcp": 9.9,
     "setup_tee_name": null,
-    "rounds_played": 1,
+    "rounds_played": 3,
     "stableford_total": 0,
-    "gross_total": 40,
-    "net_total": 40
+    "gross_total": 127,
+    "net_total": 127
+  },
+  {
+    "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
+    "registration_id": "36381ba5-02d8-474e-a058-58b719674b9a",
+    "first_name": "Paul Jules",
+    "last_name": "Nischk",
+    "gender": "Boys",
+    "hcp": 20.9,
+    "setup_tee_name": null,
+    "rounds_played": 3,
+    "stableford_total": 0,
+    "gross_total": 137,
+    "net_total": 137
   },
   {
     "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
@@ -592,10 +605,10 @@
     "gender": "Boys",
     "hcp": -1,
     "setup_tee_name": null,
-    "rounds_played": 2,
+    "rounds_played": 3,
     "stableford_total": 0,
-    "gross_total": 52,
-    "net_total": 52
+    "gross_total": 226,
+    "net_total": 226
   },
   {
     "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
@@ -605,10 +618,10 @@
     "gender": "Boys",
     "hcp": 21.8,
     "setup_tee_name": null,
-    "rounds_played": 2,
+    "rounds_played": 3,
     "stableford_total": 0,
-    "gross_total": 51,
-    "net_total": 51
+    "gross_total": 173,
+    "net_total": 173
   },
   {
     "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
@@ -618,10 +631,10 @@
     "gender": "Boys",
     "hcp": 11.6,
     "setup_tee_name": null,
-    "rounds_played": 1,
+    "rounds_played": 3,
     "stableford_total": 0,
-    "gross_total": 40,
-    "net_total": 40
+    "gross_total": 131,
+    "net_total": 131
   },
   {
     "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
@@ -631,10 +644,10 @@
     "gender": "Boys",
     "hcp": 6.8,
     "setup_tee_name": null,
-    "rounds_played": 2,
+    "rounds_played": 3,
     "stableford_total": 0,
-    "gross_total": 12,
-    "net_total": 12
+    "gross_total": 262,
+    "net_total": 262
   },
   {
     "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
@@ -644,10 +657,10 @@
     "gender": "Boys",
     "hcp": 8.6,
     "setup_tee_name": null,
-    "rounds_played": 1,
+    "rounds_played": 3,
     "stableford_total": 0,
-    "gross_total": 6,
-    "net_total": 6
+    "gross_total": 246,
+    "net_total": 246
   },
   {
     "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
@@ -657,10 +670,10 @@
     "gender": "Boys",
     "hcp": 5.9,
     "setup_tee_name": null,
-    "rounds_played": 2,
+    "rounds_played": 3,
     "stableford_total": 0,
-    "gross_total": 102,
-    "net_total": 102
+    "gross_total": 225,
+    "net_total": 225
   },
   {
     "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
@@ -670,10 +683,10 @@
     "gender": "Boys",
     "hcp": 19.4,
     "setup_tee_name": null,
-    "rounds_played": 2,
+    "rounds_played": 3,
     "stableford_total": 0,
-    "gross_total": 14,
-    "net_total": 14
+    "gross_total": 153,
+    "net_total": 153
   },
   {
     "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
@@ -685,8 +698,8 @@
     "setup_tee_name": null,
     "rounds_played": 3,
     "stableford_total": 0,
-    "gross_total": 24,
-    "net_total": 24
+    "gross_total": 236,
+    "net_total": 236
   },
   {
     "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
@@ -696,10 +709,10 @@
     "gender": "Boys",
     "hcp": 24.9,
     "setup_tee_name": null,
-    "rounds_played": 2,
+    "rounds_played": 3,
     "stableford_total": 0,
-    "gross_total": 124,
-    "net_total": 124
+    "gross_total": 299,
+    "net_total": 299
   },
   {
     "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
@@ -709,10 +722,10 @@
     "gender": "Boys",
     "hcp": 5.3,
     "setup_tee_name": null,
-    "rounds_played": 2,
+    "rounds_played": 3,
     "stableford_total": 0,
-    "gross_total": 10,
-    "net_total": 10
+    "gross_total": 248,
+    "net_total": 248
   },
   {
     "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
@@ -722,10 +735,10 @@
     "gender": "Boys",
     "hcp": 10.2,
     "setup_tee_name": null,
-    "rounds_played": 2,
+    "rounds_played": 3,
     "stableford_total": 0,
-    "gross_total": 14,
-    "net_total": 14
+    "gross_total": 283,
+    "net_total": 283
   },
   {
     "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
@@ -735,10 +748,10 @@
     "gender": "Boys",
     "hcp": 15.3,
     "setup_tee_name": null,
-    "rounds_played": 2,
+    "rounds_played": 3,
     "stableford_total": 0,
-    "gross_total": 44,
-    "net_total": 44
+    "gross_total": 143,
+    "net_total": 143
   },
   {
     "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
@@ -748,10 +761,10 @@
     "gender": "Boys",
     "hcp": 17.7,
     "setup_tee_name": null,
-    "rounds_played": 1,
+    "rounds_played": 3,
     "stableford_total": 0,
-    "gross_total": 87,
-    "net_total": 87
+    "gross_total": 308,
+    "net_total": 308
   },
   {
     "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
@@ -761,10 +774,10 @@
     "gender": "Boys",
     "hcp": 23.1,
     "setup_tee_name": null,
-    "rounds_played": 2,
+    "rounds_played": 3,
     "stableford_total": 0,
-    "gross_total": 110,
-    "net_total": 110
+    "gross_total": 357,
+    "net_total": 357
   },
   {
     "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
@@ -774,10 +787,10 @@
     "gender": "Boys",
     "hcp": 3.9,
     "setup_tee_name": null,
-    "rounds_played": 2,
+    "rounds_played": 3,
     "stableford_total": 0,
-    "gross_total": 66,
-    "net_total": 66
+    "gross_total": 233,
+    "net_total": 233
   },
   {
     "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
@@ -787,10 +800,10 @@
     "gender": "Boys",
     "hcp": 7.3,
     "setup_tee_name": null,
-    "rounds_played": 2,
+    "rounds_played": 3,
     "stableford_total": 0,
-    "gross_total": 104,
-    "net_total": 104
+    "gross_total": 247,
+    "net_total": 247
   },
   {
     "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
@@ -800,10 +813,10 @@
     "gender": "Boys",
     "hcp": 20.9,
     "setup_tee_name": null,
-    "rounds_played": 2,
+    "rounds_played": 3,
     "stableford_total": 0,
-    "gross_total": 53,
-    "net_total": 53
+    "gross_total": 154,
+    "net_total": 154
   },
   {
     "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
@@ -813,10 +826,10 @@
     "gender": "Boys",
     "hcp": 5.1,
     "setup_tee_name": null,
-    "rounds_played": 2,
+    "rounds_played": 3,
     "stableford_total": 0,
-    "gross_total": 68,
-    "net_total": 68
+    "gross_total": 236,
+    "net_total": 236
   },
   {
     "tournament_id": null,

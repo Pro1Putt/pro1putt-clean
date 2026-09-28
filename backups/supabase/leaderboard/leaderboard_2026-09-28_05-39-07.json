@@ -385,8 +385,8 @@
     "flight_id": "0e612dc9-3851-4299-9e84-d197942dc94b",
     "flight_number": 6,
     "total_holes": 18,
-    "total_strokes": 55,
-    "holes_played": 13,
+    "total_strokes": 74,
+    "holes_played": 18,
     "flight_status": "active"
   },
   {
@@ -398,8 +398,8 @@
     "flight_id": "0e612dc9-3851-4299-9e84-d197942dc94b",
     "flight_number": 6,
     "total_holes": 18,
-    "total_strokes": 63,
-    "holes_played": 13,
+    "total_strokes": 85,
+    "holes_played": 18,
     "flight_status": "active"
   }
 ]
