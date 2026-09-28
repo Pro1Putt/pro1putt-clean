@@ -283,9 +283,9 @@
     "setup_slope": null,
     "setup_course_rating": null,
     "playing_handicap": null,
-    "holes_played": 19,
-    "gross_total": 77,
-    "net_total": 77,
+    "holes_played": 18,
+    "gross_total": 72,
+    "net_total": 72,
     "stableford_total": 0
   },
   {
@@ -1134,8 +1134,8 @@
     "setup_course_rating": null,
     "playing_handicap": null,
     "holes_played": 18,
-    "gross_total": 82,
-    "net_total": 82,
+    "gross_total": 81,
+    "net_total": 81,
     "stableford_total": 0
   },
   {
@@ -1813,9 +1813,9 @@
     "setup_slope": null,
     "setup_course_rating": null,
     "playing_handicap": null,
-    "holes_played": 19,
-    "gross_total": 94,
-    "net_total": 94,
+    "holes_played": 18,
+    "gross_total": 89,
+    "net_total": 89,
     "stableford_total": 0
   },
   {

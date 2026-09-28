@@ -5241,6 +5241,14 @@
   },
   {
     "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
+    "first_name": "Lennart",
+    "last_name": "Schult",
+    "player_id": "84a783cc-96d7-494c-9413-5c6075d22010",
+    "hole_number": 1,
+    "strokes": 5
+  },
+  {
+    "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
     "first_name": "Alexander",
     "last_name": "Mylius",
     "player_id": "de28cd8e-9d77-4157-807a-369c938090ab",
@@ -5254,14 +5262,6 @@
     "player_id": "96b9b1f2-6aa1-4ce3-8602-db8885855df9",
     "hole_number": 14,
     "strokes": 7
-  },
-  {
-    "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
-    "first_name": "Lennart",
-    "last_name": "Schult",
-    "player_id": "84a783cc-96d7-494c-9413-5c6075d22010",
-    "hole_number": 1,
-    "strokes": 5
   },
   {
     "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
@@ -5581,22 +5581,6 @@
     "last_name": "Bohl",
     "player_id": "b64c96a6-6bd0-461d-9f68-f49865e53db5",
     "hole_number": 6,
-    "strokes": 5
-  },
-  {
-    "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
-    "first_name": "Jackson",
-    "last_name": "Sharp",
-    "player_id": "eed4f2ad-d027-443d-9d78-a70e0a3b93a7",
-    "hole_number": 1,
-    "strokes": 5
-  },
-  {
-    "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
-    "first_name": "Jacob",
-    "last_name": "Boether",
-    "player_id": "14e39112-6ce6-4eaf-9b97-097f758789f4",
-    "hole_number": 1,
     "strokes": 5
   },
   {
@@ -7905,38 +7889,6 @@
   },
   {
     "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
-    "first_name": "Lennart",
-    "last_name": "Schult",
-    "player_id": "84a783cc-96d7-494c-9413-5c6075d22010",
-    "hole_number": 2,
-    "strokes": 5
-  },
-  {
-    "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
-    "first_name": "Lennart",
-    "last_name": "Schult",
-    "player_id": "84a783cc-96d7-494c-9413-5c6075d22010",
-    "hole_number": 3,
-    "strokes": 4
-  },
-  {
-    "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
-    "first_name": "Lennart",
-    "last_name": "Schult",
-    "player_id": "84a783cc-96d7-494c-9413-5c6075d22010",
-    "hole_number": 4,
-    "strokes": 4
-  },
-  {
-    "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
-    "first_name": "Lennart",
-    "last_name": "Schult",
-    "player_id": "84a783cc-96d7-494c-9413-5c6075d22010",
-    "hole_number": 5,
-    "strokes": 4
-  },
-  {
-    "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
     "first_name": "Nicolas",
     "last_name": "Gregg",
     "player_id": "79fae2cb-e948-49a9-aa44-6bb1d4ea602b",
@@ -7977,54 +7929,6 @@
   },
   {
     "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
-    "first_name": "Lennart",
-    "last_name": "Schult",
-    "player_id": "84a783cc-96d7-494c-9413-5c6075d22010",
-    "hole_number": 6,
-    "strokes": 5
-  },
-  {
-    "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
-    "first_name": "Lennart",
-    "last_name": "Schult",
-    "player_id": "84a783cc-96d7-494c-9413-5c6075d22010",
-    "hole_number": 7,
-    "strokes": 5
-  },
-  {
-    "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
-    "first_name": "Lennart",
-    "last_name": "Schult",
-    "player_id": "84a783cc-96d7-494c-9413-5c6075d22010",
-    "hole_number": 8,
-    "strokes": 4
-  },
-  {
-    "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
-    "first_name": "Lennart",
-    "last_name": "Schult",
-    "player_id": "84a783cc-96d7-494c-9413-5c6075d22010",
-    "hole_number": 9,
-    "strokes": 4
-  },
-  {
-    "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
-    "first_name": "Lennart",
-    "last_name": "Schult",
-    "player_id": "84a783cc-96d7-494c-9413-5c6075d22010",
-    "hole_number": 10,
-    "strokes": 4
-  },
-  {
-    "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
-    "first_name": "Lennart",
-    "last_name": "Schult",
-    "player_id": "84a783cc-96d7-494c-9413-5c6075d22010",
-    "hole_number": 11,
-    "strokes": 6
-  },
-  {
-    "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
     "first_name": "Alexander",
     "last_name": "Mylius",
     "player_id": "de28cd8e-9d77-4157-807a-369c938090ab",
@@ -8038,62 +7942,6 @@
     "player_id": "de28cd8e-9d77-4157-807a-369c938090ab",
     "hole_number": 15,
     "strokes": 4
-  },
-  {
-    "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
-    "first_name": "Lennart",
-    "last_name": "Schult",
-    "player_id": "84a783cc-96d7-494c-9413-5c6075d22010",
-    "hole_number": 12,
-    "strokes": 5
-  },
-  {
-    "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
-    "first_name": "Lennart",
-    "last_name": "Schult",
-    "player_id": "84a783cc-96d7-494c-9413-5c6075d22010",
-    "hole_number": 13,
-    "strokes": 3
-  },
-  {
-    "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
-    "first_name": "Lennart",
-    "last_name": "Schult",
-    "player_id": "84a783cc-96d7-494c-9413-5c6075d22010",
-    "hole_number": 14,
-    "strokes": 6
-  },
-  {
-    "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
-    "first_name": "Lennart",
-    "last_name": "Schult",
-    "player_id": "84a783cc-96d7-494c-9413-5c6075d22010",
-    "hole_number": 15,
-    "strokes": 5
-  },
-  {
-    "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
-    "first_name": "Lennart",
-    "last_name": "Schult",
-    "player_id": "84a783cc-96d7-494c-9413-5c6075d22010",
-    "hole_number": 16,
-    "strokes": 4
-  },
-  {
-    "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
-    "first_name": "Lennart",
-    "last_name": "Schult",
-    "player_id": "84a783cc-96d7-494c-9413-5c6075d22010",
-    "hole_number": 17,
-    "strokes": 2
-  },
-  {
-    "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
-    "first_name": "Lennart",
-    "last_name": "Schult",
-    "player_id": "84a783cc-96d7-494c-9413-5c6075d22010",
-    "hole_number": 18,
-    "strokes": 7
   },
   {
     "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
@@ -9166,14 +9014,6 @@
     "player_id": "16bbde86-be42-4588-bf60-d2798fec823b",
     "hole_number": 2,
     "strokes": 4
-  },
-  {
-    "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
-    "first_name": "Julian",
-    "last_name": "Schwarz",
-    "player_id": "16bbde86-be42-4588-bf60-d2798fec823b",
-    "hole_number": 3,
-    "strokes": 3
   },
   {
     "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
@@ -11349,6 +11189,150 @@
     "last_name": "Gregg",
     "player_id": "79fae2cb-e948-49a9-aa44-6bb1d4ea602b",
     "hole_number": 18,
+    "strokes": 3
+  },
+  {
+    "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
+    "first_name": "Lennart",
+    "last_name": "Schult",
+    "player_id": "84a783cc-96d7-494c-9413-5c6075d22010",
+    "hole_number": 2,
+    "strokes": 5
+  },
+  {
+    "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
+    "first_name": "Lennart",
+    "last_name": "Schult",
+    "player_id": "84a783cc-96d7-494c-9413-5c6075d22010",
+    "hole_number": 3,
+    "strokes": 4
+  },
+  {
+    "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
+    "first_name": "Lennart",
+    "last_name": "Schult",
+    "player_id": "84a783cc-96d7-494c-9413-5c6075d22010",
+    "hole_number": 4,
+    "strokes": 4
+  },
+  {
+    "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
+    "first_name": "Lennart",
+    "last_name": "Schult",
+    "player_id": "84a783cc-96d7-494c-9413-5c6075d22010",
+    "hole_number": 5,
+    "strokes": 4
+  },
+  {
+    "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
+    "first_name": "Lennart",
+    "last_name": "Schult",
+    "player_id": "84a783cc-96d7-494c-9413-5c6075d22010",
+    "hole_number": 6,
+    "strokes": 5
+  },
+  {
+    "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
+    "first_name": "Lennart",
+    "last_name": "Schult",
+    "player_id": "84a783cc-96d7-494c-9413-5c6075d22010",
+    "hole_number": 7,
+    "strokes": 5
+  },
+  {
+    "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
+    "first_name": "Lennart",
+    "last_name": "Schult",
+    "player_id": "84a783cc-96d7-494c-9413-5c6075d22010",
+    "hole_number": 8,
+    "strokes": 4
+  },
+  {
+    "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
+    "first_name": "Lennart",
+    "last_name": "Schult",
+    "player_id": "84a783cc-96d7-494c-9413-5c6075d22010",
+    "hole_number": 9,
+    "strokes": 4
+  },
+  {
+    "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
+    "first_name": "Lennart",
+    "last_name": "Schult",
+    "player_id": "84a783cc-96d7-494c-9413-5c6075d22010",
+    "hole_number": 10,
+    "strokes": 4
+  },
+  {
+    "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
+    "first_name": "Lennart",
+    "last_name": "Schult",
+    "player_id": "84a783cc-96d7-494c-9413-5c6075d22010",
+    "hole_number": 11,
+    "strokes": 6
+  },
+  {
+    "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
+    "first_name": "Lennart",
+    "last_name": "Schult",
+    "player_id": "84a783cc-96d7-494c-9413-5c6075d22010",
+    "hole_number": 12,
+    "strokes": 5
+  },
+  {
+    "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
+    "first_name": "Lennart",
+    "last_name": "Schult",
+    "player_id": "84a783cc-96d7-494c-9413-5c6075d22010",
+    "hole_number": 13,
+    "strokes": 3
+  },
+  {
+    "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
+    "first_name": "Lennart",
+    "last_name": "Schult",
+    "player_id": "84a783cc-96d7-494c-9413-5c6075d22010",
+    "hole_number": 14,
+    "strokes": 6
+  },
+  {
+    "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
+    "first_name": "Lennart",
+    "last_name": "Schult",
+    "player_id": "84a783cc-96d7-494c-9413-5c6075d22010",
+    "hole_number": 15,
+    "strokes": 5
+  },
+  {
+    "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
+    "first_name": "Lennart",
+    "last_name": "Schult",
+    "player_id": "84a783cc-96d7-494c-9413-5c6075d22010",
+    "hole_number": 16,
+    "strokes": 4
+  },
+  {
+    "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
+    "first_name": "Lennart",
+    "last_name": "Schult",
+    "player_id": "84a783cc-96d7-494c-9413-5c6075d22010",
+    "hole_number": 17,
+    "strokes": 2
+  },
+  {
+    "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
+    "first_name": "Lennart",
+    "last_name": "Schult",
+    "player_id": "84a783cc-96d7-494c-9413-5c6075d22010",
+    "hole_number": 18,
+    "strokes": 6
+  },
+  {
+    "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
+    "first_name": "Julian",
+    "last_name": "Schwarz",
+    "player_id": "16bbde86-be42-4588-bf60-d2798fec823b",
+    "hole_number": 3,
     "strokes": 3
   },
   {
