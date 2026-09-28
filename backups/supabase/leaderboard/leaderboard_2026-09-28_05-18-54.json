@@ -273,19 +273,6 @@
     "flight_status": "active"
   },
   {
-    "registration_id": "eed4f2ad-d027-443d-9d78-a70e0a3b93a7",
-    "player_name": "Jackson Sharp",
-    "handicap": 7.3,
-    "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
-    "tournament_name": "PRO1PUTT – Open Faldo Course (Bad Saarow)",
-    "flight_id": "3e4c1c36-feb0-496e-90dc-f23a56071216",
-    "flight_number": 4,
-    "total_holes": 18,
-    "total_strokes": 10,
-    "holes_played": 2,
-    "flight_status": "active"
-  },
-  {
     "registration_id": "9fab0351-ea45-4762-a3b9-4d61ef1d99b9",
     "player_name": "Carl Balz",
     "handicap": 5.3,
@@ -299,15 +286,15 @@
     "flight_status": "active"
   },
   {
-    "registration_id": "f42128ff-96ff-4c07-8ad5-c344d9767135",
-    "player_name": "Nicolas Metz",
-    "handicap": 20.9,
+    "registration_id": "eed4f2ad-d027-443d-9d78-a70e0a3b93a7",
+    "player_name": "Jackson Sharp",
+    "handicap": 7.3,
     "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
     "tournament_name": "PRO1PUTT – Open Faldo Course (Bad Saarow)",
-    "flight_id": "5c74550f-dca7-407f-a35f-ba0a3ea661d8",
-    "flight_number": 8,
-    "total_holes": 9,
-    "total_strokes": 12,
+    "flight_id": "3e4c1c36-feb0-496e-90dc-f23a56071216",
+    "flight_number": 4,
+    "total_holes": 18,
+    "total_strokes": 10,
     "holes_played": 2,
     "flight_status": "active"
   },
@@ -325,6 +312,19 @@
     "flight_status": "active"
   },
   {
+    "registration_id": "f42128ff-96ff-4c07-8ad5-c344d9767135",
+    "player_name": "Nicolas Metz",
+    "handicap": 20.9,
+    "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
+    "tournament_name": "PRO1PUTT – Open Faldo Course (Bad Saarow)",
+    "flight_id": "5c74550f-dca7-407f-a35f-ba0a3ea661d8",
+    "flight_number": 8,
+    "total_holes": 9,
+    "total_strokes": 12,
+    "holes_played": 2,
+    "flight_status": "active"
+  },
+  {
     "registration_id": "10f1afa0-aa58-4b13-8d05-4e0b8e462e5f",
     "player_name": "Aaron Kastein",
     "handicap": 0,
@@ -338,19 +338,6 @@
     "flight_status": "active"
   },
   {
-    "registration_id": "60d9add6-17ee-430f-a974-1bc5cfa95c84",
-    "player_name": "Henry Pete Nischk",
-    "handicap": 11.6,
-    "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
-    "tournament_name": "PRO1PUTT – Open Faldo Course (Bad Saarow)",
-    "flight_id": "8f90cebb-bf39-438c-9cc6-def06ffbfbe7",
-    "flight_number": 10,
-    "total_holes": 9,
-    "total_strokes": 34,
-    "holes_played": 8,
-    "flight_status": "active"
-  },
-  {
     "registration_id": "2c5f4c05-03c1-4d64-960d-4e7b3c33c949",
     "player_name": "Elias Didjurgis",
     "handicap": 9.9,
@@ -359,20 +346,20 @@
     "flight_id": "8f90cebb-bf39-438c-9cc6-def06ffbfbe7",
     "flight_number": 10,
     "total_holes": 9,
-    "total_strokes": 35,
-    "holes_played": 8,
+    "total_strokes": 40,
+    "holes_played": 9,
     "flight_status": "active"
   },
   {
-    "registration_id": "fbc1c0c4-2815-4bdb-af5b-c0a7c4ebf642",
-    "player_name": "Hugo Freund",
-    "handicap": 5.1,
+    "registration_id": "60d9add6-17ee-430f-a974-1bc5cfa95c84",
+    "player_name": "Henry Pete Nischk",
+    "handicap": 11.6,
     "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
     "tournament_name": "PRO1PUTT – Open Faldo Course (Bad Saarow)",
-    "flight_id": "0e612dc9-3851-4299-9e84-d197942dc94b",
-    "flight_number": 6,
-    "total_holes": 18,
-    "total_strokes": 43,
+    "flight_id": "8f90cebb-bf39-438c-9cc6-def06ffbfbe7",
+    "flight_number": 10,
+    "total_holes": 9,
+    "total_strokes": 40,
     "holes_played": 9,
     "flight_status": "active"
   },
@@ -398,8 +385,21 @@
     "flight_id": "0e612dc9-3851-4299-9e84-d197942dc94b",
     "flight_number": 6,
     "total_holes": 18,
-    "total_strokes": 44,
-    "holes_played": 10,
+    "total_strokes": 74,
+    "holes_played": 18,
+    "flight_status": "active"
+  },
+  {
+    "registration_id": "fbc1c0c4-2815-4bdb-af5b-c0a7c4ebf642",
+    "player_name": "Hugo Freund",
+    "handicap": 5.1,
+    "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
+    "tournament_name": "PRO1PUTT – Open Faldo Course (Bad Saarow)",
+    "flight_id": "0e612dc9-3851-4299-9e84-d197942dc94b",
+    "flight_number": 6,
+    "total_holes": 18,
+    "total_strokes": 85,
+    "holes_played": 18,
     "flight_status": "active"
   }
 ]
