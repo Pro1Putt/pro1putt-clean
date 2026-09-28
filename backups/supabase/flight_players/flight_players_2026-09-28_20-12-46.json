@@ -1242,15 +1242,6 @@
     "status": "active"
   },
   {
-    "id": "410c4c2e-b5d7-4788-90c8-97963cf7d113",
-    "flight_id": "69469e48-c74d-446f-b139-1ca985f176ab",
-    "registration_id": "46fdab66-f422-4168-83fc-70e67f137b2d",
-    "seat": 1,
-    "marks_registration_id": "46fdab66-f422-4168-83fc-70e67f137b2d",
-    "created_at": "2026-09-24T12:00:45.26337+00:00",
-    "status": "active"
-  },
-  {
     "id": "9cc64377-8363-4b3c-bdef-71c21d1d3de4",
     "flight_id": "69469e48-c74d-446f-b139-1ca985f176ab",
     "registration_id": "becafb16-662c-4276-bb91-a5b09034bec9",
