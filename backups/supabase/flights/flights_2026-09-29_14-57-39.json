@@ -325,6 +325,19 @@
     "play_date": null
   },
   {
+    "id": "07b598b8-d3d8-41de-9bbc-33bc75757690",
+    "tournament_id": "e9b23d74-ab9d-4ba5-86bf-744915e1ee28",
+    "round": 1,
+    "flight_number": 1,
+    "holes": 9,
+    "start_time": null,
+    "created_at": "2026-09-29T12:43:54.579674+00:00",
+    "gender": "Girls",
+    "status": "active",
+    "round_number": 1,
+    "play_date": "2026-04-11"
+  },
+  {
     "id": "2b2beac4-ccf9-4c7c-b9d8-da3ea5de2879",
     "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
     "round": 1,
@@ -336,6 +349,19 @@
     "status": "active",
     "round_number": 1,
     "play_date": null
+  },
+  {
+    "id": "16c49367-8b51-43d8-9d0b-d5685d1202aa",
+    "tournament_id": "e9b23d74-ab9d-4ba5-86bf-744915e1ee28",
+    "round": 2,
+    "flight_number": 1,
+    "holes": 9,
+    "start_time": null,
+    "created_at": "2026-09-29T12:56:57.495261+00:00",
+    "gender": "Girls",
+    "status": "active",
+    "round_number": 1,
+    "play_date": "2026-04-12"
   },
   {
     "id": "41c2590e-ea22-44bf-b862-6b8068962a10",
@@ -540,19 +566,6 @@
     "holes": 9,
     "start_time": "2026-03-30 10:10:00+00",
     "created_at": "2026-03-31T15:14:05.334385+00:00",
-    "gender": "Boys",
-    "status": "active",
-    "round_number": 1,
-    "play_date": null
-  },
-  {
-    "id": "d4a97bf6-ce0f-421e-924f-6e157b580519",
-    "tournament_id": "e9b23d74-ab9d-4ba5-86bf-744915e1ee28",
-    "round": 1,
-    "flight_number": 1,
-    "holes": 18,
-    "start_time": "10:00",
-    "created_at": "2026-05-24T05:48:05.688176+00:00",
     "gender": "Boys",
     "status": "active",
     "round_number": 1,
@@ -817,6 +830,19 @@
     "status": "active",
     "round_number": 2,
     "play_date": null
+  },
+  {
+    "id": "3b900572-835d-4083-b1f4-0b360ac315fa",
+    "tournament_id": "e9b23d74-ab9d-4ba5-86bf-744915e1ee28",
+    "round": 1,
+    "flight_number": 2,
+    "holes": 9,
+    "start_time": null,
+    "created_at": "2026-09-29T12:51:36.848768+00:00",
+    "gender": null,
+    "status": "active",
+    "round_number": 1,
+    "play_date": "2026-04-11"
   },
   {
     "id": "5c74550f-dca7-407f-a35f-ba0a3ea661d8",
