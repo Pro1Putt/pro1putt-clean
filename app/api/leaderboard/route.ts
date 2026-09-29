@@ -198,16 +198,25 @@ export async function GET(req: Request) {
       }
     }
 
-    const { data: scoreRowsData, error: scoreErr } = await supabase
-      .from("scores")
-      .select("registration_id,hole_number,strokes,round_number")
-      .eq("tournament_id", tournamentId);
+    // Alle Scores seitenweise laden, damit Supabases 1000-Zeilen-Limit
+    // das Leaderboard bei größeren Turnieren nicht abschneidet.
+    const scoreRows: ScoreRow[] = [];
 
-    if (scoreErr) {
-      return NextResponse.json({ ok: false, error: scoreErr.message }, { status: 500 });
+    for (let from = 0; ; from += 1000) {
+      const { data, error } = await supabase
+        .from("scores")
+        .select("registration_id,hole_number,strokes,round_number")
+        .eq("tournament_id", tournamentId)
+        .range(from, from + 999);
+
+      if (error) {
+        return NextResponse.json({ ok: false, error: error.message }, { status: 500 });
+      }
+
+      scoreRows.push(...((data || []) as ScoreRow[]));
+
+      if (!data || data.length < 1000) break;
     }
-
-    const scoreRows = (scoreRowsData || []) as ScoreRow[];
 
     const byRegistrationRound = new Map<
       string,
