@@ -82,7 +82,11 @@ export async function GET(req: Request) {
 
     // Scores pro Spieler und Runde aggregieren.
     // Pro Spieler / Runde / Loch wird genau ein Wert gezählt.
-    const scoresByPlayer = new Map<string, Record<number, { strokes: number; holes: number }>>();
+    const scoresByPlayer = new Map<string, Record<number, {
+      strokes: number;
+      holes: number;
+      holeScores: Record<number, number>;
+    }>>();
     const seen = new Set<string>();
 
     for (const score of manualScores || []) {
@@ -102,15 +106,16 @@ export async function GET(req: Request) {
 
       if (!scoresByPlayer.has(score.registration_id)) {
         scoresByPlayer.set(score.registration_id, {
-          1: { strokes: 0, holes: 0 },
-          2: { strokes: 0, holes: 0 },
-          3: { strokes: 0, holes: 0 },
+          1: { strokes: 0, holes: 0, holeScores: {} },
+          2: { strokes: 0, holes: 0, holeScores: {} },
+          3: { strokes: 0, holes: 0, holeScores: {} },
         });
       }
 
       const entry = scoresByPlayer.get(score.registration_id)!;
       entry[round].strokes += Number(score.strokes);
       entry[round].holes += 1;
+      entry[round].holeScores[Number(score.hole_number)] = Number(score.strokes);
     }
 
     // Aktuellen Flight über flight_players bestimmen.
@@ -129,7 +134,11 @@ export async function GET(req: Request) {
     }
 
     const players = registrations.map((reg: any) => {
-      const roundData = scoresByPlayer.get(reg.id) || { 1: { strokes: 0, holes: 0 }, 2: { strokes: 0, holes: 0 }, 3: { strokes: 0, holes: 0 } };
+      const roundData = scoresByPlayer.get(reg.id) || {
+        1: { strokes: 0, holes: 0, holeScores: {} },
+        2: { strokes: 0, holes: 0, holeScores: {} },
+        3: { strokes: 0, holes: 0, holeScores: {} },
+      };
       const flight = currentFlightByPlayer.get(reg.id) || (reg.flight_id ? flightMap.get(reg.flight_id) : null);
 
       let r1 = roundData[1]?.holes > 0 ? roundData[1].strokes : null;
@@ -165,6 +174,9 @@ export async function GET(req: Request) {
         round1: r1,
         round2: r2,
         round3: r3,
+        round1_holes: roundData[1].holeScores,
+        round2_holes: roundData[2].holeScores,
+        round3_holes: roundData[3].holeScores,
         total_strokes: total,
         holes_played: holesPlayed,
         is_live:
