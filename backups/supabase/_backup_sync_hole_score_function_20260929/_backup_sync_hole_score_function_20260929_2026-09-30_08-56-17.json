@@ -1,0 +1,7 @@
+[
+  {
+    "id": 1,
+    "backed_up_at": "2026-09-29T13:41:25.993204+00:00",
+    "function_definition": "CREATE OR REPLACE FUNCTION public.sync_hole_score_to_leaderboard()\n RETURNS trigger\n LANGUAGE plpgsql\n SECURITY DEFINER\nAS $function$\nDECLARE\n  v_tournament_id uuid;\n  v_round integer;\nBEGIN\n  -- Turnier und Runde zuverlässig aus dem Flight bestimmen\n  SELECT tournament_id, round_number\n  INTO v_tournament_id, v_round\n  FROM flights\n  WHERE id = NEW.flight_id;\n\n  IF v_tournament_id IS NULL OR NEW.player_id IS NULL THEN\n    RETURN NEW;\n  END IF;\n\n  -- Vorhandenen Score dieses Spielers/Lochs aktualisieren\n  UPDATE scores\n  SET\n    strokes = COALESCE(NEW.strokes_self, 0)\n              + COALESCE(NEW.penalty_strokes, 0),\n    registration_id = NEW.player_id,\n    player_id = NEW.player_id\n  WHERE tournament_id = v_tournament_id\n    AND round_number = v_round\n    AND hole_number = NEW.hole_number\n    AND COALESCE(registration_id, player_id) = NEW.player_id;\n\n  -- Falls noch keiner existiert: anlegen\n  IF NOT FOUND THEN\n    INSERT INTO scores (\n      tournament_id,\n      round_number,\n      hole_number,\n      player_id,\n      registration_id,\n      strokes\n    )\n    VALUES (\n      v_tournament_id,\n      v_round,\n      NEW.hole_number,\n      NEW.player_id,\n      NEW.player_id,\n      COALESCE(NEW.strokes_self, 0)\n        + COALESCE(NEW.penalty_strokes, 0)\n    );\n  END IF;\n\n  RETURN NEW;\nEND;\n$function$\n"
+  }
+]
