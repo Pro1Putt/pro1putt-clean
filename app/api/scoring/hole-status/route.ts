@@ -24,18 +24,40 @@ export async function GET(req: Request) {
 
     const supabase = getServiceSupabase();
 
-    // wer zählt registrationId?
+    // Exakten Flight dieses Spielers für dieses Turnier + diese Runde ermitteln.
+    const { data: playerFlight, error: pfErr } = await supabase
+      .from("flight_players")
+      .select("flight_id, marks_registration_id, flights!inner(tournament_id, round)")
+      .eq("registration_id", registrationId)
+      .eq("flights.tournament_id", tournamentId)
+      .eq("flights.round", round)
+      .maybeSingle();
+
+    if (pfErr) {
+      return NextResponse.json({ ok: false, error: pfErr.message }, { status: 500 });
+    }
+
+    if (!playerFlight) {
+      return NextResponse.json(
+        { ok: false, error: "No flight found for tournament and round" },
+        { status: 404 }
+      );
+    }
+
+    // marks_registration_id = Spieler, dessen Karte registrationId führt.
+    // Gesucht ist aber der Spieler, der registrationId zählt.
     const { data: whoMarksMe, error: wmErr } = await supabase
       .from("flight_players")
       .select("registration_id")
+      .eq("flight_id", playerFlight.flight_id)
       .eq("marks_registration_id", registrationId)
-      .limit(1);
+      .maybeSingle();
 
     if (wmErr) {
       return NextResponse.json({ ok: false, error: wmErr.message }, { status: 500 });
     }
 
-    const markerId = whoMarksMe?.[0]?.registration_id ?? null;
+    const markerId = whoMarksMe?.registration_id ?? null;
 
     // Eigener Eintrag (self)
     const { data: selfEntry } = await supabase

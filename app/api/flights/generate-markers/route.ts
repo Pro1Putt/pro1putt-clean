@@ -58,7 +58,15 @@ export async function POST(req: Request) {
 
     const { data: flightPlayers, error: fpErr } = await supabase
       .from("flight_players")
-      .select("id, flight_id, registration_id, seat")
+      .select(`
+          id,
+          flight_id,
+          registration_id,
+          seat,
+          registration:registrations!flight_players_registration_id_fkey (
+            tournament_status
+          )
+        `)
       .in("flight_id", flightIds)
       .order("flight_id", { ascending: true })
       .order("seat", { ascending: true })
@@ -82,21 +90,50 @@ export async function POST(req: Request) {
       const members = byFlight.get(fid) || [];
       if (!members.length) continue;
 
-      for (let i = 0; i < members.length; i++) {
-        const current = members[i];
-        const next = members[(i + 1) % members.length];
-        const marksRegistrationId = String(next?.registration_id || current.registration_id || "");
+      const activeMembers = members.filter((member: any) => {
+        const registration = Array.isArray(member.registration)
+          ? member.registration[0]
+          : member.registration;
 
-         updates.push(
-  supabase
-    .from("flight_players")
-    .update({
-      marks_registration_id: marksRegistrationId,
-    })
-    .eq("id", current.id)
-);
+        const status = String(
+          registration?.tournament_status || "active"
+        ).toLowerCase();
 
-        playersUpdated++;
+        return !["ns", "dq", "dnf"].includes(status);
+      });
+
+      // Genau ein Update pro Spieler:
+      // aktive Spieler erhalten ihren Zähler, ausgeschiedene Spieler NULL.
+      const markerByPlayerId = new Map<string, string>();
+
+      if (activeMembers.length >= 2) {
+        for (let i = 0; i < activeMembers.length; i++) {
+          const current = activeMembers[i];
+          const next = activeMembers[(i + 1) % activeMembers.length];
+
+          markerByPlayerId.set(
+            String(current.id),
+            String(next.registration_id)
+          );
+        }
+      }
+
+      for (const member of members) {
+        const markerRegistrationId =
+          markerByPlayerId.get(String(member.id)) ?? null;
+
+        updates.push(
+          supabase
+            .from("flight_players")
+            .update({
+              marks_registration_id: markerRegistrationId,
+            })
+            .eq("id", member.id)
+        );
+
+        if (markerRegistrationId) {
+          playersUpdated++;
+        }
       }
     }
 

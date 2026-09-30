@@ -78,28 +78,61 @@ let match =
 
 let resolvedTournamentId = tournamentId;
 
-// Sofort-Fallback für das laufende Bad-Saarow-Turnier.
-// Alte App-Versionen wählen nach dem Startdatum bereits das nächste Turnier.
+// Generischer Fallback: Falls das von der App vorgeschlagene Turnier
+// nicht passt, darf nur ein Spieler gefunden werden, der HEUTE tatsächlich
+// einen Flight mit play_date = heute hat.
 if (!match) {
-  const badSaarowTournamentId = "d4a92ae2-6ecd-4043-8b5a-82414c597036";
+  const today = new Intl.DateTimeFormat("en-CA", {
+    timeZone: "Europe/Berlin",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).format(new Date());
 
-  const { data: fallbackRegs, error: fallbackErr } = await supabase
-    .from("registrations")
-    .select("id, tournament_id, first_name, last_name, player_pin")
-    .eq("tournament_id", badSaarowTournamentId);
+  const { data: todayFlightPlayers, error: fallbackErr } = await supabase
+    .from("flight_players")
+    .select(`
+      registration_id,
+      flights!inner (
+        tournament_id,
+        play_date
+      ),
+      registration:registrations!flight_players_registration_id_fkey (
+        id,
+        tournament_id,
+        first_name,
+        last_name,
+        player_pin
+      )
+    `)
+    .eq("flights.play_date", today);
 
   if (fallbackErr) {
     return NextResponse.json(
-      { ok: false, error: "DB error (registrations fallback)", details: fallbackErr.message },
+      {
+        ok: false,
+        error: "DB error (current-day registrations)",
+        details: fallbackErr.message,
+      },
       { status: 500 }
     );
   }
 
-  match =
-    (fallbackRegs ?? []).find((r: any) => normPin(r?.player_pin) === pin) ?? null;
+  const matches = (todayFlightPlayers ?? [])
+    .map((row: any) => row.registration)
+    .filter((r: any) => r && normPin(r.player_pin) === pin);
+
+  if (matches.length > 1) {
+    return NextResponse.json(
+      { ok: false, error: "PIN ambiguous for current play date" },
+      { status: 409 }
+    );
+  }
+
+  match = matches[0] ?? null;
 
   if (match) {
-    resolvedTournamentId = badSaarowTournamentId;
+    resolvedTournamentId = String(match.tournament_id);
   }
 }
 

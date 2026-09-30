@@ -63,6 +63,36 @@ export async function POST(req: Request) {
       return jsonError("Flight player not found", 404);
     }
 
+    // Auch der Spieler, dessen Zähler geändert wird, muss aktiv sein.
+    const { data: targetRegistration, error: targetRegistrationErr } =
+      await supabase
+        .from("registrations")
+        .select("id, tournament_status")
+        .eq("id", flightPlayer.registration_id)
+        .maybeSingle();
+
+    if (targetRegistrationErr) {
+      return jsonError(
+        `target registration read failed: ${targetRegistrationErr.message}`,
+        500
+      );
+    }
+
+    if (!targetRegistration) {
+      return jsonError("Spieler-Registrierung nicht gefunden.", 404);
+    }
+
+    const targetStatus = normStr(
+      targetRegistration.tournament_status || "active"
+    ).toLowerCase();
+
+    if (["ns", "dq", "dnf"].includes(targetStatus)) {
+      return jsonError(
+        "Für NS-, DQ- oder DNF-Spieler kann kein Zähler gesetzt werden.",
+        409
+      );
+    }
+
     // Prüfen, ob der ausgewählte Zähler im selben Flight spielt
     const { data: markerPlayer, error: markerPlayerErr } = await supabase
       .from("flight_players")
@@ -93,6 +123,36 @@ export async function POST(req: Request) {
       return jsonError(
         "Ein Spieler kann nicht sein eigener Zähler sein.",
         400
+      );
+    }
+
+    // Der ausgewählte Zähler muss im Turnier aktiv sein.
+    const { data: markerRegistration, error: markerRegistrationErr } =
+      await supabase
+        .from("registrations")
+        .select("id, tournament_status")
+        .eq("id", markerRegistrationId)
+        .maybeSingle();
+
+    if (markerRegistrationErr) {
+      return jsonError(
+        `marker registration read failed: ${markerRegistrationErr.message}`,
+        500
+      );
+    }
+
+    if (!markerRegistration) {
+      return jsonError("Zähler-Registrierung nicht gefunden.", 404);
+    }
+
+    const markerStatus = normStr(
+      markerRegistration.tournament_status || "active"
+    ).toLowerCase();
+
+    if (["ns", "dq", "dnf"].includes(markerStatus)) {
+      return jsonError(
+        "NS-, DQ- oder DNF-Spieler können nicht als Zähler eingesetzt werden.",
+        409
       );
     }
 

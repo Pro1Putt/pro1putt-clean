@@ -80,7 +80,8 @@ export async function GET(req: Request) {
             gender,
             hcp,
             home_club,
-            holes
+            holes,
+            tournament_status
           ),
           marks_registration:registrations!flight_players_marks_registration_id_fkey (
             id,
@@ -109,7 +110,7 @@ export async function GET(req: Request) {
 
     const { data: allRegs, error: regErr } = await supabase
       .from("registrations")
-      .select("id, first_name, last_name, gender, hcp, home_club, holes")
+      .select("id, first_name, last_name, gender, hcp, home_club, holes, tournament_status")
       .eq("tournament_id", tournamentId)
       .order("last_name", { ascending: true })
       .order("first_name", { ascending: true });

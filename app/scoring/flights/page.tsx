@@ -17,6 +17,7 @@ export default function FlightsAdminPage() {
   const [tournaments, setTournaments] = useState<Tournament[]>([]);
   const [tournamentId, setTournamentId] = useState<string>("");
   const [round, setRound] = useState<1 | 2 | 3>(1);
+  const [startTime, setStartTime] = useState<string>("10:00");
   const [tdPin, setTdPin] = useState<string>("1234");
 
   const [busy, setBusy] = useState(false);
@@ -212,7 +213,7 @@ async function togglePublication(targetRound: 1 | 2 | 3) {
           tournamentId,
           round,
           td_pin: tdPin,
-          start_time: "09:30",
+          start_time: startTime,
           interval_minutes: 10,
           overwrite: true,
         }),
@@ -225,7 +226,7 @@ async function togglePublication(targetRound: 1 | 2 | 3) {
         return;
       }
 
-      setMsg("✅ Startzeiten gesetzt ab 09:30");
+      setMsg(`✅ Startzeiten gesetzt ab ${startTime}`);
       await reload();
     } finally {
       setBusy(false);
@@ -301,6 +302,69 @@ async function togglePublication(targetRound: 1 | 2 | 3) {
       setMsg("✅ Spieler verschoben");
     } finally {
       setMoveBusy("");
+    }
+  }
+
+  async function setPlayerStatus(
+    registrationId: string,
+    status: "active" | "ns" | "dq"
+  ) {
+    if (!registrationId || !tournamentId) return;
+
+    if (status === "ns" || status === "dq") {
+      const label = status.toUpperCase();
+      const confirmed = window.confirm(
+        `${label} wirklich setzen?\n\nDer Spieler wird damit für das gesamte Turnier beendet und aus aktuellen bzw. zukünftigen Zählerzuordnungen entfernt.`
+      );
+
+      if (!confirmed) {
+        await reload();
+        return;
+      }
+    }
+
+    setMarkerBusy(registrationId);
+    setMsg(
+      status === "ns"
+        ? "Setze Spieler auf NS…"
+        : status === "dq"
+        ? "Setze Spieler auf DQ…"
+        : "Aktiviere Spieler…"
+    );
+
+    try {
+      const res = await fetch("/api/admin/player-status", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          registrationId,
+          status,
+          tournamentId,
+          round,
+          td_pin: tdPin,
+          hole: null,
+          note: null,
+        }),
+      });
+
+      const json = await res.json().catch(() => ({}));
+
+      if (!res.ok || !json?.ok) {
+        setMsg(json?.error || "Fehler beim Ändern des Spielerstatus");
+        return;
+      }
+
+      await reload();
+
+      setMsg(
+        status === "ns"
+          ? "✅ Spieler auf NS gesetzt"
+          : status === "dq"
+          ? "✅ Spieler auf DQ gesetzt"
+          : "✅ Spieler wieder aktiviert"
+      );
+    } finally {
+      setMarkerBusy("");
     }
   }
 
@@ -549,12 +613,26 @@ async function togglePublication(targetRound: 1 | 2 | 3) {
             <select
               style={smallInput}
               value={round}
-              onChange={(e) => setRound(Number(e.target.value) as 1 | 2 | 3)}
+              onChange={(e) => {
+                const nextRound = Number(e.target.value) as 1 | 2 | 3;
+                setRound(nextRound);
+                setStartTime(nextRound === 3 ? "09:30" : "10:00");
+              }}
             >
               <option value={1}>1</option>
               <option value={2}>2</option>
               <option value={3}>3</option>
             </select>
+          </div>
+
+          <div>
+            <div style={label}>Erste Startzeit</div>
+            <input
+              type="time"
+              style={smallInput}
+              value={startTime}
+              onChange={(e) => setStartTime(e.target.value)}
+            />
           </div>
 
           <div>
@@ -720,6 +798,44 @@ async function togglePublication(targetRound: 1 | 2 | 3) {
                                 HCP: {safe(fp?.registration?.hcp)} · Club:{" "}
                                 {safe(fp?.registration?.home_club)}
                               </div>
+
+                              <div
+                                style={{
+                                  display: "flex",
+                                  gap: 6,
+                                  alignItems: "center",
+                                  marginTop: 6,
+                                }}
+                              >
+                                <span style={{ fontSize: 12, opacity: 0.7 }}>
+                                  Status:
+                                </span>
+
+                                <select
+                                  style={{
+                                    ...input,
+                                    minWidth: 90,
+                                    width: "auto",
+                                    padding: "5px 8px",
+                                  }}
+                                  value={String(
+                                    fp?.registration?.tournament_status || "active"
+                                  ).toLowerCase()}
+                                  disabled={
+                                    markerBusy === String(fp.registration_id)
+                                  }
+                                  onChange={(e) =>
+                                    setPlayerStatus(
+                                      String(fp.registration_id),
+                                      e.target.value as "active" | "ns" | "dq"
+                                    )
+                                  }
+                                >
+                                  <option value="active">ACTIVE</option>
+                                  <option value="ns">NS</option>
+                                  <option value="dq">DQ</option>
+                                </select>
+                              </div>
                             </div>
 
                             <div>
@@ -743,11 +859,18 @@ async function togglePublication(targetRound: 1 | 2 | 3) {
                                 >
                                   <option value="">Zähler auswählen…</option>
                                   {fps
-                                    .filter(
-                                      (candidate) =>
+                                    .filter((candidate) => {
+                                      const status = String(
+                                        candidate?.registration?.tournament_status ||
+                                          "active"
+                                      ).toLowerCase();
+
+                                      return (
                                         String(candidate.registration_id) !==
-                                        String(fp.registration_id)
-                                    )
+                                          String(fp.registration_id) &&
+                                        !["ns", "dq", "dnf"].includes(status)
+                                      );
+                                    })
                                     .map((candidate) => (
                                       <option
                                         key={candidate.registration_id}
@@ -830,32 +953,84 @@ async function togglePublication(targetRound: 1 | 2 | 3) {
               </div>
 
               <div style={{ display: "grid", gap: 8 }}>
-                {unassignedRegistrations.map((r: any) => (
-                  <div
-                    key={r.id}
-                    style={{
-                      display: "grid",
-                      gridTemplateColumns: "minmax(240px,1.2fr) minmax(220px,1fr)",
-                      gap: 10,
-                      alignItems: "center",
-                    }}
-                  >
-                    <div>
-                      <div style={{ fontWeight: 700 }}>
-                        {`${r.first_name || ""} ${r.last_name || ""}`.trim() || r.id}
-                      </div>
-                      <div style={{ opacity: 0.7, fontSize: 12 }}>
-                        Gender: {safe(r.gender)} · HCP: {safe(r.hcp)} · Holes:{" "}
-                        {safe(r.holes)} · Club: {safe(r.home_club)}
-                      </div>
-                    </div>
+                {unassignedRegistrations.map((r: any) => {
+                  const status = String(
+                    r.tournament_status || "active"
+                  ).toLowerCase();
+                  const inactive = ["ns", "dq", "dnf"].includes(status);
 
-                    <div style={{ opacity: 0.65, fontSize: 12 }}>
-                      Noch nicht im Editor verschiebbar, weil dafür zuerst ein
-                      Flight-Player-Eintrag angelegt werden müsste.
+                  return (
+                    <div
+                      key={r.id}
+                      style={{
+                        display: "grid",
+                        gridTemplateColumns:
+                          "minmax(240px,1.2fr) minmax(120px,.5fr) minmax(220px,1fr)",
+                        gap: 10,
+                        alignItems: "center",
+                      }}
+                    >
+                      <div>
+                        <div style={{ fontWeight: 700 }}>
+                          {`${r.first_name || ""} ${r.last_name || ""}`.trim() ||
+                            r.id}
+                        </div>
+                        <div style={{ opacity: 0.7, fontSize: 12 }}>
+                          Gender: {safe(r.gender)} · HCP: {safe(r.hcp)} · Holes:{" "}
+                          {safe(r.holes)} · Club: {safe(r.home_club)}
+                        </div>
+                      </div>
+
+                      <select
+                        value={status}
+                        disabled={markerBusy === String(r.id)}
+                        onChange={(e) =>
+                          setPlayerStatus(
+                            String(r.id),
+                            e.target.value as "active" | "ns" | "dq"
+                          )
+                        }
+                      >
+                        <option value="active">ACTIVE</option>
+                        <option value="ns">NS</option>
+                        <option value="dq">DQ</option>
+                      </select>
+
+                      <div style={{ display: "flex", gap: 8 }}>
+                        <select
+                          value={moveTargets[String(r.id)] || ""}
+                          disabled={inactive || moveBusy === String(r.id)}
+                          onChange={(e) =>
+                            setMoveTargets((prev) => ({
+                              ...prev,
+                              [String(r.id)]: e.target.value,
+                            }))
+                          }
+                          style={{ flex: 1 }}
+                        >
+                          <option value="">Flight wählen…</option>
+                          {flights.map((f: any) => (
+                            <option key={f.id} value={String(f.id)}>
+                              Flight {f.flight_number}
+                            </option>
+                          ))}
+                        </select>
+
+                        <button
+                          type="button"
+                          disabled={
+                            inactive ||
+                            moveBusy === String(r.id) ||
+                            !moveTargets[String(r.id)]
+                          }
+                          onClick={() => movePlayer(String(r.id))}
+                        >
+                          Zuweisen
+                        </button>
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           )}

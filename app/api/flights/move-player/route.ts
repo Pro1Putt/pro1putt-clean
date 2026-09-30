@@ -52,7 +52,12 @@ export async function POST(req: Request) {
 
     const tdPin = normStr(body.td_pin ?? body.tdPin);
     const requiredPin = normStr(process.env.TD_PIN || "");
-    if (requiredPin && tdPin !== requiredPin) {
+
+    if (!requiredPin) {
+      return jsonError("Missing TD_PIN on server", 500);
+    }
+
+    if (!tdPin || tdPin !== requiredPin) {
       return jsonError("TD_PIN invalid", 401);
     }
 
@@ -78,6 +83,45 @@ export async function POST(req: Request) {
       return jsonError("Target flight not found", 404);
     }
 
+    // Registrierung prüfen, bevor ein Spieler verschoben oder neu zugeordnet wird.
+    const { data: registration, error: registrationErr } = await supabase
+      .from("registrations")
+      .select("id, tournament_id, tournament_status")
+      .eq("id", registrationId)
+      .maybeSingle();
+
+    if (registrationErr) {
+      return jsonError(
+        `registration read failed: ${registrationErr.message}`,
+        500
+      );
+    }
+
+    if (!registration) {
+      return jsonError("Registration not found", 404);
+    }
+
+    if (
+      normStr(registration.tournament_id) !==
+      normStr(targetFlight.tournament_id)
+    ) {
+      return jsonError(
+        "Player and target flight belong to different tournaments",
+        409
+      );
+    }
+
+    const registrationStatus = normStr(
+      registration.tournament_status || "active"
+    ).toLowerCase();
+
+    if (["ns", "dq", "dnf"].includes(registrationStatus)) {
+      return jsonError(
+        "NS-, DQ- oder DNF-Spieler können keinem Flight zugeordnet werden.",
+        409
+      );
+    }
+
     const { data: registrationRows, error: registrationRowsErr } = await supabase
       .from("flight_players")
       .select("id, flight_id, registration_id, seat, marks_registration_id")
@@ -88,7 +132,52 @@ export async function POST(req: Request) {
     }
 
     if (!registrationRows || registrationRows.length === 0) {
-      return jsonError("Player is not assigned to a flight", 404);
+      const { data: targetRows, error: targetRowsErr } = await supabase
+        .from("flight_players")
+        .select("id, seat")
+        .eq("flight_id", targetFlightId)
+        .order("seat", { ascending: true });
+
+      if (targetRowsErr) {
+        return jsonError(
+          `target flight read failed: ${targetRowsErr.message}`,
+          500
+        );
+      }
+
+      const nextSeat =
+        Math.max(
+          0,
+          ...(targetRows || []).map((r: any) => Number(r.seat ?? 0))
+        ) + 1;
+
+      const { data: insertedRow, error: insertErr } = await supabase
+        .from("flight_players")
+        .insert({
+          flight_id: targetFlightId,
+          registration_id: registrationId,
+          seat: nextSeat,
+          marks_registration_id: null,
+        })
+        .select("id, flight_id, registration_id, seat")
+        .single();
+
+      if (insertErr) {
+        return jsonError(
+          `flight_players insert failed: ${insertErr.message}`,
+          500
+        );
+      }
+
+      return NextResponse.json({
+        ok: true,
+        registration_id: registrationId,
+        target_flight_id: targetFlightId,
+        seat: insertedRow.seat,
+        round: targetFlight.round,
+        tournament_id: targetFlight.tournament_id,
+        created: true,
+      });
     }
 
     const candidateFlightIds = Array.from(
@@ -160,16 +249,32 @@ export async function POST(req: Request) {
     const nextSeat =
       Math.max(0, ...(targetRows || []).map((r: any) => Number(r.seat ?? 0))) + 1;
 
-   const { error: updateErr } = await supabase
-  .from("flight_players")
-  .update({
-    flight_id: targetFlightId,
-    seat: nextSeat,
-  })
-  .eq("id", existingRow.id);
+    const { error: updateErr } = await supabase
+      .from("flight_players")
+      .update({
+        flight_id: targetFlightId,
+        seat: nextSeat,
+        marks_registration_id: null,
+      })
+      .eq("id", existingRow.id);
 
     if (updateErr) {
       return jsonError(`flight_players update failed: ${updateErr.message}`, 500);
+    }
+
+    // Im alten Flight darf niemand den verschobenen Spieler weiterhin
+    // als Zähler eingetragen haben.
+    const { error: oldMarkerErr } = await supabase
+      .from("flight_players")
+      .update({ marks_registration_id: null })
+      .eq("flight_id", oldFlightId)
+      .eq("marks_registration_id", registrationId);
+
+    if (oldMarkerErr) {
+      return jsonError(
+        `old flight marker cleanup failed: ${oldMarkerErr.message}`,
+        500
+      );
     }
 
     await renumberFlight(supabase, oldFlightId);

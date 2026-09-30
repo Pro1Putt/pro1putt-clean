@@ -96,7 +96,7 @@ export async function POST(req: Request) {
 
     const { error: scoreInsertError } = await supabase
       .from("scores")
-      .insert({
+      .upsert({
         tournament_id: effectiveTournamentId,
         round_number: effectiveRound,
         hole_number: Number(hole_number),
@@ -108,6 +108,8 @@ export async function POST(req: Request) {
         ...(typeof rule_note !== "undefined"
           ? { notes: String(rule_note ?? "").trim() || null }
           : {}),
+      }, {
+        onConflict: "registration_id,tournament_id,round_number,hole_number",
       });
 
     if (scoreInsertError) {

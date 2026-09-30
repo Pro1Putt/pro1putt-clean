@@ -182,6 +182,24 @@ export async function POST(req: Request) {
 
     const supabase = await getServiceSupabase();
 
+    // Runde 1 = Turnierstart, Runde 2 = Folgetag, Runde 3 = zweiter Folgetag
+    const { data: tournament, error: tournamentErr } = await supabase
+      .from("tournaments")
+      .select("start_date")
+      .eq("id", tournamentId)
+      .single();
+
+    if (tournamentErr || !tournament?.start_date) {
+      return jsonError(
+        `tournament start_date read failed: ${tournamentErr?.message || "start_date missing"}`,
+        500
+      );
+    }
+
+    const startDate = new Date(`${tournament.start_date}T00:00:00Z`);
+    startDate.setUTCDate(startDate.getUTCDate() + (roundNo - 1));
+    const playDate = startDate.toISOString().slice(0, 10);
+
     const projectUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
     const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY!;
     const openApi = await fetchOpenApiDoc(projectUrl, serviceKey);
@@ -196,6 +214,8 @@ export async function POST(req: Request) {
     const regHcpCol = firstExisting(regCols, ["hcp", "handicap"]) || null;
     const regPlayerIdCol = firstExisting(regCols, ["player_id"]) || null;
     const regTournamentIdCol = firstExisting(regCols, ["tournament_id"]) || null;
+    const regTournamentStatusCol =
+      firstExisting(regCols, ["tournament_status"]) || null;
 
     const regSelectCols = [
       regIdCol,
@@ -204,6 +224,7 @@ export async function POST(req: Request) {
       regHcpCol,
       regPlayerIdCol,
       regTournamentIdCol,
+      regTournamentStatusCol,
     ]
       .filter(Boolean)
       .join(",");
@@ -219,14 +240,24 @@ export async function POST(req: Request) {
 
     if (regsErr) return jsonError(`registrations read failed: ${regsErr.message}`, 500);
 
-    const registrations: Registration[] = (regsRaw || []).map((r: any) => ({
-      id: String(r[regIdCol]),
-      tournament_id: r[regTournamentIdCol],
-      gender: regGenderCol ? r[regGenderCol] : null,
-      holes: regHolesCol ? toNumber(r[regHolesCol]) : null,
-      hcp: regHcpCol ? toNumber(r[regHcpCol]) : null,
-      player_id: regPlayerIdCol ? r[regPlayerIdCol] : null,
-    }));
+    const registrations: Registration[] = (regsRaw || [])
+      .filter((r: any) => {
+        if (!regTournamentStatusCol) return true;
+
+        const status = String(
+          r[regTournamentStatusCol] || "active"
+        ).toLowerCase();
+
+        return !["ns", "dq", "dnf"].includes(status);
+      })
+      .map((r: any) => ({
+        id: String(r[regIdCol]),
+        tournament_id: r[regTournamentIdCol],
+        gender: regGenderCol ? r[regGenderCol] : null,
+        holes: regHolesCol ? toNumber(r[regHolesCol]) : null,
+        hcp: regHcpCol ? toNumber(r[regHcpCol]) : null,
+        player_id: regPlayerIdCol ? r[regPlayerIdCol] : null,
+      }));
 
     const roundTotalsCols = tableColumns(openApi, "v_player_round_totals");
     const cumTotalsCols = tableColumns(openApi, "v_player_cum_totals");
@@ -421,6 +452,7 @@ export async function POST(req: Request) {
       if (flightNoCol) base[flightNoCol] = idx + 1;
       if (flightGenderCol) base[flightGenderCol] = f.gender;
       if (flightHolesCol) base[flightHolesCol] = f.holes;
+      if (flightsCols.has("play_date")) base.play_date = playDate;
 
       return pick(base, flightsCols);
     });
@@ -462,7 +494,7 @@ export async function POST(req: Request) {
     [fpFlightIdCol]: flightId,
     [fpRegIdCol]: r.id,
     [fpSeatCol]: idx + 1,
-    [fpMarksRegIdCol]: r.id,
+    [fpMarksRegIdCol]: null,
   };
 
   flightPlayersToInsert.push(pick(row, flightPlayersCols));
