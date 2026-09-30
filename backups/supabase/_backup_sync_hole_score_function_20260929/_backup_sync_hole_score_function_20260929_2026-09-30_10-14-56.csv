@@ -1,0 +1,57 @@
+id,backed_up_at,function_definition
+1,2026-09-29T13:41:25.993204+00:00,"CREATE OR REPLACE FUNCTION public.sync_hole_score_to_leaderboard()
+ RETURNS trigger
+ LANGUAGE plpgsql
+ SECURITY DEFINER
+AS $function$
+DECLARE
+  v_tournament_id uuid;
+  v_round integer;
+BEGIN
+  -- Turnier und Runde zuverlässig aus dem Flight bestimmen
+  SELECT tournament_id, round_number
+  INTO v_tournament_id, v_round
+  FROM flights
+  WHERE id = NEW.flight_id;
+
+  IF v_tournament_id IS NULL OR NEW.player_id IS NULL THEN
+    RETURN NEW;
+  END IF;
+
+  -- Vorhandenen Score dieses Spielers/Lochs aktualisieren
+  UPDATE scores
+  SET
+    strokes = COALESCE(NEW.strokes_self, 0)
+              + COALESCE(NEW.penalty_strokes, 0),
+    registration_id = NEW.player_id,
+    player_id = NEW.player_id
+  WHERE tournament_id = v_tournament_id
+    AND round_number = v_round
+    AND hole_number = NEW.hole_number
+    AND COALESCE(registration_id, player_id) = NEW.player_id;
+
+  -- Falls noch keiner existiert: anlegen
+  IF NOT FOUND THEN
+    INSERT INTO scores (
+      tournament_id,
+      round_number,
+      hole_number,
+      player_id,
+      registration_id,
+      strokes
+    )
+    VALUES (
+      v_tournament_id,
+      v_round,
+      NEW.hole_number,
+      NEW.player_id,
+      NEW.player_id,
+      COALESCE(NEW.strokes_self, 0)
+        + COALESCE(NEW.penalty_strokes, 0)
+    );
+  END IF;
+
+  RETURN NEW;
+END;
+$function$
+"
