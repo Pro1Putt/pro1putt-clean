@@ -1,5 +1,40 @@
 [
   {
+    "id": "cdac881a-cdc3-4941-999f-3c275ce26530",
+    "created_at": "2026-09-14T12:25:53.347913+00:00",
+    "tournament_id": "36d5df41-5864-4103-b413-169bbd683077",
+    "holes": 18,
+    "first_name": "Maximilian Leonard",
+    "last_name": "Schultz",
+    "email": "m.schultz-heinecke@gmx.de",
+    "hcp": 3.6,
+    "birthdate": "2012-01-26",
+    "home_club": "Hamburger Golfclub e.V. (Falkenstein)",
+    "coach": "Freddy Ammon",
+    "walkup_song": "Jump Around  (House of Pain)",
+    "caddie": false,
+    "wagr": false,
+    "college_interest": true,
+    "nation": "DE",
+    "player_pin": "6872",
+    "gender": "Boys",
+    "r1_finalized_at": null,
+    "r2_finalized_at": null,
+    "r3_finalized_at": null,
+    "r1_scorecard_pdf_url": null,
+    "r2_scorecard_pdf_url": null,
+    "r3_scorecard_pdf_url": null,
+    "is_final": false,
+    "tee": null,
+    "slope": null,
+    "course_rating": null,
+    "tee_color": null,
+    "flight_id": null,
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
+  },
+  {
     "id": "3b88eb10-8515-40d0-8108-a94529c534cd",
     "created_at": "2026-03-26T14:06:40.768467+00:00",
     "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
@@ -30,12 +65,9 @@
     "course_rating": null,
     "tee_color": null,
     "flight_id": null,
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "e0adbbeb-e7b5-42d4-9ba3-1d70c15bc9f5",
@@ -68,12 +100,44 @@
     "course_rating": 36,
     "tee_color": "Rot",
     "flight_id": null,
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
+  },
+  {
+    "id": "becafb16-662c-4276-bb91-a5b09034bec9",
+    "created_at": "2026-04-13T19:20:13.700866+00:00",
+    "tournament_id": "36d5df41-5864-4103-b413-169bbd683077",
+    "holes": 18,
+    "first_name": "Jonas",
+    "last_name": "Parchow",
+    "email": "jonas.parchow@icloud.com",
+    "hcp": 5.4,
+    "birthdate": "2012-06-04",
+    "home_club": "Club zur Vahr",
+    "coach": "Nicklas Mattner",
+    "walkup_song": "Like that (Kendrick Lamar)",
+    "caddie": false,
+    "wagr": true,
+    "college_interest": true,
+    "nation": "DE",
+    "player_pin": "9173",
+    "gender": "Boys",
+    "r1_finalized_at": null,
+    "r2_finalized_at": null,
+    "r3_finalized_at": null,
+    "r1_scorecard_pdf_url": null,
+    "r2_scorecard_pdf_url": null,
+    "r3_scorecard_pdf_url": null,
+    "is_final": false,
+    "tee": null,
+    "slope": null,
+    "course_rating": null,
+    "tee_color": null,
+    "flight_id": null,
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "19b44c8b-f73c-464f-a197-236cf91f225b",
@@ -106,12 +170,44 @@
     "course_rating": 72,
     "tee_color": "Gelb",
     "flight_id": "41c2590e-ea22-44bf-b862-6b8068962a10",
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
+  },
+  {
+    "id": "c3cb6397-8992-401a-9004-9163f7293552",
+    "created_at": "2026-09-13T15:41:18.13774+00:00",
+    "tournament_id": "36d5df41-5864-4103-b413-169bbd683077",
+    "holes": 18,
+    "first_name": "Max",
+    "last_name": "Marino",
+    "email": "meike@niebuhr.com",
+    "hcp": 6.9,
+    "birthdate": "2012-04-26",
+    "home_club": "Hamburger Golfclub",
+    "coach": "Cian Feeney, Fredderic Ammon",
+    "walkup_song": "…",
+    "caddie": false,
+    "wagr": false,
+    "college_interest": true,
+    "nation": "DE",
+    "player_pin": "5666",
+    "gender": "Boys",
+    "r1_finalized_at": null,
+    "r2_finalized_at": null,
+    "r3_finalized_at": null,
+    "r1_scorecard_pdf_url": null,
+    "r2_scorecard_pdf_url": null,
+    "r3_scorecard_pdf_url": null,
+    "is_final": false,
+    "tee": null,
+    "slope": null,
+    "course_rating": null,
+    "tee_color": null,
+    "flight_id": null,
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "885a2ebf-a33e-44a1-a5dd-ef1922c7778b",
@@ -144,50 +240,9 @@
     "course_rating": 36,
     "tee_color": "Rot",
     "flight_id": null,
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
-  },
-  {
-    "id": "becafb16-662c-4276-bb91-a5b09034bec9",
-    "created_at": "2026-04-13T19:20:13.700866+00:00",
-    "tournament_id": "36d5df41-5864-4103-b413-169bbd683077",
-    "holes": 18,
-    "first_name": "Jonas",
-    "last_name": "Parchow",
-    "email": "jonas.parchow@icloud.com",
-    "hcp": 7.1,
-    "birthdate": "2012-06-04",
-    "home_club": "Club zur Vahr",
-    "coach": "Nicklas Mattner",
-    "walkup_song": "Like that (Kendrick Lamar)",
-    "caddie": false,
-    "wagr": true,
-    "college_interest": true,
-    "nation": "DE",
-    "player_pin": "9173",
-    "gender": "Boys",
-    "r1_finalized_at": null,
-    "r2_finalized_at": null,
-    "r3_finalized_at": null,
-    "r1_scorecard_pdf_url": null,
-    "r2_scorecard_pdf_url": null,
-    "r3_scorecard_pdf_url": null,
-    "is_final": false,
-    "tee": null,
-    "slope": null,
-    "course_rating": null,
-    "tee_color": null,
-    "flight_id": null,
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "05246053-44ff-4ddc-9119-619c0fe7675e",
@@ -220,12 +275,9 @@
     "course_rating": null,
     "tee_color": null,
     "flight_id": null,
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "5d110f0c-2f85-4f21-bfea-d8a96880f0f4",
@@ -258,12 +310,9 @@
     "course_rating": 74,
     "tee_color": "Rot",
     "flight_id": "41c2590e-ea22-44bf-b862-6b8068962a10",
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "78fb4ed0-ba6c-4b98-a34b-bb8fa7f01091",
@@ -296,12 +345,9 @@
     "course_rating": 72,
     "tee_color": "Gelb",
     "flight_id": "41c2590e-ea22-44bf-b862-6b8068962a10",
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "39ace5a0-881a-4178-aa2b-2fd274ebc40a",
@@ -334,12 +380,9 @@
     "course_rating": null,
     "tee_color": null,
     "flight_id": "49f9b60c-f78c-4b9b-b58e-241ba9764bb3",
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "6df30e92-bdbe-4b70-b4a3-829975e3bdcc",
@@ -372,12 +415,9 @@
     "course_rating": null,
     "tee_color": null,
     "flight_id": null,
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "c0fb8d2a-417b-4d68-918c-fc6d0b9b032c",
@@ -410,12 +450,9 @@
     "course_rating": 74,
     "tee_color": "Rot",
     "flight_id": null,
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "ee5ab7c6-0546-4277-8d04-5e6b48ea52a3",
@@ -448,12 +485,9 @@
     "course_rating": 72,
     "tee_color": "Gelb",
     "flight_id": null,
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "2cc9e7cd-f36e-4f27-ac2e-6959eecef670",
@@ -486,12 +520,9 @@
     "course_rating": 36,
     "tee_color": "Rot",
     "flight_id": null,
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "098132e4-eb31-43dd-b487-8f6aea7501e6",
@@ -524,12 +555,9 @@
     "course_rating": 36,
     "tee_color": "Rot",
     "flight_id": null,
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "5a59d344-5329-4443-8d6e-6a3950ea6610",
@@ -562,12 +590,9 @@
     "course_rating": 36,
     "tee_color": "Rot",
     "flight_id": null,
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "9f598abc-49d9-4080-9cd4-ebd4e9e3ab7d",
@@ -600,12 +625,9 @@
     "course_rating": 72,
     "tee_color": "Gelb",
     "flight_id": null,
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "337b6c71-7714-4f92-b0d9-595724dec0f8",
@@ -638,88 +660,9 @@
     "course_rating": null,
     "tee_color": null,
     "flight_id": null,
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
-  },
-  {
-    "id": "c3cb6397-8992-401a-9004-9163f7293552",
-    "created_at": "2026-09-13T15:41:18.13774+00:00",
-    "tournament_id": "36d5df41-5864-4103-b413-169bbd683077",
-    "holes": 18,
-    "first_name": "Max",
-    "last_name": "Marino",
-    "email": "meike@niebuhr.com",
-    "hcp": 7.3,
-    "birthdate": "2012-04-26",
-    "home_club": "Hamburger Golfclub",
-    "coach": "Cian Feeney, Fredderic Ammon",
-    "walkup_song": "…",
-    "caddie": false,
-    "wagr": false,
-    "college_interest": true,
-    "nation": "DE",
-    "player_pin": "5666",
-    "gender": "Boys",
-    "r1_finalized_at": null,
-    "r2_finalized_at": null,
-    "r3_finalized_at": null,
-    "r1_scorecard_pdf_url": null,
-    "r2_scorecard_pdf_url": null,
-    "r3_scorecard_pdf_url": null,
-    "is_final": false,
-    "tee": null,
-    "slope": null,
-    "course_rating": null,
-    "tee_color": null,
-    "flight_id": null,
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
-  },
-  {
-    "id": "cdac881a-cdc3-4941-999f-3c275ce26530",
-    "created_at": "2026-09-14T12:25:53.347913+00:00",
-    "tournament_id": "36d5df41-5864-4103-b413-169bbd683077",
-    "holes": 18,
-    "first_name": "Maximilian Leonard",
-    "last_name": "Schultz",
-    "email": "m.schultz-heinecke@gmx.de",
-    "hcp": 3.4,
-    "birthdate": "2012-01-26",
-    "home_club": "Hamburger Golfclub e.V. (Falkenstein)",
-    "coach": "Freddy Ammon",
-    "walkup_song": "Jump Around  (House of Pain)",
-    "caddie": false,
-    "wagr": false,
-    "college_interest": true,
-    "nation": "DE",
-    "player_pin": "6872",
-    "gender": "Boys",
-    "r1_finalized_at": null,
-    "r2_finalized_at": null,
-    "r3_finalized_at": null,
-    "r1_scorecard_pdf_url": null,
-    "r2_scorecard_pdf_url": null,
-    "r3_scorecard_pdf_url": null,
-    "is_final": false,
-    "tee": null,
-    "slope": null,
-    "course_rating": null,
-    "tee_color": null,
-    "flight_id": null,
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "9eae9c23-f97d-4974-b2f6-be32ccdce48f",
@@ -752,12 +695,9 @@
     "course_rating": null,
     "tee_color": null,
     "flight_id": null,
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "5ab228f0-fb0e-46a2-88bd-94a48716f49d",
@@ -790,12 +730,9 @@
     "course_rating": null,
     "tee_color": null,
     "flight_id": "d4a97bf6-ce0f-421e-924f-6e157b580519",
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "0b2be1cc-3241-4cfe-9af6-0b92a5582cec",
@@ -828,12 +765,9 @@
     "course_rating": null,
     "tee_color": null,
     "flight_id": "94bd3101-48c9-43ce-9996-c357660afe27",
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "84a783cc-96d7-494c-9413-5c6075d22010",
@@ -866,12 +800,9 @@
     "course_rating": 72.8,
     "tee_color": "Gelb",
     "flight_id": "3e4c1c36-feb0-496e-90dc-f23a56071216",
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "a1fbda13-d045-4cd0-b445-2e78e4e13f00",
@@ -904,12 +835,9 @@
     "course_rating": null,
     "tee_color": null,
     "flight_id": null,
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "a9ce82ed-4713-419e-a325-98581c179c7a",
@@ -942,12 +870,9 @@
     "course_rating": null,
     "tee_color": null,
     "flight_id": null,
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "6074b0fa-c382-4b96-8fb5-2b36338a13a5",
@@ -980,12 +905,9 @@
     "course_rating": null,
     "tee_color": null,
     "flight_id": null,
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "bd4c0e3c-0e92-41ac-a62f-ef3d754fe8e9",
@@ -1018,12 +940,9 @@
     "course_rating": 74,
     "tee_color": "Rot",
     "flight_id": null,
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "8b083f32-c448-435c-a5f4-d09e8282f2f1",
@@ -1056,12 +975,9 @@
     "course_rating": null,
     "tee_color": null,
     "flight_id": null,
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "c9f1b969-7f59-4b60-bb15-bb1293505bec",
@@ -1094,12 +1010,9 @@
     "course_rating": null,
     "tee_color": null,
     "flight_id": null,
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "791e108b-1db5-47f0-9f11-726d9b44e263",
@@ -1132,12 +1045,9 @@
     "course_rating": null,
     "tee_color": null,
     "flight_id": null,
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "4d134271-956f-42fd-95ea-0a6b725123e6",
@@ -1170,12 +1080,9 @@
     "course_rating": 72,
     "tee_color": "Gelb",
     "flight_id": null,
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "bd565cdc-2b20-4ee1-8358-1c3f10ec8acf",
@@ -1208,12 +1115,9 @@
     "course_rating": 74,
     "tee_color": "Rot",
     "flight_id": null,
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "c3364e8d-93bc-472c-a6ff-b4f68265a4d5",
@@ -1246,12 +1150,9 @@
     "course_rating": 74,
     "tee_color": "Rot",
     "flight_id": null,
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "44447724-0d2c-4601-b0c6-e53714d03f63",
@@ -1284,12 +1185,9 @@
     "course_rating": 74,
     "tee_color": "Rot",
     "flight_id": null,
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "fdd25cd4-90fe-4002-b08b-95ff807080ba",
@@ -1322,12 +1220,9 @@
     "course_rating": 74,
     "tee_color": "Rot",
     "flight_id": null,
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "d724fc19-be19-41e0-b382-5d0601416f4b",
@@ -1360,12 +1255,9 @@
     "course_rating": null,
     "tee_color": null,
     "flight_id": null,
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "9d71aa32-e0cc-4394-b494-f2cca4e7d382",
@@ -1398,12 +1290,9 @@
     "course_rating": 72,
     "tee_color": "Gelb",
     "flight_id": null,
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "117030b2-c7c3-4bab-ac1d-2b3b81b2b9d1",
@@ -1436,12 +1325,9 @@
     "course_rating": 72,
     "tee_color": "Gelb",
     "flight_id": null,
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "45b8d665-670d-4a05-bdd5-f569310e3532",
@@ -1474,12 +1360,9 @@
     "course_rating": null,
     "tee_color": null,
     "flight_id": null,
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "38dd0017-f17b-4eaa-8925-4b5f0071e180",
@@ -1512,12 +1395,9 @@
     "course_rating": null,
     "tee_color": null,
     "flight_id": null,
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "4747714c-9ad7-46b7-b3d0-c24ea4dd5442",
@@ -1550,12 +1430,9 @@
     "course_rating": null,
     "tee_color": null,
     "flight_id": "d4a97bf6-ce0f-421e-924f-6e157b580519",
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "f88170d0-1f22-42fc-b06f-f43ce3d2c8ff",
@@ -1588,50 +1465,9 @@
     "course_rating": null,
     "tee_color": null,
     "flight_id": null,
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
-  },
-  {
-    "id": "88a84b7a-b233-4990-93e1-42f9461294c3",
-    "created_at": "2026-07-14T19:34:57.244421+00:00",
-    "tournament_id": "36d5df41-5864-4103-b413-169bbd683077",
-    "holes": 18,
-    "first_name": "Linus",
-    "last_name": "Lemster",
-    "email": "familielemster@web.de",
-    "hcp": 2.3,
-    "birthdate": "2009-09-26",
-    "home_club": "GC Büsum/Dithmarschen",
-    "coach": "Tim Weigel",
-    "walkup_song": "Free your mind– Prospa",
-    "caddie": false,
-    "wagr": false,
-    "college_interest": true,
-    "nation": "DE",
-    "player_pin": "3278",
-    "gender": "Boys",
-    "r1_finalized_at": null,
-    "r2_finalized_at": null,
-    "r3_finalized_at": null,
-    "r1_scorecard_pdf_url": null,
-    "r2_scorecard_pdf_url": null,
-    "r3_scorecard_pdf_url": null,
-    "is_final": false,
-    "tee": null,
-    "slope": null,
-    "course_rating": null,
-    "tee_color": null,
-    "flight_id": null,
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "fc1692e2-68d1-48f2-bc0a-5b97c551895f",
@@ -1664,12 +1500,9 @@
     "course_rating": null,
     "tee_color": null,
     "flight_id": null,
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "b0f8374f-c18d-481e-852b-dfa6aa011ac8",
@@ -1702,12 +1535,9 @@
     "course_rating": 72,
     "tee_color": "Gelb",
     "flight_id": null,
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "0c6cd42c-985e-4d23-be55-5e8d8ef173d2",
@@ -1740,12 +1570,9 @@
     "course_rating": null,
     "tee_color": null,
     "flight_id": null,
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "7cb8f5cb-1d66-4a8b-a52e-3c0ab48ff137",
@@ -1778,12 +1605,9 @@
     "course_rating": 72,
     "tee_color": "Gelb",
     "flight_id": null,
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "6edb8092-3291-45fa-8651-a88b460512ad",
@@ -1816,12 +1640,9 @@
     "course_rating": 72,
     "tee_color": "Gelb",
     "flight_id": null,
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "52cc4e9f-c387-4273-b08d-991f86e8e079",
@@ -1854,12 +1675,9 @@
     "course_rating": null,
     "tee_color": null,
     "flight_id": null,
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "79fae2cb-e948-49a9-aa44-6bb1d4ea602b",
@@ -1892,12 +1710,44 @@
     "course_rating": null,
     "tee_color": null,
     "flight_id": "0e612dc9-3851-4299-9e84-d197942dc94b",
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
+  },
+  {
+    "id": "88a84b7a-b233-4990-93e1-42f9461294c3",
+    "created_at": "2026-07-14T19:34:57.244421+00:00",
+    "tournament_id": "36d5df41-5864-4103-b413-169bbd683077",
+    "holes": 18,
+    "first_name": "Linus",
+    "last_name": "Lemster",
+    "email": "familielemster@web.de",
+    "hcp": 1.5,
+    "birthdate": "2009-09-26",
+    "home_club": "GC Büsum/Dithmarschen",
+    "coach": "Tim Weigel",
+    "walkup_song": "Free your mind– Prospa",
+    "caddie": false,
+    "wagr": false,
+    "college_interest": true,
+    "nation": "DE",
+    "player_pin": "3278",
+    "gender": "Boys",
+    "r1_finalized_at": null,
+    "r2_finalized_at": null,
+    "r3_finalized_at": null,
+    "r1_scorecard_pdf_url": null,
+    "r2_scorecard_pdf_url": null,
+    "r3_scorecard_pdf_url": null,
+    "is_final": false,
+    "tee": null,
+    "slope": null,
+    "course_rating": null,
+    "tee_color": null,
+    "flight_id": null,
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "08d26a81-b59d-4162-ad72-b07ee5d75c64",
@@ -1930,12 +1780,9 @@
     "course_rating": 72.8,
     "tee_color": "Gelb",
     "flight_id": "c2f2d645-0fbb-4706-ae69-4aa9e2b6d5cb",
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "14e39112-6ce6-4eaf-9b97-097f758789f4",
@@ -1968,12 +1815,9 @@
     "course_rating": null,
     "tee_color": null,
     "flight_id": "49f9b60c-f78c-4b9b-b58e-241ba9764bb3",
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "dc2a8381-da98-40f8-abc8-75650b87ec51",
@@ -2006,12 +1850,9 @@
     "course_rating": null,
     "tee_color": null,
     "flight_id": null,
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "fbc1c0c4-2815-4bdb-af5b-c0a7c4ebf642",
@@ -2044,12 +1885,9 @@
     "course_rating": null,
     "tee_color": null,
     "flight_id": "0e612dc9-3851-4299-9e84-d197942dc94b",
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "707a8d7f-48c8-4aa2-ba77-a822a334b283",
@@ -2082,12 +1920,9 @@
     "course_rating": 72,
     "tee_color": "Gelb",
     "flight_id": null,
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "9dcefb0b-f81d-400a-90bc-514b64341425",
@@ -2120,12 +1955,9 @@
     "course_rating": 72,
     "tee_color": "Gelb",
     "flight_id": null,
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "639dca59-1a8d-409a-82c6-584dbb5f34e9",
@@ -2158,12 +1990,9 @@
     "course_rating": 74,
     "tee_color": "Rot",
     "flight_id": null,
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "2e22731c-34b3-4726-937a-18e90d4213a7",
@@ -2196,12 +2025,9 @@
     "course_rating": 72,
     "tee_color": "Gelb",
     "flight_id": null,
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "47b6392b-6476-4a2b-897e-2347b126ab86",
@@ -2234,12 +2060,9 @@
     "course_rating": 72,
     "tee_color": "Gelb",
     "flight_id": null,
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "7c4671ff-76ee-4a70-b912-6aa7354774ee",
@@ -2272,12 +2095,9 @@
     "course_rating": 72,
     "tee_color": "Gelb",
     "flight_id": null,
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "07cfbc31-606f-4838-ba17-578e0720215d",
@@ -2310,12 +2130,9 @@
     "course_rating": 72,
     "tee_color": "Gelb",
     "flight_id": null,
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "e5564605-a162-4973-b880-2fa2245b8a54",
@@ -2348,12 +2165,9 @@
     "course_rating": 72,
     "tee_color": "Gelb",
     "flight_id": null,
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "c9c44f56-2b25-4444-be7a-60dcb33140b2",
@@ -2386,12 +2200,9 @@
     "course_rating": 72,
     "tee_color": "Gelb",
     "flight_id": null,
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "0a22a191-8264-4398-8468-2e96074d3366",
@@ -2424,12 +2235,9 @@
     "course_rating": 72,
     "tee_color": "Gelb",
     "flight_id": null,
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "21380286-b867-4919-83b5-08eaac386dfe",
@@ -2462,12 +2270,9 @@
     "course_rating": 36,
     "tee_color": "Rot",
     "flight_id": null,
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "0d19a809-374b-46bc-ac56-5d1417af6bbf",
@@ -2500,12 +2305,9 @@
     "course_rating": 72,
     "tee_color": "Gelb",
     "flight_id": null,
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "06ccd75a-85fb-49da-b531-5ea45a09645f",
@@ -2538,12 +2340,9 @@
     "course_rating": 72,
     "tee_color": "Gelb",
     "flight_id": null,
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "db214db6-5b8c-432b-a14b-322a17f0f720",
@@ -2576,12 +2375,9 @@
     "course_rating": 36,
     "tee_color": "Rot",
     "flight_id": null,
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "d3d57160-318c-4c35-bb5c-de5a5f07d0e7",
@@ -2614,12 +2410,9 @@
     "course_rating": 36,
     "tee_color": "Rot",
     "flight_id": null,
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "e1cc61b9-4c31-4d8e-8bee-b567ce5cca28",
@@ -2652,12 +2445,9 @@
     "course_rating": null,
     "tee_color": null,
     "flight_id": null,
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "ce23d191-feba-4728-82f1-dc3429b95532",
@@ -2690,12 +2480,9 @@
     "course_rating": 72,
     "tee_color": "Gelb",
     "flight_id": null,
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "62fe0887-6e98-4ea4-a4d1-3489529b802d",
@@ -2728,12 +2515,9 @@
     "course_rating": null,
     "tee_color": null,
     "flight_id": null,
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "b71c36cf-c0f2-444f-bc6c-72627fb0888b",
@@ -2766,50 +2550,9 @@
     "course_rating": null,
     "tee_color": null,
     "flight_id": null,
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
-  },
-  {
-    "id": "f759c844-547b-4332-83ae-1d6bfec0f16f",
-    "created_at": "2026-09-03T20:18:44.114861+00:00",
-    "tournament_id": "36d5df41-5864-4103-b413-169bbd683077",
-    "holes": 18,
-    "first_name": "Laurenz Phil",
-    "last_name": "Görcke",
-    "email": "kerstin.goercke@me.com",
-    "hcp": 1.1,
-    "birthdate": "2011-11-11",
-    "home_club": "GC Hardenberg",
-    "coach": "Eldrick Hoppmann",
-    "walkup_song": "Alicia Keys, New York",
-    "caddie": true,
-    "wagr": false,
-    "college_interest": true,
-    "nation": "DE",
-    "player_pin": "4141",
-    "gender": "Boys",
-    "r1_finalized_at": null,
-    "r2_finalized_at": null,
-    "r3_finalized_at": null,
-    "r1_scorecard_pdf_url": null,
-    "r2_scorecard_pdf_url": null,
-    "r3_scorecard_pdf_url": null,
-    "is_final": false,
-    "tee": null,
-    "slope": null,
-    "course_rating": null,
-    "tee_color": null,
-    "flight_id": null,
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "ad9f8354-0689-4d7d-b8b3-df5c485cc892",
@@ -2842,12 +2585,9 @@
     "course_rating": null,
     "tee_color": null,
     "flight_id": null,
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "abd869dc-4fb4-4281-ad1f-d5945e769254",
@@ -2880,12 +2620,9 @@
     "course_rating": null,
     "tee_color": null,
     "flight_id": "c2f2d645-0fbb-4706-ae69-4aa9e2b6d5cb",
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "bd94cb36-8ece-4ac7-81e5-d24a4efb9045",
@@ -2918,12 +2655,9 @@
     "course_rating": null,
     "tee_color": null,
     "flight_id": null,
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "c6d0a88a-d1a1-4c78-bb77-80bd01811f05",
@@ -2956,12 +2690,44 @@
     "course_rating": null,
     "tee_color": null,
     "flight_id": null,
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
+  },
+  {
+    "id": "f759c844-547b-4332-83ae-1d6bfec0f16f",
+    "created_at": "2026-09-03T20:18:44.114861+00:00",
+    "tournament_id": "36d5df41-5864-4103-b413-169bbd683077",
+    "holes": 18,
+    "first_name": "Laurenz Phil",
+    "last_name": "Görcke",
+    "email": "kerstin.goercke@me.com",
+    "hcp": 1,
+    "birthdate": "2011-11-11",
+    "home_club": "GC Hardenberg",
+    "coach": "Eldrick Hoppmann",
+    "walkup_song": "Alicia Keys, New York",
+    "caddie": true,
+    "wagr": false,
+    "college_interest": true,
+    "nation": "DE",
+    "player_pin": "4141",
+    "gender": "Boys",
+    "r1_finalized_at": null,
+    "r2_finalized_at": null,
+    "r3_finalized_at": null,
+    "r1_scorecard_pdf_url": null,
+    "r2_scorecard_pdf_url": null,
+    "r3_scorecard_pdf_url": null,
+    "is_final": false,
+    "tee": null,
+    "slope": null,
+    "course_rating": null,
+    "tee_color": null,
+    "flight_id": null,
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "9c9013ae-e512-40d9-9a5a-08bfec70f647",
@@ -2971,7 +2737,7 @@
     "first_name": "Aaron",
     "last_name": "Kastein",
     "email": "kastein.aaron@gmail.com",
-    "hcp": 0,
+    "hcp": -1,
     "birthdate": "2008-07-02",
     "home_club": "GLCBW",
     "coach": "Philipp Rodiek",
@@ -2994,12 +2760,9 @@
     "course_rating": null,
     "tee_color": null,
     "flight_id": null,
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "ee1b3cef-c1e0-42f5-ba69-d5bd1b7d55b5",
@@ -3032,12 +2795,9 @@
     "course_rating": null,
     "tee_color": null,
     "flight_id": null,
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "0a8cb5ef-064a-44a2-b2b7-f7adede5f1a3",
@@ -3070,12 +2830,9 @@
     "course_rating": null,
     "tee_color": null,
     "flight_id": null,
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "9576b1e9-75f4-405b-9c75-fc0ea60643aa",
@@ -3108,12 +2865,9 @@
     "course_rating": null,
     "tee_color": null,
     "flight_id": null,
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "a95eae97-3adb-4571-a011-4ec380445dd6",
@@ -3146,12 +2900,44 @@
     "course_rating": null,
     "tee_color": null,
     "flight_id": null,
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
+  },
+  {
+    "id": "9fbaa1ec-1138-43b2-a2cb-4c7a79a19984",
+    "created_at": "2026-10-01T15:10:42.789291+00:00",
+    "tournament_id": "36d5df41-5864-4103-b413-169bbd683077",
+    "holes": 18,
+    "first_name": "Julius",
+    "last_name": "Gellermann",
+    "email": "alex@gellermann.biz",
+    "hcp": 0,
+    "birthdate": "2012-03-04",
+    "home_club": "Hamburger Golfclub",
+    "coach": "Frederic Amon",
+    "walkup_song": "Don’t stop believing (Journey)",
+    "caddie": true,
+    "wagr": false,
+    "college_interest": true,
+    "nation": "DE",
+    "player_pin": "9585",
+    "gender": "Boys",
+    "r1_finalized_at": null,
+    "r2_finalized_at": null,
+    "r3_finalized_at": null,
+    "r1_scorecard_pdf_url": null,
+    "r2_scorecard_pdf_url": null,
+    "r3_scorecard_pdf_url": null,
+    "is_final": false,
+    "tee": null,
+    "slope": null,
+    "course_rating": null,
+    "tee_color": null,
+    "flight_id": null,
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "c374f3e1-3ecb-45dd-a720-996aae83628e",
@@ -3184,12 +2970,9 @@
     "course_rating": null,
     "tee_color": null,
     "flight_id": "7006cc08-ff1d-4a45-9bce-8a24b154a144",
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "b64c96a6-6bd0-461d-9f68-f49865e53db5",
@@ -3222,12 +3005,9 @@
     "course_rating": null,
     "tee_color": null,
     "flight_id": "cf702e93-32d6-49c0-a5e7-388f8fd16e5b",
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "36381ba5-02d8-474e-a058-58b719674b9a",
@@ -3260,12 +3040,9 @@
     "course_rating": null,
     "tee_color": null,
     "flight_id": "cf702e93-32d6-49c0-a5e7-388f8fd16e5b",
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "16bbde86-be42-4588-bf60-d2798fec823b",
@@ -3298,12 +3075,9 @@
     "course_rating": null,
     "tee_color": null,
     "flight_id": "514a47bd-105c-4dce-ade5-6cf25daa9e5a",
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "2c5f4c05-03c1-4d64-960d-4e7b3c33c949",
@@ -3336,12 +3110,9 @@
     "course_rating": null,
     "tee_color": null,
     "flight_id": "8f90cebb-bf39-438c-9cc6-def06ffbfbe7",
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "60d9add6-17ee-430f-a974-1bc5cfa95c84",
@@ -3374,12 +3145,9 @@
     "course_rating": null,
     "tee_color": null,
     "flight_id": "8f90cebb-bf39-438c-9cc6-def06ffbfbe7",
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "10f1afa0-aa58-4b13-8d05-4e0b8e462e5f",
@@ -3412,12 +3180,9 @@
     "course_rating": null,
     "tee_color": null,
     "flight_id": "514a47bd-105c-4dce-ade5-6cf25daa9e5a",
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "288cb02f-b30e-4cb3-8faf-08f5364d19fc",
@@ -3450,12 +3215,9 @@
     "course_rating": null,
     "tee_color": null,
     "flight_id": "7006cc08-ff1d-4a45-9bce-8a24b154a144",
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "b8d0b9c8-feab-494a-b904-713a3ef84e28",
@@ -3488,12 +3250,9 @@
     "course_rating": null,
     "tee_color": null,
     "flight_id": "7006cc08-ff1d-4a45-9bce-8a24b154a144",
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "96b9b1f2-6aa1-4ce3-8602-db8885855df9",
@@ -3526,12 +3285,9 @@
     "course_rating": null,
     "tee_color": null,
     "flight_id": "c2f2d645-0fbb-4706-ae69-4aa9e2b6d5cb",
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "9fab0351-ea45-4762-a3b9-4d61ef1d99b9",
@@ -3564,12 +3320,9 @@
     "course_rating": null,
     "tee_color": null,
     "flight_id": "94bd3101-48c9-43ce-9996-c357660afe27",
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "6c31fd00-3f0e-406d-8145-ddca8aad7a11",
@@ -3602,12 +3355,9 @@
     "course_rating": null,
     "tee_color": null,
     "flight_id": "94bd3101-48c9-43ce-9996-c357660afe27",
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "eed4f2ad-d027-443d-9d78-a70e0a3b93a7",
@@ -3640,12 +3390,9 @@
     "course_rating": null,
     "tee_color": null,
     "flight_id": "3e4c1c36-feb0-496e-90dc-f23a56071216",
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "759b9908-b1f9-40b9-aa6e-6f899daf7bf0",
@@ -3678,12 +3425,9 @@
     "course_rating": null,
     "tee_color": null,
     "flight_id": "3e4c1c36-feb0-496e-90dc-f23a56071216",
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "de28cd8e-9d77-4157-807a-369c938090ab",
@@ -3716,12 +3460,9 @@
     "course_rating": null,
     "tee_color": null,
     "flight_id": "49f9b60c-f78c-4b9b-b58e-241ba9764bb3",
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "f42128ff-96ff-4c07-8ad5-c344d9767135",
@@ -3754,12 +3495,9 @@
     "course_rating": null,
     "tee_color": null,
     "flight_id": "5c74550f-dca7-407f-a35f-ba0a3ea661d8",
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "50dd6e49-1e4a-41ab-82ca-6d15050216b3",
@@ -3792,12 +3530,9 @@
     "course_rating": null,
     "tee_color": null,
     "flight_id": "5c74550f-dca7-407f-a35f-ba0a3ea661d8",
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   },
   {
     "id": "7db2cb2f-f9ed-41d0-bbd8-502f7a9a2ff3",
@@ -3830,11 +3565,8 @@
     "course_rating": null,
     "tee_color": null,
     "flight_id": "5c74550f-dca7-407f-a35f-ba0a3ea661d8",
-    "course_setup_id": null,
-    "setup_course_name": null,
-    "setup_tee_name": null,
-    "setup_slope": null,
-    "setup_course_rating": null,
-    "setup_par_total": null
+    "tournament_status": "active",
+    "tournament_status_hole": null,
+    "tournament_status_note": null
   }
 ]
