@@ -511,10 +511,12 @@ function Section({
 
 function PlaceholderTournament({
   title,
+  subtitle,
   dateLabel,
   tournamentId,
 }: {
   title: string;
+  subtitle: string;
   dateLabel: string;
   tournamentId: string;
 }) {
@@ -551,7 +553,7 @@ function PlaceholderTournament({
               textTransform: "uppercase",
             }}
           >
-            PRO1PUTT Official Results
+            PRO1PUTT LIVE SCORING
           </div>
 
           <h1
@@ -574,7 +576,7 @@ function PlaceholderTournament({
               opacity: 0.94,
             }}
           >
-            Offizielle Endergebnisse.
+            {subtitle}
           </p>
 
           <div
@@ -586,7 +588,7 @@ function PlaceholderTournament({
             }}
           >
             <StatCard label="Turnier" value={dateLabel} />
-            <StatCard label="Status" value="Abgeschlossen" />
+            <StatCard label="Status" value={subtitle} />
           </div>
         </section>
 
@@ -614,7 +616,7 @@ export default function Page() {
   }
 
   if (!config.hasStaticData) {
-    return <PlaceholderTournament title={config.title} dateLabel={config.dateLabel} tournamentId={config.tournamentId || slug} />;
+    return <PlaceholderTournament title={config.title} subtitle={config.subtitle} dateLabel={config.dateLabel} tournamentId={config.tournamentId || slug} />;
   }
 
   const total18 =
