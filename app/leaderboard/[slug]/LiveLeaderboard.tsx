@@ -35,17 +35,13 @@ interface Props {
   tournamentId: string;
 }
 
-const AGE_GROUP_ORDER = ["U21", "U18", "U14", "U12", "U8"];
+const AGE_GROUP_ORDER = ["U21", "U18", "U16", "U14", "U12", "U10"];
 
 type TabKey =
-  | "overall18"
   | "girls18"
   | "boys18"
-  | "overall9"
   | "girls9"
-  | "boys9"
-  | "overallGirls"
-  | "overallBoys";
+  | "boys9";
 
 function medal(rank: number) {
   if (rank === 1) return "🥇";
@@ -59,7 +55,7 @@ export default function LiveLeaderboard({ tournamentId }: Props) {
   const [live, setLive] = useState(false);
   const [lastUpdate, setLastUpdate] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
-  const [activeTab, setActiveTab] = useState<TabKey>("overall18");
+  const [activeTab, setActiveTab] = useState<TabKey>("girls18");
   const [openPlayerId, setOpenPlayerId] = useState<string | null>(null);
   const [scorecards, setScorecards] = useState<Record<string, any>>({});
   const [scorecardLoading, setScorecardLoading] = useState<string | null>(null);
@@ -556,14 +552,10 @@ export default function LiveLeaderboard({ tournamentId }: Props) {
   };
 
   const tabs: { key: TabKey; label: string }[] = [
-    { key: "overall18", label: `Overall 18 Loch (${all18.length})` },
-    { key: "girls18",   label: `Girls 18 Loch (${girls18.length})` },
-    { key: "boys18",    label: `Boys 18 Loch (${boys18.length})` },
-    { key: "overall9",  label: `Overall 9 Loch (${all9.length})` },
-    { key: "girls9",    label: `Girls 9 Loch (${girls9.length})` },
-    { key: "boys9",     label: `Boys 9 Loch (${boys9.length})` },
-    { key: "overallGirls", label: `Overall Girls (${girls18.length + girls9.length})` },
-    { key: "overallBoys",  label: `Overall Boys (${boys18.length + boys9.length})` },
+    { key: "girls18", label: `Girls 18 Loch (${girls18.length})` },
+    { key: "boys18",  label: `Boys 18 Loch (${boys18.length})` },
+    { key: "girls9",  label: `Girls 9 Loch (${girls9.length})` },
+    { key: "boys9",   label: `Boys 9 Loch (${boys9.length})` },
   ];
 
   return (
@@ -650,35 +642,31 @@ export default function LiveLeaderboard({ tournamentId }: Props) {
       </div>
 
       {/* Tab Inhalte */}
-      {activeTab === "overall18" &&
-        renderSection("Overall 18 Loch", "Alle 18 Loch Spieler · Brutto", all18)}
-
-      {activeTab === "girls18" &&
-        renderGroups(groupByAge(girls18), "18 Loch", "Girls")}
-
-      {activeTab === "boys18" &&
-        renderGroups(groupByAge(boys18), "18 Loch", "Boys")}
-
-      {activeTab === "overall9" &&
-        renderSection("Overall 9 Loch", "Alle 9 Loch Spieler · Brutto", all9)}
-
-      {activeTab === "girls9" &&
-        renderGroups(groupByAge(girls9), "9 Loch", "Girls")}
-
-      {activeTab === "boys9" &&
-        renderGroups(groupByAge(boys9), "9 Loch", "Boys")}
-
-      {activeTab === "overallGirls" && (
+      {activeTab === "girls18" && (
         <>
           {renderSection("Girls 18 Loch Overall", "Alle Girls 18 Loch · Brutto", girls18)}
-          {renderSection("Girls 9 Loch Overall", "Alle Girls 9 Loch · Brutto", girls9)}
+          {renderGroups(groupByAge(girls18.filter((p) => ["U21", "U18", "U16", "U14"].includes(p.age_group || ""))), "18 Loch", "Girls")}
         </>
       )}
 
-      {activeTab === "overallBoys" && (
+      {activeTab === "boys18" && (
         <>
           {renderSection("Boys 18 Loch Overall", "Alle Boys 18 Loch · Brutto", boys18)}
+          {renderGroups(groupByAge(boys18.filter((p) => ["U21", "U18", "U16", "U14"].includes(p.age_group || ""))), "18 Loch", "Boys")}
+        </>
+      )}
+
+      {activeTab === "girls9" && (
+        <>
+          {renderSection("Girls 9 Loch Overall", "Alle Girls 9 Loch · Brutto", girls9)}
+          {renderGroups(groupByAge(girls9.filter((p) => ["U12", "U10"].includes(p.age_group || ""))), "9 Loch", "Girls")}
+        </>
+      )}
+
+      {activeTab === "boys9" && (
+        <>
           {renderSection("Boys 9 Loch Overall", "Alle Boys 9 Loch · Brutto", boys9)}
+          {renderGroups(groupByAge(boys9.filter((p) => ["U12", "U10"].includes(p.age_group || ""))), "9 Loch", "Boys")}
         </>
       )}
     </div>
