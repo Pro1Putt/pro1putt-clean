@@ -407,9 +407,39 @@ export async function POST(req: Request) {
         holes,
       }));
     }
-
-    const orderedFlights = [...buildMergedFlightOrder(reg18, 18), ...buildMergedFlightOrder(reg9, 9)];
-
+    const orderedFlights =
+      roundNo === 3
+        ? [
+            ...chunk(
+              [...reg18].sort((a, b) =>
+                sortDescNullLast(
+                  sortKeyForRegistration(a),
+                  sortKeyForRegistration(b)
+                )
+              ),
+              FLIGHT_SIZE
+            ).map((members) => ({
+              gender: "Mixed" as any,
+              holes: 18 as const,
+              members,
+              key: sortKeyForRegistration(members[0] ?? ({} as any)),
+            })),
+            ...chunk(
+              [...reg9].sort((a, b) =>
+                sortDescNullLast(
+                  sortKeyForRegistration(a),
+                  sortKeyForRegistration(b)
+                )
+              ),
+              FLIGHT_SIZE
+            ).map((members) => ({
+              gender: "Mixed" as any,
+              holes: 9 as const,
+              members,
+              key: sortKeyForRegistration(members[0] ?? ({} as any)),
+            })),
+          ]
+        : [...buildMergedFlightOrder(reg18, 18), ...buildMergedFlightOrder(reg9, 9)];
     const flightTournamentCol = firstExisting(flightsCols, ["tournament_id"]) || null;
     const flightRoundCol = firstExisting(flightsCols, ["round", "round_no", "round_number"]) || null;
 
