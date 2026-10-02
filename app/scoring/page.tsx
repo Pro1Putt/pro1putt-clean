@@ -8,7 +8,7 @@ const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "";
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "";
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
-const TOURNAMENT_ID = "d4a92ae2-6ecd-4043-8b5a-82414c597036";
+const TOURNAMENT_ID = "36d5df41-5864-4103-b413-169bbd683077";
 
 type Registration = {
   id: string;
