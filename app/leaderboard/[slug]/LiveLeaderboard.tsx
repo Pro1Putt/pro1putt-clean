@@ -268,7 +268,12 @@ export default function LiveLeaderboard({ tournamentId }: Props) {
 
             {/* Spieler Zeilen */}
             {ranked.map((player) => {
-              const par = player.holes === 9 ? 36 : 72;
+              const par =
+                  player.holes === 9
+                    ? 36
+                    : tournamentId === "36d5df41-5864-4103-b413-169bbd683077"
+                    ? 73
+                    : 72;
               const rounds = player.round3 != null ? 3 : player.round2 != null ? 2 : 1;
               const toPar =
                 player.total_strokes != null
