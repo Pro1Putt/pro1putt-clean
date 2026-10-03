@@ -132,7 +132,11 @@ function sortDescNullLast(a: number | null, b: number | null) {
   return b - a;
 }
 
-function mergeFlightsByKey<T extends { key: number | null }>(a: T[], b: T[]) {
+function mergeFlightsByKey<T extends { key: number | null }>(
+  a: T[],
+  b: T[],
+  descending = false
+) {
   const out: T[] = [];
   let i = 0;
   let j = 0;
@@ -153,7 +157,9 @@ function mergeFlightsByKey<T extends { key: number | null }>(a: T[], b: T[]) {
       continue;
     }
 
-    const cmp = sortAscNullLast(A.key, B.key);
+    const cmp = descending
+      ? sortDescNullLast(A.key, B.key)
+      : sortAscNullLast(A.key, B.key);
 
     if (cmp <= 0) {
       out.push(A);
@@ -402,44 +408,15 @@ export async function POST(req: Request) {
       const boysFlights = makeGenderFlights(regs, "Boys").filter((f) => f.holes === holes);
       const girlsFlights = makeGenderFlights(regs, "Girls").filter((f) => f.holes === holes);
 
-      return mergeFlightsByKey(boysFlights, girlsFlights).map((f) => ({
+      return mergeFlightsByKey(boysFlights, girlsFlights, roundNo === 3).map((f) => ({
         ...f,
         holes,
       }));
     }
-    const orderedFlights =
-      roundNo === 3
-        ? [
-            ...chunk(
-              [...reg18].sort((a, b) =>
-                sortDescNullLast(
-                  sortKeyForRegistration(a),
-                  sortKeyForRegistration(b)
-                )
-              ),
-              FLIGHT_SIZE
-            ).map((members) => ({
-              gender: "Mixed" as any,
-              holes: 18 as const,
-              members,
-              key: sortKeyForRegistration(members[0] ?? ({} as any)),
-            })),
-            ...chunk(
-              [...reg9].sort((a, b) =>
-                sortDescNullLast(
-                  sortKeyForRegistration(a),
-                  sortKeyForRegistration(b)
-                )
-              ),
-              FLIGHT_SIZE
-            ).map((members) => ({
-              gender: "Mixed" as any,
-              holes: 9 as const,
-              members,
-              key: sortKeyForRegistration(members[0] ?? ({} as any)),
-            })),
-          ]
-        : [...buildMergedFlightOrder(reg18, 18), ...buildMergedFlightOrder(reg9, 9)];
+    const orderedFlights = [
+      ...buildMergedFlightOrder(reg18, 18),
+      ...buildMergedFlightOrder(reg9, 9),
+    ];
     const flightTournamentCol = firstExisting(flightsCols, ["tournament_id"]) || null;
     const flightRoundCol = firstExisting(flightsCols, ["round", "round_no", "round_number"]) || null;
 
