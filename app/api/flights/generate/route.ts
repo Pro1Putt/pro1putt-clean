@@ -390,7 +390,7 @@ export async function POST(req: Request) {
         .map((r) => ({ r, key: sortKeyForRegistration(r) }));
 
       list.sort((a, b) => {
-        if (roundNo === 3) return sortDescNullLast(a.key, b.key);
+        if (roundNo === 3) return sortAscNullLast(a.key, b.key);
         return sortAscNullLast(a.key, b.key);
       });
 
@@ -408,7 +408,7 @@ export async function POST(req: Request) {
       const boysFlights = makeGenderFlights(regs, "Boys").filter((f) => f.holes === holes);
       const girlsFlights = makeGenderFlights(regs, "Girls").filter((f) => f.holes === holes);
 
-      return mergeFlightsByKey(boysFlights, girlsFlights, roundNo === 3).map((f) => ({
+      return mergeFlightsByKey(boysFlights, girlsFlights, false).map((f) => ({
         ...f,
         holes,
       }));
