@@ -53,7 +53,7 @@ const TOURNAMENTS: Record<string, TournamentConfig> = {
 },
 "green-eagle": {
   title: "Open Finals – North Course Green Eagle",
-  subtitle: "Live Leaderboard",
+  subtitle: "Turnier abgeschlossen · Offizielle Ergebnisse",
   dateLabel: "02.–04.10.2026 · Green Eagle",
   hasStaticData: false,
   tournamentId: "36d5df41-5864-4103-b413-169bbd683077",
@@ -553,7 +553,9 @@ function PlaceholderTournament({
               textTransform: "uppercase",
             }}
           >
-            PRO1PUTT LIVE SCORING
+            {subtitle.includes("Turnier abgeschlossen")
+              ? "PRO1PUTT · TURNIER ABGESCHLOSSEN"
+              : "PRO1PUTT LIVE SCORING"}
           </div>
 
           <h1

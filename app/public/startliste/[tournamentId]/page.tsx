@@ -69,6 +69,43 @@ export default async function PublicStartlistPage({
   const { tournamentId } = await params;
   const query = await searchParams;
 
+  if (tournamentId === "36d5df41-5864-4103-b413-169bbd683077") {
+    return (
+      <main style={styles.page}>
+        <div style={styles.container}>
+          <section style={styles.hero}>
+            <div style={styles.brand}>PRO1PUTT</div>
+            <h1 style={styles.title}>Turnier abgeschlossen</h1>
+            <div style={styles.tournamentName}>PRO1PUTT Open Green Eagle</div>
+          </section>
+
+          <div style={styles.empty}>
+            <h2>Das Turnier ist abgeschlossen.</h2>
+            <p>
+              Die Startlisten sind nicht mehr verfügbar. Alle Ergebnisse
+              finden Sie im offiziellen Leaderboard.
+            </p>
+            <a
+              href="/leaderboard/green-eagle"
+              style={{
+                display: "inline-block",
+                marginTop: 16,
+                padding: "12px 20px",
+                borderRadius: 12,
+                background: DARK,
+                color: "#fff",
+                fontWeight: 800,
+                textDecoration: "none",
+              }}
+            >
+              Leaderboard & Ergebnisse →
+            </a>
+          </div>
+        </div>
+      </main>
+    );
+  }
+
   const requestedRound = [1, 2, 3].includes(Number(query.round))
     ? Number(query.round)
     : null;

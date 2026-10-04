@@ -87,7 +87,7 @@ export default function LeaderboardOverviewPage() {
           ) : tournaments.map((t) => {
             const slug = getSlug(t.id);
             const meta = getMeta(t.id);
-            const isFinished = slug === "winston-open" || slug === "bad-saarow";
+            const isFinished = slug === "winston-open" || slug === "bad-saarow" || slug === "green-eagle";
 
             return (
               <div
@@ -147,23 +147,25 @@ export default function LeaderboardOverviewPage() {
                     flexShrink: 0,
                   }}
                 >
-                  <a
-                    href={`/public/startliste/${t.id}`}
-                    onClick={(e) => e.stopPropagation()}
-                    style={{
-                      background: "#ffffff",
-                      color: "#0b5d3b",
-                      border: "2px solid #0b5d3b",
-                      borderRadius: 14,
-                      padding: "10px 18px",
-                      fontWeight: 800,
-                      fontSize: 14,
-                      whiteSpace: "nowrap",
-                      textDecoration: "none",
-                    }}
-                  >
-                    Startliste →
-                  </a>
+                  {!isFinished && (
+                    <a
+                      href={`/public/startliste/${t.id}`}
+                      onClick={(e) => e.stopPropagation()}
+                      style={{
+                        background: "#ffffff",
+                        color: "#0b5d3b",
+                        border: "2px solid #0b5d3b",
+                        borderRadius: 14,
+                        padding: "10px 18px",
+                        fontWeight: 800,
+                        fontSize: 14,
+                        whiteSpace: "nowrap",
+                        textDecoration: "none",
+                      }}
+                    >
+                      Startliste →
+                    </a>
+                  )}
 
                   <div
                     style={{
