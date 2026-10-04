@@ -66,6 +66,9 @@ export async function GET(req: Request) {
         .from("scores")
         .select("registration_id,hole_number,strokes,round_number")
         .eq("tournament_id", tournamentId)
+        .order("registration_id", { ascending: true })
+        .order("round_number", { ascending: true })
+        .order("hole_number", { ascending: true })
         .range(from, from + 999);
 
       if (error) {
