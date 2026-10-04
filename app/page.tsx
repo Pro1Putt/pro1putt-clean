@@ -208,9 +208,6 @@ export default function HomeV2() {
           </p>
 
           <div style={{ display: "flex", justifyContent: "center", gap: 18, flexWrap: "wrap" }}>
-            <a href="/register" className="p1-btn-primary">
-              Jetzt anmelden
-            </a>
             <a href="/leaderboard" className="p1-btn-ghost">
               Live Leaderboard
             </a>
@@ -284,11 +281,11 @@ export default function HomeV2() {
       {/* TOUR 2026 – CONVERSION BLOCK */}
 <section id="tour" style={{ padding: "80px 20px", textAlign: "center" }}>
   <h2 style={{ fontSize: 36, fontWeight: 900, marginBottom: 12, color: DARK }}>
-    Tour 2026 – Jetzt Startplatz sichern
+    PRO1PUTT Tour 2026
   </h2>
 
   <p style={{ maxWidth: 760, margin: "0 auto 50px", opacity: 0.8 }}>
-  Limitierte Startplätze • 3 Runden ohne Cut • Offizielles WAGR & EGR Event
+  3 Runden ohne Cut • Offizielles WAGR & EGR Event • Ergebnisse der Tour 2026
 </p>
 
   <div
@@ -320,8 +317,8 @@ export default function HomeV2() {
         title: "Open Finals – North Course",
         date: "02.–04.10.2026",
         place: "Green Eagle",
-        status: "Limited Entry",
-        finished: false,
+        status: "Abgeschlossen",
+        finished: true,
       },
     ].map((t) => (
       <div
@@ -373,7 +370,7 @@ export default function HomeV2() {
 
         
        {t.finished ? (
-          <a href={t.place === "Bad Saarow" ? "/leaderboard/bad-saarow" : "/leaderboard/winston-open"} style={{ padding: "14px 18px", background: "#e8f5ee", color: "#0b5d3b", borderRadius: 14, fontWeight: 900, textDecoration: "none", textAlign: "center", marginTop: 20, display: "block" }}>
+          <a href={t.place === "Bad Saarow" ? "/leaderboard/bad-saarow" : t.place === "Green Eagle" ? "/leaderboard/green-eagle" : "/leaderboard/winston-open"} style={{ padding: "14px 18px", background: "#e8f5ee", color: "#0b5d3b", borderRadius: 14, fontWeight: 900, textDecoration: "none", textAlign: "center", marginTop: 20, display: "block" }}>
             🏆 Ergebnisse ansehen →
           </a>
         ) : (
@@ -412,30 +409,6 @@ export default function HomeV2() {
   </div>
 </section>
 
-      {/* CTA */}
-      <section style={{ padding: "72px 20px", background: DARK, textAlign: "center", color: "white" }}>
-        <h2 style={{ fontSize: 34, fontWeight: 900, marginBottom: 18 }}>Sei Teil der PRO1PUTT Tour 2026</h2>
-        <p style={{ maxWidth: 720, margin: "0 auto 28px", opacity: 0.9 }}>
-          Sichere dir deinen Startplatz – Registration, Flights & Live Leaderboard in einem System.
-        </p>
-        <a
-          href="/register"
-          style={{
-            padding: "18px 40px",
-            background: GREEN,
-            color: "#001a10",
-            borderRadius: 16,
-            fontWeight: 900,
-            textDecoration: "none",
-            fontSize: 18,
-            boxShadow: "0 16px 36px rgba(0,0,0,0.25)",
-            display: "inline-block",
-          }}
-        >
-          Jetzt Startplatz sichern
-        </a>
-      </section>
-<div style={{ height: 72 }} />
       {/* FOOTER */}
       <footer
   style={{
@@ -458,52 +431,6 @@ export default function HomeV2() {
     Datenschutz
   </a>
 </footer>
-      {/* STICKY CTA */}
-<div
-  style={{
-    position: "fixed",
-    left: 0,
-    right: 0,
-    bottom: 0,
-    zIndex: 60,
-    padding: "12px 14px",
-    background: "rgba(14, 42, 31, 0.92)",
-    borderTop: "1px solid rgba(255,255,255,0.12)",
-    backdropFilter: "blur(10px)",
-    WebkitBackdropFilter: "blur(10px)",
-  }}
->
-  <div
-    style={{
-      maxWidth: 1100,
-      margin: "0 auto",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "space-between",
-      gap: 12,
-      flexWrap: "wrap",
-    }}
-  >
-    <div style={{ color: "rgba(255,255,255,0.9)", fontWeight: 800, fontSize: 14 }}>
-      Startplätze sichern • <span style={{ color: GREEN, fontWeight: 900 }}>WAGR & EGR</span>
-    </div>
-
-    <a
-      href="/register"
-      style={{
-        padding: "12px 16px",
-        background: GREEN,
-        color: "#001a10",
-        borderRadius: 12,
-        fontWeight: 900,
-        textDecoration: "none",
-        whiteSpace: "nowrap",
-      }}
-    >
-      Jetzt anmelden →
-    </a>
-  </div>
-</div>
     </div>
   );
 }
