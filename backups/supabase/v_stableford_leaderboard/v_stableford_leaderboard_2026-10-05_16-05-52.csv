@@ -1,4 +1,5 @@
 tournament_id,registration_id,first_name,last_name,gender,hcp,setup_tee_name,rounds_played,stableford_total,gross_total,net_total
+36d5df41-5864-4103-b413-169bbd683077,9f598abc-49d9-4080-9cd4-ebd4e9e3ab7d,Jokubas,Nimptschke,Boys,5.7,,1,0,85,85
 7716349a-8bb0-46c6-b60c-3594eb7ea60f,06ccd75a-85fb-49da-b531-5ea45a09645f,Rafael,Pich,Boys,20.6,,1,0,101,101
 7716349a-8bb0-46c6-b60c-3594eb7ea60f,07cfbc31-606f-4838-ba17-578e0720215d,Aaron,Kastein,Boys,-0.8,,1,0,76,76
 7716349a-8bb0-46c6-b60c-3594eb7ea60f,098132e4-eb31-43dd-b487-8f6aea7501e6,Linus,Niermann,Boys,16.6,,1,0,39,39
