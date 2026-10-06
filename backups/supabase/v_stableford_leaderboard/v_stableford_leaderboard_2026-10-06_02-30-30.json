@@ -1,5 +1,18 @@
 [
   {
+    "tournament_id": "36d5df41-5864-4103-b413-169bbd683077",
+    "registration_id": "9f598abc-49d9-4080-9cd4-ebd4e9e3ab7d",
+    "first_name": "Jokubas",
+    "last_name": "Nimptschke",
+    "gender": "Boys",
+    "hcp": 5.7,
+    "setup_tee_name": null,
+    "rounds_played": 1,
+    "stableford_total": 0,
+    "gross_total": 85,
+    "net_total": 85
+  },
+  {
     "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
     "registration_id": "06ccd75a-85fb-49da-b531-5ea45a09645f",
     "first_name": "Rafael",
