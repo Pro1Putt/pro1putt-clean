@@ -1275,6 +1275,23 @@
     "stableford_total": 0
   },
   {
+    "tournament_id": "36d5df41-5864-4103-b413-169bbd683077",
+    "round_number": 3,
+    "registration_id": "9f598abc-49d9-4080-9cd4-ebd4e9e3ab7d",
+    "first_name": "Jokubas",
+    "last_name": "Nimptschke",
+    "gender": "Boys",
+    "hcp": 5.7,
+    "setup_tee_name": null,
+    "setup_slope": null,
+    "setup_course_rating": null,
+    "playing_handicap": null,
+    "holes_played": 18,
+    "gross_total": 85,
+    "net_total": 85,
+    "stableford_total": 0
+  },
+  {
     "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
     "round_number": 1,
     "registration_id": "9fab0351-ea45-4762-a3b9-4d61ef1d99b9",
