@@ -9316,46 +9316,6 @@
     "first_name": "Jokubas",
     "last_name": "Nimptschke",
     "player_id": "9f598abc-49d9-4080-9cd4-ebd4e9e3ab7d",
-    "hole_number": 16,
-    "strokes": 6
-  },
-  {
-    "tournament_id": "36d5df41-5864-4103-b413-169bbd683077",
-    "first_name": "Jokubas",
-    "last_name": "Nimptschke",
-    "player_id": "9f598abc-49d9-4080-9cd4-ebd4e9e3ab7d",
-    "hole_number": 12,
-    "strokes": 5
-  },
-  {
-    "tournament_id": "36d5df41-5864-4103-b413-169bbd683077",
-    "first_name": "Jokubas",
-    "last_name": "Nimptschke",
-    "player_id": "9f598abc-49d9-4080-9cd4-ebd4e9e3ab7d",
-    "hole_number": 4,
-    "strokes": 5
-  },
-  {
-    "tournament_id": "36d5df41-5864-4103-b413-169bbd683077",
-    "first_name": "Jokubas",
-    "last_name": "Nimptschke",
-    "player_id": "9f598abc-49d9-4080-9cd4-ebd4e9e3ab7d",
-    "hole_number": 6,
-    "strokes": 5
-  },
-  {
-    "tournament_id": "36d5df41-5864-4103-b413-169bbd683077",
-    "first_name": "Jokubas",
-    "last_name": "Nimptschke",
-    "player_id": "9f598abc-49d9-4080-9cd4-ebd4e9e3ab7d",
-    "hole_number": 14,
-    "strokes": 4
-  },
-  {
-    "tournament_id": "36d5df41-5864-4103-b413-169bbd683077",
-    "first_name": "Jokubas",
-    "last_name": "Nimptschke",
-    "player_id": "9f598abc-49d9-4080-9cd4-ebd4e9e3ab7d",
     "hole_number": 1,
     "strokes": 3
   },
@@ -9380,6 +9340,14 @@
     "first_name": "Jokubas",
     "last_name": "Nimptschke",
     "player_id": "9f598abc-49d9-4080-9cd4-ebd4e9e3ab7d",
+    "hole_number": 4,
+    "strokes": 5
+  },
+  {
+    "tournament_id": "36d5df41-5864-4103-b413-169bbd683077",
+    "first_name": "Jokubas",
+    "last_name": "Nimptschke",
+    "player_id": "9f598abc-49d9-4080-9cd4-ebd4e9e3ab7d",
     "hole_number": 5,
     "strokes": 3
   },
@@ -9388,55 +9356,7 @@
     "first_name": "Jokubas",
     "last_name": "Nimptschke",
     "player_id": "9f598abc-49d9-4080-9cd4-ebd4e9e3ab7d",
-    "hole_number": 8,
-    "strokes": 4
-  },
-  {
-    "tournament_id": "36d5df41-5864-4103-b413-169bbd683077",
-    "first_name": "Jokubas",
-    "last_name": "Nimptschke",
-    "player_id": "9f598abc-49d9-4080-9cd4-ebd4e9e3ab7d",
-    "hole_number": 18,
-    "strokes": 7
-  },
-  {
-    "tournament_id": "36d5df41-5864-4103-b413-169bbd683077",
-    "first_name": "Jokubas",
-    "last_name": "Nimptschke",
-    "player_id": "9f598abc-49d9-4080-9cd4-ebd4e9e3ab7d",
-    "hole_number": 10,
-    "strokes": 4
-  },
-  {
-    "tournament_id": "36d5df41-5864-4103-b413-169bbd683077",
-    "first_name": "Jokubas",
-    "last_name": "Nimptschke",
-    "player_id": "9f598abc-49d9-4080-9cd4-ebd4e9e3ab7d",
-    "hole_number": 11,
-    "strokes": 6
-  },
-  {
-    "tournament_id": "36d5df41-5864-4103-b413-169bbd683077",
-    "first_name": "Jokubas",
-    "last_name": "Nimptschke",
-    "player_id": "9f598abc-49d9-4080-9cd4-ebd4e9e3ab7d",
-    "hole_number": 13,
-    "strokes": 5
-  },
-  {
-    "tournament_id": "36d5df41-5864-4103-b413-169bbd683077",
-    "first_name": "Jokubas",
-    "last_name": "Nimptschke",
-    "player_id": "9f598abc-49d9-4080-9cd4-ebd4e9e3ab7d",
-    "hole_number": 15,
-    "strokes": 6
-  },
-  {
-    "tournament_id": "36d5df41-5864-4103-b413-169bbd683077",
-    "first_name": "Jokubas",
-    "last_name": "Nimptschke",
-    "player_id": "9f598abc-49d9-4080-9cd4-ebd4e9e3ab7d",
-    "hole_number": 17,
+    "hole_number": 6,
     "strokes": 5
   },
   {
@@ -9452,8 +9372,88 @@
     "first_name": "Jokubas",
     "last_name": "Nimptschke",
     "player_id": "9f598abc-49d9-4080-9cd4-ebd4e9e3ab7d",
+    "hole_number": 8,
+    "strokes": 3
+  },
+  {
+    "tournament_id": "36d5df41-5864-4103-b413-169bbd683077",
+    "first_name": "Jokubas",
+    "last_name": "Nimptschke",
+    "player_id": "9f598abc-49d9-4080-9cd4-ebd4e9e3ab7d",
     "hole_number": 9,
     "strokes": 5
+  },
+  {
+    "tournament_id": "36d5df41-5864-4103-b413-169bbd683077",
+    "first_name": "Jokubas",
+    "last_name": "Nimptschke",
+    "player_id": "9f598abc-49d9-4080-9cd4-ebd4e9e3ab7d",
+    "hole_number": 10,
+    "strokes": 5
+  },
+  {
+    "tournament_id": "36d5df41-5864-4103-b413-169bbd683077",
+    "first_name": "Jokubas",
+    "last_name": "Nimptschke",
+    "player_id": "9f598abc-49d9-4080-9cd4-ebd4e9e3ab7d",
+    "hole_number": 11,
+    "strokes": 6
+  },
+  {
+    "tournament_id": "36d5df41-5864-4103-b413-169bbd683077",
+    "first_name": "Jokubas",
+    "last_name": "Nimptschke",
+    "player_id": "9f598abc-49d9-4080-9cd4-ebd4e9e3ab7d",
+    "hole_number": 12,
+    "strokes": 5
+  },
+  {
+    "tournament_id": "36d5df41-5864-4103-b413-169bbd683077",
+    "first_name": "Jokubas",
+    "last_name": "Nimptschke",
+    "player_id": "9f598abc-49d9-4080-9cd4-ebd4e9e3ab7d",
+    "hole_number": 13,
+    "strokes": 5
+  },
+  {
+    "tournament_id": "36d5df41-5864-4103-b413-169bbd683077",
+    "first_name": "Jokubas",
+    "last_name": "Nimptschke",
+    "player_id": "9f598abc-49d9-4080-9cd4-ebd4e9e3ab7d",
+    "hole_number": 14,
+    "strokes": 3
+  },
+  {
+    "tournament_id": "36d5df41-5864-4103-b413-169bbd683077",
+    "first_name": "Jokubas",
+    "last_name": "Nimptschke",
+    "player_id": "9f598abc-49d9-4080-9cd4-ebd4e9e3ab7d",
+    "hole_number": 15,
+    "strokes": 6
+  },
+  {
+    "tournament_id": "36d5df41-5864-4103-b413-169bbd683077",
+    "first_name": "Jokubas",
+    "last_name": "Nimptschke",
+    "player_id": "9f598abc-49d9-4080-9cd4-ebd4e9e3ab7d",
+    "hole_number": 16,
+    "strokes": 6
+  },
+  {
+    "tournament_id": "36d5df41-5864-4103-b413-169bbd683077",
+    "first_name": "Jokubas",
+    "last_name": "Nimptschke",
+    "player_id": "9f598abc-49d9-4080-9cd4-ebd4e9e3ab7d",
+    "hole_number": 17,
+    "strokes": 5
+  },
+  {
+    "tournament_id": "36d5df41-5864-4103-b413-169bbd683077",
+    "first_name": "Jokubas",
+    "last_name": "Nimptschke",
+    "player_id": "9f598abc-49d9-4080-9cd4-ebd4e9e3ab7d",
+    "hole_number": 18,
+    "strokes": 7
   },
   {
     "tournament_id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
