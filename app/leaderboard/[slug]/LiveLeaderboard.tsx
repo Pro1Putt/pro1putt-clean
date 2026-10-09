@@ -651,7 +651,7 @@ export default function LiveLeaderboard({ tournamentId }: Props) {
       {/* Tab Inhalte */}
       {activeTab === "girls18" && (
         <>
-          {renderSection("Girls 18 Loch Overall", "Alle Girls 18 Loch · Brutto", girls18)}
+          {renderSection("Girls Overall", "Alle Girls 18 Loch · Brutto", girls18)}
           {renderGroups(groupByAge(girls18.filter((p) => ["U21", "U18", "U16", "U14"].includes(p.age_group || ""))), "18 Loch", "Girls")}
         </>
       )}
