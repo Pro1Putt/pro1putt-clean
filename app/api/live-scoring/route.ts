@@ -7,20 +7,42 @@ function getServiceSupabase() {
   return createClient(url, key, { auth: { persistSession: false } });
 }
 
-function calcAgeGroup(birthdate: string, holes: number): string {
-  const today = new Date();
-  const birth = new Date(birthdate);
-  const age = today.getFullYear() - birth.getFullYear();
-  if (holes === 9) {
-    if (age <= 8) return "U8";
-    if (age <= 10) return "U10";
-    return "U12";
-  } else {
+function calcAgeGroup(
+  birthdate: string,
+  startDate: string,
+  holes: number
+): string {
+  const [by, bm, bd] = birthdate.split("-").map(Number);
+  const [sy, sm, sd] = startDate.split("-").map(Number);
+
+  const isHistorical = startDate.slice(0, 10) < "2026-10-18";
+
+  if (isHistorical) {
+    const age = 2026 - by;
+
+    if (holes === 9) {
+      if (age <= 8) return "U8";
+      if (age <= 10) return "U10";
+      return "U12";
+    }
+
     if (age <= 14) return "U14";
     if (age <= 16) return "U16";
     if (age <= 18) return "U18";
     return "U21";
   }
+
+  let age = sy - by;
+  if (sm < bm || (sm === bm && sd < bd)) age--;
+
+  if (holes === 9) {
+    return age <= 10 ? "U10" : "U12";
+  }
+
+  if (age <= 14) return "U14";
+  if (age <= 16) return "U16";
+  if (age <= 18) return "U18";
+  return "U21";
 }
 
 function normalizeGender(g: string): string {
@@ -37,6 +59,20 @@ export async function GET(req: Request) {
     if (!tournamentId) return NextResponse.json({ ok: false, error: "Missing tournamentId" }, { status: 400 });
 
     const supabase = getServiceSupabase();
+
+    // Turnierstartdatum als verbindlichen Stichtag laden
+    const { data: tournament, error: tournamentError } = await supabase
+      .from("tournaments")
+      .select("start_date")
+      .eq("id", tournamentId)
+      .single();
+
+    if (tournamentError || !tournament?.start_date) {
+      return NextResponse.json(
+        { ok: false, error: "Turnierstartdatum nicht gefunden." },
+        { status: 400 }
+      );
+    }
 
     // Registrierungen laden
     const { data: registrations } = await supabase
@@ -170,7 +206,7 @@ export async function GET(req: Request) {
         hcp: reg.hcp,
         home_club: reg.home_club,
         gender: normalizeGender(reg.gender || ""),
-        age_group: reg.birthdate ? calcAgeGroup(reg.birthdate, reg.holes || 18) : "",
+        age_group: reg.birthdate ? calcAgeGroup(reg.birthdate, tournament.start_date, reg.holes || 18) : "",
         holes: reg.holes || 18,
         flight_number: flight?.flight_number || null,
         flight_status: flight?.status || null,

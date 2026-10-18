@@ -23,8 +23,81 @@ function labelStyle(): React.CSSProperties {
   return { display: "block", fontWeight: 700, marginBottom: 8 };
 }
 
+function calculateAge(birthdate: string, startDate: string): number | null {
+  const parse = (value: string) => {
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) return null;
+    const [year, month, day] = value.split("-").map(Number);
+    const date = new Date(Date.UTC(year, month - 1, day));
+    if (
+      date.getUTCFullYear() !== year ||
+      date.getUTCMonth() !== month - 1 ||
+      date.getUTCDate() !== day
+    ) return null;
+    return { year, month, day };
+  };
+
+  const birth = parse(birthdate);
+  const start = parse(startDate);
+  if (!birth || !start) return null;
+
+  let age = start.year - birth.year;
+  if (
+    start.month < birth.month ||
+    (start.month === birth.month && start.day < birth.day)
+  ) age--;
+
+  return age;
+}
+
+function getAgeGroup(age: number, holes: number): string {
+  if (holes === 9) return age <= 10 ? "U10" : "U12";
+  if (age <= 14) return "U14";
+  if (age <= 16) return "U16";
+  if (age <= 18) return "U18";
+  return "U21";
+}
+
 export default function RegisterPage() {
   const [tournaments, setTournaments] = useState<Tournament[]>([]);
+  const [selectedTournament, setSelectedTournament] = useState("");
+  const [selectedBirthdate, setSelectedBirthdate] = useState("");
+  const [selectedHoles, setSelectedHoles] = useState<number | null>(null);
+
+  const tournament = tournaments.find((t) => t.id === selectedTournament);
+  const age =
+    selectedBirthdate && tournament?.start_date
+      ? calculateAge(selectedBirthdate, tournament.start_date)
+      : null;
+
+  const isNewTournament =
+    !!tournament?.start_date &&
+    tournament.start_date.slice(0, 10) >= "2026-10-18";
+
+  const ageError =
+    !isNewTournament
+      ? null
+      : age === null
+      ? selectedBirthdate && selectedTournament
+        ? "Geburtsdatum oder Turnierstartdatum ungültig."
+        : null
+      : age < 0
+        ? "Das Geburtsdatum liegt nach dem ersten Turniertag."
+        : age > 21
+          ? "Eine Anmeldung ist nur bis einschließlich 21 Jahre möglich."
+          : selectedHoles === 9 && age > 12
+            ? "9 Loch ist nur bis einschließlich 12 Jahre möglich. Bitte 18 Loch auswählen."
+            : null;
+
+  const ageGroup =
+    isNewTournament &&
+    age !== null &&
+    age >= 0 &&
+    age <= 21 &&
+    selectedHoles &&
+    !ageError
+      ? getAgeGroup(age, selectedHoles)
+      : null;
+
   const [loadErr, setLoadErr] = useState<string | null>(null);
 
   const [submitting, setSubmitting] = useState(false);
@@ -53,6 +126,12 @@ export default function RegisterPage() {
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
     setSubmitErr(null);
+
+    if (ageError) {
+      setSubmitErr(ageError);
+      return;
+    }
+
     setSubmitting(true);
 
     try {
@@ -73,6 +152,9 @@ export default function RegisterPage() {
 
       setSuccessPin(String(json.player_pin || ""));
       form.reset();
+      setSelectedTournament("");
+      setSelectedBirthdate("");
+      setSelectedHoles(null);
 
       const url = String(json?.paypal_url ?? "").trim();
 if (url) {
@@ -158,7 +240,13 @@ if (url) {
               Fehler beim Laden der Turniere: {loadErr}
             </div>
           ) : (
-            <select name="tournament_id" defaultValue="" style={inputStyle()} required>
+            <select
+              name="tournament_id"
+              value={selectedTournament}
+              onChange={(e) => setSelectedTournament(e.target.value)}
+              style={inputStyle()}
+              required
+            >
               <option value="" disabled>
                 Bitte wählen…
               </option>
@@ -195,8 +283,15 @@ if (url) {
                 cursor: "pointer",
               }}
             >
-              <input type="radio" name="holes" value="9" required />
-              9 Loch (U12)
+              <input
+                type="radio"
+                name="holes"
+                value="9"
+                checked={selectedHoles === 9}
+                onChange={() => setSelectedHoles(9)}
+                required
+              />
+              9 Loch (U10 / U12)
             </label>
 
             <label
@@ -210,11 +305,44 @@ if (url) {
                 cursor: "pointer",
               }}
             >
-              <input type="radio" name="holes" value="18" required />
-              18 Loch (U21)
+              <input
+                type="radio"
+                name="holes"
+                value="18"
+                checked={selectedHoles === 18}
+                onChange={() => setSelectedHoles(18)}
+                required
+              />
+              18 Loch (U14 / U16 / U18 / U21)
             </label>
           </div>
         </div>
+
+        {ageError && (
+          <div style={{
+            color: "crimson",
+            background: "#fff0f0",
+            borderRadius: 12,
+            padding: 14,
+            marginBottom: 16,
+            fontWeight: 700
+          }}>
+            {ageError}
+          </div>
+        )}
+
+        {ageGroup && (
+          <div style={{
+            color: "#1e4620",
+            background: "#e9f5ec",
+            borderRadius: 12,
+            padding: 14,
+            marginBottom: 16,
+            fontWeight: 700
+          }}>
+            Altersgruppe: {ageGroup} · Alter am ersten Turniertag: {age} Jahre
+          </div>
+        )}
 
         {/* Grid */}
         <div
@@ -256,7 +384,14 @@ if (url) {
             <label style={labelStyle()}>
               Geburtsdatum <span style={{ color: "crimson" }}>*</span>
             </label>
-            <input name="birthdate" type="date" style={inputStyle()} required />
+            <input
+              name="birthdate"
+              type="date"
+              value={selectedBirthdate}
+              onChange={(e) => setSelectedBirthdate(e.target.value)}
+              style={inputStyle()}
+              required
+            />
           </div>
 
           <div>

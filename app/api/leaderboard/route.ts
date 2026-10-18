@@ -38,6 +38,20 @@ function normalizeGroupForHoles(group: string, holes: number) {
   return group;
 }
 
+function ageGroupFromAgeNew(
+  age: number,
+  holes: number
+): "U10" | "U12" | "U14" | "U16" | "U18" | "U21" {
+  if (holes === 9) {
+    return age <= 10 ? "U10" : "U12";
+  }
+
+  if (age <= 14) return "U14";
+  if (age <= 16) return "U16";
+  if (age <= 18) return "U18";
+  return "U21";
+}
+
 type RegRow = {
   id: string;
   tournament_id: string;
@@ -312,15 +326,11 @@ export async function GET(req: Request) {
 
       if (r.birthdate) {
         const age = calcAge(String(r.birthdate), String(tournamentRow.start_date));
-        const baseGroup = ageGroupFromAge(age);
-        age_group = normalizeGroupForHoles(baseGroup, holes) as
-          | "U8"
-          | "U10"
-          | "U12"
-          | "U14"
-          | "U16"
-          | "U18"
-          | "U21";
+        if (String(tournamentRow.start_date).slice(0, 10) < "2026-10-18") {
+          age_group = normalizeGroupForHoles(ageGroupFromAge(age), holes) as typeof age_group;
+        } else {
+          age_group = ageGroupFromAgeNew(age, holes);
+        }
       }
 
       const roundData = byRegistrationRound.get(regId) || {

@@ -9,15 +9,38 @@ function getSupabase() {
   );
 }
 
-function calcAgeGroup(birthdate: string, holes: number): string {
-  const today = new Date();
-  const birth = new Date(birthdate);
-  const age = today.getFullYear() - birth.getFullYear();
-  if (holes === 9) {
-    if (age <= 8) return "U8";
-    if (age <= 10) return "U10";
-    return "U12";
+function calcAgeGroup(
+  birthdate: string,
+  startDate: string,
+  holes: number
+): string {
+  const [by, bm, bd] = birthdate.split("-").map(Number);
+  const [sy, sm, sd] = startDate.split("-").map(Number);
+
+  const isHistorical = startDate.slice(0, 10) < "2026-10-18";
+
+  if (isHistorical) {
+    const age = 2026 - by;
+
+    if (holes === 9) {
+      if (age <= 8) return "U8";
+      if (age <= 10) return "U10";
+      return "U12";
+    }
+
+    if (age <= 14) return "U14";
+    if (age <= 16) return "U16";
+    if (age <= 18) return "U18";
+    return "U21";
   }
+
+  let age = sy - by;
+  if (sm < bm || (sm === bm && sd < bd)) age--;
+
+  if (holes === 9) {
+    return age <= 10 ? "U10" : "U12";
+  }
+
   if (age <= 14) return "U14";
   if (age <= 16) return "U16";
   if (age <= 18) return "U18";
@@ -49,10 +72,25 @@ export async function GET(req: Request) {
     .select("id, first_name, last_name, hcp, gender, birthdate, holes, flight_id, player_pin, tournament_status, tournament_status_hole, tournament_status_note")
     .eq("tournament_id", tournamentId);
 
+  const { data: tournament, error: tournamentError } = await supabase
+    .from("tournaments")
+    .select("start_date")
+    .eq("id", tournamentId)
+    .single();
+
+  if (tournamentError || !tournament?.start_date) {
+    return NextResponse.json(
+      { ok: false, error: "Turnierstartdatum nicht gefunden." },
+      { status: 400 }
+    );
+  }
+
   const registrations = (regs || []).map((r: any) => ({
     ...r,
     gender: normalizeGender(r.gender || ""),
-    age_group: r.birthdate ? calcAgeGroup(r.birthdate, r.holes || 18) : "",
+    age_group: r.birthdate
+      ? calcAgeGroup(r.birthdate, tournament.start_date, r.holes || 18)
+      : "",
   }));
 
   const { data: flightsData } = await supabase

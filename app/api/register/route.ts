@@ -34,6 +34,37 @@ function toNum(v: any) {
   return Number.isFinite(n) ? n : null;
 }
 
+function calculateAgeAtTournament(birthdate: string, startDate: string): number | null {
+  const parseDate = (value: string) => {
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) return null;
+
+    const [year, month, day] = value.split("-").map(Number);
+    const date = new Date(Date.UTC(year, month - 1, day));
+
+    if (
+      date.getUTCFullYear() !== year ||
+      date.getUTCMonth() !== month - 1 ||
+      date.getUTCDate() !== day
+    ) return null;
+
+    return { year, month, day };
+  };
+
+  const birth = parseDate(birthdate);
+  const start = parseDate(startDate);
+
+  if (!birth || !start) return null;
+
+  let age = start.year - birth.year;
+
+  if (
+    start.month < birth.month ||
+    (start.month === birth.month && start.day < birth.day)
+  ) age--;
+
+  return age;
+}
+
 function getServiceSupabase() {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL || "";
   const key = process.env.SUPABASE_SERVICE_ROLE_KEY || "";
@@ -96,12 +127,54 @@ export async function POST(req: Request) {
     // Turnier laden (PayPal + Name)
     const { data: tRow, error: tErr } = await supabase
       .from("tournaments")
-      .select("name,paypal_url_9,paypal_url_18")
+      .select("name,start_date,paypal_url_9,paypal_url_18")
       .eq("id", tournament_id)
       .single();
 
     if (tErr || !tRow) {
       return NextResponse.json({ ok: false, error: "Turnier nicht gefunden." }, { status: 400 });
+    }
+
+    // Neue Altersregeln gelten nur für Turniere ab dem 18.10.2026.
+    // Historische Turniere behalten ihre bisherigen Anmelderegeln.
+    if (String(tRow.start_date || "").slice(0, 10) >= "2026-10-18") {
+    // Stichtag: erster Turniertag
+    if (!tRow.start_date) {
+      return NextResponse.json(
+        { ok: false, error: "Für dieses Turnier ist kein Startdatum hinterlegt." },
+        { status: 400 }
+      );
+    }
+
+    const age = calculateAgeAtTournament(birthdate, String(tRow.start_date));
+
+    if (age === null || age < 0) {
+      return NextResponse.json(
+        { ok: false, error: "Ungültiges Geburtsdatum." },
+        { status: 400 }
+      );
+    }
+
+    if (holes === 9 && age > 12) {
+      return NextResponse.json(
+        {
+          ok: false,
+          error: "9 Loch ist nur für Teilnehmer bis einschließlich 12 Jahre am ersten Turniertag erlaubt."
+        },
+        { status: 400 }
+      );
+    }
+
+    if (age > 21) {
+      return NextResponse.json(
+        {
+          ok: false,
+          error: "Eine Anmeldung ist nur bis einschließlich 21 Jahre am ersten Turniertag möglich."
+        },
+        { status: 400 }
+      );
+    }
+
     }
 
     const paypal_url =
