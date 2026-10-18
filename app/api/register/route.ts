@@ -135,6 +135,23 @@ export async function POST(req: Request) {
       return NextResponse.json({ ok: false, error: "Turnier nicht gefunden." }, { status: 400 });
     }
 
+    // Keine neuen Anmeldungen für bereits gestartete Turniere.
+    const today = new Intl.DateTimeFormat("en-CA", {
+      timeZone: "Europe/Berlin",
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+    }).format(new Date());
+
+    const tournamentStart = String(tRow.start_date || "").slice(0, 10);
+
+    if (!tournamentStart || tournamentStart < today) {
+      return NextResponse.json(
+        { ok: false, error: "Die Anmeldung für dieses Turnier ist geschlossen." },
+        { status: 400 }
+      );
+    }
+
     // Neue Altersregeln gelten nur für Turniere ab dem 18.10.2026.
     // Historische Turniere behalten ihre bisherigen Anmelderegeln.
     if (String(tRow.start_date || "").slice(0, 10) >= "2026-10-18") {

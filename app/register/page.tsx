@@ -112,7 +112,19 @@ export default function RegisterPage() {
         const res = await fetch("/api/tournaments");
         const json = await res.json();
         if (!res.ok) throw new Error(json?.error || "Failed to load tournaments");
-        if (!cancelled) setTournaments(json.tournaments || []);
+        if (!cancelled) {
+          const today = new Date().toLocaleDateString("en-CA", {
+            timeZone: "Europe/Berlin",
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit",
+          });
+          setTournaments(
+            (json.tournaments || []).filter(
+              (t: Tournament) => t.start_date && t.start_date.slice(0, 10) >= today
+            )
+          );
+        }
       } catch (e: any) {
         if (!cancelled) setLoadErr(e?.message || "Load error");
       }
