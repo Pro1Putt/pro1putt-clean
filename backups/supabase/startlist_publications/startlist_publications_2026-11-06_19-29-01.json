@@ -82,5 +82,68 @@
     "tournament_id": "36d5df41-5864-4103-b413-169bbd683077",
     "round": 3,
     "published": true
+  },
+  {
+    "id": 16,
+    "created_at": "2026-11-05T16:18:22.137252+00:00",
+    "tournament_id": "66ba3f87-5381-49f6-975d-ebb1af2abac5",
+    "round": 1,
+    "published": false
+  },
+  {
+    "id": 17,
+    "created_at": "2026-11-05T16:18:22.137252+00:00",
+    "tournament_id": "66ba3f87-5381-49f6-975d-ebb1af2abac5",
+    "round": 2,
+    "published": false
+  },
+  {
+    "id": 18,
+    "created_at": "2026-11-05T16:18:22.137252+00:00",
+    "tournament_id": "66ba3f87-5381-49f6-975d-ebb1af2abac5",
+    "round": 3,
+    "published": false
+  },
+  {
+    "id": 22,
+    "created_at": "2026-11-06T14:36:15.348919+00:00",
+    "tournament_id": "59c59fdb-d0d7-4fc2-97a0-f129f9313bf2",
+    "round": 1,
+    "published": false
+  },
+  {
+    "id": 23,
+    "created_at": "2026-11-06T14:36:15.348919+00:00",
+    "tournament_id": "59c59fdb-d0d7-4fc2-97a0-f129f9313bf2",
+    "round": 2,
+    "published": false
+  },
+  {
+    "id": 24,
+    "created_at": "2026-11-06T14:36:15.348919+00:00",
+    "tournament_id": "59c59fdb-d0d7-4fc2-97a0-f129f9313bf2",
+    "round": 3,
+    "published": false
+  },
+  {
+    "id": 25,
+    "created_at": "2026-11-06T18:10:45.701597+00:00",
+    "tournament_id": "37508244-09bd-4563-ad70-8082e20f633c",
+    "round": 1,
+    "published": false
+  },
+  {
+    "id": 26,
+    "created_at": "2026-11-06T18:10:45.701597+00:00",
+    "tournament_id": "37508244-09bd-4563-ad70-8082e20f633c",
+    "round": 2,
+    "published": false
+  },
+  {
+    "id": 27,
+    "created_at": "2026-11-06T18:10:45.701597+00:00",
+    "tournament_id": "37508244-09bd-4563-ad70-8082e20f633c",
+    "round": 3,
+    "published": false
   }
 ]
