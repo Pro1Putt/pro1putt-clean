@@ -11,7 +11,11 @@
     "paypal_url_9": "https://www.paypal.com/ncp/payment/M8CJWZ4SLCT34",
     "paypal_url_18": "https://www.paypal.com/ncp/payment/SRBRNY5CVE4Q2",
     "scoring_pin": "1234",
-    "slug": "winston-open"
+    "slug": "winston-open",
+    "end_date": null,
+    "max_participants": null,
+    "registration_open": false,
+    "registration_deadline": null
   },
   {
     "id": "36d5df41-5864-4103-b413-169bbd683077",
@@ -25,7 +29,11 @@
     "paypal_url_9": "https://www.paypal.com/ncp/payment/M8CJWZ4SLCT34",
     "paypal_url_18": "https://www.paypal.com/ncp/payment/SRBRNY5CVE4Q2",
     "scoring_pin": null,
-    "slug": "green-eagle"
+    "slug": "green-eagle",
+    "end_date": null,
+    "max_participants": null,
+    "registration_open": false,
+    "registration_deadline": null
   },
   {
     "id": "d4a92ae2-6ecd-4043-8b5a-82414c597036",
@@ -39,7 +47,11 @@
     "paypal_url_9": "https://www.paypal.com/ncp/payment/M8CJWZ4SLCT34",
     "paypal_url_18": "https://www.paypal.com/ncp/payment/SRBRNY5CVE4Q2",
     "scoring_pin": null,
-    "slug": "bad-saarow"
+    "slug": "bad-saarow",
+    "end_date": null,
+    "max_participants": null,
+    "registration_open": false,
+    "registration_deadline": null
   },
   {
     "id": "e9b23d74-ab9d-4ba5-86bf-744915e1ee28",
@@ -53,6 +65,46 @@
     "paypal_url_9": null,
     "paypal_url_18": null,
     "scoring_pin": "",
-    "slug": null
+    "slug": null,
+    "end_date": null,
+    "max_participants": null,
+    "registration_open": false,
+    "registration_deadline": null
+  },
+  {
+    "id": "66ba3f87-5381-49f6-975d-ebb1af2abac5",
+    "name": "PRO1PUTT – OPEN FINALS 2027",
+    "course_name": "Green Eagle Golf Courses",
+    "start_date": "2027-10-08",
+    "created_at": "2026-11-05T16:18:22.137252+00:00",
+    "par": 72,
+    "location": "Hamburg, Germany",
+    "is_active": true,
+    "paypal_url_9": null,
+    "paypal_url_18": null,
+    "scoring_pin": null,
+    "slug": "green-eagle-2027",
+    "end_date": "2027-10-10",
+    "max_participants": 75,
+    "registration_open": true,
+    "registration_deadline": null
+  },
+  {
+    "id": "02f6ad82-e10b-4c85-982b-26c6d6a28b8b",
+    "name": "Testturnier Bearbeitet",
+    "course_name": "Test",
+    "start_date": "2027-11-07",
+    "created_at": "2026-11-06T10:26:28.923595+00:00",
+    "par": 72,
+    "location": "Test",
+    "is_active": false,
+    "paypal_url_9": null,
+    "paypal_url_18": null,
+    "scoring_pin": null,
+    "slug": "test",
+    "end_date": "2027-11-10",
+    "max_participants": 90,
+    "registration_open": false,
+    "registration_deadline": "2027-11-06"
   }
 ]
