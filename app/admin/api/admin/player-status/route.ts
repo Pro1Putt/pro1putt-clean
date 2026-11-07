@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { isAdminAuthenticated } from "@/lib/admin-session";
 import { createClient } from "@supabase/supabase-js";
 
 function getSupabase() {
@@ -10,6 +11,13 @@ function getSupabase() {
 }
 
 export async function POST(req: Request) {
+  if (!(await isAdminAuthenticated())) {
+    return NextResponse.json(
+      { ok: false, error: "Nicht autorisiert" },
+      { status: 401 }
+    );
+  }
+
   const { registrationId, status, hole, note } = await req.json();
   const supabase = getSupabase();
 

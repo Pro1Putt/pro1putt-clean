@@ -1,6 +1,8 @@
+import { sendPaymentRegistrationConfirmation } from "@/lib/payment-registration-confirmation";
 import { NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 import { sendRegistrationEmail } from "@/lib/mailer";
+import { createPaymentToken } from "@/lib/payment-token";
 
 function getBaseUrl(req: Request) {
   const proto = req.headers.get("x-forwarded-proto") ?? "http";
@@ -74,6 +76,18 @@ function getServiceSupabase() {
 }
 
 export async function POST(req: Request) {
+  // PRO1PUTT 2.0: Neue Anmeldungen erst nach bewusster Freigabe.
+  // Standardmäßig geschlossen, auch auf der Live-Website.
+  if (process.env.PRO1PUTT_REGISTRATION_ENABLED !== "true") {
+    return NextResponse.json(
+      {
+        ok: false,
+        error: "Die Anmeldung ist derzeit noch nicht freigeschaltet."
+      },
+      { status: 403 }
+    );
+  }
+
   try {
     const body = await req.json();
 
@@ -82,6 +96,7 @@ export async function POST(req: Request) {
     const first_name = normStr(body.first_name);
     const last_name = normStr(body.last_name);
     const email = normEmail(body.email);
+    const phone = normStr(body.phone);
     const hcp = toNum(body.hcp);
     const birthdate = normStr(body.birthdate);
 
@@ -104,6 +119,7 @@ export async function POST(req: Request) {
     if (!first_name) missing.push("first_name");
     if (!last_name) missing.push("last_name");
     if (!email) missing.push("email");
+    if (!phone) missing.push("phone");
     if (hcp === null) missing.push("hcp");
     if (!birthdate) missing.push("birthdate");
     if (!home_club) missing.push("home_club");
@@ -124,10 +140,25 @@ export async function POST(req: Request) {
 
     const supabase = getServiceSupabase();
 
+    // Lokale Sandbox: ausschließlich das Testturnier zulassen
+    if (
+      process.env.NODE_ENV === "development" &&
+      process.env.PRO1PUTT_LOCAL_SANDBOX_TEST === "true" &&
+      tournament_id !== "37508244-09bd-4563-ad70-8082e20f633c"
+    ) {
+      return NextResponse.json(
+        {
+          ok: false,
+          error: "Im lokalen Sandbox-Modus sind nur Testanmeldungen erlaubt.",
+        },
+        { status: 403 }
+      );
+    }
+
     // Turnier laden (PayPal + Name)
     const { data: tRow, error: tErr } = await supabase
       .from("tournaments")
-      .select("name,start_date,paypal_url_9,paypal_url_18")
+      .select("name,start_date,is_active,registration_open,registration_deadline,paypal_url_9,paypal_url_18")
       .eq("id", tournament_id)
       .single();
 
@@ -155,6 +186,24 @@ export async function POST(req: Request) {
     // Neue Altersregeln gelten nur für Turniere ab dem 18.10.2026.
     // Historische Turniere behalten ihre bisherigen Anmelderegeln.
     if (String(tRow.start_date || "").slice(0, 10) >= "2026-10-18") {
+    // Anmeldung nur für freigegebene Turniere
+    if (!tRow.is_active || !tRow.registration_open) {
+      return NextResponse.json(
+        { ok: false, error: "Die Anmeldung für dieses Turnier ist noch nicht geöffnet." },
+        { status: 403 }
+      );
+    }
+
+    if (
+      tRow.registration_deadline &&
+      String(tRow.registration_deadline).slice(0, 10) < today
+    ) {
+      return NextResponse.json(
+        { ok: false, error: "Der Anmeldeschluss ist abgelaufen." },
+        { status: 403 }
+      );
+    }
+
     // Stichtag: erster Turniertag
     if (!tRow.start_date) {
       return NextResponse.json(
@@ -172,12 +221,16 @@ export async function POST(req: Request) {
       );
     }
 
-    if (holes === 9 && age > 12) {
+    if (age <= 12 && holes !== 9) {
       return NextResponse.json(
-        {
-          ok: false,
-          error: "9 Loch ist nur für Teilnehmer bis einschließlich 12 Jahre am ersten Turniertag erlaubt."
-        },
+        { ok: false, error: "U10 und U12 spielen ausschließlich 9 Loch." },
+        { status: 400 }
+      );
+    }
+
+    if (age >= 13 && holes !== 18) {
+      return NextResponse.json(
+        { ok: false, error: "U14, U16, U18 und U21 spielen ausschließlich 18 Loch." },
         { status: 400 }
       );
     }
@@ -200,58 +253,109 @@ export async function POST(req: Request) {
     // 4-digit PIN
     const player_pin = Math.floor(1000 + Math.random() * 9000).toString();
 
-    // speichern
-    const { data, error } = await supabase
-      .from("registrations")
-      .insert([
-        {
-          tournament_id,
-          holes,
-          first_name,
-          last_name,
-          email,
-          hcp,
-          birthdate,
-          home_club,
-          coach,
-          walkup_song,
-          caddie,
-          wagr,
-          college_interest,
-          nation,
-          gender,
-          player_pin,
-        },
-      ])
-      .select("id, player_pin")
-      .single();
+    // Für Turniere ab 2027: atomare Datenbankregistrierung mit Kapazitäts- und Duplikatschutz.
+    // Historische Turniere werden nicht verändert.
+    let registrationId: string;
+    let paymentToken: string | null = null;
 
-    if (error) {
-      return NextResponse.json({ ok: false, error: error.message }, { status: 400 });
+    if (tournamentStart >= "2027-01-01") {
+      const paymentCredentials = createPaymentToken();
+      paymentToken = paymentCredentials.token;
+
+      const { data: newId, error: rpcError } = await supabase.rpc("register_player_2027", {
+        p_tournament_id: tournament_id,
+        p_holes: holes,
+        p_first_name: first_name,
+        p_last_name: last_name,
+        p_email: email,
+        p_phone: phone,
+        p_hcp: hcp,
+        p_birthdate: birthdate,
+        p_home_club: home_club,
+        p_coach: coach,
+        p_walkup_song: walkup_song,
+        p_caddie: caddie,
+        p_wagr: wagr,
+        p_college_interest: college_interest,
+        p_nation: nation,
+        p_gender: gender,
+        p_player_pin: player_pin,
+        p_payment_token_hash: paymentCredentials.hash,
+      });
+      if (rpcError || typeof newId !== "string") {
+        const message = rpcError?.message || "Anmeldung konnte nicht gespeichert werden.";
+        const expected = [
+          "Dieser Spieler ist bereits angemeldet",
+          "Das Turnier ist ausgebucht",
+          "Die Anmeldung ist geschlossen",
+          "Der Anmeldezeitraum ist abgelaufen",
+          "Alter außerhalb der zulässigen Altersklassen",
+          "Ungültige Lochzahl für diese Altersklasse",
+          "Ungültige Registrierungsdaten",
+        ];
+        return NextResponse.json(
+          { ok: false, error: expected.find((value) => message.includes(value)) || "Anmeldung konnte nicht gespeichert werden." },
+          { status: 400 }
+        );
+      }
+      registrationId = newId;
+    } else {
+      // Der bestehende historische Pfad bleibt unverändert.
+      const { data, error } = await supabase
+        .from("registrations")
+        .insert([{
+          tournament_id, holes, first_name, last_name, email, phone, hcp,
+          birthdate, home_club, coach, walkup_song, caddie, wagr,
+          college_interest, nation, gender, player_pin,
+        }])
+        .select("id, player_pin")
+        .single();
+      if (error || !data) {
+        return NextResponse.json({ ok: false, error: error?.message || "Anmeldung fehlgeschlagen." }, { status: 400 });
+      }
+      registrationId = data.id;
     }
 
     // Mail senden (nach erfolgreichem Insert)
  const baseUrl = getBaseUrl(req);
 
-await sendRegistrationEmail({
-  to: email!,
-  tournamentName: String(tRow?.name ?? "PRO1PUTT"),
-  playerName: [first_name, last_name].filter(Boolean).join(" ").trim() || "Player",
+let emailSent = false;
 
-  // optional (wenn du es nicht mehr hast, lass null)
-  divisionName: null,
+try {
+  if (tournamentStart < "2027-01-01") {
+  await sendRegistrationEmail({
+    to: email!,
+    tournamentName: String(tRow?.name ?? "PRO1PUTT"),
+    playerName: [first_name, last_name].filter(Boolean).join(" ").trim() || "Player",
+    divisionName: null,
+    pin: String(player_pin),
+    pinUrl: `${baseUrl}/pin`,
+    leaderboardUrl: `${baseUrl}/leaderboard`,
+  });
 
-  pin: String(player_pin),
-  pinUrl: `${baseUrl}/pin`,
-
-  leaderboardUrl: `${baseUrl}/leaderboard`,
-});
+  emailSent = true;
+  } else {
+    try {
+      await sendPaymentRegistrationConfirmation(registrationId);
+      emailSent = true;
+    } catch (paymentMailError) {
+      console.error(
+        "[registration/payment-email]",
+        paymentMailError
+      );
+    }
+  }
+} catch (mailError) {
+  console.error("Registration saved, but confirmation email failed:", mailError);
+}
 
     return NextResponse.json({
       ok: true,
-      id: data.id,
-      player_pin: data.player_pin,
-      paypal_url: paypal_url || null,
+      id: registrationId,
+      player_pin: tournamentStart < "2027-01-01" ? player_pin : null,
+      paypal_url: tournamentStart < "2027-01-01" ? paypal_url || null : null,
+      payment_token: paymentToken,
+      email_sent: emailSent,
     });
   } catch (e: any) {
     return NextResponse.json(

@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { isAdminAuthenticated } from "@/lib/admin-session";
 import { createClient } from "@supabase/supabase-js";
 
 function getSupabase() {
@@ -62,6 +63,13 @@ function calcStartTime(flightIndex: number): string {
 }
 
 export async function GET(req: Request) {
+  if (!(await isAdminAuthenticated())) {
+    return NextResponse.json(
+      { ok: false, error: "Nicht autorisiert" },
+      { status: 401 }
+    );
+  }
+
   const { searchParams } = new URL(req.url);
   const tournamentId = searchParams.get("tournamentId") || "";
   const round = parseInt(searchParams.get("round") || "1");
@@ -116,6 +124,13 @@ const flights = (flightsData || []).map((f: any) => {
 }
 
 export async function POST(req: Request) {
+  if (!(await isAdminAuthenticated())) {
+    return NextResponse.json(
+      { ok: false, error: "Nicht autorisiert" },
+      { status: 401 }
+    );
+  }
+
   const { tournamentId, round } = await req.json();
   const supabase = getSupabase();
 

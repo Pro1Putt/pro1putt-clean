@@ -1,5 +1,7 @@
 "use client";
 
+import PreviewHeader from "../components/PreviewHeader";
+
 import React, { useEffect, useState } from "react";
 
 type Tournament = {
@@ -7,20 +9,25 @@ type Tournament = {
   name: string | null;
   start_date: string | null;
   location: string | null;
+  registration_open: boolean;
+  is_active: boolean;
 };
 
 function inputStyle(): React.CSSProperties {
   return {
     width: "100%",
-    padding: "12px 12px",
-    borderRadius: 12,
-    border: "1px solid rgba(0,0,0,0.15)",
+    padding: "16px 17px",
+    borderRadius: 14,
+    background: "#f6f7ef",
+    color: "#092b1c",
+    fontSize: 15,
+    border: "1px solid rgba(9,43,28,0.17)",
     outline: "none",
   };
 }
 
 function labelStyle(): React.CSSProperties {
-  return { display: "block", fontWeight: 700, marginBottom: 8 };
+  return { display: "block", fontWeight: 800, marginBottom: 9, color: "#092b1c", fontSize: 13, letterSpacing: 0.3 };
 }
 
 function calculateAge(birthdate: string, startDate: string): number | null {
@@ -64,6 +71,9 @@ export default function RegisterPage() {
   const [selectedHoles, setSelectedHoles] = useState<number | null>(null);
 
   const tournament = tournaments.find((t) => t.id === selectedTournament);
+  const registrationAvailable =
+    tournament?.is_active === true &&
+    tournament?.registration_open === true;
   const age =
     selectedBirthdate && tournament?.start_date
       ? calculateAge(selectedBirthdate, tournament.start_date)
@@ -86,7 +96,9 @@ export default function RegisterPage() {
           ? "Eine Anmeldung ist nur bis einschließlich 21 Jahre möglich."
           : selectedHoles === 9 && age > 12
             ? "9 Loch ist nur bis einschließlich 12 Jahre möglich. Bitte 18 Loch auswählen."
-            : null;
+            : selectedHoles === 18 && age <= 12
+              ? "Bis einschließlich 12 Jahre ist ausschließlich 9 Loch möglich."
+              : null;
 
   const ageGroup =
     isNewTournament &&
@@ -109,7 +121,7 @@ export default function RegisterPage() {
 
     (async () => {
       try {
-        const res = await fetch("/api/tournaments");
+        const res = await fetch("/api/tournaments?view=tour2027&sandbox=local");
         const json = await res.json();
         if (!res.ok) throw new Error(json?.error || "Failed to load tournaments");
         if (!cancelled) {
@@ -120,9 +132,13 @@ export default function RegisterPage() {
             day: "2-digit",
           });
           setTournaments(
-            (json.tournaments || []).filter(
-              (t: Tournament) => t.start_date && t.start_date.slice(0, 10) >= today
-            )
+            (json.tournaments || [])
+              .filter(
+                (t: Tournament) => t.start_date && t.start_date.slice(0, 10) >= today
+              )
+              .sort((a: Tournament, b: Tournament) =>
+                String(a.start_date).localeCompare(String(b.start_date))
+              )
           );
         }
       } catch (e: any) {
@@ -139,6 +155,11 @@ export default function RegisterPage() {
     e.preventDefault();
     setSubmitErr(null);
 
+    if (!registrationAvailable) {
+      setSubmitErr("Die Anmeldung für dieses Turnier ist noch nicht geöffnet.");
+      return;
+    }
+
     if (ageError) {
       setSubmitErr(ageError);
       return;
@@ -149,6 +170,11 @@ export default function RegisterPage() {
     try {
       const form = e.target as HTMLFormElement;
       const payload = Object.fromEntries(new FormData(form).entries());
+      if (isNewTournament && (age === null || age < 0 || age > 21 ||
+          (age <= 12 && selectedHoles !== 9) ||
+          (age >= 13 && selectedHoles !== 18))) {
+        throw new Error("Bitte Geburtsdatum und passende Lochzahl prüfen.");
+      }
 
       const res = await fetch("/api/register", {
         method: "POST",
@@ -162,21 +188,62 @@ export default function RegisterPage() {
         throw new Error(json?.error || "Registration failed");
       }
 
-      setSuccessPin(String(json.player_pin || ""));
+      setSuccessPin(null);
       form.reset();
       setSelectedTournament("");
       setSelectedBirthdate("");
       setSelectedHoles(null);
 
-      const url = String(json?.paypal_url ?? "").trim();
-if (url) {
-  window.location.assign(url);
-  return;
-}
+      const registrationId = String(json?.id ?? "");
+      const paymentToken = String(json?.payment_token ?? "");
 
-      setSubmitErr(
-        "PayPal-Link ist für dieses Turnier noch nicht hinterlegt. Bitte Admin informieren."
+      if (!registrationId || !paymentToken) {
+        throw new Error("Zahlungsdaten fehlen. Bitte PRO1PUTT kontaktieren.");
+      }
+
+      const paymentResponse = await fetch("/api/paypal/create-order", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          registration_id: registrationId,
+          payment_token: paymentToken,
+        }),
+      });
+
+      const payment = await paymentResponse.json();
+
+      if (!paymentResponse.ok) {
+        throw new Error(
+          payment?.error || "PayPal-Bestellung konnte nicht erstellt werden."
+        );
+      }
+
+      const approvalUrl = Array.isArray(payment?.links)
+        ? payment.links.find(
+            (link: { rel?: string; href?: string }) =>
+              (link.rel === "approve" || link.rel === "payer-action") &&
+              typeof link.href === "string" &&
+              (
+                link.href.startsWith("https://www.sandbox.paypal.com/") ||
+                link.href.startsWith("https://www.paypal.com/")
+              )
+          )?.href
+        : null;
+
+      if (!approvalUrl) {
+        throw new Error("PayPal-Zahlungslink konnte nicht ermittelt werden.");
+      }
+
+      sessionStorage.setItem(
+        "pro1putt_pending_payment",
+        JSON.stringify({
+          registration_id: registrationId,
+          payment_token: paymentToken,
+        })
       );
+
+      window.location.assign(approvalUrl);
+      return;
     } catch (err: any) {
       setSubmitErr(err?.message || "Submit error");
     } finally {
@@ -185,11 +252,14 @@ if (url) {
   }
 
   return (
-    <div style={{ maxWidth: 860, margin: "60px auto" }}>
-      <h1 style={{ fontSize: 28, fontWeight: 800, color: "#1e4620", marginBottom: 10 }}>
-        Turnier Registrierung
+    <>
+      <PreviewHeader />
+    <div style={{ maxWidth: 960, margin: "0 auto", padding: "65px 20px 100px", fontFamily: "Lato, sans-serif" }}>
+      <div style={{ color: "#55a64e", fontWeight: 900, fontSize: 12, letterSpacing: 3, marginBottom: 14 }}>PRO1PUTT · JUNIOR GOLF</div>
+      <h1 style={{ fontSize: "clamp(34px, 6vw, 64px)", fontWeight: 900, color: "#092b1c", marginBottom: 12, letterSpacing: -2, lineHeight: 1.05 }}>
+        YOUR NEXT TOURNAMENT STARTS HERE.
       </h1>
-      <p style={{ opacity: 0.7, marginBottom: 24 }}>Bitte alle Pflichtfelder ausfüllen.</p>
+      <p style={{ color: "#52665a", marginBottom: 35, fontSize: 16, lineHeight: 1.6 }}>Melde dich für dein nächstes PRO1PUTT-Turnier an. Alle mit * markierten Felder sind Pflichtfelder.</p>
 
       {successPin && (
         <div
@@ -236,9 +306,10 @@ if (url) {
         onSubmit={onSubmit}
         style={{
           background: "#ffffff",
-          borderRadius: 16,
-          padding: 18,
-          border: "1px solid rgba(0,0,0,0.08)",
+          borderRadius: 24,
+          padding: "clamp(20px, 4vw, 42px)",
+          boxShadow: "0 18px 55px rgba(9,43,28,0.07)",
+          border: "1px solid rgba(9,43,28,0.09)",
         }}
       >
         {/* Turnier */}
@@ -265,13 +336,21 @@ if (url) {
               {tournaments
   .filter((t) => {
     const name = String(t.name || "").toLowerCase();
-    return !name.includes("winston") && !name.includes("faldo") && !name.includes("test");
+    return (
+      t.id === "37508244-09bd-4563-ad70-8082e20f633c" ||
+      (!name.includes("winston") &&
+        !name.includes("faldo") &&
+        !name.includes("test"))
+    );
   })
   .map((t) => (
                 <option key={t.id} value={t.id}>
                   {(t.name ?? "Turnier") +
                     (t.start_date ? ` • ${t.start_date}` : "") +
-                    (t.location ? ` • ${t.location}` : "")}
+                    (t.location ? ` • ${t.location}` : "") +
+                    (!t.is_active || !t.registration_open
+                      ? " • Anmeldung noch geschlossen"
+                      : "")}
                 </option>
               ))}
             </select>
@@ -387,6 +466,20 @@ if (url) {
 
           <div>
             <label style={labelStyle()}>
+              Telefonnummer <span style={{ color: "crimson" }}>*</span>
+            </label>
+            <input
+              name="phone"
+              type="tel"
+              autoComplete="tel"
+              placeholder="+49 170 1234567"
+              style={inputStyle()}
+              required
+            />
+          </div>
+
+          <div>
+            <label style={labelStyle()}>
               Handicap (HCP) <span style={{ color: "crimson" }}>*</span>
             </label>
             <input name="hcp" type="number" step="0.1" style={inputStyle()} required />
@@ -494,16 +587,16 @@ if (url) {
           disabled={submitting}
           style={{
             width: "100%",
-            padding: "14px 18px",
-            borderRadius: 12,
-            background: submitting ? "rgba(30,70,32,0.6)" : "#1e4620",
-            color: "#fff",
+            padding: "19px 22px",
+            borderRadius: 14,
+            background: submitting ? "#a7e78a" : "#80d65b",
+            color: "#092b1c",
             fontWeight: 800,
             border: "none",
             cursor: submitting ? "not-allowed" : "pointer",
           }}
         >
-          {submitting ? "Speichert..." : "Registrierung speichern"}
+          {submitting ? "Speichert..." : "REGISTER NOW →"}
         </button>
 
         <div style={{ fontSize: 12, opacity: 0.6, marginTop: 10 }}>
@@ -511,5 +604,6 @@ if (url) {
         </div>
       </form>
     </div>
+    </>
   );
 }

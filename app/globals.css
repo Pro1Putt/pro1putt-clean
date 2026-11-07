@@ -259,3 +259,57 @@ main, .page, .container {
     white-space: nowrap;
   }
 }
+/* PRO1PUTT Designvorschau – nur /design-preview */
+body:has(.p1-preview) {
+  overflow-x: hidden;
+}
+body:has(.p1-preview) > header,
+body:has(.p1-preview) .p1-topbar {
+  display: none !important;
+}
+body:has(.p1-preview) > main {
+  max-width: none !important;
+  width: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+body:has(.p1-preview) .p1-preview > section,
+body:has(.p1-preview) .p1-preview > .p1-ticker,
+body:has(.p1-preview) .p1-preview > .p1-preview-note {
+  width: 100% !important;
+  margin-left: 0 !important;
+}
+body:has(.p1-preview) .p1-preview {
+  overflow: hidden;
+}
+
+/* Isolierte Korrektur für die PRO1PUTT-Designvorschau */
+html:has(.p1-preview),
+body:has(.p1-preview) {
+  width: 100%;
+  overflow-x: clip;
+}
+
+body:has(.p1-preview) .p1-topbar,
+body:has(.p1-preview) .p1-overlay,
+body:has(.p1-preview) .p1-sheet {
+  display: none !important;
+}
+
+body:has(.p1-preview) main {
+  max-width: none !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+body:has(.p1-preview) .p1-preview {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+}
+
+body:has(.p1-preview) .p1-preview > * {
+  margin-left: 0 !important;
+  width: 100% !important;
+}

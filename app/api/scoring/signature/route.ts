@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { isAdminAuthenticated } from "@/lib/admin-session";
 import { createClient } from "@supabase/supabase-js";
 
 function normStr(v: any) {
@@ -18,6 +19,13 @@ function getServiceSupabase() {
 }
 
 export async function POST(req: Request) {
+  if (!(await isAdminAuthenticated())) {
+    return NextResponse.json(
+      { ok: false, error: "Admin-Anmeldung erforderlich" },
+      { status: 401 }
+    );
+  }
+
   try {
     const body = await req.json().catch(() => ({}));
 

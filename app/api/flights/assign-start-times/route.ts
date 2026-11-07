@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { isAdminAuthenticated } from "@/lib/admin-session";
 import { createClient } from "@supabase/supabase-js";
 
 function normStr(v: any) {
@@ -78,7 +79,12 @@ export async function POST(req: Request) {
     const overwrite = Boolean(body.overwrite);
 
     const requiredPin = normStr(process.env.TD_PIN || "");
-    if (requiredPin && (!tdPin || tdPin !== requiredPin)) return jsonError("TD_PIN invalid", 401);
+    const adminAuthenticated = await isAdminAuthenticated();
+    const validDirectorPin = Boolean(requiredPin) && tdPin === requiredPin;
+
+    if (!adminAuthenticated && !validDirectorPin) {
+      return jsonError("Nicht autorisiert", 401);
+    }
 
     if (!tournamentId) return jsonError("Missing tournamentId", 400);
     if (![1, 2, 3].includes(roundNo)) return jsonError("round must be 1, 2, or 3", 400);

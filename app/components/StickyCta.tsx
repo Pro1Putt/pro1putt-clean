@@ -10,6 +10,7 @@ export default function StickyCta() {
 
   // Hide CTA on flows/pages where it would be annoying or wrong
   const hide =
+    pathname.startsWith("/design-preview") ||
     pathname.startsWith("/register") ||
     pathname.startsWith("/leaderboard") ||
     pathname.startsWith("/admin") ||

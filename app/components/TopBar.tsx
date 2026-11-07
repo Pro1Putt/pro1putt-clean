@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { usePathname } from "next/navigation";
 
 const GREEN = "#00C46A";
 const DARK = "#0E2A1F";
@@ -9,6 +10,12 @@ type NavItem = { href: string; label: string };
 
 export default function TopBar() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+  const isDesignPreview = [
+    "/design-preview",
+    "/register-preview",
+    "/leaderboard-preview",
+  ].some((route) => pathname === route || pathname.startsWith(route + "/"));
 
   const items: NavItem[] = useMemo(
     () => [
@@ -40,6 +47,8 @@ export default function TopBar() {
       document.body.style.overflow = prev;
     };
   }, [open]);
+
+  if (isDesignPreview) return null;
 
   return (
     <>

@@ -39,6 +39,12 @@ export async function sendEmail(args: GenericEmailArgs) {
   if (text) payload.text = text;
 
   const res = await resend.emails.send(payload);
+
+  if (res.error || !res.data?.id) {
+    console.error("[mailer] Resend rejected email:", res.error);
+    return { ok: false as const, skipped: false as const };
+  }
+
   return { ok: true as const, res };
 }
 

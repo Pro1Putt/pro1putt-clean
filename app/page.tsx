@@ -1,436 +1,875 @@
-import type { ReactNode } from "react";
-import PartnerStrip from "./components/PartnerStrip";
-import WinstonProAmTeaser from "./components/WinstonProAmTeaser";
-import WinstonProAmBadge from "./components/WinstonProAmBadge";
+"use client";
 
-export const dynamic = "force-dynamic";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 
-const GREEN = "#00C46A";
-const DARK = "#0E2A1F";
+type TourEvent = {
+  id: string;
+  name: string;
+  course_name: string;
+  start_date: string;
+  end_date: string | null;
+  location: string | null;
+  slug: string | null;
+  is_active: boolean;
+  registration_open: boolean;
+};
 
-function NavLink({ href, label }: { href: string; label: string }) {
+export default function DesignPreview() {
+  const [events, setEvents] = useState<TourEvent[]>([]);
+  const [loadingEvents, setLoadingEvents] = useState(true);
+  const [eventsError, setEventsError] = useState(false);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    async function loadEvents() {
+      try {
+        const response = await fetch("/api/tournaments?view=tour2027");
+        const json = await response.json();
+
+        if (!response.ok || !json.ok) {
+          throw new Error("Turniere konnten nicht geladen werden.");
+        }
+
+        if (!cancelled) {
+          setEvents(
+            [...(json.tournaments || [])].sort(
+              (a: TourEvent, b: TourEvent) =>
+                a.start_date.localeCompare(b.start_date)
+            )
+          );
+        }
+      } catch {
+        if (!cancelled) setEventsError(true);
+      } finally {
+        if (!cancelled) setLoadingEvents(false);
+      }
+    }
+
+    loadEvents();
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
   return (
-    <a href={href} className="p1-navlink">
-      {label}
-    </a>
-  );
-}
+    <div className="p1-preview">
+      <div className="p1-preview-brandbar">
+        <a href="/" aria-label="PRO1PUTT Startseite">
+          <img src="/pro1putt-logo-white.png" alt="PRO1PUTT" />
+        </a>
+        <nav className="p1-preview-nav" aria-label="PRO1PUTT Navigation">
+          <Link href="/leaderboard-preview" className="p1-preview-brandlink">
+            LEADERBOARD ↗
+          </Link>
+          <Link href="/register-preview" className="p1-preview-register">
+            REGISTER NOW ↗
+          </Link>
+        </nav>
+      </div>
+      <section className="p1-hero">
+        <video
+          className="p1-hero-video"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          poster="/gallery/IMG_2484.jpeg"
+        >
+          <source src="/Videos/walking.mov" type="video/quicktime" />
+        </video>
 
-function Pill({ children }: { children: ReactNode }) {
-  return (
-    <div
-     style={{
-  display: "inline-flex",
-  alignItems: "center",
-  justifyContent: "center",
-  gap: 10,
-  padding: "9px 12px",
-  borderRadius: 999,
-  border: "1px solid rgba(0,0,0,0.08)",
-  background: "rgba(255,255,255,0.65)",
-  boxShadow: "0 10px 22px rgba(0,0,0,0.05)",
-  fontWeight: 900,
-  color: DARK,
-  fontSize: 13,
+        <div className="p1-hero-overlay" />
 
-  // wichtig für mobile:
-  whiteSpace: "normal",
-  textAlign: "center",
-  lineHeight: 1.25,
-  maxWidth: "min(520px, 92vw)",
-}}
-    >
-      <span
-        style={{
-          width: 10,
-          height: 10,
-          borderRadius: 999,
-          background: GREEN,
-          boxShadow: "0 10px 18px rgba(0,0,0,0.10)",
-          flex: "0 0 auto",
-        }}
-      />
-      <span style={{ opacity: 0.9 }}>{children}</span>
-    </div>
-  );
-}
-
-export default function HomeV2() {
-  return (
-    <div style={{ fontFamily: "Lato, sans-serif", background: "#f8faf9", color: "#111" }}>
-      <style>{`
-      
-        .p1-header {
-          position: sticky;
-          top: 0;
-          z-index: 50;
-          backdrop-filter: blur(10px);
-          -webkit-backdrop-filter: blur(10px);
-          background: rgba(14, 42, 31, 0.25);
-          border-bottom: 1px solid rgba(255,255,255,0.10);
-        }
-        .p1-navlink {
-          color: rgba(255,255,255,0.92);
-          text-decoration: none;
-          font-weight: 800;
-          font-size: 14px;
-          letter-spacing: 0.4px;
-          padding: 10px 10px;
-          border-radius: 10px;
-          transition: background 150ms ease, color 150ms ease;
-          display: inline-block;
-        }
-        .p1-navlink:hover { background: rgba(255,255,255,0.08); color: #fff; }
-        .p1-navcta {
-          padding: 10px 14px;
-          background: ${GREEN};
-          color: #001a10;
-          border-radius: 12px;
-          font-weight: 900;
-          text-decoration: none;
-          font-size: 14px;
-          box-shadow: 0 14px 30px rgba(0,0,0,0.18);
-          white-space: nowrap;
-          display: inline-block;
-        }
-        .p1-card {
-          background: white;
-          border-radius: 18px;
-          padding: 22px;
-          box-shadow: 0 10px 30px rgba(0,0,0,0.06);
-        }
-        .p1-btn-soft {
-          display: inline-block;
-          padding: 10px 14px;
-          background: rgba(0,196,106,0.14);
-          color: ${DARK};
-          border-radius: 12px;
-          font-weight: 900;
-          text-decoration: none;
-          font-size: 14px;
-        }
-        .p1-btn-primary {
-          display: inline-block;
-          padding: 16px 30px;
-          background: ${GREEN};
-          color: #001a10;
-          border-radius: 14px;
-          font-weight: 900;
-          text-decoration: none;
-          font-size: 16px;
-          box-shadow: 0 14px 34px rgba(0,0,0,0.22);
-        }
-          .p1-partnerlogo {
-  opacity: 0.6;
-  filter: grayscale(100%);
-  transition: opacity 200ms ease, filter 200ms ease, transform 200ms ease;
-}
-
-.p1-partnerlogo:hover {
-  opacity: 1;
-  filter: grayscale(0%);
-  transform: translateY(-3px) scale(1.05);
-  box-shadow: 0 10px 30px rgba(0,196,106,0.25);
-}
-        .p1-btn-ghost {
-          display: inline-block;
-          padding: 16px 30px;
-          border: 1.5px solid rgba(255,255,255,0.9);
-          color: white;
-          border-radius: 14px;
-          font-weight: 800;
-          text-decoration: none;
-          font-size: 16px;
-          background: rgba(255,255,255,0.06);
-          backdrop-filter: blur(6px);
-          -webkit-backdrop-filter: blur(6px);
-        }
-
-        @media (max-width: 720px) {
-          .p1-header-inner { flex-direction: column; align-items: stretch; gap: 10px; }
-          .p1-nav { justify-content: center; }
-          .p1-cta-wrap { display: flex; justify-content: center; }
-        }
-      `}</style>
-
-      {/* HERO */}
-      <section
-        style={{
-          position: "relative",
-          padding: "0 20px 90px",
-          textAlign: "center",
-          color: "white",
-          overflow: "hidden",
-          background: "linear-gradient(135deg, #0E2A1F 0%, #123D2A 100%)",
-        }}
-      >
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            background:
-              "radial-gradient(800px 500px at 50% 25%, rgba(255,255,255,0.08), transparent 60%), repeating-linear-gradient(135deg, rgba(255,255,255,0.055) 0px, rgba(255,255,255,0.055) 1px, transparent 1px, transparent 7px)",
-            opacity: 0.35,
-            pointerEvents: "none",
-          }}
-        />
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            background: "radial-gradient(circle at 50% 25%, transparent 0%, rgba(0,0,0,0.35) 70%)",
-            pointerEvents: "none",
-          }}
-        />
-
-        {/* HEADER */}
-        {/* HERO CONTENT */}
-        <div style={{ position: "relative", zIndex: 2, maxWidth: 980, margin: "0 auto", paddingTop: 72 }}>
-          <img
-            src="/pro1putt-logo-white.png"
-            alt="PRO1PUTT"
-            style={{
-              width: 360,
-              maxWidth: "92%",
-              height: "auto",
-              margin: "0 auto 30px",
-              display: "block",
-              filter: "drop-shadow(0 14px 30px rgba(0,0,0,0.35))",
-            }}
-          />
-
-          <h1 style={{ fontSize: 54, fontWeight: 900, margin: "0 0 16px", letterSpacing: 1, lineHeight: 1.05 }}>
-            PLAY GOLF LIKE A PRO
-          </h1>
-
-          <p style={{ maxWidth: 720, margin: "0 auto 36px", fontSize: 18, opacity: 0.92 }}>
-            Jugend-Golfturniere auf Top-Niveau. 3 Runden ohne Cut. Live Leaderboard. Professionelle Organisation.
-          </p>
-
-          <div style={{ display: "flex", justifyContent: "center", gap: 18, flexWrap: "wrap" }}>
-            <a href="/leaderboard" className="p1-btn-ghost">
-              Live Leaderboard
-            </a>
+        <div className="p1-hero-content">
+          <div className="p1-eyebrow">
+            INTERNATIONAL JUNIOR GOLF TOUR
+            <span className="p1-dot" />
+            EST. FOR THE NEXT GENERATION
           </div>
 
-          <div
-            style={{
-              marginTop: 34,
-              display: "flex",
-              justifyContent: "center",
-              gap: 10,
-              flexWrap: "wrap",
-              opacity: 0.98,
-            }}
-          >
-            <Pill>WAGR & EGR</Pill>
-            <Pill>Qualifyingtour Under Armour World & FCG Callaway World</Pill>
-            <Pill>Hole-in-One Preise</Pill>
+          <h1>
+            PLAY GOLF
+            <br />
+            <span>LIKE A PRO.</span>
+          </h1>
+
+          <p>
+            Big dreams. Real competition. Unforgettable moments.
+            <br />
+            The stage for the next generation of golf.
+          </p>
+
+          <div className="p1-preview-buttons">
+            <Link href="/register-preview" className="p1-button-primary">
+              EXPLORE TOURNAMENTS <span>↗</span>
+            </Link>
+            <Link href="/leaderboard-preview" className="p1-button-secondary">
+              LIVE LEADERBOARD <span>↗</span>
+            </Link>
+          </div>
+        </div>
+
+        <div className="p1-hero-bottom">
+          <span>SCROLL TO EXPLORE ↓</span>
+          <span>THE FUTURE OF GOLF STARTS HERE.</span>
+        </div>
+      </section>
+
+      <div className="p1-ticker">
+        <div>
+          <span>PLAY BOLD</span><b>✳</b>
+          <span>DREAM BIG</span><b>✳</b>
+          <span>COMPETE TOGETHER</span><b>✳</b>
+          <span>PLAY BOLD</span><b>✳</b>
+          <span>DREAM BIG</span><b>✳</b>
+        </div>
+      </div>
+
+      <section className="p1-intro">
+        <div className="p1-section-kicker">01 / THIS IS PRO1PUTT</div>
+        <div className="p1-intro-grid">
+          <h2>
+            MORE THAN
+            <br />
+            <span>A GAME.</span>
+          </h2>
+          <div className="p1-intro-right">
+            <p>
+              We believe the next generation deserves a stage that feels
+              as big as their ambitions.
+            </p>
+            <p className="p1-muted">
+              PRO1PUTT brings young golfers together for competitive
+              tournaments, incredible courses and moments that last
+              long after the final putt.
+            </p>
+            <Link href="/register-preview" className="p1-text-link">
+              DISCOVER THE TOUR <span>↗</span>
+            </Link>
+          </div>
+        </div>
+
+        <div className="p1-feature-row">
+          <div>
+            <strong>03</strong>
+            <span>ROUNDS. NO CUT.</span>
+          </div>
+          <div>
+            <strong>WAGR</strong>
+            <span>WORLD RANKING</span>
+          </div>
+          <div>
+            <strong>EGR</strong>
+            <span>EUROPEAN RANKING</span>
+          </div>
+          <div>
+            <strong>100%</strong>
+            <span>GOLF PASSION</span>
           </div>
         </div>
       </section>
 
-      <WinstonProAmTeaser />
-
-      
-
-  {/* HIGHLIGHTS */}
-<section id="highlights" style={{ padding: "72px 20px", textAlign: "center" }}>
-  <h2 style={{ fontSize: 32, fontWeight: 900, marginBottom: 14, color: DARK }}>
-    PRO1PUTT Highlights
-  </h2>
-
-  <p style={{ maxWidth: 760, margin: "0 auto 40px", opacity: 0.78, lineHeight: 1.6 }}>
-    Internationale Turnierstandards. Offizielle Rankings. Echte Incentives.
-  </p>
-
-  <div
-    style={{
-      display: "grid",
-      gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
-      gap: 20,
-      maxWidth: 1000,
-      margin: "0 auto",
-      textAlign: "left",
-    }}
-  >
-    {[
-      {
-        t: "Tour-Format",
-        d: "3 Runden ohne Cut. Klare Flights. Struktur wie auf internationaler Ebene. Caddies erlaubt,",
-      },
-      {
-        t: "Offizielles WAGR & EGR Event",
-        d: "PRO1PUTT Turniere sind offiziell für das World Amateur Golf Ranking (WAGR) und European Golf Ranking (EGR) anerkannt.",
-      },
-      {
-        t: "Hole-in-One Awards",
-        d: "Preisgelder und Incentives bis 10.000€ – weitere Sonderwertungen und echte Highlights auf dem Platz.",
-      },
-    ].map((x) => (
-      <div key={x.t} className="p1-card">
-        <div style={{ fontWeight: 900, fontSize: 18, marginBottom: 8, color: DARK }}>
-          {x.t}
-        </div>
-        <div style={{ opacity: 0.78, lineHeight: 1.55 }}>{x.d}</div>
-      </div>
-    ))}
-  </div>
-</section>
-
-      {/* TOUR 2026 – CONVERSION BLOCK */}
-<section id="tour" style={{ padding: "80px 20px", textAlign: "center" }}>
-  <h2 style={{ fontSize: 36, fontWeight: 900, marginBottom: 12, color: DARK }}>
-    PRO1PUTT Tour 2026
-  </h2>
-
-  <p style={{ maxWidth: 760, margin: "0 auto 50px", opacity: 0.8 }}>
-  3 Runden ohne Cut • Offizielles WAGR & EGR Event • Ergebnisse der Tour 2026
-</p>
-
-  <div
-    style={{
-      display: "grid",
-      gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-      gap: 24,
-      maxWidth: 1100,
-      margin: "0 auto",
-      textAlign: "left",
-    }}
-  >
-    {[
-      {
-        title: "Open Classics WINSTONopen",
-        date: "30.03.–01.04.2026",
-        place: "WINSTONopen",
-        status: "Abgeschlossen",
-        finished: true,
-      },
-      {
-        title: "Open Faldo Course",
-        date: "25.–27.09.2026",
-        place: "Bad Saarow",
-        status: "Abgeschlossen",
-        finished: true,
-      },
-      {
-        title: "Open Finals – North Course",
-        date: "02.–04.10.2026",
-        place: "Green Eagle",
-        status: "Abgeschlossen",
-        finished: true,
-      },
-    ].map((t) => (
-      <div
-        key={t.title}
-        style={{
-          background: "white",
-          borderRadius: 20,
-          padding: 28,
-          boxShadow: "0 14px 40px rgba(0,0,0,0.07)",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-between",
-        }}
-      >
-        <div>
-          <div
-            style={{
-              fontSize: 13,
-              fontWeight: 900,
-              letterSpacing: 1,
-              color: GREEN,
-              marginBottom: 8,
-              textTransform: "uppercase",
-            }}
-          >
-            {t.status}
+      <section className="p1-moments">
+        <div className="p1-moments-heading">
+          <div>
+            <div className="p1-section-kicker p1-light-kicker">
+              02 / THE EXPERIENCE
+            </div>
+            <h2>
+              REAL PLAYERS.
+              <br />
+              <span>REAL MOMENTS.</span>
+            </h2>
           </div>
-
-          <div
-            style={{
-              fontWeight: 900,
-              fontSize: 20,
-              marginBottom: 6,
-              color: DARK,
-            }}
-          >
-            {t.title}
-          </div>
-
-          <div style={{ opacity: 0.8, marginBottom: 20 }}>
-            {t.date} • {t.place}
-          </div>
-
-         {String(t.place || "")
-  .toLowerCase()
-  .includes("winston") && <WinstonProAmBadge />}
-
+          <p>
+            The nerves. The cheers. The friendships.
+            <br />
+            This is what makes the game unforgettable.
+          </p>
         </div>
 
-        
-       {t.finished ? (
-          <a href={t.place === "Bad Saarow" ? "/leaderboard/bad-saarow" : t.place === "Green Eagle" ? "/leaderboard/green-eagle" : "/leaderboard/winston-open"} style={{ padding: "14px 18px", background: "#e8f5ee", color: "#0b5d3b", borderRadius: 14, fontWeight: 900, textDecoration: "none", textAlign: "center", marginTop: 20, display: "block" }}>
-            🏆 Ergebnisse ansehen →
-          </a>
-        ) : (
-          <a href="/register" style={{ padding: "14px 18px", background: GREEN, color: "#001a10", borderRadius: 14, fontWeight: 900, textDecoration: "none", textAlign: "center", marginTop: 20, display: "block" }}>
-            Jetzt anmelden →
-          </a>
-        )}
+        <div className="p1-video-grid">
+          <div className="p1-video-card p1-video-tall">
+            <video autoPlay muted loop playsInline preload="metadata">
+              <source src="/Videos/Momente.mov" type="video/quicktime" />
+            </video>
+            <div className="p1-video-label">
+              <span>01 / THE MOMENTS</span>
+              <strong>EVERY SHOT HAS A STORY.</strong>
+            </div>
+          </div>
+          <div className="p1-video-card">
+            <video autoPlay muted loop playsInline preload="metadata">
+              <source src="/Videos/DANKE.mov" type="video/quicktime" />
+            </video>
+            <div className="p1-video-label">
+              <span>02 / THE COMMUNITY</span>
+              <strong>BETTER TOGETHER.</strong>
+            </div>
+          </div>
+          <div className="p1-video-card">
+            <video autoPlay muted loop playsInline preload="metadata">
+              <source src="/Videos/CATWALK.mov" type="video/quicktime" />
+            </video>
+            <div className="p1-video-label">
+              <span>03 / THE ENERGY</span>
+              <strong>OWN YOUR MOMENT.</strong>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="p1-events">
+        <div className="p1-section-kicker">03 / THE TOUR</div>
+        <div className="p1-events-heading">
+          <h2>
+            THE 2027
+            <br />
+            <span>TOUR.</span>
+          </h2>
+          <p>
+            Iconic courses. Real competition.
+            <br />
+            One unforgettable season.
+          </p>
+        </div>
+
+        <div className="p1-event-grid p1-event-grid-2027">
+          {loadingEvents && <p>Loading tournaments...</p>}
+          {eventsError && <p>Tournaments are temporarily unavailable.</p>}
+          {!loadingEvents && !eventsError && events.length === 0 && (
+            <p>New tournaments will be announced soon.</p>
+          )}
+
+          {events.map((event, index) => {
+            const registrationOpen =
+              event.is_active && event.registration_open;
+
+            const start = new Date(event.start_date + "T12:00:00");
+            const end = event.end_date
+              ? new Date(event.end_date + "T12:00:00")
+              : start;
+
+            const dateLabel =
+              start.toLocaleDateString("en-GB", {
+                day: "2-digit",
+                month: "short",
+              }).toUpperCase() +
+              " — " +
+              end.toLocaleDateString("en-GB", {
+                day: "2-digit",
+                month: "short",
+                year: "numeric",
+              }).toUpperCase();
+
+            const content = (
+              <>
+                <div
+                  className="p1-event-photo"
+                  style={{
+                    backgroundImage: 'url("/gallery/IMG_2550.jpeg")',
+                  }}
+                >
+                  <span className="p1-event-number">
+                    {String(index + 1).padStart(2, "0")} / {String(events.length).padStart(2, "0")}
+                  </span>
+                  {registrationOpen && <span className="p1-event-arrow">↗</span>}
+                </div>
+                <div className="p1-event-details">
+                  <span className="p1-event-date">{dateLabel}</span>
+                  <h3>{event.name}</h3>
+                  <strong>{event.course_name}</strong>
+                  <span className="p1-event-location">{event.location}</span>
+                  <span className="p1-event-link">
+                    {registrationOpen
+                      ? "REGISTER NOW ↗"
+                      : "REGISTRATION OPENS SOON"}
+                  </span>
+                </div>
+              </>
+            );
+
+            return registrationOpen ? (
+              <Link
+                href="/register-preview"
+                className="p1-event"
+                key={event.id}
+              >
+                {content}
+              </Link>
+            ) : (
+              <div className="p1-event" key={event.id}>
+                {content}
+              </div>
+            );
+          })}
+        </div>
+      </section>
+
+      <section className="p1-preview-finale">
+        <span className="p1-section-kicker p1-light-kicker">
+          YOUR NEXT CHAPTER STARTS HERE
+        </span>
+        <h2>
+          READY TO
+          <br />
+          <em>MAKE YOUR MARK?</em>
+        </h2>
+        <p>Join the next generation. Play your game. Write your story.</p>
+        <Link href="/register-preview" className="p1-button-primary">
+          JOIN THE TOUR <span>↗</span>
+        </Link>
+      </section>
+
+      <div className="p1-preview-note">
+        PRO1PUTT 2.0 — DESIGN PREVIEW · NOT THE LIVE HOMEPAGE
       </div>
-    ))}
-  </div>
-</section>
 
-      {/* SUPPORTED BY */}
-{/* SUPPORTED BY */}
-<section id="partners" style={{ padding: "60px 20px", textAlign: "center" }}>
-  <div
-    style={{
-      opacity: 0.6,
-      fontSize: 13,
-      fontWeight: 900,
-      letterSpacing: 1,
-      marginBottom: 20,
-    }}
-  >
-    SUPPORTED BY
-  </div>
+      <style>{`
+        /* PRO1PUTT 2027: Einzelnes Turnier als Highlight */
+        .p1-event-grid-2027 {
+          display: flex;
+          justify-content: center;
+        }
+        .p1-event-grid-2027 .p1-event {
+          width: 100%;
+          max-width: 650px;
+        }
+        .p1-event-grid-2027 .p1-event-photo {
+          min-height: 390px;
+        }
+        @media (max-width: 700px) {
+          .p1-event-grid-2027 .p1-event-photo {
+            min-height: 260px;
+          }
+        }
 
-  <div
-    className="partner-logos"
-    style={{
-      maxWidth: 1100,
-      margin: "0 auto",
-    }}
-  >
-    <PartnerStrip />
-  </div>
-</section>
+        .p1-preview-brandbar {
+          position: fixed;
+          z-index: 20;
+          top: 0;
+          left: 0;
+          width: 100%;
+          padding: 10px 5vw;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          background: rgba(6, 28, 21, .94);
+          backdrop-filter: blur(14px);
+          -webkit-backdrop-filter: blur(14px);
+        }
+        .p1-preview-nav {
+          display: flex;
+          align-items: center;
+          gap: 22px;
+        }
+        .p1-preview-register {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          padding: 14px 22px;
+          border-radius: 5px;
+          background: #80d65b;
+          color: #092b1c;
+          font-size: 12px;
+          font-weight: 900;
+          letter-spacing: .07em;
+          white-space: nowrap;
+        }
+        .p1-preview-register:hover {
+          background: #a7e78a;
+        }
+        .p1-preview-brandbar img {
+          display: block;
+          width: auto;
+          height: 50px;
+          max-width: 200px;
+          object-fit: contain;
+        }
+        .p1-preview-brandlink {
+          color: white;
+          font-size: 12px;
+          font-weight: 900;
+          letter-spacing: .1em;
+        }
+        @media (max-width: 600px) {
+          .p1-preview-brandbar { padding: 10px 22px; }
+          .p1-preview-brandbar img { height: 43px; max-width: 155px; }
+          .p1-preview-brandlink { display: none; }
+          .p1-preview-nav { gap: 8px; }
+          .p1-preview-register {
+            padding: 12px 14px;
+            font-size: 10px;
+          }
+        }
 
-      {/* FOOTER */}
-      <footer
-  style={{
-    padding: "26px 20px",
-    textAlign: "center",
-    opacity: 0.75,
-    fontSize: 13,
-  }}
->
-  © {new Date().getFullYear()} PRO1PUTT •{" "}
-  <a href="/impressum" style={{ textDecoration: "none", fontWeight: 800 }}>
-    Impressum
-  </a>{" "}
-  •{" "}
-  <a href="/agb" style={{ textDecoration: "none", fontWeight: 800 }}>
-    AGB
-  </a>{" "}
-  •{" "}
-  <a href="/datenschutz" style={{ textDecoration: "none", fontWeight: 800 }}>
-    Datenschutz
-  </a>
-</footer>
+        .p1-preview {
+          --dark: #092b1c;
+          --deep: #061f15;
+          --lime: #80d65b;
+          --cream: #f4f7f2;
+          --ink: #12291f;
+          width: 100%;
+          overflow: hidden;
+          color: var(--ink);
+          font-family: Lato, Arial, sans-serif;
+        }
+        .p1-preview * { box-sizing: border-box; }
+        .p1-preview a { text-decoration: none; }
+        .p1-preview h1,
+        .p1-preview h2,
+        .p1-preview h3,
+        .p1-preview p { margin: 0; }
+
+        /* Full-width inside the existing global 1100px layout */
+        .p1-hero,
+        .p1-ticker,
+        .p1-intro,
+        .p1-moments,
+        .p1-events,
+        .p1-preview-finale,
+        .p1-preview-note {
+          position: relative;
+          width: 100vw;
+          margin-left: calc(50% - 50vw);
+        }
+
+        .p1-hero {
+          min-height: min(790px, 90svh);
+          display: flex;
+          align-items: center;
+          background: #173d2a;
+          color: white;
+          isolation: isolate;
+        }
+        .p1-hero-video {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: center 45%;
+          z-index: -2;
+        }
+        .p1-hero-overlay {
+          position: absolute;
+          inset: 0;
+          background:
+            linear-gradient(90deg, rgba(4,27,19,.89) 0%, rgba(4,27,19,.48) 60%, rgba(4,27,19,.15) 100%),
+            linear-gradient(0deg, rgba(4,27,19,.6), transparent 40%);
+          z-index: -1;
+        }
+        .p1-hero-content {
+          width: min(1280px, 100%);
+          padding: 100px 7vw 110px;
+          margin: 0 auto;
+        }
+        .p1-eyebrow, .p1-section-kicker {
+          font-size: 11px;
+          font-weight: 900;
+          letter-spacing: .2em;
+        }
+        .p1-eyebrow {
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+          gap: 13px;
+          color: #e6f8d6;
+          margin-bottom: 30px;
+        }
+        .p1-dot {
+          width: 6px;
+          height: 6px;
+          background: var(--lime);
+          border-radius: 50%;
+        }
+        .p1-hero h1,
+        .p1-intro h2,
+        .p1-moments h2,
+        .p1-events h2,
+        .p1-preview-finale h2 {
+          font-size: clamp(54px, 8.5vw, 126px);
+          font-weight: 900;
+          letter-spacing: -.075em;
+          line-height: .91;
+        }
+        .p1-hero h1 span,
+        .p1-moments h2 span { color: var(--lime); }
+        .p1-hero-content > p {
+          margin-top: 32px;
+          font-size: clamp(16px, 1.5vw, 21px);
+          line-height: 1.55;
+          color: #e1e9e2;
+        }
+        .p1-preview-buttons {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 12px;
+          margin-top: 36px;
+        }
+        .p1-button-primary,
+        .p1-button-secondary {
+          display: inline-flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 35px;
+          padding: 18px 24px;
+          border-radius: 4px;
+          font-size: 12px;
+          font-weight: 900;
+          letter-spacing: .08em;
+          transition: transform .2s, background .2s;
+        }
+        .p1-button-primary {
+          background: var(--lime);
+          color: var(--dark);
+        }
+        .p1-button-secondary {
+          color: white;
+          border: 1px solid rgba(255,255,255,.55);
+        }
+        .p1-button-primary:hover,
+        .p1-button-secondary:hover { transform: translateY(-3px); }
+        .p1-button-secondary:hover { background: rgba(255,255,255,.1); }
+        .p1-hero-bottom {
+          position: absolute;
+          bottom: 24px;
+          left: 7vw;
+          right: 7vw;
+          display: flex;
+          justify-content: space-between;
+          gap: 16px;
+          font-size: 10px;
+          font-weight: 900;
+          letter-spacing: .15em;
+          color: #dce9df;
+        }
+
+        .p1-ticker {
+          overflow: hidden;
+          background: var(--lime);
+          color: var(--dark);
+          padding: 16px 0;
+        }
+        .p1-ticker > div {
+          display: flex;
+          align-items: center;
+          justify-content: space-around;
+          gap: 28px;
+          min-width: 100%;
+          white-space: nowrap;
+          font-size: 13px;
+          font-weight: 900;
+          letter-spacing: .14em;
+        }
+        .p1-ticker b { font-size: 22px; }
+
+        .p1-intro {
+          background: var(--cream);
+          padding: 110px max(7vw, calc((100vw - 1280px)/2)) 95px;
+        }
+        .p1-section-kicker { color: #56806b; margin-bottom: 32px; }
+        .p1-intro-grid {
+          display: grid;
+          grid-template-columns: 1.15fr 1fr;
+          align-items: start;
+          gap: 80px;
+        }
+        .p1-intro h2,
+        .p1-events h2 { font-size: clamp(55px, 7.5vw, 105px); }
+        .p1-intro h2 span,
+        .p1-events h2 span { color: #7fbe63; }
+        .p1-intro-right {
+          padding-top: 10px;
+          max-width: 450px;
+        }
+        .p1-intro-right > p:first-child {
+          font-size: clamp(22px, 2.3vw, 31px);
+          line-height: 1.25;
+          font-weight: 700;
+          letter-spacing: -.03em;
+        }
+        .p1-muted {
+          color: #617267;
+          line-height: 1.7;
+          margin-top: 22px !important;
+          font-size: 16px;
+        }
+        .p1-text-link {
+          display: inline-flex;
+          gap: 35px;
+          color: var(--ink);
+          border-bottom: 2px solid var(--ink);
+          padding-bottom: 8px;
+          margin-top: 30px;
+          font-size: 12px;
+          font-weight: 900;
+          letter-spacing: .08em;
+        }
+        .p1-feature-row {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 24px;
+          margin-top: 90px;
+          padding-top: 32px;
+          border-top: 1px solid #cdd8cd;
+        }
+        .p1-feature-row > div {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+        }
+        .p1-feature-row strong {
+          font-size: clamp(31px, 4vw, 57px);
+          letter-spacing: -.06em;
+          font-weight: 900;
+        }
+        .p1-feature-row span {
+          font-size: 10px;
+          letter-spacing: .14em;
+          font-weight: 900;
+          color: #617267;
+        }
+
+        .p1-moments {
+          background: var(--dark);
+          color: white;
+          padding: 105px max(7vw, calc((100vw - 1280px)/2)) 110px;
+        }
+        .p1-light-kicker { color: var(--lime); }
+        .p1-moments-heading,
+        .p1-events-heading {
+          display: flex;
+          align-items: end;
+          justify-content: space-between;
+          gap: 35px;
+          margin-bottom: 45px;
+        }
+        .p1-moments h2 { font-size: clamp(48px, 6.8vw, 92px); }
+        .p1-moments-heading > p,
+        .p1-events-heading > p {
+          line-height: 1.7;
+          font-size: 16px;
+          color: #c0d0c4;
+          padding-bottom: 6px;
+        }
+        .p1-video-grid {
+          display: grid;
+          grid-template-columns: 1.15fr 1fr 1fr;
+          gap: 14px;
+        }
+        .p1-video-card {
+          height: clamp(330px, 42vw, 530px);
+          position: relative;
+          overflow: hidden;
+          background: #244c37;
+        }
+        .p1-video-card video {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+        .p1-video-card::after {
+          content: "";
+          position: absolute;
+          inset: 40% 0 0;
+          background: linear-gradient(transparent, rgba(0,0,0,.8));
+          pointer-events: none;
+        }
+        .p1-video-label {
+          position: absolute;
+          z-index: 1;
+          bottom: 24px;
+          left: 22px;
+          right: 20px;
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+        }
+        .p1-video-label span {
+          font-size: 10px;
+          letter-spacing: .16em;
+          color: var(--lime);
+          font-weight: 900;
+        }
+        .p1-video-label strong {
+          font-size: clamp(17px, 2vw, 27px);
+          font-weight: 900;
+          letter-spacing: -.04em;
+        }
+
+        .p1-events {
+          padding: 105px max(7vw, calc((100vw - 1280px)/2)) 115px;
+          background: #f4f7f2;
+        }
+        .p1-events-heading > p { color: #64776b; }
+        .p1-event-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 18px;
+        }
+        .p1-event-grid.p1-event-grid-2027 {
+          display: flex;
+          justify-content: center;
+        }
+        .p1-event-grid.p1-event-grid-2027 .p1-event {
+          width: 100%;
+          max-width: 650px;
+        }
+        .p1-event {
+          background: white;
+          color: var(--ink);
+          transition: transform .25s;
+        }
+        .p1-event:hover { transform: translateY(-7px); }
+        .p1-event-photo {
+          height: clamp(205px, 25vw, 330px);
+          background-size: cover;
+          background-position: center;
+          position: relative;
+        }
+        .p1-event-photo::after {
+          content: "";
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(rgba(0,0,0,.2), transparent 45%);
+        }
+        .p1-event-number,
+        .p1-event-arrow {
+          position: absolute;
+          z-index: 1;
+          top: 18px;
+          font-size: 12px;
+          font-weight: 900;
+          color: white;
+        }
+        .p1-event-number { left: 18px; letter-spacing: .08em; }
+        .p1-event-arrow {
+          right: 18px;
+          display: grid;
+          place-items: center;
+          width: 34px;
+          height: 34px;
+          border-radius: 50%;
+          background: var(--lime);
+          color: var(--dark);
+          font-size: 18px;
+        }
+        .p1-event-details {
+          padding: 26px 24px 28px;
+          display: flex;
+          flex-direction: column;
+        }
+        .p1-event-date {
+          color: #5c8065;
+          font-size: 10px;
+          font-weight: 900;
+          letter-spacing: .14em;
+          margin-bottom: 16px;
+        }
+        .p1-event-details h3 {
+          font-size: clamp(24px, 3vw, 35px);
+          font-weight: 900;
+          letter-spacing: -.055em;
+          line-height: 1;
+        }
+        .p1-event-details > strong {
+          margin-top: 8px;
+          font-size: 17px;
+        }
+        .p1-event-location {
+          margin-top: 7px;
+          color: #718074;
+          font-size: 13px;
+        }
+        .p1-event-link {
+          margin-top: 35px;
+          padding-top: 18px;
+          border-top: 1px solid #e6eae3;
+          font-size: 11px;
+          font-weight: 900;
+          letter-spacing: .1em;
+        }
+
+        .p1-preview-finale {
+          background: #083923;
+          color: white;
+          text-align: center;
+          padding: 110px 20px 120px;
+        }
+        .p1-preview-finale h2 {
+          font-size: clamp(50px, 8vw, 112px);
+          margin: 30px 0;
+        }
+        .p1-preview-finale h2 em {
+          color: var(--lime);
+          font-style: normal;
+        }
+        .p1-preview-finale p {
+          color: #c5d7ca;
+          margin-bottom: 34px;
+          font-size: 17px;
+        }
+        .p1-preview-note {
+          padding: 16px;
+          text-align: center;
+          background: var(--lime);
+          color: var(--dark);
+          font-size: 10px;
+          font-weight: 900;
+          letter-spacing: .12em;
+        }
+
+        @media (max-width: 850px) {
+          .p1-intro-grid { grid-template-columns: 1fr; gap: 30px; }
+          .p1-feature-row { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+          .p1-moments-heading,
+          .p1-events-heading { align-items: start; flex-direction: column; }
+          .p1-video-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+          .p1-event-grid { grid-template-columns: 1fr; }
+          .p1-event-photo { height: 310px; }
+        }
+        @media (max-width: 600px) {
+          .p1-hero { min-height: 700px; min-height: 86svh; }
+          .p1-hero-content { padding: 85px 23px 105px; }
+          .p1-hero h1 { font-size: clamp(52px, 13vw, 78px); }
+          .p1-hero-content > p br { display: none; }
+          .p1-hero-bottom { left: 23px; right: 23px; }
+          .p1-hero-bottom span:last-child { display: none; }
+          .p1-eyebrow { font-size: 9px; }
+          .p1-preview-buttons { flex-direction: column; align-items: stretch; }
+          .p1-button-primary,
+          .p1-button-secondary { justify-content: space-between; }
+          .p1-ticker > div { justify-content: start; padding: 0 20px; }
+          .p1-ticker > div span:nth-of-type(n+4),
+          .p1-ticker > div b:nth-of-type(n+4) { display: none; }
+          .p1-intro,
+          .p1-moments,
+          .p1-events { padding: 70px 22px 75px; }
+          .p1-intro h2,
+          .p1-events h2 { font-size: clamp(55px, 12vw, 76px); }
+          .p1-moments h2 { font-size: clamp(42px, 10vw, 66px); }
+          .p1-feature-row { margin-top: 55px; }
+          .p1-video-grid {
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+          }
+          .p1-video-tall { grid-column: 1 / -1; height: 490px; }
+          .p1-video-card:not(.p1-video-tall) { height: 280px; }
+          .p1-video-label { left: 14px; bottom: 15px; right: 12px; }
+          .p1-video-label strong { font-size: 17px; }
+          .p1-video-label span { font-size: 8px; }
+          .p1-event-photo { height: 270px; }
+          .p1-preview-finale { padding: 85px 22px 95px; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .p1-preview * { transition: none !important; }
+        }
+      `}</style>
     </div>
   );
 }

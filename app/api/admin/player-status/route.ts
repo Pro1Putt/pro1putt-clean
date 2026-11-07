@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { isAdminAuthenticated } from "@/lib/admin-session";
 import { createClient } from "@supabase/supabase-js";
 
 const supabase = createClient(
@@ -22,16 +23,13 @@ export async function POST(req: NextRequest) {
     const requiredPin = String(process.env.TD_PIN || "").trim();
     const providedPin = String(td_pin ?? tdPin ?? "").trim();
 
-    if (!requiredPin) {
-      return NextResponse.json(
-        { ok: false, error: "Missing TD_PIN on server" },
-        { status: 500 }
-      );
-    }
+    const adminAuthenticated = await isAdminAuthenticated();
+    const validDirectorPin =
+      Boolean(requiredPin) && providedPin === requiredPin;
 
-    if (!providedPin || providedPin !== requiredPin) {
+    if (!adminAuthenticated && !validDirectorPin) {
       return NextResponse.json(
-        { ok: false, error: "TD_PIN invalid" },
+        { ok: false, error: "Nicht autorisiert" },
         { status: 401 }
       );
     }

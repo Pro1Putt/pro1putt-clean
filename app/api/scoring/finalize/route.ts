@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { isAdminAuthenticated } from "@/lib/admin-session";
 import { createClient } from "@supabase/supabase-js";
 import { sendEmail } from "@/lib/mailer";
 
@@ -44,6 +45,13 @@ function getBaseUrl(req: Request) {
 }
 
 export async function POST(req: Request) {
+  if (!(await isAdminAuthenticated())) {
+    return NextResponse.json(
+      { ok: false, error: "Admin-Anmeldung erforderlich" },
+      { status: 401 }
+    );
+  }
+
   try {
     const body = await req.json().catch(() => ({}));
 
@@ -63,9 +71,15 @@ export async function POST(req: Request) {
     if (!["player", "marker", "td"].includes(role)) return jsonError("role must be player|marker|td", 400);
     if (!signed_name) return jsonError("signed_name required", 400);
 
-    // TD Pin nur für TD (wenn gesetzt)
-    if (requiredPin && role === "td") {
-      if (!td_pin || td_pin !== requiredPin) return jsonError("TD_PIN invalid", 401);
+    // TD-Unterschrift nur mit gültiger Admin-Sitzung oder TD-PIN
+    if (role === "td") {
+      const adminAuthenticated = await isAdminAuthenticated();
+      const validDirectorPin =
+        Boolean(requiredPin) && td_pin === requiredPin;
+
+      if (!adminAuthenticated && !validDirectorPin) {
+        return jsonError("Nicht autorisiert", 401);
+      }
     }
 
     // Signature data url optional
