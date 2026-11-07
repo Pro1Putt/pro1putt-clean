@@ -169,7 +169,6 @@ export default function RegisterPage() {
       const form = e.target as HTMLFormElement;
       const payload = Object.fromEntries(new FormData(form).entries());
       if (isNewTournament && (age === null || age < 0 || age > 21 ||
-          (age <= 12 && selectedHoles !== 9) ||
           (age >= 13 && selectedHoles !== 18))) {
         throw new Error("Please check the date of birth and playing format.");
       }
