@@ -53,7 +53,7 @@ const TOURNAMENTS: Record<string, TournamentConfig> = {
 },
 "green-eagle": {
   title: "Open Finals – North Course Green Eagle",
-  subtitle: "Turnier abgeschlossen · Offizielle Ergebnisse",
+  subtitle: "Tournament completed · Official results",
   dateLabel: "02.–04.10.2026 · Green Eagle",
   hasStaticData: false,
   tournamentId: "36d5df41-5864-4103-b413-169bbd683077",
@@ -61,7 +61,7 @@ const TOURNAMENTS: Record<string, TournamentConfig> = {
   "pro1putt-open": {
     title: "Pro1Putt Open",
     subtitle: "Official Results",
-    dateLabel: "Termin folgt",
+    dateLabel: "Date to be announced",
     hasStaticData: false,
   },
 };
@@ -359,7 +359,7 @@ function ExpandablePlayerCard({
                   return (
                     <div key={r} style={{ marginBottom: 18 }}>
                       <div style={{ fontWeight: 800, marginBottom: 8 }}>
-                        Runde {r} – {round.total_strokes ?? "-"} Schläge
+                        Round {r} – {round.total_strokes ?? "-"} strokes
                       </div>
 
                       <div
@@ -404,7 +404,7 @@ function ExpandablePlayerCard({
                   fontWeight: 700,
                 }}
               >
-                Lade Scorekarte...
+                Loading scorecard...
               </div>
             )}
           </div>
@@ -496,7 +496,7 @@ function Section({
           color: "#5a6f65",
         }}
       >
-        * Gleichstand im Gesamtergebnis.
+        * Tied overall score.
       </div>
     </section>
   );
@@ -517,7 +517,7 @@ function PlaceholderTournament({
     <main
       style={{
         minHeight: "100vh",
-        background: "radial-gradient(circle at top, rgba(20,122,82,0.10), transparent 30%), #f3f7f4",
+        background: "#F5F7F5",
         padding: "24px 14px 48px",
       }}
     >
@@ -526,7 +526,7 @@ function PlaceholderTournament({
           style={{
             borderRadius: 28,
             padding: 24,
-            background: "linear-gradient(135deg, #0b5d3b 0%, #147a52 52%, #1d9a68 100%)",
+            background: "linear-gradient(135deg, #0E2A1F 0%, #124431 100%)",
             color: "#ffffff",
             boxShadow: "0 18px 40px rgba(7,40,27,0.18)",
           }}
@@ -546,8 +546,8 @@ function PlaceholderTournament({
               textTransform: "uppercase",
             }}
           >
-            {subtitle.includes("Turnier abgeschlossen")
-              ? "PRO1PUTT · TURNIER ABGESCHLOSSEN"
+            {subtitle.includes("Tournament completed")
+              ? "PRO1PUTT · TOURNAMENT COMPLETED"
               : "PRO1PUTT LIVE SCORING"}
           </div>
 
@@ -582,13 +582,13 @@ function PlaceholderTournament({
               gap: 14,
             }}
           >
-            <StatCard label="Turnier" value={dateLabel} />
+            <StatCard label="Tournament" value={dateLabel} />
             <StatCard label="Status" value={subtitle} />
           </div>
         </section>
 
         <section style={{ display: "grid", gap: 16 }}>
-  <LiveLeaderboard tournamentId={tournamentId} />
+  <LiveLeaderboard tournamentId={tournamentId} completed={subtitle.includes("Tournament completed")} />
 </section>
       </div>
     </main>
@@ -604,7 +604,7 @@ export default function Page() {
   if (!config) {
     return (
       <main style={{ minHeight: "100vh", padding: 40 }}>
-        <h1>Turnier nicht gefunden</h1>
+        <h1>Tournament not found</h1>
         <p>Slug: {slug}</p>
       </main>
     );
@@ -682,8 +682,8 @@ export default function Page() {
     () => [
       {
         id: "nine-overall",
-        title: "9 Loch Gesamt",
-        subtitle: "Alle 9 Loch Spieler",
+        title: "9-Hole Overall",
+        subtitle: "All 9-hole players",
         rows: hole9Overall,
         showHcp: false,
       },
@@ -723,7 +723,7 @@ export default function Page() {
     <main
       style={{
         minHeight: "100vh",
-        background: "radial-gradient(circle at top, rgba(20,122,82,0.10), transparent 30%), #f3f7f4",
+        background: "#F5F7F5",
         padding: "24px 14px 48px",
       }}
     >
@@ -732,7 +732,7 @@ export default function Page() {
           style={{
             borderRadius: 28,
             padding: 24,
-            background: "linear-gradient(135deg, #0b5d3b 0%, #147a52 52%, #1d9a68 100%)",
+            background: "linear-gradient(135deg, #0E2A1F 0%, #124431 100%)",
             color: "#ffffff",
             boxShadow: "0 18px 40px rgba(7,40,27,0.18)",
           }}
@@ -786,9 +786,9 @@ export default function Page() {
               gap: 14,
             }}
           >
-            <StatCard label="Turnier" value={config.dateLabel} />
-            <StatCard label="18 Loch Spieler" value={total18} />
-            <StatCard label="9 Loch Spieler" value={total9} />
+            <StatCard label="Tournament" value={config.dateLabel} />
+            <StatCard label="18-hole players" value={total18} />
+            <StatCard label="9-hole players" value={total9} />
           </div>
         </section>
 

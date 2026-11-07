@@ -46,7 +46,7 @@ export default function CookieBanner() {
 
       <div style={{ fontSize: 14, opacity: 0.8, marginBottom: 16 }}>
         Wir nutzen Google Analytics zur Verbesserung unserer Website.
-        Sie können zustimmen oder ablehnen.
+        You can accept or decline.
       </div>
 
       <div style={{ display: "flex", gap: 12 }}>

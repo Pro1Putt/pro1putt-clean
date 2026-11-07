@@ -1,7 +1,8 @@
 "use client";
 
-import PreviewHeader from "../components/PreviewHeader";
 
+
+import PreviewHeader from "../components/PreviewHeader";
 import React, { useEffect, useState } from "react";
 
 type Tournament = {
@@ -88,16 +89,16 @@ export default function RegisterPage() {
       ? null
       : age === null
       ? selectedBirthdate && selectedTournament
-        ? "Geburtsdatum oder Turnierstartdatum ungültig."
+        ? "Invalid date of birth or tournament start date."
         : null
       : age < 0
-        ? "Das Geburtsdatum liegt nach dem ersten Turniertag."
+        ? "Date of birth is after the first tournament day."
         : age > 21
-          ? "Eine Anmeldung ist nur bis einschließlich 21 Jahre möglich."
+          ? "Players must be 21 or younger on the first tournament day."
           : selectedHoles === 9 && age > 12
-            ? "9 Loch ist nur bis einschließlich 12 Jahre möglich. Bitte 18 Loch auswählen."
+            ? "9-hole divisions are available only to players aged 12 or younger. Please select 18 holes."
             : selectedHoles === 18 && age <= 12
-              ? "Bis einschließlich 12 Jahre ist ausschließlich 9 Loch möglich."
+              ? "Players aged 12 or younger must select 9 holes."
               : null;
 
   const ageGroup =
@@ -156,7 +157,7 @@ export default function RegisterPage() {
     setSubmitErr(null);
 
     if (!registrationAvailable) {
-      setSubmitErr("Die Anmeldung für dieses Turnier ist noch nicht geöffnet.");
+      setSubmitErr("Registration for this tournament is not yet open.");
       return;
     }
 
@@ -173,7 +174,7 @@ export default function RegisterPage() {
       if (isNewTournament && (age === null || age < 0 || age > 21 ||
           (age <= 12 && selectedHoles !== 9) ||
           (age >= 13 && selectedHoles !== 18))) {
-        throw new Error("Bitte Geburtsdatum und passende Lochzahl prüfen.");
+        throw new Error("Please check the date of birth and playing format.");
       }
 
       const res = await fetch("/api/register", {
@@ -198,7 +199,7 @@ export default function RegisterPage() {
       const paymentToken = String(json?.payment_token ?? "");
 
       if (!registrationId || !paymentToken) {
-        throw new Error("Zahlungsdaten fehlen. Bitte PRO1PUTT kontaktieren.");
+        throw new Error("Payment details are missing. Please contact PRO1PUTT.");
       }
 
       const paymentResponse = await fetch("/api/paypal/create-order", {
@@ -214,7 +215,7 @@ export default function RegisterPage() {
 
       if (!paymentResponse.ok) {
         throw new Error(
-          payment?.error || "PayPal-Bestellung konnte nicht erstellt werden."
+          payment?.error || "Unable to create the PayPal order."
         );
       }
 
@@ -231,7 +232,7 @@ export default function RegisterPage() {
         : null;
 
       if (!approvalUrl) {
-        throw new Error("PayPal-Zahlungslink konnte nicht ermittelt werden.");
+        throw new Error("Unable to retrieve the PayPal payment link.");
       }
 
       sessionStorage.setItem(
@@ -259,7 +260,7 @@ export default function RegisterPage() {
       <h1 style={{ fontSize: "clamp(34px, 6vw, 64px)", fontWeight: 900, color: "#092b1c", marginBottom: 12, letterSpacing: -2, lineHeight: 1.05 }}>
         YOUR NEXT TOURNAMENT STARTS HERE.
       </h1>
-      <p style={{ color: "#52665a", marginBottom: 35, fontSize: 16, lineHeight: 1.6 }}>Melde dich für dein nächstes PRO1PUTT-Turnier an. Alle mit * markierten Felder sind Pflichtfelder.</p>
+      <p style={{ color: "#52665a", marginBottom: 35, fontSize: 16, lineHeight: 1.6 }}>Register for your next PRO1PUTT tournament. Fields marked * are required.</p>
 
       {successPin && (
         <div
@@ -272,16 +273,16 @@ export default function RegisterPage() {
           }}
         >
           <div style={{ fontWeight: 900, color: "#1e4620", marginBottom: 6 }}>
-            Registrierung gespeichert ✅
+            Registration saved ✅
           </div>
           <div style={{ opacity: 0.85 }}>
-            Deine PIN für das Scoring ist:{" "}
+            Your scoring PIN is:{" "}
             <span style={{ fontWeight: 900, fontSize: 18, letterSpacing: 1 }}>
               {successPin}
             </span>
           </div>
           <div style={{ fontSize: 12, opacity: 0.7, marginTop: 6 }}>
-            PayPal-Weiterleitung und Bestätigungsmail kommen als nächster Schritt.
+            PayPal checkout and your confirmation email are the next steps.
           </div>
         </div>
       )}
@@ -298,7 +299,7 @@ export default function RegisterPage() {
             fontWeight: 700,
           }}
         >
-          Fehler: {submitErr}
+          Error: {submitErr}
         </div>
       )}
 
@@ -315,12 +316,12 @@ export default function RegisterPage() {
         {/* Turnier */}
         <div style={{ marginBottom: 16 }}>
           <label style={labelStyle()}>
-            Turnier auswählen <span style={{ color: "crimson" }}>*</span>
+            Select Tournament <span style={{ color: "crimson" }}>*</span>
           </label>
 
           {loadErr ? (
             <div style={{ color: "crimson", fontSize: 13 }}>
-              Fehler beim Laden der Turniere: {loadErr}
+              Unable to load tournaments: {loadErr}
             </div>
           ) : (
             <select
@@ -331,7 +332,7 @@ export default function RegisterPage() {
               required
             >
               <option value="" disabled>
-                Bitte wählen…
+                Please select…
               </option>
               {tournaments
   .filter((t) => {
@@ -345,11 +346,11 @@ export default function RegisterPage() {
   })
   .map((t) => (
                 <option key={t.id} value={t.id}>
-                  {(t.name ?? "Turnier") +
+                  {(t.name ?? "Tournament") +
                     (t.start_date ? ` • ${t.start_date}` : "") +
                     (t.location ? ` • ${t.location}` : "") +
                     (!t.is_active || !t.registration_open
-                      ? " • Anmeldung noch geschlossen"
+                      ? " • Registration Not Yet Open"
                       : "")}
                 </option>
               ))}
@@ -360,7 +361,7 @@ export default function RegisterPage() {
         {/* 9/18 */}
         <div style={{ marginBottom: 16 }}>
           <label style={labelStyle()}>
-            Spielt <span style={{ color: "crimson" }}>*</span>
+            Playing Format <span style={{ color: "crimson" }}>*</span>
           </label>
           <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
             <label
@@ -382,7 +383,7 @@ export default function RegisterPage() {
                 onChange={() => setSelectedHoles(9)}
                 required
               />
-              9 Loch (U10 / U12)
+              9 Holes (U10 / U12)
             </label>
 
             <label
@@ -404,7 +405,7 @@ export default function RegisterPage() {
                 onChange={() => setSelectedHoles(18)}
                 required
               />
-              18 Loch (U14 / U16 / U18 / U21)
+              18 Holes (U14 / U16 / U18 / U21)
             </label>
           </div>
         </div>
@@ -431,7 +432,7 @@ export default function RegisterPage() {
             marginBottom: 16,
             fontWeight: 700
           }}>
-            Altersgruppe: {ageGroup} · Alter am ersten Turniertag: {age} Jahre
+            Age Division: {ageGroup} · Age on first tournament day: {age}
           </div>
         )}
 
@@ -445,14 +446,14 @@ export default function RegisterPage() {
         >
           <div>
             <label style={labelStyle()}>
-              Vorname <span style={{ color: "crimson" }}>*</span>
+              First Name <span style={{ color: "crimson" }}>*</span>
             </label>
             <input name="first_name" style={inputStyle()} required />
           </div>
 
           <div>
             <label style={labelStyle()}>
-              Nachname <span style={{ color: "crimson" }}>*</span>
+              Last Name <span style={{ color: "crimson" }}>*</span>
             </label>
             <input name="last_name" style={inputStyle()} required />
           </div>
@@ -466,7 +467,7 @@ export default function RegisterPage() {
 
           <div>
             <label style={labelStyle()}>
-              Telefonnummer <span style={{ color: "crimson" }}>*</span>
+              Phone Number <span style={{ color: "crimson" }}>*</span>
             </label>
             <input
               name="phone"
@@ -487,7 +488,7 @@ export default function RegisterPage() {
 
           <div>
             <label style={labelStyle()}>
-              Geburtsdatum <span style={{ color: "crimson" }}>*</span>
+              Date of Birth <span style={{ color: "crimson" }}>*</span>
             </label>
             <input
               name="birthdate"
@@ -501,18 +502,18 @@ export default function RegisterPage() {
 
           <div>
             <label style={labelStyle()}>
-              Nation (ISO2, z.B. DE) <span style={{ color: "crimson" }}>*</span>
+              Country (ISO 2-letter code, e.g. DE) <span style={{ color: "crimson" }}>*</span>
             </label>
             <input name="nation" maxLength={2} style={inputStyle()} required />
           </div>
 
           <div>
             <label style={labelStyle()}>
-              Kategorie <span style={{ color: "crimson" }}>*</span>
+              Division <span style={{ color: "crimson" }}>*</span>
             </label>
             <select name="gender" defaultValue="" style={inputStyle()} required>
               <option value="" disabled>
-                Bitte wählen…
+                Please select…
               </option>
               <option value="Girls">Girls</option>
               <option value="Boys">Boys</option>
@@ -521,21 +522,21 @@ export default function RegisterPage() {
 
           <div>
             <label style={labelStyle()}>
-              Heimatclub <span style={{ color: "crimson" }}>*</span>
+              Home Golf Club <span style={{ color: "crimson" }}>*</span>
             </label>
             <input name="home_club" style={inputStyle()} required />
           </div>
 
           <div>
             <label style={labelStyle()}>
-              Trainer <span style={{ color: "crimson" }}>*</span>
+              Coach <span style={{ color: "crimson" }}>*</span>
             </label>
             <input name="coach" style={inputStyle()} required />
           </div>
 
           <div>
             <label style={labelStyle()}>
-              Einlaufsong <span style={{ color: "crimson" }}>*</span>
+              Walk-on Song <span style={{ color: "crimson" }}>*</span>
             </label>
             <input name="walkup_song" style={inputStyle()} required />
           </div>
@@ -546,36 +547,36 @@ export default function RegisterPage() {
             </label>
             <select name="caddie" defaultValue="" style={inputStyle()} required>
               <option value="" disabled>
-                Bitte wählen…
+                Please select…
               </option>
-              <option value="no">Ohne Caddie</option>
-              <option value="yes">Mit Caddie</option>
+              <option value="no">Without Caddie</option>
+              <option value="yes">With Caddie</option>
             </select>
           </div>
 
           <div>
             <label style={labelStyle()}>
-              WAGR gelistet? <span style={{ color: "crimson" }}>*</span>
+              WAGR Ranked? <span style={{ color: "crimson" }}>*</span>
             </label>
             <select name="wagr" defaultValue="" style={inputStyle()} required>
               <option value="" disabled>
-                Bitte wählen…
+                Please select…
               </option>
-              <option value="no">Nein</option>
-              <option value="yes">Ja</option>
+              <option value="no">No</option>
+              <option value="yes">Yes</option>
             </select>
           </div>
 
           <div>
             <label style={labelStyle()}>
-              College Golf interessiert? <span style={{ color: "crimson" }}>*</span>
+              Interested in College Golf? <span style={{ color: "crimson" }}>*</span>
             </label>
             <select name="college_interest" defaultValue="" style={inputStyle()} required>
               <option value="" disabled>
-                Bitte wählen…
+                Please select…
               </option>
-              <option value="no">Nein</option>
-              <option value="yes">Ja</option>
+              <option value="no">No</option>
+              <option value="yes">Yes</option>
             </select>
           </div>
         </div>
@@ -596,11 +597,11 @@ export default function RegisterPage() {
             cursor: submitting ? "not-allowed" : "pointer",
           }}
         >
-          {submitting ? "Speichert..." : "REGISTER NOW →"}
+          {submitting ? "Submitting..." : "REGISTER NOW →"}
         </button>
 
         <div style={{ fontSize: 12, opacity: 0.6, marginTop: 10 }}>
-          Nächster Schritt: PayPal Redirect + Bestätigungsmail mit PIN.
+          Next: PayPal checkout and a confirmation email with your scoring PIN.
         </div>
       </form>
     </div>

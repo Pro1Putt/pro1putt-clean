@@ -19,8 +19,8 @@ export const partners: Partner[] = [
   // Partner (aus deinem aktuellen app/page.tsx übernommen)
   {
     key: "callaway",
-    name: "Callaway",
-    logoSrc: "/partners/callaway.png",
+    name: "FCG Callaway World Championship",
+    logoSrc: "",
     href: "https://fcgworldchampionship.com",
     variant: "default",
   },

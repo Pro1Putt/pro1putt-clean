@@ -15,7 +15,7 @@ export default function PaymentCancelPage() {
 
       <p style={{ lineHeight: 1.7 }}>
         Deine PayPal-Zahlung wurde nicht abgeschlossen.
-        Dein Startplatz bleibt zunächst bis zum Ablauf der
+        Your place is initially held until the end of the
         Zahlungsfrist reserviert.
       </p>
 
@@ -25,7 +25,7 @@ export default function PaymentCancelPage() {
       </p>
 
       <a href="/" style={{ color: "#00A65A" }}>
-        Zurück zu PRO1PUTT
+        Back to PRO1PUTT
       </a>
     </main>
   );

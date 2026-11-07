@@ -79,7 +79,7 @@ export default function DesignPreview() {
           preload="metadata"
           poster="/gallery/IMG_2484.jpeg"
         >
-          <source src="/Videos/walking.mov" type="video/quicktime" />
+          <source src="/Videos/walking.mp4" type="video/quicktime" />
         </video>
 
         <div className="p1-hero-overlay" />
@@ -195,7 +195,7 @@ export default function DesignPreview() {
         <div className="p1-video-grid">
           <div className="p1-video-card p1-video-tall">
             <video autoPlay muted loop playsInline preload="metadata">
-              <source src="/Videos/Momente.mov" type="video/quicktime" />
+              <source src="/Videos/Momente.mp4" type="video/quicktime" />
             </video>
             <div className="p1-video-label">
               <span>01 / THE MOMENTS</span>
@@ -204,7 +204,7 @@ export default function DesignPreview() {
           </div>
           <div className="p1-video-card">
             <video autoPlay muted loop playsInline preload="metadata">
-              <source src="/Videos/DANKE.mov" type="video/quicktime" />
+              <source src="/Videos/DANKE.mp4" type="video/quicktime" />
             </video>
             <div className="p1-video-label">
               <span>02 / THE COMMUNITY</span>
@@ -213,7 +213,7 @@ export default function DesignPreview() {
           </div>
           <div className="p1-video-card">
             <video autoPlay muted loop playsInline preload="metadata">
-              <source src="/Videos/CATWALK.mov" type="video/quicktime" />
+              <source src="/Videos/CATWALK.mp4" type="video/quicktime" />
             </video>
             <div className="p1-video-label">
               <span>03 / THE ENERGY</span>
@@ -325,9 +325,7 @@ export default function DesignPreview() {
         </Link>
       </section>
 
-      <div className="p1-preview-note">
-        PRO1PUTT 2.0 — DESIGN PREVIEW · NOT THE LIVE HOMEPAGE
-      </div>
+      
 
       <style>{`
         /* PRO1PUTT 2027: Einzelnes Turnier als Highlight */

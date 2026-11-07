@@ -4,7 +4,7 @@ export default function PreviewHeader() {
   return (
     <>
       <header className="p1-new-header">
-        <Link href="/design-preview" aria-label="PRO1PUTT Startseite">
+        <Link href="/design-preview" aria-label="PRO1PUTT Home">
           <img
             src="/pro1putt-logo-white.png"
             alt="PRO1PUTT"

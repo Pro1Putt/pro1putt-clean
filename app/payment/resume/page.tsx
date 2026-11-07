@@ -7,7 +7,7 @@ type PaymentState = "checking" | "ready" | "redirecting" | "error";
 export default function PaymentResumePage() {
   const [state, setState] = useState<PaymentState>("checking");
   const [message, setMessage] = useState(
-    "Dein Zahlungslink wird überprüft."
+    "We are checking your payment link."
   );
   const [resumeToken, setResumeToken] = useState<string | null>(null);
 
@@ -24,14 +24,14 @@ export default function PaymentResumePage() {
 
     if (!token || !/^[a-f0-9]{64}$/i.test(token)) {
       setState("error");
-      setMessage("Dieser Zahlungslink ist ungültig.");
+      setMessage("This payment link is invalid.");
       return;
     }
 
     setResumeToken(token);
     setState("ready");
     setMessage(
-      "Du kannst deine Turnieranmeldung jetzt sicher über PayPal bezahlen."
+      "You can now pay securely for your tournament registration via PayPal."
     );
   }, []);
 
@@ -70,7 +70,7 @@ export default function PaymentResumePage() {
         )
       ) {
         throw new Error(
-          "PayPal hat keinen gültigen Zahlungslink zurückgegeben."
+          "PayPal did not return a valid payment link."
         );
       }
 
@@ -99,7 +99,7 @@ export default function PaymentResumePage() {
       }}
     >
       <h1 style={{ color: "#0E2A1F" }}>
-        PRO1PUTT – Turnieranmeldung
+        PRO1PUTT – Tournament Registration
       </h1>
 
       <p style={{ lineHeight: 1.7 }}>{message}</p>

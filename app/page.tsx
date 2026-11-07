@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import PartnerStrip from "./components/PartnerStrip";
+import { useEffect, useRef, useState } from "react";
 
 type TourEvent = {
   id: string;
@@ -16,6 +17,26 @@ type TourEvent = {
 };
 
 export default function DesignPreview() {
+  const heroVideoRef = useRef<HTMLVideoElement>(null);
+  useEffect(() => {
+    const video = heroVideoRef.current;
+    if (!video) return;
+    video.muted = true;
+    video.defaultMuted = true;
+    const start = () => { if (!document.hidden) void video.play().catch(() => {}); };
+    video.addEventListener("loadeddata", start);
+    video.addEventListener("canplay", start);
+    window.addEventListener("pageshow", start);
+    document.addEventListener("visibilitychange", start);
+    start();
+    return () => {
+      video.removeEventListener("loadeddata", start);
+      video.removeEventListener("canplay", start);
+      window.removeEventListener("pageshow", start);
+      document.removeEventListener("visibilitychange", start);
+    };
+  }, []);
+
   const [events, setEvents] = useState<TourEvent[]>([]);
   const [loadingEvents, setLoadingEvents] = useState(true);
   const [eventsError, setEventsError] = useState(false);
@@ -29,7 +50,7 @@ export default function DesignPreview() {
         const json = await response.json();
 
         if (!response.ok || !json.ok) {
-          throw new Error("Turniere konnten nicht geladen werden.");
+          throw new Error("Tournaments could not be loaded.");
         }
 
         if (!cancelled) {
@@ -56,30 +77,19 @@ export default function DesignPreview() {
 
   return (
     <div className="p1-preview">
-      <div className="p1-preview-brandbar">
-        <a href="/" aria-label="PRO1PUTT Startseite">
-          <img src="/pro1putt-logo-white.png" alt="PRO1PUTT" />
-        </a>
-        <nav className="p1-preview-nav" aria-label="PRO1PUTT Navigation">
-          <Link href="/leaderboard-preview" className="p1-preview-brandlink">
-            LEADERBOARD ↗
-          </Link>
-          <Link href="/register-preview" className="p1-preview-register">
-            REGISTER NOW ↗
-          </Link>
-        </nav>
-      </div>
       <section className="p1-hero">
         <video
+          ref={heroVideoRef}
           className="p1-hero-video"
           autoPlay
           muted
           loop
           playsInline
-          preload="metadata"
+          preload="auto"
           poster="/gallery/IMG_2484.jpeg"
         >
-          <source src="/Videos/walking.mov" type="video/quicktime" />
+          <source src="/Videos/walking.mp4" type="video/mp4" />
+
         </video>
 
         <div className="p1-hero-overlay" />
@@ -104,10 +114,10 @@ export default function DesignPreview() {
           </p>
 
           <div className="p1-preview-buttons">
-            <Link href="/register-preview" className="p1-button-primary">
+            <Link href="/register" className="p1-button-primary">
               EXPLORE TOURNAMENTS <span>↗</span>
             </Link>
-            <Link href="/leaderboard-preview" className="p1-button-secondary">
+            <Link href="/leaderboard" className="p1-button-secondary">
               LIVE LEADERBOARD <span>↗</span>
             </Link>
           </div>
@@ -147,7 +157,7 @@ export default function DesignPreview() {
               tournaments, incredible courses and moments that last
               long after the final putt.
             </p>
-            <Link href="/register-preview" className="p1-text-link">
+            <Link href="/register" className="p1-text-link">
               DISCOVER THE TOUR <span>↗</span>
             </Link>
           </div>
@@ -159,8 +169,7 @@ export default function DesignPreview() {
             <span>ROUNDS. NO CUT.</span>
           </div>
           <div>
-            <strong>WAGR</strong>
-            <span>WORLD RANKING</span>
+            <a href="/ausschreibung#wagr" style={{color:"inherit",textDecoration:"none",display:"grid"}}><strong>WAGR</strong><span>WORLD RANKING ↗</span></a>
           </div>
           <div>
             <strong>EGR</strong>
@@ -194,8 +203,9 @@ export default function DesignPreview() {
 
         <div className="p1-video-grid">
           <div className="p1-video-card p1-video-tall">
-            <video autoPlay muted loop playsInline preload="metadata">
-              <source src="/Videos/Momente.mov" type="video/quicktime" />
+            <video autoPlay muted loop playsInline preload="auto">
+              <source src="/Videos/Momente.mp4" type="video/mp4" />
+
             </video>
             <div className="p1-video-label">
               <span>01 / THE MOMENTS</span>
@@ -203,8 +213,9 @@ export default function DesignPreview() {
             </div>
           </div>
           <div className="p1-video-card">
-            <video autoPlay muted loop playsInline preload="metadata">
-              <source src="/Videos/DANKE.mov" type="video/quicktime" />
+            <video autoPlay muted loop playsInline preload="auto">
+              <source src="/Videos/DANKE.mp4" type="video/mp4" />
+
             </video>
             <div className="p1-video-label">
               <span>02 / THE COMMUNITY</span>
@@ -212,8 +223,9 @@ export default function DesignPreview() {
             </div>
           </div>
           <div className="p1-video-card">
-            <video autoPlay muted loop playsInline preload="metadata">
-              <source src="/Videos/CATWALK.mov" type="video/quicktime" />
+            <video autoPlay muted loop playsInline preload="auto">
+              <source src="/Videos/CATWALK.mp4" type="video/mp4" />
+
             </video>
             <div className="p1-video-label">
               <span>03 / THE ENERGY</span>
@@ -223,7 +235,7 @@ export default function DesignPreview() {
         </div>
       </section>
 
-      <section className="p1-events">
+      <section className="p1-events" id="tour">
         <div className="p1-section-kicker">03 / THE TOUR</div>
         <div className="p1-events-heading">
           <h2>
@@ -271,7 +283,7 @@ export default function DesignPreview() {
                 <div
                   className="p1-event-photo"
                   style={{
-                    backgroundImage: 'url("/gallery/IMG_2550.jpeg")',
+                    backgroundImage: index === 0 ? 'url("/tournament-images/bad-saarow-original.jpg")' : 'url("/tournament-images/green-eagle-original.jpg")',
                   }}
                 >
                   <span className="p1-event-number">
@@ -295,7 +307,7 @@ export default function DesignPreview() {
 
             return registrationOpen ? (
               <Link
-                href="/register-preview"
+                href="/register"
                 className="p1-event"
                 key={event.id}
               >
@@ -310,6 +322,31 @@ export default function DesignPreview() {
         </div>
       </section>
 
+      <section className="p1-qualification" id="qualification">
+        <div className="p1-section-kicker">04 / INTERNATIONAL QUALIFICATION</div>
+        <h2>YOUR ROAD TO THE <span>WORLD CHAMPIONSHIPS.</span></h2>
+        <p>Three rounds. Two world championship opportunities. The winner of each age group qualifies; additional players can qualify through their average score across all three days of the same PRO1PUTT Pro One Cup tournament.</p>
+        <div className="p1-qualification-grid">
+          <article><h3>UNDER ARMOUR WORLD CHAMPIONSHIP</h3><p>9 holes: average 39 strokes or better<br />18 holes: average 79 strokes or better</p></article>
+          <article><h3>FCG CALLAWAY WORLD CHAMPIONSHIP</h3><p>Germany’s exclusive FCG Callaway World Championship qualifier.</p><p>9 holes: average 45 strokes or better<br />18 holes: average 85 strokes or better</p></article>
+        </div>
+        <p className="p1-qualification-note">Qualification and participation are subject to the respective championship's official requirements.</p>
+        <Link href="/ausschreibung" className="p1-text-link">FULL TOURNAMENT RULES ↗</Link>
+      </section>
+
+      <section className="p1-partners" id="partners">
+        <div className="p1-section-kicker">05 / OUR PARTNERS</div>
+        <h2>BACKED BY <span>THE BEST.</span></h2>
+        <PartnerStrip />
+      </section>
+
+      <section className="p1-gallery-teaser" id="gallery">
+        <div className="p1-section-kicker p1-light-kicker">06 / THE GALLERY</div>
+        <h2>MOMENTS THAT <span>LAST.</span></h2>
+        <p>Relive the moments that make PRO1PUTT special.</p>
+        <Link href="/galerie" className="p1-button-primary">EXPLORE THE GALLERY ↗</Link>
+      </section>
+
       <section className="p1-preview-finale">
         <span className="p1-section-kicker p1-light-kicker">
           YOUR NEXT CHAPTER STARTS HERE
@@ -320,16 +357,32 @@ export default function DesignPreview() {
           <em>MAKE YOUR MARK?</em>
         </h2>
         <p>Join the next generation. Play your game. Write your story.</p>
-        <Link href="/register-preview" className="p1-button-primary">
+        <Link href="/register" className="p1-button-primary">
           JOIN THE TOUR <span>↗</span>
         </Link>
       </section>
 
-      <div className="p1-preview-note">
-        PRO1PUTT 2.0 — DESIGN PREVIEW · NOT THE LIVE HOMEPAGE
-      </div>
+      
+      
 
       <style>{`
+        .p1-qualification, .p1-partners, .p1-gallery-teaser, .p1-new-footer { position: relative; width: 100vw; margin-left: calc(50% - 50vw); padding: 90px max(6vw, 24px); font-family: Lato, Arial, sans-serif; }
+        .p1-qualification { background: #f4f7f2; }
+        .p1-qualification h2, .p1-partners h2, .p1-gallery-teaser h2 { font-size: clamp(38px, 5vw, 75px); line-height: 1; letter-spacing: -.055em; font-weight: 900; margin: 18px 0 25px; }
+        .p1-qualification h2 span, .p1-partners h2 span { color: #589e3d; }
+        .p1-qualification > p { max-width: 850px; line-height: 1.7; }
+        .p1-qualification-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 22px; margin: 32px 0; }
+        .p1-qualification-grid article { padding: 32px; border-radius: 16px; background: white; border: 1px solid #dce7d9; }
+        .p1-qualification-grid h3 { font-size: 21px; margin: 0 0 16px; }
+        .p1-qualification-grid p { line-height: 1.8; }
+        .p1-qualification-note { font-size: 12px; opacity: .7; margin-bottom: 24px !important; }
+        .p1-partners { background: #fff; }
+        .p1-gallery-teaser { background: #092b1c; color: white; }
+        .p1-gallery-teaser h2 span { color: #80d65b; }
+        .p1-gallery-teaser p { margin-bottom: 25px; }
+        .p1-new-footer { background: #061f15; color: white; display: flex; gap: 22px; flex-wrap: wrap; padding-top: 30px; padding-bottom: 30px; }
+        .p1-new-footer a { color: #e2e9e2; font-size: 12px; letter-spacing: .08em; }
+        @media(max-width:700px) { .p1-qualification-grid { grid-template-columns: 1fr; } .p1-qualification,.p1-partners,.p1-gallery-teaser { padding-top: 65px; padding-bottom: 65px; } }
         /* PRO1PUTT 2027: Einzelnes Turnier als Highlight */
         .p1-event-grid-2027 {
           display: flex;

@@ -263,10 +263,7 @@ main, .page, .container {
 body:has(.p1-preview) {
   overflow-x: hidden;
 }
-body:has(.p1-preview) > header,
-body:has(.p1-preview) .p1-topbar {
-  display: none !important;
-}
+/* Navigation bleibt auch auf der Startseite sichtbar. */
 body:has(.p1-preview) > main {
   max-width: none !important;
   width: 100% !important;
@@ -313,3 +310,7 @@ body:has(.p1-preview) .p1-preview > * {
   margin-left: 0 !important;
   width: 100% !important;
 }
+
+/* PRO1PUTT premium global chrome */
+body:has(.p1-preview) .p1-unified-header {display:block!important;position:sticky!important;top:0;z-index:100!important;}
+body:has(.p1-preview) .p1-preview {overflow:clip;}

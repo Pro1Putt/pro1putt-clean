@@ -352,7 +352,7 @@ export default function GalleryClient({
         <div className="p1pGrid">
           {imgs.map((img, idx) => (
             <div className="p1pCard" key={img.url}>
-              <button className="p1pCardBtn" onClick={() => setOpenIndex(idx)} aria-label="Bild öffnen">
+              <button className="p1pCardBtn" onClick={() => setOpenIndex(idx)} aria-label="Open image">
                 <img className="p1pImg" src={img.url} alt="" loading="lazy" />
                 <div className="p1pOverlay" />
                 <div className="p1pBadge">
@@ -377,10 +377,10 @@ export default function GalleryClient({
                 <button className="lbBtn lbGhost" onClick={prev} aria-label="Vorheriges Bild">
                   ←
                 </button>
-                <button className="lbBtn lbGhost" onClick={next} aria-label="Nächstes Bild">
+                <button className="lbBtn lbGhost" onClick={next} aria-label="Next image">
                   →
                 </button>
-                <button className="lbBtn" onClick={close} aria-label="Schließen">
+                <button className="lbBtn" onClick={close} aria-label="Close">
                   ✕
                 </button>
               </div>
@@ -390,7 +390,7 @@ export default function GalleryClient({
               <button className="lbBtn lbGhost" onClick={prev} aria-label="Vorheriges Bild">
                 ←
               </button>
-              <button className="lbBtn lbGhost" onClick={next} aria-label="Nächstes Bild">
+              <button className="lbBtn lbGhost" onClick={next} aria-label="Next image">
                 →
               </button>
             </div>

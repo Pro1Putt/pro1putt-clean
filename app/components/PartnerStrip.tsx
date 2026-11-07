@@ -26,14 +26,14 @@ export default function PartnerStrip() {
         title={name}
       >
         <div className="relative w-full" style={{ height: large ? 52 : 42 }}>
-          <Image
+          {logoSrc ? <Image
             src={logoSrc}
             alt={name}
             fill
             className="object-contain"
             sizes="220px"
             priority={false}
-          />
+          /> : <span className="text-center text-sm font-black text-[#0E2A1F]">{name}</span>}
         </div>
       </div>
     );

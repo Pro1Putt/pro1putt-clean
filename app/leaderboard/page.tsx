@@ -10,7 +10,7 @@ const TOURNAMENT_SLUGS: Record<string, string> = {
 };
 
 const TOURNAMENT_META: Record<string, { dateLabel: string; subtitle: string }> = {
-  "winston-open": { dateLabel: "30.03. – 01.04.2026", subtitle: "WINSTONopen · Abgeschlossen" },
+  "winston-open": { dateLabel: "30.03. – 01.04.2026", subtitle: "WINSTONopen · Completed" },
   "bad-saarow":   { dateLabel: "25. – 27.09.2026",   subtitle: "Bad Saarow Faldo Course" },
   "green-eagle":  { dateLabel: "02. – 04.10.2026",   subtitle: "Green Eagle North Course" },
 };
@@ -46,7 +46,7 @@ export default function LeaderboardOverviewPage() {
   return (
     <main style={{
       minHeight: "100vh",
-      background: "radial-gradient(circle at top, rgba(20,122,82,0.10), transparent 30%), #f3f7f4",
+      background: "#F5F7F5",
       padding: "24px 14px 48px",
     }}>
       <div style={{ maxWidth: 900, margin: "0 auto", display: "grid", gap: 24 }}>
@@ -55,7 +55,7 @@ export default function LeaderboardOverviewPage() {
         <section style={{
           borderRadius: 28,
           padding: 32,
-          background: "linear-gradient(135deg, #0b5d3b 0%, #147a52 52%, #1d9a68 100%)",
+          background: "linear-gradient(135deg, #0E2A1F 0%, #124431 100%)",
           color: "#ffffff",
           boxShadow: "0 18px 40px rgba(7,40,27,0.18)",
         }}>
@@ -69,10 +69,10 @@ export default function LeaderboardOverviewPage() {
             PRO1PUTT Official Results
           </div>
           <h1 style={{ margin: "0 0 8px", fontSize: 36, fontWeight: 900, lineHeight: 1.1 }}>
-            Leaderboard 2026
+            Tournament Leaderboards
           </h1>
           <p style={{ margin: 0, fontSize: 16, opacity: 0.9, maxWidth: 600 }}>
-            Optionales Live-Scoring & offizielle Ergebnisse aller PRO1PUTT Turniere
+            Live scoring and official results from PRO1PUTT tournaments
           </p>
         </section>
 
@@ -80,7 +80,7 @@ export default function LeaderboardOverviewPage() {
         <div style={{ display: "grid", gap: 16 }}>
           {loading ? (
             <div style={{ background: "#fff", borderRadius: 20, padding: 32, textAlign: "center", color: "#668278" }}>
-              Lade Turniere...
+              Loading tournaments...
             </div>
           ) : tournaments.map((t) => {
             const slug = getSlug(t.id);
@@ -115,7 +115,7 @@ export default function LeaderboardOverviewPage() {
                         background: "#e8f5ee", color: "#0b5d3b",
                         padding: "4px 12px", borderRadius: 999,
                         fontSize: 12, fontWeight: 800,
-                      }}>✓ Abgeschlossen</span>
+                      }}>✓ Completed</span>
                     ) : (
                       <span style={{
                         background: "#fff3e0", color: "#e65100",
@@ -124,7 +124,7 @@ export default function LeaderboardOverviewPage() {
                         display: "inline-flex", alignItems: "center", gap: 6,
                       }}>
                         <span style={{ width: 7, height: 7, borderRadius: "50%", background: "#e65100", display: "inline-block" }} />
-                        Live Scoring (optional)
+                        Live Scoring
                       </span>
                     )}
                   </div>
@@ -161,13 +161,13 @@ export default function LeaderboardOverviewPage() {
                         textDecoration: "none",
                       }}
                     >
-                      Startliste →
+                      Start List →
                     </a>
                   )}
 
                   <div
                     style={{
-                      background: "linear-gradient(135deg, #0b5d3b, #147a52)",
+                      background: "linear-gradient(135deg, #0E2A1F, #00A95B)",
                       color: "#fff",
                       borderRadius: 14,
                       padding: "12px 20px",

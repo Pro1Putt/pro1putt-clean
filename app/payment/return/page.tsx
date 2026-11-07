@@ -7,7 +7,7 @@ type PaymentState = "checking" | "paid" | "error";
 export default function PaymentReturnPage() {
   const [state, setState] = useState<PaymentState>("checking");
   const [message, setMessage] = useState(
-    "Wir überprüfen deine PayPal-Zahlung."
+    "We are checking your PayPal payment."
   );
 
   useEffect(() => {
@@ -41,7 +41,7 @@ export default function PaymentReturnPage() {
             typeof payment.registration_id !== "string" ||
             typeof payment.payment_token !== "string"
           ) {
-            throw new Error("Ungültige Zahlungsdaten.");
+            throw new Error("Invalid payment details.");
           }
 
           endpoint = "/api/paypal/capture-order";
@@ -58,7 +58,7 @@ export default function PaymentReturnPage() {
 
         if (!response.ok || result?.status !== "paid") {
           throw new Error(
-            result?.error || "Die Zahlung konnte nicht bestätigt werden."
+            result?.error || "The payment could not be confirmed."
           );
         }
 
@@ -68,7 +68,7 @@ export default function PaymentReturnPage() {
         if (!cancelled) {
           setState("paid");
           setMessage(
-            "Deine Zahlung wurde erfolgreich bestätigt. Vielen Dank!"
+            "Your payment has been confirmed. Thank you!"
           );
         }
       } catch (error) {
@@ -77,7 +77,7 @@ export default function PaymentReturnPage() {
           setMessage(
             error instanceof Error
               ? error.message
-              : "Die Zahlung konnte nicht überprüft werden."
+              : "The payment could not be verified."
           );
         }
       }
@@ -102,23 +102,23 @@ export default function PaymentReturnPage() {
     >
       <h1 style={{ color: "#0E2A1F" }}>
         {state === "checking"
-          ? "Zahlung wird geprüft"
+          ? "Payment Under Review"
           : state === "paid"
             ? "Zahlung erfolgreich"
-            : "Zahlung noch nicht bestätigt"}
+            : "Payment Not Yet Confirmed"}
       </h1>
 
       <p style={{ lineHeight: 1.7 }}>{message}</p>
 
       {state === "error" && (
         <p>
-          Bitte führe nicht sofort eine zweite Zahlung durch.
-          Wir prüfen zunächst den bestehenden Zahlungsstatus.
+          Please do not make a second payment immediately.
+          We are checking your existing payment status first.
         </p>
       )}
 
       <a href="/" style={{ color: "#00A65A" }}>
-        Zurück zu PRO1PUTT
+        Back to PRO1PUTT
       </a>
     </main>
   );

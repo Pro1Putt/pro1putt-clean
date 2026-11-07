@@ -33,6 +33,7 @@ interface LivePlayer {
 
 interface Props {
   tournamentId: string;
+  completed?: boolean;
 }
 
 const AGE_GROUP_ORDER = ["U21", "U18", "U16", "U14", "U12", "U10"];
@@ -50,7 +51,7 @@ function medal(rank: number) {
   return "";
 }
 
-export default function LiveLeaderboard({ tournamentId }: Props) {
+export default function LiveLeaderboard({ tournamentId, completed = false }: Props) {
   const [players, setPlayers] = useState<LivePlayer[]>([]);
   const [live, setLive] = useState(false);
   const [lastUpdate, setLastUpdate] = useState<string | null>(null);
@@ -136,7 +137,7 @@ export default function LiveLeaderboard({ tournamentId }: Props) {
           color: "#668278",
         }}
       >
-        Lade Live-Daten...
+        Loading live results...
       </div>
     );
 
@@ -198,7 +199,7 @@ export default function LiveLeaderboard({ tournamentId }: Props) {
         <div
           style={{
             padding: "18px 20px",
-            background: "linear-gradient(135deg, #0b5d3b 0%, #147a52 100%)",
+            background: "linear-gradient(135deg, #0E2A1F 0%, #124431 100%)",
             color: "#ffffff",
             display: "flex",
             alignItems: "center",
@@ -209,7 +210,7 @@ export default function LiveLeaderboard({ tournamentId }: Props) {
             <div style={{ fontSize: 24, fontWeight: 900 }}>{title}</div>
             <div style={{ fontSize: 14, opacity: 0.9, marginTop: 4 }}>{subtitle}</div>
           </div>
-          {live && group.some((p) => p.is_live) && (
+          {!completed && live && group.some((p) => p.is_live) && (
             <span
               style={{
                 display: "flex",
@@ -253,7 +254,7 @@ export default function LiveLeaderboard({ tournamentId }: Props) {
                 color: "#35524a",
               }}
             >
-              <div>Pl.</div>
+              <div>Rank</div>
               <div></div>
               <div>Name</div>
               <div>Club</div>
@@ -347,7 +348,7 @@ export default function LiveLeaderboard({ tournamentId }: Props) {
                       >
                         DNF{" "}
                         {player.tournament_status_hole
-                          ? `ab Loch ${player.tournament_status_hole}`
+                          ? `from hole ${player.tournament_status_hole}`
                           : ""}
                       </span>
                     )}
@@ -435,7 +436,7 @@ export default function LiveLeaderboard({ tournamentId }: Props) {
                                       marginBottom: 10,
                                     }}
                                   >
-                                    Runde {roundNo} · {round.total_strokes ?? "—"} Schläge
+                                    Round {roundNo} · {round.total_strokes ?? "—"} strokes
                                   </div>
 
                                   <div
@@ -464,7 +465,7 @@ export default function LiveLeaderboard({ tournamentId }: Props) {
                                             color: "#668278",
                                           }}
                                         >
-                                          Loch {h.hole_number}
+                                          Hole {h.hole_number}
                                         </div>
 
                                         <div
@@ -500,7 +501,7 @@ export default function LiveLeaderboard({ tournamentId }: Props) {
                               color: "#668278",
                             }}
                           >
-                            Noch keine Lochscores verfügbar.
+                            No hole-by-hole scores available.
                           </div>
                         )}
                       </div>
@@ -512,15 +513,15 @@ export default function LiveLeaderboard({ tournamentId }: Props) {
         </div>
 
         <div style={{ padding: "14px 20px 18px", fontSize: 12, color: "#5a6f65" }}>
-          * Gleichstand im Gesamtergebnis.
+          * Tied overall score.
           {lastUpdate && (
             <span style={{ marginLeft: 12, opacity: 0.7 }}>
               Aktualisiert:{" "}
-              {new Date(lastUpdate).toLocaleTimeString("de-DE", {
+              {new Date(lastUpdate).toLocaleTimeString("en-GB", {
                 hour: "2-digit",
                 minute: "2-digit",
               })}{" "}
-              Uhr
+             
             </span>
           )}
         </div>
@@ -546,36 +547,37 @@ export default function LiveLeaderboard({ tournamentId }: Props) {
             color: "#668278",
           }}
         >
-          Noch keine Spieler angemeldet.
+          No players registered yet.
         </div>
       );
     return (
       <>
         {keys.map((key) =>
-          renderSection(`${genderLabel} ${key}`, `${holeLabel} · Brutto`, groups[key])
+          renderSection(`${genderLabel} ${key}`, `${holeLabel} · Gross`, groups[key])
         )}
       </>
     );
   };
 
   const tabs: { key: TabKey; label: string }[] = [
-    { key: "girls18", label: `Girls 18 Loch (${girls18.length})` },
-    { key: "boys18",  label: `Boys 18 Loch (${boys18.length})` },
-    { key: "girls9",  label: `Girls 9 Loch (${girls9.length})` },
-    { key: "boys9",   label: `Boys 9 Loch (${boys9.length})` },
+    { key: "girls18", label: `Girls 18 Holes (${girls18.length})` },
+    { key: "boys18",  label: `Boys 18 Holes (${boys18.length})` },
+    { key: "girls9",  label: `Girls 9 Holes (${girls9.length})` },
+    { key: "boys9",   label: `Boys 9 Holes (${boys9.length})` },
   ];
 
   return (
     <div style={{ display: "grid", gap: 16 }}>
+      {completed && <div style={{display:"inline-flex",width:"fit-content",padding:"11px 18px",borderRadius:999,background:"#e5f1eb",color:"#0e442e",fontWeight:800}}>✓ Official Final Results</div>}
       {/* Live Banner */}
-      {live && (
+      {!completed && live && (
         <div
           style={{
             display: "flex",
             alignItems: "center",
             gap: 10,
             padding: "10px 18px",
-            background: "linear-gradient(135deg, #0b5d3b, #147a52)",
+            background: "linear-gradient(135deg, #0E2A1F, #00A95B)",
             borderRadius: 999,
             width: "fit-content",
             color: "#fff",
@@ -592,16 +594,16 @@ export default function LiveLeaderboard({ tournamentId }: Props) {
             }}
           />
           <span style={{ fontWeight: 800, fontSize: 14, letterSpacing: 1 }}>
-            LIVE SCORING AKTIV
+            LIVE SCORING ACTIVE
           </span>
           {lastUpdate && (
             <span style={{ fontSize: 12, opacity: 0.8 }}>
               ·{" "}
-              {new Date(lastUpdate).toLocaleTimeString("de-DE", {
+              {new Date(lastUpdate).toLocaleTimeString("en-GB", {
                 hour: "2-digit",
                 minute: "2-digit",
               })}{" "}
-              Uhr
+             
             </span>
           )}
         </div>
@@ -651,29 +653,29 @@ export default function LiveLeaderboard({ tournamentId }: Props) {
       {/* Tab Inhalte */}
       {activeTab === "girls18" && (
         <>
-          {renderSection("Girls Overall", "Alle Girls 18 Loch · Brutto", girls18)}
-          {renderGroups(groupByAge(girls18.filter((p) => ["U21", "U18", "U16", "U14"].includes(p.age_group || ""))), "18 Loch", "Girls")}
+          {renderSection("Girls Overall", "All Girls 18 Holes · Gross", girls18)}
+          {renderGroups(groupByAge(girls18.filter((p) => ["U21", "U18", "U16", "U14"].includes(p.age_group || ""))), "18 Holes", "Girls")}
         </>
       )}
 
       {activeTab === "boys18" && (
         <>
-          {renderSection("Boys Overall", "Alle Boys 18 Loch · Brutto", boys18)}
-          {renderGroups(groupByAge(boys18.filter((p) => ["U21", "U18", "U16", "U14"].includes(p.age_group || ""))), "18 Loch", "Boys")}
+          {renderSection("Boys Overall", "All Boys 18 Holes · Gross", boys18)}
+          {renderGroups(groupByAge(boys18.filter((p) => ["U21", "U18", "U16", "U14"].includes(p.age_group || ""))), "18 Holes", "Boys")}
         </>
       )}
 
       {activeTab === "girls9" && (
         <>
-          {renderSection("Girls 9 Loch Overall", "Alle Girls 9 Loch · Brutto", girls9)}
-          {renderGroups(groupByAge(girls9.filter((p) => ["U12", "U10"].includes(p.age_group || ""))), "9 Loch", "Girls")}
+          {renderSection("Girls 9 Holes Overall", "All Girls 9 Holes · Gross", girls9)}
+          {renderGroups(groupByAge(girls9.filter((p) => ["U12", "U10"].includes(p.age_group || ""))), "9 Holes", "Girls")}
         </>
       )}
 
       {activeTab === "boys9" && (
         <>
-          {renderSection("Boys 9 Loch Overall", "Alle Boys 9 Loch · Brutto", boys9)}
-          {renderGroups(groupByAge(boys9.filter((p) => ["U12", "U10"].includes(p.age_group || ""))), "9 Loch", "Boys")}
+          {renderSection("Boys 9 Holes Overall", "All Boys 9 Holes · Gross", boys9)}
+          {renderGroups(groupByAge(boys9.filter((p) => ["U12", "U10"].includes(p.age_group || ""))), "9 Holes", "Boys")}
         </>
       )}
     </div>

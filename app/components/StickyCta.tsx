@@ -46,7 +46,7 @@ export default function StickyCta() {
         }}
       >
         <div style={{ color: "rgba(255,255,255,0.9)", fontWeight: 800, fontSize: 14 }}>
-          Startplätze sichern • <span style={{ color: GREEN, fontWeight: 900 }}>WAGR & EGR</span>
+          Secure Your Place • <span style={{ color: GREEN, fontWeight: 900 }}>WAGR & EGR</span>
         </div>
 
         <a
@@ -61,7 +61,7 @@ export default function StickyCta() {
             whiteSpace: "nowrap",
           }}
         >
-          Jetzt anmelden →
+          Register Now →
         </a>
       </div>
     </div>

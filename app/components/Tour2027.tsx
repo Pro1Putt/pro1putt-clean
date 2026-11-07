@@ -65,15 +65,15 @@ export default function Tour2027() {
   }, []);
 
   if (loading) {
-    return <p>Turniere werden geladen ...</p>;
+    return <p>Loading tournaments...</p>;
   }
 
   if (error) {
-    return <p>Die Turniere konnten momentan nicht geladen werden.</p>;
+    return <p>Tournaments are temporarily unavailable.</p>;
   }
 
   if (tournaments.length === 0) {
-    return <p>Die Turniertermine werden in Kürze veröffentlicht.</p>;
+    return <p>Tournament dates will be announced soon.</p>;
   }
 
   return (
@@ -106,8 +106,8 @@ export default function Tour2027() {
               marginBottom: 10
             }}>
               {t.registration_open
-                ? "Anmeldung geöffnet"
-                : "Anmeldung noch geschlossen"}
+                ? "Registration Open"
+                : "Registration Not Yet Open"}
             </div>
 
             <h3 style={{
@@ -141,7 +141,7 @@ export default function Tour2027() {
                 marginTop: 20
               }}
             >
-              Jetzt anmelden →
+              Register Now →
             </a>
           ) : (
             <div style={{
@@ -153,7 +153,7 @@ export default function Tour2027() {
               textAlign: "center",
               marginTop: 20
             }}>
-              Anmeldung folgt
+              Registration Coming Soon
             </div>
           )}
         </div>

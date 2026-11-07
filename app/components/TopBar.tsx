@@ -1,271 +1,67 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 
-const GREEN = "#00C46A";
-const DARK = "#0E2A1F";
-
-type NavItem = { href: string; label: string };
+const entries = [
+  { href: "/", en: "Home", de: "Startseite" },
+  { href: "/#tour", en: "Tour 2027", de: "Tour 2027" },
+  { href: "/ausschreibung", en: "Regulations", de: "Ausschreibung" },
+  { href: "/leaderboard", en: "Leaderboard", de: "Ergebnisse" },
+  { href: "/#partners", en: "Partners", de: "Partner" },
+  { href: "/galerie", en: "Gallery", de: "Galerie" },
+];
 
 export default function TopBar() {
-  const [open, setOpen] = useState(false);
   const pathname = usePathname();
-  const isDesignPreview = [
-    "/design-preview",
-    "/register-preview",
-    "/leaderboard-preview",
-  ].some((route) => pathname === route || pathname.startsWith(route + "/"));
-
-  const items: NavItem[] = useMemo(
-    () => [
-      { href: "/", label: "Home" },
-      { href: "/#tour", label: "Tour 2026" },
-      { href: "/ausschreibung", label: "Ausschreibung" },
-      { href: "/leaderboard", label: "Leaderboard" },
-      { href: "/#partners", label: "Partner" }, // ✅ kein 404 mehr
-      { href: "/galerie", label: "Galerie" },
-    ],
-    []
-  );
-
-  // ESC schließt Menü
-  useEffect(() => {
-    function onKey(e: KeyboardEvent) {
-      if (e.key === "Escape") setOpen(false);
-    }
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, []);
-
-  // Body scroll lock wenn offen
-  useEffect(() => {
-    if (!open) return;
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = prev;
-    };
-  }, [open]);
-
-  if (isDesignPreview) return null;
-
-  return (
-    <>
-      <style>{`
-        .p1-topbar{
-          position: sticky;
-          top: 0;
-          z-index: 80;
-          background: rgba(14, 42, 31, 0.92);
-          border-bottom: 1px solid rgba(255,255,255,0.12);
-          backdrop-filter: blur(10px);
-          -webkit-backdrop-filter: blur(10px);
-        }
-        .p1-inner{
-          max-width: 1100px;
-          margin: 0 auto;
-          padding: 12px 16px;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          gap: 12px;
-          min-width: 0;
-        }
-
-        .p1-brand{
-          display: flex;
-          align-items: center;
-          gap: 10px;
-          min-width: 0;
-          flex: 0 1 auto;
-        }
-        .p1-logo{
-          width: 28px;
-          height: 28px;
-          object-fit: contain;
-          flex: 0 0 auto;
-        }
-        .p1-brand-text{
-          display: flex;
-          flex-direction: column;
-          line-height: 1.05;
-          min-width: 0;
-        }
-        .p1-brand-title{
-          color: rgba(255,255,255,0.95);
-          font-weight: 900;
-          font-size: 15px;
-          letter-spacing: 0.3px;
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          max-width: 36vw;
-        }
-        .p1-brand-sub{
-          color: rgba(255,255,255,0.72);
-          font-weight: 700;
-          font-size: 11px;
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          max-width: 46vw;
-        }
-
-        .p1-desktop{
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 10px;
-          flex: 1 1 auto;
-          min-width: 0;
-        }
-        .p1-navlink{
-          color: rgba(255,255,255,0.92);
-          text-decoration: none;
-          font-weight: 900;
-          font-size: 13px;
-          letter-spacing: 0.3px;
-          padding: 10px 12px;
-          border-radius: 999px;
-          border: 1px solid rgba(255,255,255,0.12);
-          background: rgba(255,255,255,0.06);
-          white-space: nowrap;
-        }
-
-        .p1-actions{
-          display: flex;
-          align-items: center;
-          gap: 10px;
-          flex: 0 0 auto;
-        }
-        .p1-cta{
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          padding: 10px 14px;
-          background: ${GREEN};
-          color: #001a10;
-          border-radius: 999px;
-          font-weight: 900;
-          text-decoration: none;
-          font-size: 13px;
-          box-shadow: 0 10px 30px rgba(0,196,106,0.25);
-          white-space: nowrap;
-        }
-        .p1-burger{
-          display: none;
-          width: 40px;
-          height: 40px;
-          border-radius: 12px;
-          border: 1px solid rgba(255,255,255,0.16);
-          background: rgba(255,255,255,0.06);
-          color: rgba(255,255,255,0.9);
-          font-weight: 900;
-          cursor: pointer;
-        }
-
-        /* ✅ MOBILE */
-        @media (max-width: 900px){
-          .p1-desktop{ display: none !important; }  /* ✅ wirklich aus */
-          .p1-burger{ display: inline-flex; align-items:center; justify-content:center; }
-          .p1-inner{ padding: 10px 12px; }
-          .p1-brand-title{ max-width: 42vw; }
-          .p1-brand-sub{ display: none; }
-          .p1-cta{ padding: 10px 12px; }
-        }
-        @media (max-width: 420px){
-          .p1-brand-title{ max-width: 30vw; }
-        }
-        @media (max-width: 360px){
-          .p1-brand-title{ display: none; }
-        }
-
-        /* ✅ MOBILE SHEET */
-        .p1-overlay{
-          position: fixed;
-          inset: 0;
-          background: rgba(0,0,0,0.45);
-          z-index: 200;
-        }
-        .p1-sheet{
-          position: fixed;
-          left: 12px;
-          right: 12px;
-          top: 70px;
-          background: rgba(14, 42, 31, 0.98);
-          border: 1px solid rgba(255,255,255,0.14);
-          border-radius: 16px;
-          padding: 12px;
-          z-index: 210;
-          box-shadow: 0 20px 60px rgba(0,0,0,0.35);
-        }
-        .p1-sheet a{
-          display: block;
-          padding: 12px 12px;
-          border-radius: 12px;
-          text-decoration: none;
-          color: rgba(255,255,255,0.92);
-          font-weight: 900;
-          border: 1px solid rgba(255,255,255,0.10);
-          background: rgba(255,255,255,0.06);
-          margin-bottom: 10px;
-        }
-        .p1-sheet a:last-child{ margin-bottom: 0; }
-      `}</style>
-
-      <header className="p1-topbar">
-        <div className="p1-inner">
-          <a className="p1-brand" href="/" onClick={() => setOpen(false)} aria-label="PRO1PUTT Home">
-            <img className="p1-logo" src={LOGO_URL()} alt="PRO1PUTT" />
-            <span className="p1-brand-text">
-              <span className="p1-brand-title">PRO1PUTT</span>
-              <span className="p1-brand-sub">Tournament Registration & Optional Live Scoring</span>
-            </span>
-          </a>
-
-          <nav className="p1-desktop" aria-label="Hauptnavigation">
-            {items.map((it) => (
-              <a key={it.href} className="p1-navlink" href={it.href}>
-                {it.label}
-              </a>
-            ))}
-          </nav>
-
-          <div className="p1-actions">
-            <a className="p1-cta" href="/register">
-              Jetzt anmelden
-            </a>
-            <button
-              type="button"
-              className="p1-burger"
-              onClick={() => setOpen((v) => !v)}
-              aria-label="Menü"
-              aria-expanded={open}
-            >
-              ☰
-            </button>
-          </div>
+  const [mobile, setMobile] = useState(false);
+  const isGerman = pathname === "/de" || pathname.startsWith("/de/");
+  useEffect(() => { setMobile(false); }, [pathname]);
+  const localize = (href: string) => isGerman ? (href === "/" ? "/de" : href.startsWith("/#") ? "/de" + href.slice(1) : "/de" + href) : href;
+  const switchLanguage = () => {
+    if (isGerman) window.location.assign(pathname === "/de" ? "/" : pathname.replace(/^\/de(?=\/|$)/, "") + window.location.hash);
+    else window.location.assign("/de" + (pathname === "/" ? "" : pathname) + window.location.hash);
+  };
+  return <>
+    <style>{`
+      .p1-unified-header{position:sticky;top:0;z-index:100;background:rgba(8,36,25,.96);border-bottom:1px solid rgba(128,214,91,.22);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);font-family:Lato,Arial,sans-serif}
+      .p1-unified-inner{max-width:1440px;margin:auto;min-height:76px;padding:8px clamp(18px,3.3vw,56px);display:flex;align-items:center;gap:clamp(18px,2.5vw,38px)}
+      .p1-unified-brand{display:flex;align-items:center;gap:6px;flex-shrink:0;text-decoration:none;color:white}
+      .p1-unified-logo{height:62px;width:92px;object-fit:contain}
+      .p1-unified-brandname{font-size:17px;font-weight:900;letter-spacing:.045em;line-height:1.05}
+      .p1-unified-tagline{font-size:9px;color:#a8c8b5;letter-spacing:.06em;margin-top:5px}
+      .p1-unified-nav{display:flex;gap:clamp(12px,1.65vw,28px);margin-left:auto;align-items:center}
+      .p1-unified-nav a{font-size:11px;font-weight:800;letter-spacing:.075em;text-transform:uppercase;color:#e2ece6;text-decoration:none;white-space:nowrap;padding:9px 0;border-bottom:1px solid transparent;transition:color .2s,border-color .2s}
+      .p1-unified-nav a:hover,.p1-unified-nav a[aria-current=page]{color:#a1ec78;border-color:#80d65b}
+      .p1-unified-actions{display:flex;align-items:center;gap:12px;margin-left:12px}
+      .p1-unified-lang{border:1px solid #59776a;border-radius:999px;background:transparent;color:#fff;padding:11px 12px;font-weight:800;cursor:pointer;font-size:12px;white-space:nowrap}
+      .p1-unified-cta{background:#80d65b;color:#062719!important;border-radius:6px;padding:14px 19px;text-decoration:none;font-weight:900;font-size:12px;text-transform:uppercase;white-space:nowrap;letter-spacing:.05em}
+      .p1-unified-cta:hover{background:#a5ed80}
+      .p1-unified-menu{display:none;border:1px solid #59776a;background:transparent;color:#fff;border-radius:10px;padding:10px 13px;font-size:20px;cursor:pointer}
+      .p1-unified-mobile{display:none;background:#08271d;padding:12px 24px 24px;border-top:1px solid #2a493c}
+      .p1-unified-mobile a{display:block;color:white;padding:13px 5px;text-decoration:none;border-bottom:1px solid #254b39;font-weight:800}
+      .p1-language-message{position:fixed;right:22px;top:95px;z-index:120;background:#fff;color:#103527;box-shadow:0 12px 36px #0004;border-radius:14px;padding:17px 20px;max-width:340px;font-size:13px;line-height:1.5}
+      .p1-language-message button{border:0;background:#0e3726;color:white;border-radius:8px;padding:7px 12px;margin-top:8px;cursor:pointer}
+      @media(max-width:1180px){.p1-unified-nav{display:none}.p1-unified-menu{display:block}.p1-unified-actions{margin-left:auto}.p1-unified-mobile{display:block}}
+      @media(max-width:540px){.p1-unified-inner{min-height:70px;padding:8px 14px;gap:8px}.p1-unified-logo{height:46px;width:54px}.p1-unified-brandname{font-size:15px}.p1-unified-tagline{display:none}.p1-unified-actions{gap:6px}.p1-unified-cta{font-size:10px;padding:11px}.p1-unified-lang{padding:9px;font-size:11px}}
+    `}</style>
+    <header className="p1-unified-header">
+      <div className="p1-unified-inner">
+        <a className="p1-unified-brand" href={isGerman ? "/de" : "/"} aria-label={isGerman ? "PRO1PUTT Startseite" : "PRO1PUTT Home"}>
+          <img className="p1-unified-logo" src="/pro1putt-logo-white.png" alt="PRO1PUTT Logo" onError={(e)=>{const img=e.currentTarget;if(!img.src.includes("supabase.co"))img.src="https://levztgbjylvspmfxcbuj.supabase.co/storage/v1/object/public/public-assets/pro1putt-logo.png";}} />
+          
+        </a>
+        <nav className="p1-unified-nav" aria-label={isGerman ? "Hauptnavigation" : "Main navigation"}>
+          {entries.map(item=><a key={item.href} href={localize(item.href)} aria-current={pathname === item.href && item.href !== "/#tour" ? "page" : undefined}>{isGerman?item.de:item.en}</a>)}
+        </nav>
+        <div className="p1-unified-actions">
+          <button className="p1-unified-lang" type="button" onClick={switchLanguage} aria-label={isGerman?"Switch to English":"Deutsch wählen"}>{isGerman?"🇬🇧 EN":"🇩🇪 DE"}</button>
+          <a className="p1-unified-cta" href={isGerman ? "/de/register" : "/register"}>{isGerman?"Jetzt anmelden":"Register Now"} ↗</a>
+          <button className="p1-unified-menu" type="button" onClick={()=>setMobile(!mobile)} aria-expanded={mobile} aria-label={isGerman ? "Menü öffnen" : "Open menu"}>{mobile?"✕":"☰"}</button>
         </div>
-      </header>
+      </div>
+      {mobile && <nav className="p1-unified-mobile" aria-label="Mobile navigation">{entries.map(item=><a key={item.href} href={localize(item.href)} onClick={()=>setMobile(false)}>{isGerman?item.de:item.en}</a>)}</nav>}
+    </header>
 
-      {open && (
-        <>
-          <div className="p1-overlay" onClick={() => setOpen(false)} />
-          <div className="p1-sheet" role="dialog" aria-label="Mobile Menü">
-            {items.map((it) => (
-              <a key={it.href} href={it.href} onClick={() => setOpen(false)}>
-                {it.label}
-              </a>
-            ))}
-          </div>
-        </>
-      )}
-    </>
-  );
-}
-
-function LOGO_URL() {
-  // Nutzt dein bestehendes lokales Asset (wie bisher im Projekt)
-  return "/pro1putt-logo-white.png";
+  </>;
 }
