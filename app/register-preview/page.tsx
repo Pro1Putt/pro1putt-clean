@@ -97,9 +97,7 @@ export default function RegisterPage() {
           ? "Players must be 21 or younger on the first tournament day."
           : selectedHoles === 9 && age > 12
             ? "9-hole divisions are available only to players aged 12 or younger. Please select 18 holes."
-            : selectedHoles === 18 && age <= 12
-              ? "Players aged 12 or younger must select 9 holes."
-              : null;
+            : null;
 
   const ageGroup =
     isNewTournament &&

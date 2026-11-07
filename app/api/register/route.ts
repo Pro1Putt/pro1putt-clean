@@ -221,13 +221,6 @@ export async function POST(req: Request) {
       );
     }
 
-    if (age <= 12 && holes !== 9) {
-      return NextResponse.json(
-        { ok: false, error: "U10 und U12 spielen ausschließlich 9 Loch." },
-        { status: 400 }
-      );
-    }
-
     if (age >= 13 && holes !== 18) {
       return NextResponse.json(
         { ok: false, error: "U14, U16, U18 und U21 spielen ausschließlich 18 Loch." },
