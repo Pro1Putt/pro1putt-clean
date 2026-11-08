@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { isAdminAuthenticated } from "@/lib/admin-session";
 import { createClient } from "@supabase/supabase-js";
 
 function normStr(v: any) {
@@ -53,12 +54,11 @@ export async function POST(req: Request) {
     const tdPin = normStr(body.td_pin ?? body.tdPin);
     const requiredPin = normStr(process.env.TD_PIN || "");
 
-    if (!requiredPin) {
-      return jsonError("Missing TD_PIN on server", 500);
-    }
+    const adminAuthenticated = await isAdminAuthenticated();
+    const validDirectorPin = Boolean(requiredPin) && tdPin === requiredPin;
 
-    if (!tdPin || tdPin !== requiredPin) {
-      return jsonError("TD_PIN invalid", 401);
+    if (!adminAuthenticated && !validDirectorPin) {
+      return jsonError("Nicht autorisiert", 401);
     }
 
     const registrationId = normStr(body.registration_id);
