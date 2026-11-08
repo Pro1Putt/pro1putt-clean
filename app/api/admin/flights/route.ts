@@ -108,19 +108,56 @@ export async function GET(req: Request) {
     .eq("round", round)
     .order("flight_number");
 
- const { data: flightPlayersData } = await supabase
-  .from("flight_players")
-  .select("registration_id, marks_registration_id, flight_id");
+  const flightIds = (flightsData || []).map((f: any) => f.id);
 
-const flights = (flightsData || []).map((f: any) => {
-  const players = registrations.filter((r: any) => r.flight_id === f.id).map((p: any) => {
-    const fp = (flightPlayersData || []).find((x: any) => x.registration_id === p.id && x.flight_id === f.id);
-    return { ...p, marks_registration_id: fp?.marks_registration_id || null };
+  const { data: flightPlayersData, error: flightPlayersError } = flightIds.length
+    ? await supabase
+        .from("flight_players")
+        .select("registration_id, marks_registration_id, flight_id, seat")
+        .in("flight_id", flightIds)
+        .order("seat", { ascending: true })
+    : { data: [], error: null };
+
+  if (flightPlayersError) {
+    return NextResponse.json(
+      { ok: false, error: flightPlayersError.message },
+      { status: 500 }
+    );
+  }
+
+  const assignedIds = new Set(
+    (flightPlayersData || []).map((fp: any) => fp.registration_id)
+  );
+
+  const registrationsForRound = registrations.map((r: any) => {
+    const assignment = (flightPlayersData || []).find(
+      (fp: any) => fp.registration_id === r.id
+    );
+
+    return {
+      ...r,
+      flight_id: assignment?.flight_id || null,
+    };
   });
-  return { ...f, players };
-});
 
-  return NextResponse.json({ ok: true, registrations, flights });
+  const flights = (flightsData || []).map((f: any) => {
+    const players = (flightPlayersData || [])
+      .filter((fp: any) => fp.flight_id === f.id)
+      .map((fp: any) => {
+        const player = registrationsForRound.find(
+          (r: any) => r.id === fp.registration_id
+        );
+
+        return player
+          ? { ...player, marks_registration_id: fp.marks_registration_id || null }
+          : null;
+      })
+      .filter(Boolean);
+
+    return { ...f, players };
+  });
+
+  return NextResponse.json({ ok: true, registrations: registrationsForRound, flights });
 }
 
 export async function POST(req: Request) {
