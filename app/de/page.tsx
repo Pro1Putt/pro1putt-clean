@@ -328,7 +328,7 @@ export default function DesignPreview() {
                   className="p1-event-photo"
                   style={{
                     backgroundImage: isWinston
-                      ? 'linear-gradient(135deg, rgba(10,45,28,.18), rgba(10,45,28,.12)), url("/gallery/IMG_2484.jpeg")'
+                      ? 'linear-gradient(135deg, rgba(10,45,28,.18), rgba(10,45,28,.12)), url("/tournament-images/winston-placeholder.jpg")'
                       : /bad saarow/i.test(`${event.name} ${event.course_name}`)
                         ? 'url("/tournament-images/bad-saarow-original.jpg")'
                         : 'url("/tournament-images/green-eagle-original.jpg")',
