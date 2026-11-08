@@ -168,6 +168,7 @@ export default function RegisterPage() {
     try {
       const form = e.target as HTMLFormElement;
       const payload = Object.fromEntries(new FormData(form).entries());
+      payload.email_language = "de";
       if (isNewTournament && (age === null || age < 0 || age > 21 ||
           (age >= 13 && selectedHoles !== 18))) {
         throw new Error("Please check the date of birth and playing format.");
@@ -231,6 +232,8 @@ export default function RegisterPage() {
         throw new Error("Unable to retrieve the PayPal payment link.");
       }
 
+      sessionStorage.setItem("pro1putt_payment_language", "de");
+      sessionStorage.removeItem("pro1putt_resume_token");
       sessionStorage.setItem(
         "pro1putt_pending_payment",
         JSON.stringify({

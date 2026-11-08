@@ -1,4 +1,3 @@
-import { sendPaymentRegistrationConfirmation } from "@/lib/payment-registration-confirmation";
 import { NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 import { sendRegistrationEmail } from "@/lib/mailer";
@@ -90,6 +89,7 @@ export async function POST(req: Request) {
 
   try {
     const body = await req.json();
+    const emailLanguage = body.email_language === "de" ? "de" : "en";
 
     const tournament_id = normStr(body.tournament_id);
     const holes = toInt(body.holes);
@@ -274,6 +274,7 @@ export async function POST(req: Request) {
         p_gender: gender,
         p_player_pin: player_pin,
         p_payment_token_hash: paymentCredentials.hash,
+        p_email_language: emailLanguage,
       });
       if (rpcError || typeof newId !== "string") {
         const message = rpcError?.message || "Anmeldung konnte nicht gespeichert werden.";
@@ -328,15 +329,8 @@ try {
 
   emailSent = true;
   } else {
-    try {
-      await sendPaymentRegistrationConfirmation(registrationId);
-      emailSent = true;
-    } catch (paymentMailError) {
-      console.error(
-        "[registration/payment-email]",
-        paymentMailError
-      );
-    }
+    // Ab 2027: keine E-Mail vor bestätigter PayPal-Zahlung.
+    // Die Bestätigung mit Spieler-PIN wird nach Zahlung versendet.
   }
 } catch (mailError) {
   console.error("Registration saved, but confirmation email failed:", mailError);

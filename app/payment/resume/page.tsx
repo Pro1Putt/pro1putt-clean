@@ -3,43 +3,40 @@
 import { useEffect, useState } from "react";
 
 type PaymentState = "checking" | "ready" | "redirecting" | "error";
+type Language = "de" | "en";
 
 export default function PaymentResumePage() {
   const [state, setState] = useState<PaymentState>("checking");
-  const [message, setMessage] = useState(
-    "We are checking your payment link."
-  );
+  const [language, setLanguage] = useState<Language>("en");
   const [resumeToken, setResumeToken] = useState<string | null>(null);
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
-    const fragment = window.location.hash.slice(1);
-    const params = new URLSearchParams(fragment);
-    const token = params.get("token");
+    const fragment = new URLSearchParams(window.location.hash.slice(1));
+    const token = fragment.get("token");
+    const lang = fragment.get("lang") === "de" ? "de" : "en";
 
-    window.history.replaceState(
-      null,
-      "",
-      window.location.pathname
-    );
+    setLanguage(lang);
+    window.history.replaceState(null, "", window.location.pathname);
 
     if (!token || !/^[a-f0-9]{64}$/i.test(token)) {
       setState("error");
-      setMessage("This payment link is invalid.");
+      setErrorMessage(
+        lang === "de"
+          ? "Dieser Zahlungslink ist ungültig."
+          : "This payment link is invalid."
+      );
       return;
     }
 
     setResumeToken(token);
     setState("ready");
-    setMessage(
-      "You can now pay securely for your tournament registration via PayPal."
-    );
   }, []);
 
   async function continuePayment() {
     if (!resumeToken || state === "redirecting") return;
 
     setState("redirecting");
-    setMessage("Deine PayPal-Zahlung wird vorbereitet.");
 
     try {
       const response = await fetch("/api/paypal/resume-payment", {
@@ -53,7 +50,10 @@ export default function PaymentResumePage() {
 
       if (!response.ok || !result.ok) {
         throw new Error(
-          result.error || "Die Zahlung konnte nicht vorbereitet werden."
+          result.error ||
+            (language === "de"
+              ? "Die Zahlung konnte nicht vorbereitet werden."
+              : "The payment could not be prepared.")
         );
       }
 
@@ -69,68 +69,67 @@ export default function PaymentResumePage() {
           approveUrl.startsWith("https://www.paypal.com/")
         )
       ) {
-        throw new Error(
-          "PayPal did not return a valid payment link."
-        );
+        throw new Error("PayPal did not return a valid payment link.");
       }
 
       sessionStorage.setItem("pro1putt_resume_token", resumeToken);
+      sessionStorage.setItem("pro1putt_payment_language", language);
       sessionStorage.removeItem("pro1putt_pending_payment");
 
       window.location.assign(approveUrl);
     } catch (error) {
       setState("error");
-      setMessage(
-        error instanceof Error
-          ? error.message
-          : "Die Zahlung konnte nicht vorbereitet werden."
+      setErrorMessage(
+        error instanceof Error ? error.message : "Payment could not be prepared."
       );
     }
   }
 
+  const de = language === "de";
+
   return (
-    <main
-      style={{
-        maxWidth: 650,
-        margin: "90px auto",
-        padding: 30,
-        textAlign: "center",
-        fontFamily: "Lato, sans-serif",
-      }}
-    >
+    <main style={{
+      maxWidth: 650, margin: "90px auto", padding: 30,
+      textAlign: "center", fontFamily: "Lato, sans-serif"
+    }}>
       <h1 style={{ color: "#0E2A1F" }}>
-        PRO1PUTT – Tournament Registration
+        {de ? "PRO1PUTT – Turnieranmeldung" : "PRO1PUTT – Tournament Registration"}
       </h1>
 
-      <p style={{ lineHeight: 1.7 }}>{message}</p>
+      {state === "checking" && (
+        <p>{de ? "Dein Zahlungslink wird geprüft." : "We are checking your payment link."}</p>
+      )}
 
       {state === "ready" && (
-        <button
-          onClick={continuePayment}
-          style={{
-            background: "#00C46A",
-            color: "#0E2A1F",
-            border: "none",
-            borderRadius: 8,
-            padding: "15px 28px",
-            fontSize: 16,
-            fontWeight: 700,
-            cursor: "pointer",
-          }}
-        >
-          Jetzt mit PayPal bezahlen
-        </button>
+        <>
+          <p style={{ lineHeight: 1.7 }}>
+            {de
+              ? "Du kannst deine Turnieranmeldung jetzt sicher über PayPal bezahlen."
+              : "You can now securely pay for your tournament registration via PayPal."}
+          </p>
+          <button onClick={continuePayment} style={{
+            background: "#00C46A", color: "#0E2A1F",
+            border: "none", borderRadius: 8, padding: "15px 28px",
+            fontSize: 16, fontWeight: 700, cursor: "pointer"
+          }}>
+            {de ? "Jetzt mit PayPal bezahlen" : "Pay securely with PayPal"}
+          </button>
+        </>
       )}
 
       {state === "redirecting" && (
-        <p>Bitte warte einen Moment ...</p>
+        <p>{de ? "PayPal wird vorbereitet. Bitte warten ..." : "Preparing PayPal. Please wait ..."}</p>
       )}
 
       {state === "error" && (
-        <p>
-          Bitte versuche nicht mehrfach zu bezahlen.
-          Kontaktiere bei Fragen PRO1PUTT.
-        </p>
+        <>
+          <p style={{ lineHeight: 1.7 }}>{errorMessage}</p>
+          <p>
+            {de
+              ? "Bitte starte nicht sofort eine zweite Zahlung. Kontaktiere bei Fragen PRO1PUTT."
+              : "Please do not immediately start another payment. Contact PRO1PUTT if you need help."}
+          </p>
+        </>
       )}
     </main>
   );

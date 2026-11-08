@@ -51,8 +51,8 @@ export type RegistrationEmailArgs = {
   pinUrl: string;
   leaderboardUrl: string;
   teeTime?: string | null;
+  language?: "de" | "en";
 };
-
 function buildPinEmailHtml(a: RegistrationEmailArgs) {
   const player = escapeHtml(norm(a.playerName));
   const tournament = escapeHtml(norm(a.tournamentName));

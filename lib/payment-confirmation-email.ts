@@ -2,7 +2,7 @@ import "server-only";
 
 import { randomUUID } from "node:crypto";
 import { createClient } from "@supabase/supabase-js";
-import { sendRegistrationEmail } from "@/lib/mailer";
+import { sendPaidRegistrationEmail } from "@/lib/paid-registration-email";
 
 function getAdmin() {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -25,7 +25,7 @@ export async function sendPaidRegistrationConfirmation(
   const { data: registration, error } = await db
     .from("registrations")
     .select(
-      "id,tournament_id,first_name,last_name,email,player_pin,payment_status,paypal_capture_id,payment_confirmation_email_sent_at"
+      "id,tournament_id,first_name,last_name,email,player_pin,email_language,payment_status,paypal_capture_id,payment_confirmation_email_sent_at"
     )
     .eq("id", registrationId)
     .single();
@@ -78,7 +78,7 @@ export async function sendPaidRegistrationConfirmation(
 
   // Bei unbekanntem Versandstatus bleibt die Sperre bestehen.
   // So vermeiden wir unbeabsichtigte doppelte E-Mails.
-  const result = await sendRegistrationEmail({
+  const result = await sendPaidRegistrationEmail({
     to: registration.email,
     tournamentName: tournament.name,
     playerName:
@@ -87,6 +87,7 @@ export async function sendPaidRegistrationConfirmation(
         .join(" ")
         .trim() || "Player",
     pin: String(registration.player_pin),
+    language: registration.email_language === "de" ? "de" : "en",
     pinUrl: `${siteUrl}/pin`,
     leaderboardUrl: `${siteUrl}/leaderboard`,
   });
