@@ -45,9 +45,12 @@ export default function Tour2027() {
           setTournaments(
             result.tournaments
               .filter((t: Tournament) => t.is_active)
-              .sort((a: Tournament, b: Tournament) =>
-                a.start_date.localeCompare(b.start_date)
-              )
+              .sort((a: Tournament, b: Tournament) => {
+                const aWinston = /winston/i.test(`${a.name} ${a.course_name || ""}`);
+                const bWinston = /winston/i.test(`${b.name} ${b.course_name || ""}`);
+                if (aWinston !== bWinston) return aWinston ? -1 : 1;
+                return a.start_date.localeCompare(b.start_date);
+              })
           );
         }
       } catch {
@@ -85,7 +88,10 @@ export default function Tour2027() {
       margin: "0 auto",
       textAlign: "left"
     }}>
-      {tournaments.map((t) => (
+      {tournaments.map((t) => {
+        const isWinston = /winston/i.test(`${t.name} ${t.course_name || ""}`);
+        const registrationAvailable = t.registration_open && !isWinston;
+        return (
         <div key={t.id} style={{
           background: "white",
           borderRadius: 20,
@@ -105,7 +111,7 @@ export default function Tour2027() {
               letterSpacing: 1,
               marginBottom: 10
             }}>
-              {t.registration_open
+              {registrationAvailable
                 ? "Registration Open"
                 : "Registration Not Yet Open"}
             </div>
@@ -120,14 +126,14 @@ export default function Tour2027() {
             </h3>
 
             <p style={{ opacity: 0.8, lineHeight: 1.6 }}>
-              {formatDate(t.start_date)}
-              {t.end_date && ` – ${formatDate(t.end_date)}`}
+              {isWinston ? "Datum folgt" : formatDate(t.start_date)}
+              {!isWinston && t.end_date && ` – ${formatDate(t.end_date)}`}
               <br />
               {t.course_name || t.location || ""}
             </p>
           </div>
 
-          {t.registration_open ? (
+          {registrationAvailable ? (
             <a
               href="/register"
               style={{
@@ -157,7 +163,8 @@ export default function Tour2027() {
             </div>
           )}
         </div>
-      ))}
+      );
+      })}
     </div>
   );
 }
