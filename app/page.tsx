@@ -19,21 +19,44 @@ type TourEvent = {
 export default function DesignPreview() {
   const heroVideoRef = useRef<HTMLVideoElement>(null);
   useEffect(() => {
-    const video = heroVideoRef.current;
-    if (!video) return;
-    video.muted = true;
-    video.defaultMuted = true;
-    const start = () => { if (!document.hidden) void video.play().catch(() => {}); };
-    video.addEventListener("loadeddata", start);
-    video.addEventListener("canplay", start);
-    window.addEventListener("pageshow", start);
-    document.addEventListener("visibilitychange", start);
-    start();
+    const videos = Array.from(
+      document.querySelectorAll<HTMLVideoElement>(".p1-preview video")
+    );
+
+    const startVideos = () => {
+      if (document.hidden) return;
+
+      videos.forEach((video) => {
+        video.muted = true;
+        video.defaultMuted = true;
+        video.autoplay = true;
+        video.loop = true;
+        video.playsInline = true;
+
+        if (video.paused && video.readyState >= 2) {
+          void video.play().catch(() => {});
+        }
+      });
+    };
+
+    videos.forEach((video) => {
+      video.addEventListener("loadeddata", startVideos);
+      video.addEventListener("canplay", startVideos);
+    });
+
+    window.addEventListener("pageshow", startVideos);
+    window.addEventListener("focus", startVideos);
+    document.addEventListener("visibilitychange", startVideos);
+
+    startVideos();
     return () => {
-      video.removeEventListener("loadeddata", start);
-      video.removeEventListener("canplay", start);
-      window.removeEventListener("pageshow", start);
-      document.removeEventListener("visibilitychange", start);
+      videos.forEach((video) => {
+        video.removeEventListener("loadeddata", startVideos);
+        video.removeEventListener("canplay", startVideos);
+      });
+      window.removeEventListener("pageshow", startVideos);
+      window.removeEventListener("focus", startVideos);
+      document.removeEventListener("visibilitychange", startVideos);
     };
   }, []);
 
@@ -55,10 +78,28 @@ export default function DesignPreview() {
 
         if (!cancelled) {
           setEvents(
-            [...(json.tournaments || [])].sort(
-              (a: TourEvent, b: TourEvent) =>
-                a.start_date.localeCompare(b.start_date)
-            )
+            [
+              {
+                id: "winston-2027-announcement",
+                name: "PRO1PUTT – WINSTON 2027",
+                course_name: "WINSTONgolf",
+                start_date: "2027-01-01",
+                end_date: null,
+                location: "WINSTONgolf",
+                slug: null,
+                is_active: true,
+                registration_open: false,
+              },
+              ...(json.tournaments || []).filter(
+                (t: TourEvent) => !/winston/i.test(
+                  `${t.name} ${t.course_name || ""}`
+                )
+              ),
+            ].sort((a: TourEvent, b: TourEvent) => {
+              if (a.id === "winston-2027-announcement") return -1;
+              if (b.id === "winston-2027-announcement") return 1;
+              return a.start_date.localeCompare(b.start_date);
+            })
           );
         }
       } catch {
@@ -258,8 +299,11 @@ export default function DesignPreview() {
           )}
 
           {events.map((event, index) => {
+            const isWinston =
+              event.id === "winston-2027-announcement" ||
+              /winston/i.test(`${event.name} ${event.course_name || ""}`);
             const registrationOpen =
-              event.is_active && event.registration_open;
+              !isWinston && event.is_active && event.registration_open;
 
             const start = new Date(event.start_date + "T12:00:00");
             const end = event.end_date
@@ -283,7 +327,11 @@ export default function DesignPreview() {
                 <div
                   className="p1-event-photo"
                   style={{
-                    backgroundImage: index === 0 ? 'url("/tournament-images/bad-saarow-original.jpg")' : 'url("/tournament-images/green-eagle-original.jpg")',
+                    backgroundImage: isWinston
+                      ? "linear-gradient(135deg, #153d2b, #29825a)"
+                      : /bad saarow/i.test(`${event.name} ${event.course_name}`)
+                        ? 'url("/tournament-images/bad-saarow-original.jpg")'
+                        : 'url("/tournament-images/green-eagle-original.jpg")',
                   }}
                 >
                   <span className="p1-event-number">
@@ -292,10 +340,26 @@ export default function DesignPreview() {
                   {registrationOpen && <span className="p1-event-arrow">↗</span>}
                 </div>
                 <div className="p1-event-details">
-                  <span className="p1-event-date">{dateLabel}</span>
+                  <span className="p1-event-date">{isWinston ? "Date TBA" : dateLabel}</span>
                   <h3>{event.name}</h3>
                   <strong>{event.course_name}</strong>
                   <span className="p1-event-location">{event.location}</span>
+                  <div style={{
+                    marginTop: 14,
+                    display: "grid",
+                    gap: 8,
+                    fontSize: 13,
+                    lineHeight: 1.5,
+                    color: "#29483a"
+                  }}>
+                    <div>⛳ {isWinston
+                      ? "Practice round not included in the entry fee"
+                      : "Complimentary practice round included the day before"}</div>
+                    <div style={{ fontWeight: 800, color: "#008c4e" }}>
+                      🏆 €10,000 HOLE-IN-ONE CHALLENGE
+                    </div>
+                    <div>Your chance to win on the final tournament day!</div>
+                  </div>
                   <span className="p1-event-link">
                     {registrationOpen
                       ? "REGISTER NOW ↗"
