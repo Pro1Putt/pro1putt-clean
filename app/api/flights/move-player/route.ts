@@ -216,10 +216,20 @@ export async function POST(req: Request) {
       }) || null;
 
     if (!existingRow) {
-      return jsonError(
-        "No flight assignment found for this player in the same tournament/round as the target flight",
-        404
-      );
+      const { data: targetRows, error: targetErr } = await supabase
+        .from("flight_players")
+        .select("seat")
+        .eq("flight_id", targetFlightId);
+      if (targetErr) return jsonError(targetErr.message, 500);
+      const nextSeat = Math.max(0, ...(targetRows || []).map((r: any) => Number(r.seat ?? 0))) + 1;
+      const { error: insertErr } = await supabase.from("flight_players").insert({
+        flight_id: targetFlightId,
+        registration_id: registrationId,
+        seat: nextSeat,
+        marks_registration_id: null,
+      });
+      if (insertErr) return jsonError(insertErr.message, 500);
+      return NextResponse.json({ ok: true, registration_id: registrationId, target_flight_id: targetFlightId, seat: nextSeat, round: targetFlight.round, created: true });
     }
 
     const oldFlightId = normStr(existingRow.flight_id);

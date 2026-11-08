@@ -88,7 +88,7 @@ export async function POST(req: Request) {
 
     if (!tournamentId) return jsonError("Missing tournamentId", 400);
     if (![1, 2, 3].includes(roundNo)) return jsonError("round must be 1, 2, or 3", 400);
-    if (!/^\d{2}:\d{2}$/.test(startTime)) return jsonError("start_time must be HH:MM", 400);
+    if (!/^([01]\d|2[0-3]):[0-5]\d$/.test(startTime)) return jsonError("start_time must be HH:MM", 400);
     if (!intervalMinutes || intervalMinutes < 1) return jsonError("interval_minutes invalid", 400);
 
     const supabase = getServiceSupabase();
@@ -101,8 +101,12 @@ export async function POST(req: Request) {
 
     if (tErr) return jsonError(`tournaments read failed: ${tErr.message}`, 500);
 
-    const startDate = normStr(tour?.start_date);
-    if (!startDate) return jsonError("Tournament start_date missing", 400);
+    const firstDate = normStr(tour?.start_date);
+    if (!firstDate) return jsonError("Tournament start_date missing", 400);
+    const day = new Date(`${firstDate}T12:00:00Z`);
+    if (Number.isNaN(day.getTime())) return jsonError("Invalid tournament date", 400);
+    day.setUTCDate(day.getUTCDate() + roundNo - 1);
+    const startDate = day.toISOString().slice(0, 10);
 
     const { data: flights, error: fErr } = await supabase
       .from("flights")

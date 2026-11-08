@@ -44,6 +44,10 @@ export default function AdminTournamentPage() {
   const [dnfHole, setDnfHole] = useState(1);
   const [dnfNote, setDnfNote] = useState("");
   const [savingDnf, setSavingDnf] = useState(false);
+  const [startAt, setStartAt] = useState("09:00");
+  const [interval, setIntervalValue] = useState(10);
+  const [publication, setPublication] = useState<Record<number, boolean>>({});
+  const [working, setWorking] = useState(false);
 
   useEffect(() => {
     loadData();
@@ -62,6 +66,60 @@ export default function AdminTournamentPage() {
 
   useEffect(() => { loadData(); }, [activeRound]);
 
+  const loadPublication = async () => {
+    try {
+      const response = await fetch(`/api/flights/startlist-publication?tournamentId=${encodeURIComponent(tournamentId)}`, { cache: "no-store" });
+      const result = await response.json();
+      if (!response.ok || !result.success) throw new Error(result.error || "Status konnte nicht geladen werden");
+      setPublication(Object.fromEntries((result.publications || []).map((r: any) => [Number(r.round), Boolean(r.published)])));
+    } catch (error: any) {
+      setMessage(`❌ ${error.message}`);
+    }
+  };
+
+  useEffect(() => { if (tournamentId) loadPublication(); }, [tournamentId]);
+
+  const assignStartTimes = async () => {
+    if (!flights.length || working) return;
+    if (!confirm(`Startzeiten für ${flights.length} Flights in Runde ${activeRound} ab ${startAt} Uhr alle ${interval} Minuten setzen? Bestehende Zeiten werden überschrieben.`)) return;
+    setWorking(true);
+    try {
+      const response = await fetch("/api/flights/assign-start-times", {
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ tournamentId, round: activeRound, start_time: startAt, interval_minutes: interval, overwrite: true }),
+      });
+      const result = await response.json();
+      if (!response.ok || !result.ok) throw new Error(result.error || "Startzeiten konnten nicht gespeichert werden");
+      setMessage(`✅ ${result.updated} Startzeiten für Runde ${activeRound} gespeichert`);
+      await loadData();
+    } catch (error: any) { setMessage(`❌ ${error.message}`); }
+    finally { setWorking(false); }
+  };
+
+  const setPublished = async (published: boolean) => {
+    if (working) return;
+    if (!confirm(`Startliste für Runde ${activeRound} ${published ? "öffentlich veröffentlichen" : "wieder ausblenden"}?`)) return;
+    setWorking(true);
+    try {
+      const response = await fetch("/api/flights/startlist-publication", {
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ tournamentId, round: activeRound, published }),
+      });
+      const result = await response.json();
+      if (!response.ok || !result.success) throw new Error(result.error || "Veröffentlichung fehlgeschlagen");
+      await loadPublication();
+      setMessage(`✅ Startliste Runde ${activeRound} ${published ? "veröffentlicht" : "ausgeblendet"}`);
+    } catch (error: any) { setMessage(`❌ ${error.message}`); }
+    finally { setWorking(false); }
+  };
+
+  const formatStart = (value: string | null) => {
+    if (!value) return "–";
+    if (/^\d{2}:\d{2}$/.test(value)) return value;
+    const d = new Date(value);
+    return Number.isNaN(d.getTime()) ? value : new Intl.DateTimeFormat("de-DE", { timeZone: "Europe/Berlin", hour: "2-digit", minute: "2-digit" }).format(d);
+  };
+
   const generateFlights = async () => {
     setGenerating(true);
     setMessage("");
@@ -78,6 +136,48 @@ export default function AdminTournamentPage() {
       setMessage(`❌ Fehler: ${data.error}`);
     }
     setGenerating(false);
+  };
+
+  const [movingPlayerId, setMovingPlayerId] = useState<string | null>(null);
+
+  const movePlayer = async (player: Registration, targetFlightId: string) => {
+    if (!targetFlightId || movingPlayerId) return;
+
+    const targetFlight = flights.find(f => f.id === targetFlightId);
+    if (!targetFlight) return;
+
+    if (!confirm(
+      `${player.first_name} ${player.last_name} zu Flight ${targetFlight.flight_number} in Runde ${activeRound} zuordnen?`
+    )) return;
+
+    setMovingPlayerId(player.id);
+    setMessage("");
+
+    try {
+      const res = await fetch("/api/flights/move-player", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          registration_id: player.id,
+          target_flight_id: targetFlightId,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok || !data.ok) {
+        throw new Error(data.error || "Zuordnung fehlgeschlagen");
+      }
+
+      setMessage(
+        `✓ ${player.first_name} ${player.last_name} wurde Flight ${targetFlight.flight_number} zugeordnet.`
+      );
+      await loadData();
+    } catch (error: any) {
+      setMessage(`Fehler: ${error.message || "Unbekannter Fehler"}`);
+    } finally {
+      setMovingPlayerId(null);
+    }
   };
 
   const saveDnf = async () => {
@@ -227,6 +327,21 @@ export default function AdminTournamentPage() {
           ))}
         </div>
 
+        <section style={{ background: "#fff", borderRadius: 16, padding: 20, marginBottom: 20, border: "1px solid #dbe9e0" }}>
+          <h2 style={{ marginTop: 0, color: "#17362b", fontSize: 18 }}>Startzeiten & Startliste · Runde {activeRound}</h2>
+          <div style={{ display: "flex", gap: 12, flexWrap: "wrap", alignItems: "end" }}>
+            <label style={{ fontSize: 13, fontWeight: 700 }}>Erster Start<br /><input type="time" value={startAt} onChange={e => setStartAt(e.target.value)} style={{ padding: 9, marginTop: 5, borderRadius: 8, border: "1px solid #ccc" }} /></label>
+            <label style={{ fontSize: 13, fontWeight: 700 }}>Intervall (Minuten)<br /><input type="number" min={1} max={120} value={interval} onChange={e => setIntervalValue(Number(e.target.value))} style={{ padding: 9, marginTop: 5, width: 90, borderRadius: 8, border: "1px solid #ccc" }} /></label>
+            <button disabled={working || !flights.length || interval < 1} onClick={assignStartTimes} style={{ padding: "11px 16px", border: 0, borderRadius: 8, background: "#0b5d3b", color: "white", fontWeight: 700, cursor: "pointer" }}>Startzeiten speichern</button>
+          </div>
+          <p style={{ fontSize: 12, color: "#668278" }}>Die Startzeiten gelten nur für diese Runde. Bestehende Startzeiten werden nach Bestätigung ersetzt.</p>
+          <div style={{ display: "flex", gap: 10, alignItems: "center", flexWrap: "wrap" }}>
+            <span style={{ fontSize: 13, fontWeight: 700 }}>Öffentlich: {publication[activeRound] ? "Ja" : "Nein"}</span>
+            <button disabled={working || !flights.length} onClick={() => setPublished(!publication[activeRound])} style={{ padding: "10px 14px", borderRadius: 8, border: "1px solid #0b5d3b", background: publication[activeRound] ? "white" : "#c8f03c", color: "#17362b", fontWeight: 700, cursor: "pointer" }}>{publication[activeRound] ? "Startliste ausblenden" : "Startliste veröffentlichen"}</button>
+            <a href={`/public/startliste/${tournamentId}?round=${activeRound}`} target="_blank" rel="noopener noreferrer" style={{ color: "#0b5d3b", fontWeight: 700, fontSize: 13 }}>Öffentliche Startliste ansehen</a>
+          </div>
+        </section>
+
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
           {/* Nicht zugeteilte Spieler */}
           <div>
@@ -246,6 +361,21 @@ export default function AdminTournamentPage() {
                       <div style={{ fontWeight: 700, fontSize: 14 }}>{r.first_name} {r.last_name}</div>
                       <div style={{ fontSize: 12, color: "#668278" }}>HCP: {r.hcp ?? "—"} · PIN: {r.player_pin}</div>
                     </div>
+                    {flights.length > 0 && (
+                      <select
+                        value=""
+                        disabled={movingPlayerId !== null}
+                        onChange={e => movePlayer(r, e.target.value)}
+                        style={{ maxWidth: 155, padding: 7, borderRadius: 8, border: "1px solid #ccc", fontSize: 12 }}
+                      >
+                        <option value="">Flight zuweisen</option>
+                        {flights.map(f => (
+                          <option key={f.id} value={f.id}>
+                            Flight {f.flight_number}
+                          </option>
+                        ))}
+                      </select>
+                    )}
                   </div>
                 ))}
               </div>
@@ -273,7 +403,7 @@ export default function AdminTournamentPage() {
                   <div style={{ padding: "10px 16px", background: "linear-gradient(135deg,#0b5d3b,#147a52)", color: "#fff", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                     <span style={{ fontWeight: 800 }}>Flight {flight.flight_number} · {flight.gender}</span>
                     <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
-                      {flight.start_time && <span style={{ fontSize: 12, opacity: 0.9 }}>🕐 {flight.start_time}</span>}
+                      {flight.start_time && <span style={{ fontSize: 12, opacity: 0.9 }}>🕐 {formatStart(flight.start_time)}</span>}
                       <span style={{ fontSize: 12, opacity: 0.9, background: "rgba(255,255,255,0.2)", padding: "2px 8px", borderRadius: 999 }}>{flight.status}</span>
                     </div>
                   </div>
@@ -321,7 +451,24 @@ export default function AdminTournamentPage() {
   </div>
 )}
                         </div>
-                        <div style={{ display: "flex", gap: 6 }}>
+                        <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
+                          {!badge && flights.length > 1 && (
+                            <select
+                              value=""
+                              disabled={movingPlayerId !== null}
+                              onChange={e => movePlayer(p, e.target.value)}
+                              style={{ maxWidth: 130, padding: 6, borderRadius: 8, border: "1px solid #ccc", fontSize: 12 }}
+                            >
+                              <option value="">Flight wechseln</option>
+                              {flights
+                                .filter(f => f.id !== flight.id)
+                                .map(f => (
+                                  <option key={f.id} value={f.id}>
+                                    Flight {f.flight_number}
+                                  </option>
+                                ))}
+                            </select>
+                          )}
                           {badge ? (
                             <button onClick={() => resetStatus(p)} style={{ padding: "6px 10px", borderRadius: 8, background: "#e8f5ee", color: "#0b5d3b", fontWeight: 700, border: "none", cursor: "pointer", fontSize: 12 }}>
                               ↩ Aktiv

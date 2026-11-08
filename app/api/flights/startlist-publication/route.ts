@@ -106,7 +106,7 @@ export async function POST(request: NextRequest) {
       .eq("tournament_id", tournamentId)
       .eq("round", round)
       .select()
-      .single();
+      .maybeSingle();
 
     if (error) {
       console.error("Startlist publication update failed:", error);
@@ -117,10 +117,17 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    return NextResponse.json({
-      success: true,
-      publication: data,
-    });
+    if (!data) {
+      const { data: inserted, error: insertError } = await supabase
+        .from("startlist_publications")
+        .insert({ tournament_id: tournamentId, round, published })
+        .select()
+        .single();
+      if (insertError) return NextResponse.json({ error: insertError.message }, { status: 500 });
+      return NextResponse.json({ success: true, publication: inserted });
+    }
+
+    return NextResponse.json({ success: true, publication: data });
   } catch (error) {
     console.error("Startlist publication API error:", error);
 
