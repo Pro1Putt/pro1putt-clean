@@ -46,10 +46,6 @@ export default function AdminTournamentPage() {
   const [savingDnf, setSavingDnf] = useState(false);
 
   useEffect(() => {
-    if (!sessionStorage.getItem("admin_authed")) {
-      router.push("/admin");
-      return;
-    }
     loadData();
   }, [tournamentId]);
 
