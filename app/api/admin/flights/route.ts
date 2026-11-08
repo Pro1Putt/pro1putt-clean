@@ -142,7 +142,28 @@ export async function POST(req: Request) {
   if (regsError) return NextResponse.json({ ok: false, error: regsError.message });
   if (!regs || regs.length === 0) return NextResponse.json({ ok: false, error: "Keine Registrierungen" });
 
-  await supabase.from("flights").delete().eq("tournament_id", tournamentId).eq("round", round);
+  const { count: existingFlights, error: existingFlightsError } = await supabase
+    .from("flights")
+    .select("id", { count: "exact", head: true })
+    .eq("tournament_id", tournamentId)
+    .eq("round", round);
+
+  if (existingFlightsError) {
+    return NextResponse.json(
+      { ok: false, error: existingFlightsError.message },
+      { status: 500 }
+    );
+  }
+
+  if ((existingFlights ?? 0) > 0) {
+    return NextResponse.json(
+      {
+        ok: false,
+        error: "Für diese Runde existieren bereits Flights. Eine automatische Neuerstellung ist gesperrt, damit bestehende Einteilungen und Startzeiten erhalten bleiben."
+      },
+      { status: 409 }
+    );
+  }
 
   const registrations = regs.map((r: any) => ({
     ...r,
