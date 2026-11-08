@@ -81,7 +81,7 @@ export default function DesignPreview() {
             [
               {
                 id: "winston-2027-announcement",
-                name: "PRO1PUTT – WINSTON 2027",
+                name: "PRO1PUTT OPEN – WINSTON 2027",
                 course_name: "WINSTONgolf",
                 start_date: "2027-01-01",
                 end_date: null,
@@ -328,7 +328,7 @@ export default function DesignPreview() {
                   className="p1-event-photo"
                   style={{
                     backgroundImage: isWinston
-                      ? "linear-gradient(135deg, #153d2b, #29825a)"
+                      ? 'linear-gradient(135deg, rgba(10,45,28,.18), rgba(10,45,28,.12)), url("/gallery/IMG_2484.jpeg")'
                       : /bad saarow/i.test(`${event.name} ${event.course_name}`)
                         ? 'url("/tournament-images/bad-saarow-original.jpg")'
                         : 'url("/tournament-images/green-eagle-original.jpg")',
@@ -341,7 +341,9 @@ export default function DesignPreview() {
                 </div>
                 <div className="p1-event-details">
                   <span className="p1-event-date">{isWinston ? "Datum folgt" : dateLabel}</span>
-                  <h3>{event.name}</h3>
+                  <h3>{/bad saarow/i.test(event.name)
+                    ? "PRO1PUTT OPEN – BAD SAAROW 2027"
+                    : event.name}</h3>
                   <strong>{event.course_name}</strong>
                   <span className="p1-event-location">{event.location}</span>
                   <div style={{
@@ -352,9 +354,16 @@ export default function DesignPreview() {
                     lineHeight: 1.5,
                     color: "#29483a"
                   }}>
-                    <div>⛳ {isWinston
-                      ? "Einspielrunde nicht im Startgeld enthalten"
-                      : "Kostenlose Einspielrunde am Vortag inklusive"}</div>
+                    <div style={{ fontWeight: 800, color: "#123b2b" }}>
+                      ⛳ {isWinston
+                        ? "EINSPIELRUNDE NICHT INKLUSIVE"
+                        : "KOSTENLOSE EINSPIELRUNDE INKLUSIVE"}
+                      {!isWinston && (
+                        <span style={{ display: "block", fontWeight: 500 }}>
+                          Am Tag vor Turnierbeginn
+                        </span>
+                      )}
+                    </div>
                     <div style={{ fontWeight: 800, color: "#008c4e" }}>
                       🏆 10.000 € HOLE-IN-ONE-CHALLENGE
                     </div>
