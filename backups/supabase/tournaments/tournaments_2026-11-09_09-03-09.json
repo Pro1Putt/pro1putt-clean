@@ -139,7 +139,7 @@
     "scoring_pin": null,
     "slug": "bad-saarow-2027",
     "end_date": "2027-06-06",
-    "max_participants": null,
+    "max_participants": 75,
     "registration_open": true,
     "registration_deadline": null,
     "entry_fee_9": 165,
