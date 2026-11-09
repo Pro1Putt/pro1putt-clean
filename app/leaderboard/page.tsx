@@ -15,6 +15,14 @@ type Tournament = {
   course_name: string | null; location: string | null; registration_open: boolean;
   count: number; girls: number; boys: number;
   divisions: { label: string; count: number }[];
+  players: {
+    name: string;
+    flag: string;
+    gender: string;
+    division: string;
+    home_club: string;
+    hcp: number | null;
+  }[];
 };
 
 function dateLabel(start: string, end: string | null) {
@@ -78,6 +86,62 @@ export default function LeaderboardOverviewPage() {
                       {t.registration_open && <Link className={styles.primaryLink} href="/register">REGISTER NOW <span aria-hidden="true">↗</span></Link>}
                     </div>
                     {t.divisions.some(d => d.count > 0) && <div className={styles.divisions}>{t.divisions.filter(d => d.count > 0).map(d => <span key={d.label}>{d.label} <strong>{d.count}</strong></span>)}</div>}
+                    {(t.players?.length ?? 0) > 0 && (
+                      <details style={{ marginTop: 22 }}>
+                        <summary style={{
+                          cursor: "pointer",
+                          fontWeight: 700,
+                          letterSpacing: ".04em",
+                          padding: "12px 0"
+                        }}>
+                          CONFIRMED PLAYERS ({t.players.length})
+                        </summary>
+                        <div style={{ overflowX: "auto", paddingTop: 12 }}>
+                          {["U10", "U12", "U14", "U16", "U18", "U21"].flatMap(group =>
+                            ["Girls", "Boys"].map(gender => {
+                              const players = t.players.filter(
+                                player => player.division === group && player.gender === gender
+                              );
+                              if (!players.length) return null;
+                              return (
+                                <section key={`${group}-${gender}`} style={{ marginBottom: 24 }}>
+                                  <h4 style={{ marginBottom: 10 }}>{group} {gender} ({players.length})</h4>
+                                  <table style={{
+                                    width: "100%",
+                                    borderCollapse: "collapse",
+                                    fontSize: 14,
+                                    minWidth: 430
+                                  }}>
+                                    <thead>
+                                      <tr style={{ textAlign: "left", borderBottom: "1px solid #ccc" }}>
+                                        <th style={{ padding: "9px 6px" }}>PLAYER</th>
+                                        <th style={{ padding: "9px 6px" }}>HOME CLUB</th>
+                                        <th style={{ padding: "9px 6px", textAlign: "right" }}>HCP</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      {players.map((player, i) => (
+                                        <tr key={`${group}-${gender}-${i}`} style={{
+                                          borderBottom: "1px solid rgba(128,128,128,.18)"
+                                        }}>
+                                          <td style={{ padding: "10px 6px" }}>{player.flag} {player.name}</td>
+                                          <td style={{ padding: "10px 6px" }}>{player.home_club || "—"}</td>
+                                          <td style={{ padding: "10px 6px", textAlign: "right" }}>
+                                            {player.hcp !== null && Number.isFinite(player.hcp)
+                                              ? player.hcp.toFixed(1)
+                                              : "—"}
+                                          </td>
+                                        </tr>
+                                      ))}
+                                    </tbody>
+                                  </table>
+                                </section>
+                              );
+                            })
+                          )}
+                        </div>
+                      </details>
+                    )}
                   </div>
                 </article>
               ))}

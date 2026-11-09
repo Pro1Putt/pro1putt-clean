@@ -6,6 +6,18 @@ export const revalidate = 0;
 
 const TEST_ID = "37508244-09bd-4563-ad70-8082e20f633c";
 
+// Erst aktivieren, wenn die Datenschutzregelung geprüft wurde.
+const SHOW_PUBLIC_PLAYERS =
+  process.env.PRO1PUTT_PUBLIC_PLAYER_LIST_ENABLED === "true";
+
+function countryFlag(value: unknown): string {
+  const code = String(value || "").trim().toUpperCase();
+  if (!/^[A-Z]{2}$/.test(code)) return "🌐";
+  return String.fromCodePoint(
+    ...[...code].map(char => 127397 + char.charCodeAt(0))
+  );
+}
+
 function ageOn(birth: string, start: string): number | null {
   if (!/^\d{4}-\d{2}-\d{2}$/.test(birth) || !/^\d{4}-\d{2}-\d{2}$/.test(start)) return null;
   const [by, bm, bd] = birth.split("-").map(Number);
@@ -38,13 +50,41 @@ export async function GET() {
       const regs: Record<string, unknown>[] = [];
       for (let from = 0; ; from += 1000) {
         const { data, error: regError } = await db.from("registrations")
-          .select("id,first_name,last_name,gender,holes,birthdate,hcp,home_club,tournament_status")
+          .select("id,first_name,last_name,gender,holes,birthdate,hcp,home_club,nation,tournament_status,payment_status")
           .eq("tournament_id", tournament.id).order("id").range(from, from + 999);
         if (regError) throw regError;
         regs.push(...(data || []));
         if (!data || data.length < 1000) break;
       }
       const active = regs.filter(r => !["cancelled", "canceled", "storniert", "withdrawn", "deleted"].includes(String(r.tournament_status || "").toLowerCase()));
+      const paid = active.filter(
+        r => String(r.payment_status || "").toLowerCase() === "paid"
+      );
+
+      const players = SHOW_PUBLIC_PLAYERS
+        ? paid
+            .filter(r => String(r.first_name || "").trim() && String(r.last_name || "").trim())
+            .map(r => ({
+              name: `${String(r.first_name).trim()} ${String(r.last_name).trim()}`,
+              flag: countryFlag(r.nation),
+              gender: String(r.gender || ""),
+              division: division(r, String(tournament.start_date).slice(0, 10)),
+              home_club: String(r.home_club || "").trim(),
+              hcp: r.hcp == null || String(r.hcp).trim() === ""
+                ? null
+                : Number(r.hcp),
+            }))
+            .filter(r =>
+              ["Girls", "Boys"].includes(r.gender) &&
+              ["U10", "U12", "U14", "U16", "U18", "U21"].includes(r.division)
+            )
+            .sort((x, y) =>
+              x.division.localeCompare(y.division) ||
+              x.gender.localeCompare(y.gender) ||
+              x.name.localeCompare(y.name, "de")
+            )
+        : [];
+
       results.push({
         id: tournament.id,
         name: tournament.name,
@@ -57,7 +97,7 @@ export async function GET() {
         girls: active.filter(r => r.gender === "Girls").length,
         boys: active.filter(r => r.gender === "Boys").length,
         divisions: ["U10", "U12", "U14", "U16", "U18", "U21"].map(label => ({ label, count: active.filter(r => division(r, String(tournament.start_date).slice(0, 10)) === label).length })),
-        // No names of minors are exposed until an explicit consent workflow exists.
+        players,
       });
     }
     return NextResponse.json({ ok: true, tournaments: results }, { headers: { "Cache-Control": "no-store" } });
