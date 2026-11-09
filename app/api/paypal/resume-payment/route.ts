@@ -114,9 +114,53 @@ export async function POST(req: Request) {
     }
 
     if (reservation.existing_paypal_order_id) {
-      const existing = await getPayPalSandboxOrder(
-        reservation.existing_paypal_order_id
-      );
+      let existing: Awaited<ReturnType<typeof getPayPalSandboxOrder>>;
+
+      try {
+        existing = await getPayPalSandboxOrder(
+          reservation.existing_paypal_order_id
+        );
+      } catch (error) {
+        if (
+          error instanceof Error &&
+          error.message.includes(
+            "PayPal-Bestellung konnte nicht abgerufen werden: HTTP 404"
+          )
+        ) {
+          const { error: recoveryError } = await db
+            .from("registrations")
+            .update({
+              paypal_order_recovery_required: true,
+              paypal_order_recovery_reason:
+                "PayPal HTTP 404 – bestehende Bestellung manuell prüfen",
+            })
+            .eq("id", registrationId)
+            .eq("payment_status", "pending")
+            .eq(
+              "paypal_order_id",
+              reservation.existing_paypal_order_id
+            )
+            .is("paypal_capture_id", null);
+
+          if (recoveryError) {
+            console.error(
+              "[paypal/resume-payment] Recovery-Markierung fehlgeschlagen:",
+              recoveryError
+            );
+          }
+
+          return NextResponse.json(
+            {
+              ok: false,
+              error:
+                "Diese PayPal-Bestellung konnte nicht gefunden werden. Bitte kontaktiere PRO1PUTT. Es wurde keine neue Zahlung gestartet.",
+            },
+            { status: 409, headers }
+          );
+        }
+
+        throw error;
+      }
 
       if (!validOrder(existing, registrationId, amount)) {
         throw new Error("Bestehende PayPal-Bestellung ungültig.");
