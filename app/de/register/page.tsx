@@ -603,6 +603,11 @@ export default function RegisterPage() {
               style={{ marginTop: 4, width: 18, height: 18, flexShrink: 0 }} />
             <span>Ich willige freiwillig ein, dass nach bestätigter Zahlung Vor- und Nachname, Landesflagge, Alters- und Wertungsklasse, Heimatgolfclub und Handicap des angemeldeten Kindes in der öffentlichen PRO1PUTT-Teilnehmerliste erscheinen. Diese Einwilligung kann ich jederzeit für die Zukunft widerrufen.</span>
           </label>
+          <label style={{ display: "flex", gap: 12, alignItems: "flex-start", marginTop: 16 }}>
+            <input type="checkbox" name="media_consent" value="true"
+              style={{ marginTop: 4, width: 18, height: 18, flexShrink: 0 }} />
+            <span>Ich willige freiwillig ein, dass Foto- und Videoaufnahmen meines Kindes von PRO1PUTT zur Berichterstattung über Turniere sowie zur Bewerbung zukünftiger PRO1PUTT-Veranstaltungen auf der Website, auf Social Media (insbesondere Instagram) und in digitalen oder gedruckten Werbematerialien verwendet werden dürfen. Die Einwilligung kann jederzeit mit Wirkung für die Zukunft widerrufen werden. Die Turnierteilnahme ist unabhängig von dieser Einwilligung möglich.</span>
+          </label>
         </div>
 
         <button

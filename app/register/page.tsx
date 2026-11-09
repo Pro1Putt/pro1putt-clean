@@ -603,6 +603,11 @@ export default function RegisterPage() {
               style={{ marginTop: 4, width: 18, height: 18, flexShrink: 0 }} />
             <span>I voluntarily consent to the publication of the registered child’s first and last name, country flag, age and competition division, home golf club and handicap in the public PRO1PUTT participant list after confirmed payment. I may withdraw this consent at any time with effect for the future.</span>
           </label>
+          <label style={{ display: "flex", gap: 12, alignItems: "flex-start", marginTop: 16 }}>
+            <input type="checkbox" name="media_consent" value="true"
+              style={{ marginTop: 4, width: 18, height: 18, flexShrink: 0 }} />
+            <span>I voluntarily consent to PRO1PUTT using photos and videos of my child for tournament coverage and promotion of future PRO1PUTT events on its website, social media (including Instagram), and digital or printed promotional materials. I may withdraw this consent at any time with effect for the future. Participation in the tournament does not depend on this consent.</span>
+          </label>
         </div>
 
         <button

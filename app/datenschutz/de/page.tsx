@@ -111,6 +111,34 @@ export default function DatenschutzPage() {
           Sie können Ihre Einwilligung jederzeit widerrufen.
         </Section>
 
+        <Section title="Foto- und Videoaufnahmen bei PRO1PUTT-Turnieren">
+          Im Rahmen unserer Turniere können Foto- und Videoaufnahmen
+          der teilnehmenden Kinder und Jugendlichen entstehen.
+          <br /><br />
+          Mit gesonderter, freiwilliger Einwilligung der hierzu
+          berechtigten sorgeberechtigten Person verwenden wir diese
+          Aufnahmen zur Berichterstattung über PRO1PUTT-Veranstaltungen
+          sowie zur Bewerbung zukünftiger PRO1PUTT-Turniere.
+          Dies umfasst insbesondere unsere Website, unsere offiziellen
+          Social-Media-Kanäle einschließlich Instagram sowie digitale
+          und gedruckte Informations- und Werbematerialien.
+          <br /><br />
+          Die Einwilligung umfasst auch die spätere Wiederverwendung
+          geeigneter Aufnahmen für zukünftige PRO1PUTT-Veranstaltungen.
+          Rechtsgrundlage ist Art. 6 Abs. 1 lit. a DSGVO.
+          Die Einwilligung ist keine Voraussetzung für die Teilnahme
+          am Turnier.
+          <br /><br />
+          Die Einwilligung kann jederzeit mit Wirkung für die Zukunft
+          per E-Mail an info@pro1putt.com widerrufen werden.
+          Nach einem wirksamen Widerruf unterlassen wir die weitere
+          Verwendung und entfernen betroffene Aufnahmen aus unseren
+          kontrollierbaren Veröffentlichungen, soweit rechtlich
+          erforderlich und technisch möglich. Bereits erfolgte
+          Weiterverbreitungen durch Dritte können gegebenenfalls
+          nicht vollständig rückgängig gemacht werden.
+        </Section>
+
         <Section title="6. Hosting und technische Dienstleister">
           Unsere Website wird betrieben über:
           <ul style={{ marginTop: 8 }}>

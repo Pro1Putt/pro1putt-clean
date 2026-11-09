@@ -92,6 +92,7 @@ export async function POST(req: Request) {
     const emailLanguage = body.email_language === "de" ? "de" : "en";
     const termsAccepted = body.terms_accepted === "true";
     const publicListingConsent = body.public_listing_consent === "true";
+    const mediaConsent = body.media_consent === "true";
 
 
     const tournament_id = normStr(body.tournament_id);
@@ -288,6 +289,7 @@ export async function POST(req: Request) {
         p_email_language: emailLanguage,
         p_terms_accepted: termsAccepted,
         p_public_listing_consent: publicListingConsent,
+        p_media_consent: mediaConsent,
 
       });
       if (rpcError || typeof newId !== "string") {
