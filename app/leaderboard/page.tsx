@@ -81,7 +81,7 @@ export default function LeaderboardOverviewPage() {
                   </div>
                 </article>
               ))}
-              <p className={styles.privacyNote}>Registration numbers are updated automatically. Player names will only appear after explicit consent.</p>
+              <p className={styles.privacyNote}>Registration numbers are updated automatically. See who's already signed up for the tournament!</p>
             </section>
           ) : (
             <section aria-label="2026 results" className={styles.tournamentList}>
