@@ -46,6 +46,7 @@ export async function sendPaidRegistrationEmail(
   const pin = escapeHtml(args.pin);
   const pinUrl = escapeHtml(args.pinUrl);
   const leaderboardUrl = escapeHtml(args.leaderboardUrl);
+  const appUrl = "com.pro1putt.pro1puttapp://";
   const hero = imageForTournament(args.tournamentName);
 
   const copy = de
@@ -160,7 +161,7 @@ export async function sendPaidRegistrationEmail(
               <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top:28px;">
                 <tr>
                   <td align="center" bgcolor="#c8f03c" style="border-radius:9px;">
-                    <a href="${pinUrl}" style="display:block;padding:17px;color:#102015;font-size:14px;font-weight:bold;text-decoration:none;">
+                    <a href="${appUrl}" style="display:block;padding:17px;color:#102015;font-size:14px;font-weight:bold;text-decoration:none;">
                       ${copy.scoringButton}
                     </a>
                   </td>
@@ -196,7 +197,7 @@ export async function sendPaidRegistrationEmail(
     copy.intro,
     `${copy.tournamentLabel}: ${args.tournamentName}`,
     `${copy.pinLabel}: ${args.pin}`,
-    `${copy.scoringButton}: ${args.pinUrl}`,
+    `${copy.scoringButton}: ${appUrl}`,
     `${copy.leaderboardButton}: ${args.leaderboardUrl}`,
   ].join("\n");
 
