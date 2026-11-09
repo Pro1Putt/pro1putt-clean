@@ -514,8 +514,8 @@ export default function RegisterPage() {
               <option value="" disabled>
                 Please select…
               </option>
-              <option value="Mädchens">Mädchens</option>
-              <option value="Junges">Junges</option>
+              <option value="Girls">Mädchen</option>
+              <option value="Boys">Jungen</option>
             </select>
           </div>
 
@@ -581,6 +581,29 @@ export default function RegisterPage() {
         </div>
 
         <div style={{ height: 18 }} />
+
+
+        <div style={{
+          marginTop: 20,
+          marginBottom: 20,
+          padding: 20,
+          borderRadius: 14,
+          background: "#f6f7ef",
+          color: "#092b1c",
+          fontSize: 13,
+          lineHeight: 1.6
+        }}>
+          <label style={{ display: "flex", gap: 12, alignItems: "flex-start", marginBottom: 16 }}>
+            <input type="checkbox" name="terms_accepted" value="true" required
+              style={{ marginTop: 4, width: 18, height: 18, flexShrink: 0 }} />
+            <span dangerouslySetInnerHTML={{ __html: 'Als sorgeberechtigte oder zur Anmeldung bevollmächtigte Person bestätige ich, dass ich zur Anmeldung dieses Kindes berechtigt bin. Ich habe die <a href="/de/agb" target="_blank" rel="noopener noreferrer">AGB</a> und die <a href="/de/datenschutz" target="_blank" rel="noopener noreferrer">Datenschutzerklärung</a> gelesen und akzeptiere die AGB.' }} />
+          </label>
+          <label style={{ display: "flex", gap: 12, alignItems: "flex-start" }}>
+            <input type="checkbox" name="public_listing_consent" value="true"
+              style={{ marginTop: 4, width: 18, height: 18, flexShrink: 0 }} />
+            <span>Ich willige freiwillig ein, dass nach bestätigter Zahlung Vor- und Nachname, Landesflagge, Alters- und Wertungsklasse, Heimatgolfclub und Handicap des angemeldeten Kindes in der öffentlichen PRO1PUTT-Teilnehmerliste erscheinen. Diese Einwilligung kann ich jederzeit für die Zukunft widerrufen.</span>
+          </label>
+        </div>
 
         <button
           type="submit"

@@ -582,6 +582,29 @@ export default function RegisterPage() {
 
         <div style={{ height: 18 }} />
 
+
+        <div style={{
+          marginTop: 20,
+          marginBottom: 20,
+          padding: 20,
+          borderRadius: 14,
+          background: "#f6f7ef",
+          color: "#092b1c",
+          fontSize: 13,
+          lineHeight: 1.6
+        }}>
+          <label style={{ display: "flex", gap: 12, alignItems: "flex-start", marginBottom: 16 }}>
+            <input type="checkbox" name="terms_accepted" value="true" required
+              style={{ marginTop: 4, width: 18, height: 18, flexShrink: 0 }} />
+            <span dangerouslySetInnerHTML={{ __html: 'As a parent, legal guardian or authorized representative, I confirm that I am authorized to register this child. I have read the <a href="/agb" target="_blank" rel="noopener noreferrer">Terms and Conditions</a> and the <a href="/datenschutz" target="_blank" rel="noopener noreferrer">Privacy Policy</a>, and I accept the Terms and Conditions.' }} />
+          </label>
+          <label style={{ display: "flex", gap: 12, alignItems: "flex-start" }}>
+            <input type="checkbox" name="public_listing_consent" value="true"
+              style={{ marginTop: 4, width: 18, height: 18, flexShrink: 0 }} />
+            <span>I voluntarily consent to the publication of the registered child’s first and last name, country flag, age and competition division, home golf club and handicap in the public PRO1PUTT participant list after confirmed payment. I may withdraw this consent at any time with effect for the future.</span>
+          </label>
+        </div>
+
         <button
           type="submit"
           disabled={submitting}

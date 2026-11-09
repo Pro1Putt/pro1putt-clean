@@ -29,9 +29,9 @@ function division(reg: Record<string, unknown>, date: string): string {
   const age = ageOn(String(reg.birthdate || ""), date);
   if (age === null) return "";
   if (Number(reg.holes) === 18) {
-    return age <= 13 ? "U14" : age <= 15 ? "U16" : age <= 17 ? "U18" : "U21";
+    return age <= 14 ? "U14" : age <= 16 ? "U16" : age <= 18 ? "U18" : "U21";
   }
-  return age <= 9 ? "U10" : "U12";
+  return age <= 10 ? "U10" : "U12";
 }
 
 export async function GET() {
@@ -50,7 +50,7 @@ export async function GET() {
       const regs: Record<string, unknown>[] = [];
       for (let from = 0; ; from += 1000) {
         const { data, error: regError } = await db.from("registrations")
-          .select("id,first_name,last_name,gender,holes,birthdate,hcp,home_club,nation,tournament_status,payment_status")
+          .select("id,first_name,last_name,gender,holes,birthdate,hcp,home_club,nation,tournament_status,payment_status,public_listing_consent,public_listing_consented_at")
           .eq("tournament_id", tournament.id).order("id").range(from, from + 999);
         if (regError) throw regError;
         regs.push(...(data || []));
@@ -59,6 +59,8 @@ export async function GET() {
       const active = regs.filter(r => !["cancelled", "canceled", "storniert", "withdrawn", "deleted"].includes(String(r.tournament_status || "").toLowerCase()));
       const paid = active.filter(
         r => String(r.payment_status || "").toLowerCase() === "paid"
+          && r.public_listing_consent === true
+          && Boolean(r.public_listing_consented_at)
       );
 
       const players = SHOW_PUBLIC_PLAYERS

@@ -35,6 +35,29 @@ export default function DatenschutzPage() {
         }}
       >
 
+        <Section title="4a. Öffentliche Teilnehmerlisten ab 2027">
+          Bei Turnieren ab 2027 können nach bestätigter Zahlung
+          Vor- und Nachname, Landesflagge, Alters- und Wertungsklasse,
+          Heimatgolfclub und Handicap in der öffentlich zugänglichen
+          PRO1PUTT-Teilnehmerliste veröffentlicht werden.
+          <br /><br />
+          Diese Veröffentlichung erfolgt ausschließlich nach einer
+          gesonderten, freiwilligen Einwilligung der hierzu berechtigten
+          sorgeberechtigten Person gemäß Art. 6 Abs. 1 lit. a DSGVO.
+          Die Einwilligung ist keine Voraussetzung für die Teilnahme
+          am Turnier.
+          <br /><br />
+          Die Einwilligung kann jederzeit mit Wirkung für die Zukunft
+          per E-Mail an info@pro1putt.com widerrufen werden.
+          Nach Eingang und Prüfung des Widerrufs entfernen wir die
+          betreffenden Angaben aus der öffentlichen Teilnehmerliste.
+          Bereits erfolgte Zugriffe oder Kopien durch Dritte können
+          gegebenenfalls nicht rückgängig gemacht werden.
+          <br /><br />
+          Geburtsdatum, Kontaktdaten, Zahlungsinformationen und
+          Spieler-PIN werden nicht in dieser Teilnehmerliste veröffentlicht.
+        </Section>
+
         <Section title="1. Verantwortlicher">
           Pro1Putt UG<br />
           Jennifer Menzel & Tim-Florian Menzel<br />

@@ -90,6 +90,9 @@ export async function POST(req: Request) {
   try {
     const body = await req.json();
     const emailLanguage = body.email_language === "de" ? "de" : "en";
+    const termsAccepted = body.terms_accepted === "true";
+    const publicListingConsent = body.public_listing_consent === "true";
+
 
     const tournament_id = normStr(body.tournament_id);
     const holes = toInt(body.holes);
@@ -112,6 +115,14 @@ export async function POST(req: Request) {
     const gender = ["Boys", "Girls"].includes(normStr(body.gender))
   ? normStr(body.gender)
   : null;
+
+
+    if (!termsAccepted) {
+      return NextResponse.json(
+        { ok: false, error: "Bitte akzeptiere die AGB und bestätige die Datenschutzhinweise." },
+        { status: 400 }
+      );
+    }
 
     const missing: string[] = [];
     if (!tournament_id) missing.push("tournament_id");
@@ -275,6 +286,9 @@ export async function POST(req: Request) {
         p_player_pin: player_pin,
         p_payment_token_hash: paymentCredentials.hash,
         p_email_language: emailLanguage,
+        p_terms_accepted: termsAccepted,
+        p_public_listing_consent: publicListingConsent,
+
       });
       if (rpcError || typeof newId !== "string") {
         const message = rpcError?.message || "Anmeldung konnte nicht gespeichert werden.";
