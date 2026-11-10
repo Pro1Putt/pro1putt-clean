@@ -78,28 +78,9 @@ export default function DesignPreview() {
 
         if (!cancelled) {
           setEvents(
-            [
-              {
-                id: "winston-2027-announcement",
-                name: "PRO1PUTT OPEN – WINSTON 2027",
-                course_name: "WINSTONgolf",
-                start_date: "2027-01-01",
-                end_date: null,
-                location: "WINSTONgolf",
-                slug: null,
-                is_active: true,
-                registration_open: false,
-              },
-              ...(json.tournaments || []).filter(
-                (t: TourEvent) => !/winston/i.test(
-                  `${t.name} ${t.course_name || ""}`
-                )
-              ),
-            ].sort((a: TourEvent, b: TourEvent) => {
-              if (a.id === "winston-2027-announcement") return -1;
-              if (b.id === "winston-2027-announcement") return 1;
-              return a.start_date.localeCompare(b.start_date);
-            })
+            (json.tournaments || []).sort((a: TourEvent, b: TourEvent) =>
+              a.start_date.localeCompare(b.start_date)
+            )
           );
         }
       } catch {
@@ -300,10 +281,10 @@ export default function DesignPreview() {
 
           {events.map((event, index) => {
             const isWinston =
-              event.id === "winston-2027-announcement" ||
+              
               /winston/i.test(`${event.name} ${event.course_name || ""}`);
             const registrationOpen =
-              !isWinston && event.is_active && event.registration_open;
+              event.is_active && event.registration_open;
 
             const start = new Date(event.start_date + "T12:00:00");
             const end = event.end_date
@@ -340,7 +321,7 @@ export default function DesignPreview() {
                   {registrationOpen && <span className="p1-event-arrow">↗</span>}
                 </div>
                 <div className="p1-event-details">
-                  <span className="p1-event-date">{isWinston ? "Date TBA" : dateLabel}</span>
+                  <span className="p1-event-date">{dateLabel}</span>
                   <h3>{/bad saarow/i.test(event.name)
                     ? "PRO1PUTT OPEN – BAD SAAROW 2027"
                     : event.name}</h3>

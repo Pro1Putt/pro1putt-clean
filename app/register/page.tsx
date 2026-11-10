@@ -336,12 +336,7 @@ export default function RegisterPage() {
               {tournaments
   .filter((t) => {
     const name = String(t.name || "").toLowerCase();
-    return (
-      t.id === "37508244-09bd-4563-ad70-8082e20f633c" ||
-      (!name.includes("winston") &&
-        !name.includes("faldo") &&
-        !name.includes("test"))
-    );
+    return !name.includes("test");
   })
   .map((t) => (
                 <option key={t.id} value={t.id}>
