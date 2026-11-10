@@ -33,8 +33,12 @@ export default function DesignPreview() {
         video.loop = true;
         video.playsInline = true;
 
-        if (video.paused && video.readyState >= 2) {
-          void video.play().catch(() => {});
+        if (video.paused) {
+          void video.play().then(() => {
+            video.controls = false;
+          }).catch(() => {
+            video.controls = true;
+          });
         }
       });
     };
@@ -42,6 +46,7 @@ export default function DesignPreview() {
     videos.forEach((video) => {
       video.addEventListener("loadeddata", startVideos);
       video.addEventListener("canplay", startVideos);
+      video.addEventListener("loadedmetadata", startVideos);
     });
 
     window.addEventListener("pageshow", startVideos);
@@ -53,6 +58,7 @@ export default function DesignPreview() {
       videos.forEach((video) => {
         video.removeEventListener("loadeddata", startVideos);
         video.removeEventListener("canplay", startVideos);
+        video.removeEventListener("loadedmetadata", startVideos);
       });
       window.removeEventListener("pageshow", startVideos);
       window.removeEventListener("focus", startVideos);
