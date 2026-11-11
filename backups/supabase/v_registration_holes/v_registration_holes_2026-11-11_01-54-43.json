@@ -17,6 +17,23 @@
     "length_m": null
   },
   {
+    "registration_id": "7eb448f3-4f1f-4e8e-bf67-9c6d14b33e5b",
+    "tournament_id": "9f5ed587-7828-4665-a1ee-8f75a7983b80",
+    "first_name": "Louiza Sofie",
+    "last_name": "Menzel",
+    "gender": "Girls",
+    "course_setup_id": null,
+    "setup_course_name": null,
+    "setup_tee_name": null,
+    "setup_slope": null,
+    "setup_course_rating": null,
+    "setup_par_total": null,
+    "hole_number": null,
+    "par": null,
+    "stroke_index": null,
+    "length_m": null
+  },
+  {
     "registration_id": "3b88eb10-8515-40d0-8108-a94529c534cd",
     "tournament_id": "7716349a-8bb0-46c6-b60c-3594eb7ea60f",
     "first_name": "Andris",
@@ -1428,10 +1445,10 @@
     "length_m": null
   },
   {
-    "registration_id": "c70bcd3a-83bb-4df7-9201-446fc02738a4",
-    "tournament_id": "37508244-09bd-4563-ad70-8082e20f633c",
-    "first_name": "Test",
-    "last_name": "Test",
+    "registration_id": "5a67b97a-014d-432c-bda8-0ab342738b7d",
+    "tournament_id": "66ba3f87-5381-49f6-975d-ebb1af2abac5",
+    "first_name": "Louiza Sofie",
+    "last_name": "Menzel",
     "gender": "Girls",
     "course_setup_id": null,
     "setup_course_name": null,
@@ -1751,10 +1768,10 @@
     "length_m": null
   },
   {
-    "registration_id": "5a67b97a-014d-432c-bda8-0ab342738b7d",
-    "tournament_id": "66ba3f87-5381-49f6-975d-ebb1af2abac5",
-    "first_name": "Louiza Sofie",
-    "last_name": "Menzel",
+    "registration_id": "c70bcd3a-83bb-4df7-9201-446fc02738a4",
+    "tournament_id": "37508244-09bd-4563-ad70-8082e20f633c",
+    "first_name": "Test",
+    "last_name": "Test",
     "gender": "Girls",
     "course_setup_id": null,
     "setup_course_name": null,
