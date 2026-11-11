@@ -145,5 +145,26 @@
     "tournament_id": "37508244-09bd-4563-ad70-8082e20f633c",
     "round": 3,
     "published": false
+  },
+  {
+    "id": 28,
+    "created_at": "2026-11-10T14:06:39.844262+00:00",
+    "tournament_id": "9f5ed587-7828-4665-a1ee-8f75a7983b80",
+    "round": 1,
+    "published": false
+  },
+  {
+    "id": 29,
+    "created_at": "2026-11-10T14:06:39.844262+00:00",
+    "tournament_id": "9f5ed587-7828-4665-a1ee-8f75a7983b80",
+    "round": 2,
+    "published": false
+  },
+  {
+    "id": 30,
+    "created_at": "2026-11-10T14:06:39.844262+00:00",
+    "tournament_id": "9f5ed587-7828-4665-a1ee-8f75a7983b80",
+    "round": 3,
+    "published": false
   }
 ]
