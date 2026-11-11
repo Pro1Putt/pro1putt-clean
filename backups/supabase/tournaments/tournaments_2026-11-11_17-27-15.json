@@ -145,5 +145,26 @@
     "entry_fee_9": 165,
     "entry_fee_18": 215,
     "entry_fee_currency": "EUR"
+  },
+  {
+    "id": "9f5ed587-7828-4665-a1ee-8f75a7983b80",
+    "name": "PRO1PUTT - WINSTON OPEN 2027",
+    "course_name": "Winston",
+    "start_date": "2027-04-02",
+    "created_at": "2026-11-10T14:06:39.844262+00:00",
+    "par": 72,
+    "location": "19065 Gneven OT Vorbeck",
+    "is_active": true,
+    "paypal_url_9": "https://www.paypal.com/ncp/payment/6DT4QUP3N5VY6",
+    "paypal_url_18": "https://www.paypal.com/ncp/payment/2V8LXGCGFANTC",
+    "scoring_pin": null,
+    "slug": "winston-open-2027",
+    "end_date": "2027-04-04",
+    "max_participants": 75,
+    "registration_open": true,
+    "registration_deadline": "2027-03-31",
+    "entry_fee_9": 165,
+    "entry_fee_18": 215,
+    "entry_fee_currency": "EUR"
   }
 ]
