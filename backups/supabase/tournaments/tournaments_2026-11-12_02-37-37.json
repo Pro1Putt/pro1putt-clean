@@ -155,16 +155,16 @@
     "par": 72,
     "location": "19065 Gneven OT Vorbeck",
     "is_active": true,
-    "paypal_url_9": null,
-    "paypal_url_18": null,
+    "paypal_url_9": "https://www.paypal.com/ncp/payment/6DT4QUP3N5VY6",
+    "paypal_url_18": "https://www.paypal.com/ncp/payment/2V8LXGCGFANTC",
     "scoring_pin": null,
     "slug": "winston-open-2027",
     "end_date": "2027-04-04",
     "max_participants": 75,
     "registration_open": true,
     "registration_deadline": "2027-03-31",
-    "entry_fee_9": null,
-    "entry_fee_18": null,
-    "entry_fee_currency": null
+    "entry_fee_9": 165,
+    "entry_fee_18": 215,
+    "entry_fee_currency": "EUR"
   }
 ]
