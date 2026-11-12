@@ -163,8 +163,8 @@
     "max_participants": 75,
     "registration_open": true,
     "registration_deadline": "2027-03-31",
-    "entry_fee_9": 1,
-    "entry_fee_18": 2,
+    "entry_fee_9": 165,
+    "entry_fee_18": 215,
     "entry_fee_currency": "EUR"
   }
 ]
