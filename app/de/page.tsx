@@ -995,7 +995,50 @@ export default function DesignPreview() {
         @media (prefers-reduced-motion: reduce) {
           .p1-preview * { transition: none !important; }
         }
-      `}</style>
+      
+        /* PRO1PUTT MOBILE TOUR OPTIMIZATION */
+@media screen and (max-width: 700px) {
+  .p1-event-grid.p1-event-grid-2027 {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 22px !important;
+    width: 100% !important;
+  }
+
+  .p1-event-grid-2027 .p1-event {
+    display: block !important;
+    width: 100% !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+    border-radius: 14px;
+  }
+
+  .p1-event-grid-2027 .p1-event-photo {
+    min-height: 195px !important;
+    height: 195px !important;
+  }
+
+  .p1-event-grid-2027 .p1-event-details {
+    padding: 22px 20px !important;
+  }
+
+  .p1-event-grid-2027 .p1-event-title {
+    font-size: clamp(21px, 5.8vw, 27px) !important;
+    line-height: 1.14 !important;
+    overflow-wrap: anywhere;
+  }
+
+  .p1-event-grid-2027 .p1-event-link {
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
+      `}
+
+</style>
     </div>
   );
 }
